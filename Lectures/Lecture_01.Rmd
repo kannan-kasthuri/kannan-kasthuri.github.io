@@ -31,4 +31,6 @@ You can install R from its source page <a href="https://www.r-project.org/"targe
 
 Install RStudio desktop version from <a href="https://www.rstudio.com/products/RStudio/"target="_blank">here</a>.
 
+---
 
+#### Selected reading
