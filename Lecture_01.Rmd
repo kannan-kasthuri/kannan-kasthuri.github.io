@@ -21,6 +21,8 @@ Register for a free individual account at [GitHub](https://github.com/).
 
 I will need your usernames to add you to the main repository in github - [Programming for Data Analysis Fall 2017]( https://github.com/PDA-NYU-Fall-2017). I will give your own private repositories where you'll deposit ("push" in git language) your classwork and homework for this course. Discussion among us for this course will be done at the [Discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) in GitHub. You may also raise questions and issues by clicking "New issue" tab in this page.
 
+**Don't freak** out if there are problems. That's pretty common when you are getting introduced to something new. Come to [office hours](https://kannan-kasthuri.github.io/pda.html), use our [Discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) or ask for help.
+
 ---
 
 ##### R and RStudio
