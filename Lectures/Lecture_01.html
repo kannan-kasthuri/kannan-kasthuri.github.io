@@ -127,15 +127,19 @@ $(document).ready(function () {
 <h5>Register a GitHub account - Do this first!</h5>
 <p>Register for a free individual account at <a href="https://github.com/">GitHub</a>.</p>
 <p>I will need your usernames to add you to the main repository in github - <a href="https://github.com/PDA-NYU-Fall-2017">Programming for Data Analysis Fall 2017</a>. I will give your own private repositories where you’ll deposit (“push” in git language) your classwork and homework for this course. Discussion among us for this course will be done at the <a href="https://github.com/PDA-NYU-Fall-2017/Discussion/issues">Discussion page</a> in GitHub. You may also raise questions and issues by clicking “New issue” tab in this page.</p>
-<p><strong>Don’t freak</strong> out if there are problems. That’s pretty common when you are getting introduced to something new. Come to <a href="https://kannan-kasthuri.github.io/pda.html">office hours</a>, use our <a href="https://github.com/PDA-NYU-Fall-2017/Discussion/issues">Discussion page</a> or ask for help.</p>
+<p><strong>Don’t freak out</strong> if there are problems. That’s pretty common when you are getting introduced to something new. Come to <a href="https://kannan-kasthuri.github.io/pda.html">office hours</a>, use our <a href="https://github.com/PDA-NYU-Fall-2017/Discussion/issues">Discussion page</a> or ask for help.</p>
 <hr />
 </div>
 <div id="r-and-rstudio" class="section level5">
 <h5>R and RStudio</h5>
 <p>You can install R from its source page <a href="https://www.r-project.org/" target="_blank"> here</a>. I would suggest installing the precompiled binary for your OS.</p>
-<p>Install RStudio desktop version from <a href="https://www.rstudio.com/products/RStudio/" target="_blank">here</a>.</p>
+<p>Install RStudio desktop version from <a href="https://www.rstudio.com/products/RStudio/" target="_blank">here</a>. You need to install R first before installing RStudio for it to work.</p>
 <p>RStudio comes with a text editor, so there is no need to install a separate stand-alone editor.</p>
 <p>Even if you have a already existing installation of RStudio, I would <strong>highly recommend</strong> that you reinstall and upgrade to the most recent version. It is very easy to re-install RStudio which is evolving rapidly.</p>
+<ul>
+<li><p>Once you installed RStudio, when you open it, you should see a screen something like <a href="http://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png">this</a>. Of course, all the panes in your session will be empty.</p></li>
+<li><p>To check if everything is installed properly, type in <code>x &lt;- 4 + 5</code> in your pane labelled Console. If you check the value of x by typing x in the console followed by a return, you should see the value 9 printed out.</p></li>
+</ul>
 <p>If you upgrade R, you will need to update any packages you have installed. The following command in RStudio console (plus some extra-arguments perhaps), will update already installed packages:</p>
 <p><code>update.packages(ask = FALSE, checkBuilt = TRUE)</code></p>
 <hr />
