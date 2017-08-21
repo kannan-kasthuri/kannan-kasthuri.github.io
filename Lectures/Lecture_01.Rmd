@@ -31,6 +31,8 @@ You can install R from its source page <a href="https://www.r-project.org/"targe
 
 Install RStudio desktop version from <a href="https://www.rstudio.com/products/RStudio/"target="_blank">here</a>.
 
+Even if you have a already existing installation, I would **highly recommend** that you reinstall and upgrade to the most recent version. It is very easy to re-install RStudio which is evolving rapidly. If you upgrade R, you will need to also update any packages you have installed.
+
 ---
 
 ##### Selected reading
