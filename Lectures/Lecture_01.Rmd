@@ -31,8 +31,18 @@ You can install R from its source page <a href="https://www.r-project.org/"targe
 
 Install RStudio desktop version from <a href="https://www.rstudio.com/products/RStudio/"target="_blank">here</a>.
 
-Even if you have a already existing installation, I would **highly recommend** that you reinstall and upgrade to the most recent version. It is very easy to re-install RStudio which is evolving rapidly. If you upgrade R, you will need to also update any packages you have installed.
+RStudio comes with a text editor, so there is no need to install a separate stand-alone editor.
+
+Even if you have a already existing installation of RStudio, I would **highly recommend** that you reinstall and upgrade to the most recent version. It is very easy to re-install RStudio which is evolving rapidly. 
+
+If you upgrade R, you will need to update any packages you have installed. The following command in RStudio console (plus some extra-arguments perhaps), will update already installed packages:
+
+`update.packages(ask = FALSE, checkBuilt = TRUE)`
 
 ---
+
+##### Working with RStudio, Git and Github
+
+You have to wait until the next class when you will have your private repositories so you can "push" your projects. But until then you need to get familiar with git. This [page](http://happygitwithr.com/big-picture.html) is a must read!
 
 ##### Selected reading
