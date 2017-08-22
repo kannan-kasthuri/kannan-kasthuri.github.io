@@ -45,8 +45,44 @@ If you upgrade R, you will need to update any packages you have installed. The f
 
 ---
 
-##### Working with RStudio, Git and Github
+##### How to add packages?
 
-You have to wait until the next class when you will have your private repositories so you can "push" your projects. But until then you need to get familiar with git. This [page](http://happygitwithr.com/big-picture.html) is a must read!
+Use the following template:
+
+`install.packages("package_name",dependencies = TRUE)` 
+
+where "package_name" is the name of the package you want to install. For instance, if you want to install the package _tidyverse_, type 
+
+`install.packages("tidyverse",dependencies = TRUE)`
+
+in the console and you should have it.
+
+---
+
+##### Further resources
+
+* RStudio support: https://support.rstudio.com/hc/en-us
+
+* Getting help with R: https://support.rstudio.com/hc/en-us/articles/200717153-Getting-Help-with-R
+
+* R FAQ: https://cran.r-project.org/doc/FAQ/R-FAQ.html
+
+* R Instalation and admin: https://cran.r-project.org/doc/manuals/R-admin.html
+
+---
+
+##### Learn Git, Learn Git, Learn Git
+
+We will be using Git extensively in the class. If you are using a Mac, your _Terminal_ should be in _Applications -> Utilities -> Terminal_
+
+Getting comfortable using the terminal will go a long way in your career. 
+
+Here is a good tutorial for Git: https://www.youtube.com/watch?v=0fKg7e37bQE
+
+Here is another one (in windows): https://www.youtube.com/watch?v=Y9XZQO1n_7c
+
+There are several good ones - just type 'git tutorial' in YouTube and find the one which you really like.
+
+---
 
 ##### Selected reading
