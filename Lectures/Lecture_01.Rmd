@@ -59,7 +59,7 @@ in the console and you should have it.
 
 ---
 
-##### Further resources
+##### Further resources/support
 
 * RStudio support: https://support.rstudio.com/hc/en-us
 
@@ -77,13 +77,13 @@ We will be using Git extensively in the class. If you are using a Mac, your _Ter
 
 Getting comfortable using the terminal will go a long way in your career. 
 
-Here is a good tutorial for Git: https://www.youtube.com/watch?v=0fKg7e37bQE
+Here is a good tutorial for Git: [Github Tutorial For Beginners](https://www.youtube.com/watch?v=0fKg7e37bQE) 
 
-Here is another one (in windows): https://www.youtube.com/watch?v=Y9XZQO1n_7c
+Here is another one (in windows): [Learn Git in 20 Minutes](https://www.youtube.com/watch?v=Y9XZQO1n_7c)
 
 There are several good ones - just type 'git tutorial' in YouTube and find the one which you really like.
 
-Working with RStudio, Git and Github - we will demo this in the class, but [here](http://happygitwithr.com/) is an excellent resource if you want to prepare ahead of the class.
+Working with RStudio, Git and Github - we will demo this in the class, but [here](http://happygitwithr.com/) is an excellent resource if you want to prepare ahead.
 
 ---
 
