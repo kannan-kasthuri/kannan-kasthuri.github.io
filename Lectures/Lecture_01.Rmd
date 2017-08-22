@@ -83,6 +83,8 @@ Here is another one (in windows): https://www.youtube.com/watch?v=Y9XZQO1n_7c
 
 There are several good ones - just type 'git tutorial' in YouTube and find the one which you really like.
 
+Working with RStudio, Git and Github - we will demo this in the class, but [here](http://happygitwithr.com/) is an excellent resource if you want to prepare ahead of the class.
+
 ---
 
 ##### Selected reading
