@@ -51,7 +51,7 @@ htmltools::includeHTML("../Figures/Fig_2.html")
 ```
 <br>
 
-3. Commit the work to the Git repository.
+3. Commit the work to your Git repository.
 
 4. Push your work into Github.
 
