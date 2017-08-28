@@ -41,3 +41,13 @@ Make sure you organize your files really well and name appropriately so it is ea
 ---
 
 ##### How to submit homework?
+
+* Make sure you have saved the work in your local directory.
+
+* Commit the work to the Git repository (for eg., from RStudio).
+
+* Push your work into Github.
+
+* Indicate that you have completed your work by creating a new issue in our [discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) with the "latest commit" information for your .Rmd and .html files and submit it. You are done now.
+
+---
