@@ -42,7 +42,9 @@ Make sure you organize your files really well and name appropriately so it is ea
 
 ##### How to submit homework?
 
-* Make sure you have saved the work in your local directory.
+* Make sure you have saved the work in your local directory. When you hit the save icon in the RStudio editor, you will see the markdown .Rmd file popping up in the Git panel of RStudio, ready to be committed.
+
+* Click "Knit to HTML" in the RStudio editor to render the associated HTML file. A preview of the HTML file will be popping up. At this point you will see two files, the markdown and the html documents, ready to be committed to Git.
 
 * Commit the work to the Git repository (for eg., from RStudio).
 
