@@ -33,8 +33,8 @@ As your first homework, you will create a README.txt file and push it into your 
 
 ##### Naming files
 
-Throughout this course you will create R Markdown files and render it as html. Your markdown files should be named with an extension ".Rmd" or ".rmd". RStudio’s “Knit to HTML” button will compile the document for you to actual HTML and open a preview. 
-You may want to read ahead [R Markdown](http://r4ds.had.co.nz/r-markdown.html) in the book R for Data Science. 
+Throughout this course you will create R Markdown files and render it as html which you will push to your coursework repository. Your markdown files **should be named** with an extension ".Rmd" or ".rmd". RStudio’s “Knit to HTML” button will compile the document for you to actual HTML and open a preview. 
+You may want to read the chapter [R Markdown](http://r4ds.had.co.nz/r-markdown.html) in the book R for Data Science if you want to get started before we cover this in the class.
 
 Make sure you organize your files really well and name appropriately so it is easier for us to grade. Part of the grades will go for your ability to organize the files for easier access and readability. 
 
