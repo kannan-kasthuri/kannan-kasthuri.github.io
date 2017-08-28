@@ -11,82 +11,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Lecture 01 (Sept. 07, 2017)
+### Homework Guidelines
 
 ---
 
-##### Register a GitHub account - Do this first! 
+##### Github pre-requisites 
 
-Register for a free individual account at [GitHub](https://github.com/). 
+The following are pre-requisites for submitting the homework.
 
-I will need your usernames to add you to the main repository in github - [Programming for Data Analysis Fall 2017]( https://github.com/PDA-NYU-Fall-2017). I will give your own private repositories where you'll deposit ("push" in git language) your classwork and homework for this course. Discussion among us for this course will be done at the [Discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) in GitHub. You may also raise questions and issues by clicking "New issue" tab in this page.
+* We assume you already have a Github account and you are able to push/pull into Github. If not, please read [Lecture 01](https://kannan-kasthuri.github.io/Lecture_Files/Lecture_01.html).
 
-**Don't freak out** if there are problems. That's pretty common when you are getting introduced to something new. Come to [office hours](https://kannan-kasthuri.github.io/pda.html), use our [Discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) or ask for help.
+* Claim your repository in Github - otherwise ask me and I will make you one.
 
----
-
-##### R and RStudio
-
-You can install R from its source page <a href="https://www.r-project.org/"target="_blank"> here</a>. I would suggest installing the precompiled binary for your OS.
-
-Install RStudio desktop version from <a href="https://www.rstudio.com/products/RStudio/"target="_blank">here</a>. You need to install R first before installing RStudio for it to work.
-
-RStudio comes with a text editor, so there is no need to install a separate stand-alone editor.
-
-Even if you have a already existing installation of RStudio, I would **highly recommend** that you reinstall and upgrade to the most recent version. It is very easy to re-install RStudio which is evolving rapidly. 
-
-* Once you installed RStudio, when you open it, you should see a screen something like [this](http://www.rstudio.com/wp-content/uploads/2014/04/rstudio-workbench.png). Of course, all the panes in your session will be empty.
-
-* To check if everything is installed properly, type in `x <- 4 + 5` in your pane labelled Console. If you check the value of x by typing x in the console followed by a return, you should see the value 9 printed out.
-  
-If you upgrade R, you will need to update any packages you have installed. The following command in RStudio console (plus some extra-arguments perhaps), will update already installed packages:
-
-`update.packages(ask = FALSE, checkBuilt = TRUE)`
-
----
-
-##### How to add packages?
-
-Use the following template:
-
-`install.packages("package_name",dependencies = TRUE)` 
-
-where "package_name" is the name of the package you want to install. For instance, if you want to install the package _tidyverse_, type 
-
-`install.packages("tidyverse",dependencies = TRUE)`
-
-in the console and you should have it.
-
----
-
-##### Further resources/support
-
-* RStudio support: https://support.rstudio.com/hc/en-us
-
-* Getting help with R: https://support.rstudio.com/hc/en-us/articles/200717153-Getting-Help-with-R
-
-* R FAQ: https://cran.r-project.org/doc/FAQ/R-FAQ.html
-
-* R Instalation and admin: https://cran.r-project.org/doc/manuals/R-admin.html
-
----
-
-##### Learn Git, Learn Git, Learn Git
-
-We will be using Git extensively in the class. If you are using a Mac, your _Terminal_ should be in _Applications -> Utilities -> Terminal_
-
-Getting comfortable using the terminal will go a long way in your career. 
-
-Here is a good tutorial for Git: [Github Tutorial For Beginners](https://www.youtube.com/watch?v=0fKg7e37bQE) 
-
-Here is another one (in windows): [Learn Git in 20 Minutes](https://www.youtube.com/watch?v=Y9XZQO1n_7c)
-
-There are several good ones - just type 'git tutorial' in YouTube and find the one which you really like.
-
-Working with RStudio, Git and Github - we will demo this in the class, but [here](http://happygitwithr.com/) is an excellent resource if you want to prepare ahead.
-
----
-
-##### Selected reading
-
-[The data science Venn diagram](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
