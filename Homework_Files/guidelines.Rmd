@@ -27,7 +27,7 @@ The following are pre-requisites for submitting the homework.
 
 ##### README.txt
 
-* As your first homework, you will create a README.txt file and push it into your repository. You need to constantly update this README.txt file as you work through the rest of the homeworks.
+As your first homework, you will create a README.txt file and push it into your repository. You need to constantly update this README.txt file as you work through the rest of the homeworks.
 
 ---
 
