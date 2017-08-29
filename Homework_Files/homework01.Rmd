@@ -1,0 +1,33 @@
+---
+# title: "Lecture 01"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Homework 01
+
+---
+
+##### Edit README.md using R Markdown
+
+Claim your repository in the [GitHub page](https://github.com/PDA-NYU-Fall-2017) created for this course. It should look like this:
+
+---
+
+![](Git_Repo_Example.png)
+
+---
+
+At this point, if the class has been a smooth sail for you, you should be able to pull the repository into RStudio, edit the files using RStudio editor, create markdown documents and push it back to the repository.
+
+
+
+
+
