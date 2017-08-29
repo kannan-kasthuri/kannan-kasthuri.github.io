@@ -51,7 +51,7 @@ htmltools::includeHTML("../Figures/Fig_2.html")
 ```
 <br>
 
-3. Check the files and commit the work to your Git repository.
+3. Check the files, write a commit message and commit the work to your Git repository.
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("../Figures/Fig_3.html")
