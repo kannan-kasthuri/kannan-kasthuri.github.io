@@ -44,14 +44,14 @@ Make sure you organize your files really well and name appropriately so it is ea
 
 1. Make sure you have saved the work in your local directory. When you hit the save icon in the RStudio editor, you will see the markdown .Rmd file popping up in the Git panel of RStudio, ready to be committed.
 
-2. Click "Knit to HTML" in the RStudio editor to render the associated HTML file. A preview of the HTML file should pop up. At this point you will see two files, the markdown and the html documents, ready to be committed to Git. Check the files.
+2. Click "Knit to HTML" in RStudio editor to render the associated HTML file. A preview of the HTML file should pop up. At this point you will see two files, the markdown and the html documents, ready to be committed to Git. 
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("../Figures/Fig_2.html")
 ```
 <br>
 
-3. Commit the work to your Git repository.
+3. Check the files and commit the work to your Git repository.
 
 4. Push your work into Github.
 
