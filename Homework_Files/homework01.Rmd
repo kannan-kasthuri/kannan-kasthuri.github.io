@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ##### Edit README.md using R Markdown
 
-Claim your repository in the [GitHub page](https://github.com/PDA-NYU-Fall-2017) created for this course. It should look like this:
+Claim your repository in the [GitHub page](https://github.com/PDA-NYU-Fall-2017) created for this course. It should look like this (with your name instead, of course):
 
 ---
 
