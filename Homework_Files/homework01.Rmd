@@ -15,9 +15,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-##### Edit README.md using R Markdown
+General guidelines for homeworks and how to submit is given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html).
 
-Claim your repository in the [GitHub page](https://github.com/PDA-NYU-Fall-2017) created for this course. It should look like this (with your name instead, of course):
+##### Edit README.md
+
+Claim your repository in the [GitHub page](https://github.com/PDA-NYU-Fall-2017) created for this course. It should look like this (with your name instead):
 
 ---
 
@@ -25,7 +27,27 @@ Claim your repository in the [GitHub page](https://github.com/PDA-NYU-Fall-2017)
 
 ---
 
-At this point, if the class has been a smooth sail for you, you should be able to pull the repository into RStudio, edit the files using RStudio editor, create markdown documents and push it back to the repository.
+At this point, if the class has been a smooth sail for you, you should be able to pull the repository into RStudio, edit the README.md file using RStudio editor, and push it back to the repository. 
+
+You may alternatively edit the file in GitHub browser. Try it out.
+
+This is the assignment. Edit README.md file by pulling into RStudio, editing, saving and pushing it. Also, edit the file in Github browser. Be creative.
+
+---
+
+##### Report how you did it? - we really care for you
+
+Write a description in README.md how you got the changes.
+
+1. What changes you made using the Github browser?
+
+2. What changes you made using RStudio - by editing locally, saving, commiting, and pushing to github.com?
+
+Feel free to write how this exercise worked for you and other things you read (related to this course).
+
+---
+
+
 
 
 
