@@ -19,7 +19,7 @@ General guidelines for homeworks and how to submit is given [here](https://kanna
 
 ##### Edit README.md
 
-Claim your repository in the [GitHub page](https://github.com/PDA-NYU-Fall-2017) created for this course. It should look like this (with your name instead):
+Claim your repository in [GitHub page](https://github.com/PDA-NYU-Fall-2017) created for this course. It should look like this (with your name instead):
 
 ---
 
