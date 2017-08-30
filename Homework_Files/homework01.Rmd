@@ -46,10 +46,3 @@ Write a description in README.md how you got the changes.
 Feel free to write how this exercise worked for you and other things you read (related to this course).
 
 ---
-
-
-
-
-
-
-
