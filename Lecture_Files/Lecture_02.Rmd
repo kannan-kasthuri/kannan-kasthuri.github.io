@@ -93,5 +93,18 @@ Note that if you type the function name without any paranthesis, R will print th
 
 **Classwork**: Consider the `seq` function. What does it do?
 
+Observe that:
+
+```{r eval=TRUE}
+  seq(from=1,to=10)
+```
+
+is same as,
+
+```{r eval=TRUE}
+  seq(1,10)
+```
+
+This demonstrates how function arguments are resolved in R. We can always specify `from/to = value`. But if we do not, R attempts to resolve by position. So in the above code, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Although R can try to resolve arguments on its own, best practice is to specify it.
 
 
