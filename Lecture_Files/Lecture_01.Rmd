@@ -75,7 +75,7 @@ in the console and you should have it.
 
 *Terminal* is your friend. Getting comfortable using the terminal will go a long way in your career. 
 
-We will be using Git extensively in the class and learning to access git through your terminal is necessary. If you are using a Mac, your _Terminal_ should be in _Applications -> Utilities -> Terminal_
+We will be using Git extensively in the class and learning to access git through your terminal is necessary. If you are using a Mac, your terminal should be in _Applications -> Utilities -> Terminal_
 
 Here is a good tutorial for Git: [Github Tutorial For Beginners](https://www.youtube.com/watch?v=0fKg7e37bQE) 
 

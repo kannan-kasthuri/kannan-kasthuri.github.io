@@ -15,5 +15,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-##### R Basics 
+##### R/RStudio Basics 
 
+Launch RStudio
