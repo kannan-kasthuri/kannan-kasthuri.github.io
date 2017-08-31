@@ -53,7 +53,7 @@ _Caveat_: Objects cannot start with certain charecters (such as comma, space), o
 
 Whatever convention you prefer, maintain consistency. Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos. Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.
 
-You can assign strings to objects using qutation marks. For example, the following code assigns the string "R rocks" to the object _r_.
+You can assign strings to objects using qutation marks. For example, the following code assigns the string "R rocks" to object _r_.
 
 ```{r eval=TRUE}
   r <- "R rocks"
@@ -61,7 +61,7 @@ You can assign strings to objects using qutation marks. For example, the followi
 ```
 
 
-**Classwork**: Assign the string _hello world_ to the object _h_ and print the result.
+**Classwork**: Assign the string _hello world_ to object _h_ and print the result.
 
 ---
 
