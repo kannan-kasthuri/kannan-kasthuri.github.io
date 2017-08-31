@@ -134,8 +134,8 @@ $(document).ready(function () {
 <p>Note that you can <a href="https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio">customize</a> all of them. Initially we will be primarily working with the console before moving to the editor.</p>
 <hr />
 </div>
-<div id="assignments-and-functions" class="section level4">
-<h4>Assignments and Functions</h4>
+<div id="assignments" class="section level4">
+<h4>Assignments</h4>
 <p>Assignments are of the form:</p>
 <pre class="r"><code>  Object &lt;- Object_Value</code></pre>
 <p>which can be construed to express “object gets the object’s value”.</p>
@@ -145,14 +145,21 @@ $(document).ready(function () {
 <pre><code>## [1] 18</code></pre>
 <p>will reveal <em>object x gets the value 18</em>.</p>
 <p>We will be using lots of assignments. While <code>=</code> sign will equally work for assignments, it is best to use <code>&lt;-</code> as this will avoid lots of confusion later on. If you are lazy to use <code>&lt;-</code> note that RStudio provides lots of shortcut options. For instance, the assignment operator <code>&lt;-</code> has shortcut <code>Option+-</code> in Mac and <code>Alt+-</code> in windows. For a comprehensive list of shortcuts, refer to the list <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">here</a>. Moreover, <code>Option+Shift+k</code> (in Mac) in RStudio will bring keyboard shortcut reference card.</p>
-<p><strong>Tip</strong> Note that RStudio automatically surrounds assignment operator with spaces. It is a good coding practice to allow spaces to enhance readability.</p>
+<p><strong>Tip</strong>: Note that RStudio automatically surrounds assignment operator with spaces. It is a good coding practice to allow spaces to enhance readability.</p>
 <p><em>Caveats</em>: Objects cannot start with certain charecters (such as comma, space), or start with numbers. <a href="https://en.wikipedia.org/wiki/Snake_case">Snake case</a> and <a href="https://en.wikipedia.org/wiki/Camel_case">Camel case</a> are a good practices for naming conventions.</p>
 <div id="be-careful-of-what-you-type" class="section level5">
 <h5>Be careful of what you type</h5>
 <p>Whatever convention you prefer, maintain consistency. Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos. Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.</p>
+<hr />
+</div>
+</div>
+<div id="functions" class="section level4">
+<h4>Functions</h4>
 <p>R has a wide-range of built-in functions that are generally of the form:</p>
 <pre class="r"><code>  functionName(arg1 = val1, arg2 = val2, and so on)</code></pre>
-</div>
+<p><strong>Note</strong>: Not all functions will have arguments. For instance, the function <code>date()</code> that prints the current date and time does not have any argument.</p>
+<pre class="r"><code>  date()</code></pre>
+<pre><code>## [1] &quot;Thu Aug 31 11:03:34 2017&quot;</code></pre>
 </div>
 </div>
 

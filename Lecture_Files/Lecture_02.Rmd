@@ -24,7 +24,7 @@ Note that you can [customize](https://support.rstudio.com/hc/en-us/articles/2005
 
 ---
 
-#### Assignments and Functions
+#### Assignments 
 
 Assignments are of the form:
 
@@ -45,7 +45,7 @@ will reveal _object x gets the value 18_.
 
 We will be using lots of assignments. While `=` sign will equally work for assignments, it is best to use `<-` as this will avoid lots of confusion later on. If you are lazy to use `<-` note that RStudio provides lots of shortcut options. For instance, the assignment operator `<-` has shortcut `Option+-` in Mac and `Alt+-` in windows. For a comprehensive list of shortcuts, refer to the list [here](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts). Moreover, `Option+Shift+k` (in Mac) in RStudio will bring keyboard shortcut reference card. 
 
-**Tip** Note that RStudio automatically surrounds assignment operator with spaces. It is a good coding practice to allow spaces to enhance readability.
+**Tip**: Note that RStudio automatically surrounds assignment operator with spaces. It is a good coding practice to allow spaces to enhance readability.
 
 _Caveats_: Objects cannot start with certain charecters (such as comma, space), or start with numbers. [Snake case](https://en.wikipedia.org/wiki/Snake_case) and [Camel case](https://en.wikipedia.org/wiki/Camel_case) are a good practices for naming conventions.
 
@@ -53,8 +53,18 @@ _Caveats_: Objects cannot start with certain charecters (such as comma, space), 
 
 Whatever convention you prefer, maintain consistency. Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos. Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.
 
+---
+
+#### Functions
+
 R has a wide-range of built-in functions that are generally of the form:
 
 ```{r eval=FALSE}
   functionName(arg1 = val1, arg2 = val2, and so on)
+```
+
+**Note**: Not all functions will have arguments. For instance, the function `date()` that prints the current date and time does not have any argument.
+
+```{r eval=TRUE}
+  date()
 ```
