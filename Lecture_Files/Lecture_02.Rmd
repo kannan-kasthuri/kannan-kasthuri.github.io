@@ -68,3 +68,13 @@ R has a wide-range of built-in functions that are generally of the form:
 ```{r eval=TRUE}
   date()
 ```
+
+One of the extremely helpful feature of RStudio is the `?` operator. You can use this to find out the description of the function in question, including its usage and arguments. "Question the function to know more about the function in question". For instance,
+
+```{r eval=FALSE}
+  ?date()
+```
+
+would describe the function `date()` in the help tab of the IDE.
+
+
