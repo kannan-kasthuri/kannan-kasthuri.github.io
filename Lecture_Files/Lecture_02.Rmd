@@ -3,11 +3,6 @@
 # author: "Kasthuri Kannan"
 # date: "Sept 07, 2017"
 output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ---
 
@@ -17,4 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ##### R/RStudio Basics 
 
-Launch RStudio
+Launch RStudio. The default panes should look something like this -
+
+---
+
+![](RStudio_Default.png)
+---
+
+<br>
+
+Note that you can [customize](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio) all of them. Initially we will be primarily working with the console before moving to the editor.
+
