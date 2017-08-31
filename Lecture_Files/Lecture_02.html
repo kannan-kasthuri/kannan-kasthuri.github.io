@@ -150,6 +150,11 @@ $(document).ready(function () {
 <div id="be-careful-of-what-you-type" class="section level5">
 <h5>Be careful of what you type</h5>
 <p>Whatever convention you prefer, maintain consistency. Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos. Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.</p>
+<p>You can assign strings to objects using qutation marks. For example, the following code assigns the string “R rocks” to the object <em>r</em>.</p>
+<pre class="r"><code>  r &lt;- &quot;R rocks&quot;
+  r</code></pre>
+<pre><code>## [1] &quot;R rocks&quot;</code></pre>
+<p><strong>Classwork</strong>: Assign the string <em>hello world</em> to the object <em>h</em> and print the result.</p>
 <hr />
 </div>
 </div>
@@ -159,10 +164,13 @@ $(document).ready(function () {
 <pre class="r"><code>  functionName(arg1 = val1, arg2 = val2, and so on)</code></pre>
 <p><strong>Note</strong>: Not all functions will have arguments. For instance, the function <code>date()</code> that prints the current date and time does not have any argument.</p>
 <pre class="r"><code>  date()</code></pre>
-<pre><code>## [1] &quot;Thu Aug 31 13:11:01 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Thu Aug 31 13:47:25 2017&quot;</code></pre>
 <p>One of the extremely helpful feature of RStudio is the <code>?</code> operator. You can use this to find out the description of the function in question, including its usage and arguments. <span style="color:blue"> <em>Question the function to know more about the function in question</em>. </span> For instance,</p>
 <pre class="r"><code>  ?date()</code></pre>
 <p>would describe the function <code>date()</code> in the help tab of the IDE.</p>
+<p><strong>Tip</strong>: If you type <code>da</code> in console and hit TAB, RStudio will try to autocomplete the function for you, suggesting hints on what possibly could be the built-in function. Also, if you type an open paranthesis, RStudio will also supply the closed parathesis.</p>
+<p>Note that if you type the function name without any paranthesis, R will print the source code of the function, which is not you may probably want.</p>
+<p><strong>Classwork</strong>: Consider the <code>seq</code> function. What does it do?</p>
 </div>
 </div>
 

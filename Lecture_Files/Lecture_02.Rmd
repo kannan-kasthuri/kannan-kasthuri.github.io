@@ -53,6 +53,16 @@ _Caveat_: Objects cannot start with certain charecters (such as comma, space), o
 
 Whatever convention you prefer, maintain consistency. Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos. Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.
 
+You can assign strings to objects using qutation marks. For example, the following code assigns the string "R rocks" to the object _r_.
+
+```{r eval=TRUE}
+  r <- "R rocks"
+  r
+```
+
+
+**Classwork**: Assign the string _hello world_ to the object _h_ and print the result.
+
 ---
 
 #### Functions
@@ -76,5 +86,12 @@ One of the extremely helpful feature of RStudio is the `?` operator. You can use
 ```
 
 would describe the function `date()` in the help tab of the IDE.
+
+**Tip**: If you type `da` in console and hit TAB, RStudio will try to autocomplete the function for you, suggesting hints on what possibly could be the built-in function. Also, if you type an open paranthesis, RStudio will also supply the closed parathesis.
+
+Note that if you type the function name without any paranthesis, R will print the source code of the function, which is not you may probably want.
+
+**Classwork**: Consider the `seq` function. What does it do?
+
 
 
