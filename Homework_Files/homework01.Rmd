@@ -15,7 +15,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-General guidelines for homeworks and how to submit is given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html).
+* General guidelines for homeworks and how to submit them is given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html).
+
+* You may need lectures 1-3 (until R Markdown) before attempting to complete this. There is sufficient time to work on this. 
+
+<br>
 
 ##### Edit README.md
 
@@ -43,6 +47,6 @@ Write a description in README.md how you got the changes.
 
 2. What changes you made using RStudio - by editing locally, saving, commiting, and pushing to github.com?
 
-Feel free to write how this exercise worked for you and other things you read (related to this course).
+Feel free to write how this exercise worked for you and other things you read (related to this course). This can be removed later.
 
 ---
