@@ -69,6 +69,8 @@ Thus, the first assignment statement:
 
 will require $2$ instructions, one for looking up $A[1]$ and the other for assigning $A[1]$ to $M$. During the first time of the `for` loop, $i$ has to be assigned $2$ and the condition $2 \leq n$ needs to be evaluated, which will take two instuctions. After this, incrementing $i$ and checking if $i \leq n$ has to be done $n-1$ times, contributing $2(n-1)$ instructions.
 
+We can now define a mathematical function $g(n)$ that, given an $n$, gives us the number of instructions the algorithm needs. Thus, if we ignore the `for` loop body (for the moment), the number of instructions would be $g(n)=2+2+2(n-1)=4+2(n-1)$.
+
 
 
 

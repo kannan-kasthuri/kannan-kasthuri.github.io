@@ -162,6 +162,7 @@ $(document).ready(function () {
 <p>Thus, the first assignment statement:</p>
 <pre class="r"><code>  M = A[1]</code></pre>
 <p>will require <span class="math inline">\(2\)</span> instructions, one for looking up <span class="math inline">\(A[1]\)</span> and the other for assigning <span class="math inline">\(A[1]\)</span> to <span class="math inline">\(M\)</span>. During the first time of the <code>for</code> loop, <span class="math inline">\(i\)</span> has to be assigned <span class="math inline">\(2\)</span> and the condition <span class="math inline">\(2 \leq n\)</span> needs to be evaluated, which will take two instuctions. After this, incrementing <span class="math inline">\(i\)</span> and checking if <span class="math inline">\(i \leq n\)</span> has to be done <span class="math inline">\(n-1\)</span> times, contributing <span class="math inline">\(2(n-1)\)</span> instructions.</p>
+<p>We can now define a mathematical function <span class="math inline">\(g(n)\)</span> that, given an <span class="math inline">\(n\)</span>, gives us the number of instructions the algorithm needs. Thus, if we ignore the <code>for</code> loop body (for the moment), the number of instructions would be <span class="math inline">\(g(n)=2+2+2(n-1)=4+2(n-1)\)</span>.</p>
 <hr />
 </div>
 <div id="an-introduction-to-aoa---sorting" class="section level4">
