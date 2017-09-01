@@ -10,6 +10,8 @@ output: html_document
 
 ---
 
+This lecture is designed to give a basic idea on analysis of algorithms for biomedical students. The subject is very vast
+
 #### Complexity/Asymptotic Analysis 
 
 
