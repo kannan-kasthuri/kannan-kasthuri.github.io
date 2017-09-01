@@ -1,0 +1,54 @@
+---
+# title: "Lecture 02"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+
+---
+
+### Algorithms (Sept. 20, 2017)
+
+---
+
+#### Complexity/Asymptotic Analysis 
+
+
+
+---
+
+#### An Introduction to AoA - Sorting
+
+
+##### Selection Sort
+
+
+##### Insertion Sort
+
+
+##### Divide and Conquer 
+
+
+---
+
+#### Dynamic Programming 
+
+
+##### Assembly Line Problem
+
+
+##### Finding DNA Subsequence
+
+
+---
+
+#### Greedy Algorithms
+
+
+---
+
+#### An Introduction to NP-completeness
+
+
+---
+
+
