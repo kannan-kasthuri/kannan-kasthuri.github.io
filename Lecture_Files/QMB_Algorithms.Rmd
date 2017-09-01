@@ -2,8 +2,8 @@
 # title: "Lecture 02"
 # author: "Kasthuri Kannan"
 # date: "Sept 07, 2017"
-# output: html_document
-output: slidy_presentation
+output: html_document
+# output: slidy_presentation
 
 ---
 
@@ -27,13 +27,11 @@ Which is a "better" sort, in terms of time, as the number of cards increase? The
 
 Fundemental to analysis of algorithms is asymptotic analysis which helps in determining the computational complexity of such algorithms. The computational (time) complexity of an algorithm is something that decides how fast the algorithm is run at the idea level (otherwise known as pseudocode), regardless of the programming language, operating system or the hardware. We want to evaluate and compare algorithms as they are: an actionable/programmable idea on how things could be computed. In other words, we are **not interested** in how fast a program is actually run, which depends on various factors including the structure of high-level languages, but rather how best (or worst) is the design behind the program, regardless of the language it is implemented (by analogy, a person could sort faster or slower and we are not interested in the speed someone sorts). Such meta-analysis enables us to say an algorithm has a better computational complexity than the other.
 
-Aymptotic analysis also allows us to explain how an algorithm would behave as the input size become large, or if the distribution of the input changes. For example, in the case of insertion or selection sort, we can _predict_ how the algorithm would perform if we give numbers that are already sorted vs. random unsorted numbers. Such predictions are important in practical programming as we can determine the scalability of operations.    
-
-If we feed it a different input, how will the algorithm behave? If our algorithm takes 1 second to run for an input of size 1000, how will it behave if I double the input size? Will it run just as fast, half as fast, or four times slower? In practical programming, this is important as it allows us to predict how our algorithm will behave when the input data becomes larger. For example, if we've made an algorithm for a web application that works well with 1000 users and measure its running time, using algorithm complexity analysis we can have a pretty good idea of what will happen once we get 2000 users instead. For algorithmic competitions, complexity analysis gives us insight about how long our code will run for the largest testcases that are used to test our program's correctness. So if we've measured our program's behavior for a small input, we can get a good idea of how it will behave for larger inputs. Let's start by a simple example: Finding the maximum element in an array.
+Aymptotic analysis also allows us to explain how an algorithm would behave as the input size become large, or if the distribution of the input changes. For example, in the case of insertion or selection sort, we can _predict_ how the algorithm would perform if we give numbers that are already sorted vs. random unsorted numbers. Such predictions are important in practical programming since we can determine the scalability of operations.    
 
 <br>
 
-#### Complexity/Asymptotic Analysis 
+#### Counting Instructions 
 
 
 
