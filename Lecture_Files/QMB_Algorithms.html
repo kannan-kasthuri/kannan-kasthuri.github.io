@@ -139,18 +139,29 @@ $(document).ready(function () {
 <div id="counting-instructions" class="section level4">
 <h4>Counting Instructions</h4>
 <p>Computational complexity is usually determined by counting instructions. Let’s find the complexity for the following computational task.</p>
-<p><strong>Task</strong> Detrmine the minimum element in an array <em>A</em> with <em>n</em> elements addressed by A[1], A[2],…, A[n].</p>
+<p><strong>Task</strong> Detrmine the minimum element in an array <span class="math inline">\(A\)</span> with <span class="math inline">\(n\)</span> elements addressed by <span class="math inline">\(A[1], A[2],\dots, A[n]\)</span>.</p>
 <p><strong>Algorithm</strong> The pesudocode to do this task is as follows:</p>
 <pre class="r"><code>  # Assign M to the first element in the array
   M = A[1]
   # Go through the array and if the number in the array is less than M, then update M with that number
-  for i = 2 to n
-    if A[i] is less than M
+  for i = 2 to n, increment i
+    if A[i] is less than or equal to M
         replace M with A[i]
     end if
   end for
   # Print the answer
   print M is the smallest number</code></pre>
+<p>To work out the complexity we will assume that our hypothetical machine can perform the following operations as one instruction each:</p>
+<ul>
+<li>Assigning a value to a variable</li>
+<li>Looking up the value of a particular element in an array</li>
+<li>Comparing two values</li>
+<li>Incrementing a value</li>
+<li>Basic arithmetic operations such as addition and multiplication</li>
+</ul>
+<p>Thus, the first assignment statement:</p>
+<pre class="r"><code>  M = A[1]</code></pre>
+<p>will require <span class="math inline">\(2\)</span> instructions, one for looking up <span class="math inline">\(A[1]\)</span> and the other for assigning <span class="math inline">\(A[1]\)</span> to <span class="math inline">\(M\)</span>. During the first time of the <code>for</code> loop, <span class="math inline">\(i\)</span> has to be assigned <span class="math inline">\(2\)</span> and the condition <span class="math inline">\(2 \leq n\)</span> needs to be evaluated, which will take two instuctions. After this, incrementing <span class="math inline">\(i\)</span> and checking if <span class="math inline">\(i \leq n\)</span> has to be done <span class="math inline">\(n-1\)</span> times, contributing <span class="math inline">\(2(n-1)\)</span> instructions.</p>
 <hr />
 </div>
 <div id="an-introduction-to-aoa---sorting" class="section level4">
