@@ -91,8 +91,12 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 
 [The data science Venn diagram](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
 
+[Battle of the Data Science Venn Diagrams](http://www.kdnuggets.com/2016/10/battle-data-science-venn-diagrams.html)
+
 [NYU's data science initiative](http://datascience.nyu.edu/what-is-data-science/)
 
 [Why You May Want a Career in Data Science?](https://www.rtinsights.com/why-you-may-want-a-career-in-data-science/)
 
 [Here’s a Retail Job That’s Still in High Demand: Data Scientist](https://www.bloomberg.com/news/articles/2017-08-21/here-s-a-retail-job-that-s-still-in-high-demand-data-scientist)
+
+
