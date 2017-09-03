@@ -17,9 +17,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ##### Register a GitHub account - Do this first! 
 
-Register for a free individual account at [GitHub](https://github.com/). 
+You are **required** to register for a free individual account at [GitHub](https://github.com/). You are encouraged to apply for [student developer pack](https://education.github.com/). They are free for students and awesome collection of tools and packages.
 
-I will need your usernames to add you to the main repository in github - [Programming for Data Analysis Fall 2017]( https://github.com/PDA-NYU-Fall-2017). I will give your own private repositories where you'll deposit ("push" in git language) your classwork and homework for this course. Discussion among us for this course will be done at the [Discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) in GitHub. You may also raise questions and issues by clicking "New issue" tab in this page.
+I will need your email id's you used for registration in GitHub to invite you to accept assignments. You will have your own private repositories where you'll deposit ("push" in git language) your classwork and homework for this course. Discussion among us for this course will be done at the [Discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) in GitHub. You may also raise questions and issues by clicking "New issue" tab in this page.
 
 **Don't freak out** if there are problems. That's pretty common when you are getting introduced to something new. Come to [office hours](https://kannan-kasthuri.github.io/pda.html), use our [Discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) or ask for help.
 
@@ -90,3 +90,9 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 ##### Selected reading
 
 [The data science Venn diagram](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
+
+[NYU's data science initiative](http://datascience.nyu.edu/what-is-data-science/)
+
+[Why You May Want a Career in Data Science?](https://www.rtinsights.com/why-you-may-want-a-career-in-data-science/)
+
+[Here’s a Retail Job That’s Still in High Demand: Data Scientist](https://www.bloomberg.com/news/articles/2017-08-21/here-s-a-retail-job-that-s-still-in-high-demand-data-scientist)
