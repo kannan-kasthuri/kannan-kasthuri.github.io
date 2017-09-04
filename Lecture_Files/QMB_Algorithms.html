@@ -137,7 +137,7 @@ $(document).ready(function () {
 <hr />
 </div>
 <div id="counting-instructions" class="section level4">
-<h4>Counting Instructions</h4>
+<h4>Counting instructions</h4>
 <p>Computational complexity is usually determined by counting instructions. Let’s find the complexity for the following computational task.</p>
 <p><strong>Task</strong> Detrmine the minimum element in an array <span class="math inline">\(A\)</span> with <span class="math inline">\(n\)</span> elements addressed by <span class="math inline">\(A[1], A[2],\dots, A[n]\)</span>.</p>
 <p><strong>Algorithm</strong> The pesudocode to do this task is as follows:</p>
@@ -165,16 +165,16 @@ $(document).ready(function () {
 <p>We can now define a mathematical function <span class="math inline">\(g(n)\)</span> that, given an <span class="math inline">\(n\)</span>, gives us the number of instructions the algorithm needs. Thus, if we ignore the <code>for</code> loop body (for the moment), the number of instructions would be <span class="math inline">\(g(n)=2+2+2(n-1)=2n+2\)</span>.</p>
 <hr />
 </div>
-<div id="worst-case-complexity" class="section level4">
-<h4>Worst-case Complexity</h4>
+<div id="worst-casebest-case-complexity" class="section level4">
+<h4>Worst-case/Best-case complexity</h4>
 <p>Let’s look into the <code>for</code> loop. The following <code>if</code> statement always executes:</p>
 <pre class="r"><code>  if (A[i] is less than or equal to M) then</code></pre>
 <p>which requires <span class="math inline">\(2\)</span> instructions (one for the assignment and another for comparison). However the body of the <code>if</code> statement depends on the value <span class="math inline">\(A[i]\)</span>. Therefore, it is tough to define a mathematical function. For instance, if <span class="math inline">\(A = \{4,3,2,1\}\)</span> then the <code>if</code> loop will be executed every time, costing us <span class="math inline">\(2\)</span> additional instructions (one for lookup and another for replacement/assignment), a total of 4 instructions, whereas if <span class="math inline">\(A = \{5,9,13,20\}\)</span> the body of the loop will not be executed even once, costing us only <span class="math inline">\(2\)</span> instructions.</p>
-<p>Often we will be interested in the worst-case because that is when the computation will be maximum. This is called the <em>worst case complexity</em> - that is, it is the situation/complexity when we are highly unlucky. Thus, in the worst-case <code>if</code> is executed everytime costing us <span class="math inline">\(4(n-1)\)</span> for the entire <code>for</code> loop. Thus, the worst-case complexity function, <span class="math inline">\(W(n)\)</span>, is given by, <span class="math display">\[W(n) = 4+2(n-1)+4(n-1) = 6n-2.\]</span> The best case is when the <code>if</code> loop body doesn’t execute even once. Therefore, the best-case complexity, <span class="math inline">\(B(n)\)</span>, is given by, <span class="math display">\[ B(n) = 4+2(n-1)+2(n-1) = 4n.\]</span> For a given, <span class="math inline">\(n\)</span>, these functions, <span class="math inline">\(W(n)\)</span> and <span class="math inline">\(B(n)\)</span>, will give us the number of instructions in the extreme cases, and gives an idea on how fast an algorithm can be as <span class="math inline">\(n\)</span> increases.</p>
+<p>Often we will be interested in the worst-case because that is when the computation will be maximum. This is called the <em>worst case complexity</em> - that is, it is the situation/complexity when we are highly unlucky. Thus, in the worst-case <code>if</code> is executed everytime costing us <span class="math inline">\(4(n-1)\)</span> for the entire <code>for</code> loop. Thus, the worst-case complexity function, <span class="math inline">\(W(n)\)</span>, is given by, <span class="math display">\[W(n) = 4+2(n-1)+4(n-1) = 6n-2.\]</span> The best case is when the <code>if</code> loop body doesn’t execute even once. Therefore, the best-case complexity, <span class="math inline">\(B(n)\)</span>, is given by, <span class="math display">\[ B(n) = 4+2(n-1)+2(n-1) = 4n.\]</span> For a given, <span class="math inline">\(n\)</span>, these functions, <span class="math inline">\(W(n)\)</span> and <span class="math inline">\(B(n)\)</span> provides us a huristic on the number of instructions in the extreme cases, and gives an idea on how fast an algorithm is run as <span class="math inline">\(n\)</span> increases.</p>
 <hr />
 </div>
 <div id="asymptotic-behavior" class="section level4">
-<h4>Asymptotic Behavior</h4>
+<h4>Asymptotic behavior</h4>
 <p>We should keep in mind that the <strong>actual</strong> number of CPU instructions would depend on the complier in our program of choice. For instance, the C compiler doesn’t check if the specific array is within bounds, whereas a Pascal complier would. Therefore, the assignment statement,</p>
 <pre class="r"><code>  M := A[i]</code></pre>
 <p>which would take just one instruction in C is equvilalent to the following statements in the Pascal language:</p>

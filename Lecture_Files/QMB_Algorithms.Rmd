@@ -31,7 +31,7 @@ Complexity analysis also allows us to explain how an algorithm would behave as t
 
 ---
 
-#### Counting Instructions 
+#### Counting instructions 
 
 Computational complexity is usually determined by counting instructions. Let's find the complexity for the following computational task.
 
@@ -74,7 +74,7 @@ We can now define a mathematical function $g(n)$ that, given an $n$, gives us th
 
 ---
 
-#### Worst-case Complexity
+#### Worst-case/Best-case complexity
 
 Let's look into the `for` loop. The following `if` statement always executes:
 
@@ -88,11 +88,11 @@ Often we will be interested in the worst-case because that is when the computati
 $$W(n) = 4+2(n-1)+4(n-1) = 6n-2.$$
 The best case is when the `if` loop body doesn't execute even once. Therefore, the best-case complexity, $B(n)$, is given by,
 $$ B(n) = 4+2(n-1)+2(n-1) = 4n.$$
-For a given, $n$, these functions, $W(n)$ and $B(n)$, will give us the number of instructions in the extreme cases, and gives an idea on how fast an algorithm can be as $n$ increases.
+For a given, $n$, these functions, $W(n)$ and $B(n)$ provides us a huristic on the number of instructions in the extreme cases, and gives an idea on how fast an algorithm is run as $n$ increases.
 
 ---
 
-#### Asymptotic Behavior
+#### Asymptotic behavior
 
 We should keep in mind that the **actual** number of CPU instructions would depend on the complier in our program of choice. 
 For instance, the C compiler doesn't check if the specific array is within bounds, whereas a Pascal complier would. Therefore,
