@@ -145,7 +145,7 @@ $(document).ready(function () {
   M = A[1]
   # Go through the array and if the number in the array is less than M, then update M with that number
   for i = 2 to n, increment i
-    if A[i] is less than or equal to M
+    if (A[i] is less than or equal to M) then
         replace M with A[i]
     end if
   end for
@@ -162,7 +162,14 @@ $(document).ready(function () {
 <p>Thus, the first assignment statement:</p>
 <pre class="r"><code>  M = A[1]</code></pre>
 <p>will require <span class="math inline">\(2\)</span> instructions, one for looking up <span class="math inline">\(A[1]\)</span> and the other for assigning <span class="math inline">\(A[1]\)</span> to <span class="math inline">\(M\)</span>. During the first time of the <code>for</code> loop, <span class="math inline">\(i\)</span> has to be assigned <span class="math inline">\(2\)</span> and the condition <span class="math inline">\(2 \leq n\)</span> needs to be evaluated, which will take two instuctions. After this, incrementing <span class="math inline">\(i\)</span> and checking if <span class="math inline">\(i \leq n\)</span> has to be done <span class="math inline">\(n-1\)</span> times, contributing <span class="math inline">\(2(n-1)\)</span> instructions.</p>
-<p>We can now define a mathematical function <span class="math inline">\(g(n)\)</span> that, given an <span class="math inline">\(n\)</span>, gives us the number of instructions the algorithm needs. Thus, if we ignore the <code>for</code> loop body (for the moment), the number of instructions would be <span class="math inline">\(g(n)=2+2+2(n-1)=4+2(n-1)\)</span>.</p>
+<p>We can now define a mathematical function <span class="math inline">\(g(n)\)</span> that, given an <span class="math inline">\(n\)</span>, gives us the number of instructions the algorithm needs. Thus, if we ignore the <code>for</code> loop body (for the moment), the number of instructions would be <span class="math inline">\(g(n)=2+2+2(n-1)=2n+2\)</span>.</p>
+</div>
+<div id="worst-case-complexity" class="section level4">
+<h4>Worst-case complexity</h4>
+<p>Let’s look into the <code>for</code> loop. The following <code>if</code> statement always executes:</p>
+<pre class="r"><code>if (A[i] is less than or equal to M) then</code></pre>
+<p>which requires <span class="math inline">\(2\)</span> instructions (one for the assignment and another for comparison). However the body of the <code>if</code> statement depends on the value <span class="math inline">\(A[i]\)</span>. Therefore, it is tough to define a mathematical function. For instance, if <span class="math inline">\(A = \{4,3,2,1\}\)</span> then the <code>if</code> loop will be executed every time, costing us <span class="math inline">\(2\)</span> additional instructions (one for lookup and another for replacement/assignment), a total of 4 instructions, whereas if <span class="math inline">\(A = \{5,9,13,20\}\)</span> the body of the loop will not be executed even once, costing us only <span class="math inline">\(2\)</span> instructions.</p>
+<p>Often we will be interested in the worst-case because that is when the computation will be maximum. This is called the <em>worst case complexity</em> - that is, it is the situation/complexity when we are highly unlucky. Thus, in the worst-case <code>if</code> is executed everytime costing us <span class="math inline">\(4(n-1)\)</span> for the entire <code>for</code> loop. Thus, the worst-case complexity function, <span class="math inline">\(W(n)\)</span>, is given by, <span class="math display">\[W(n) = 4+2(n-1)+4(n-1) = 6n-2.\]</span> The best case is when the <code>if</code> loop body doesn’t execute even once. Therefore, the best-case complexity, <span class="math inline">\(B(n)\)</span>, is given by, <span class="math display">\[ B(n) = 4+2(n-1)+2(n-1) = 4n.\]</span> For a given, <span class="math inline">\(n\)</span>, these functions, <span class="math inline">\(W(n)\)</span> and <span class="math inline">\(B(n)\)</span>, will give us the number of instructions in the extreme cases.</p>
 <hr />
 </div>
 <div id="an-introduction-to-aoa---sorting" class="section level4">

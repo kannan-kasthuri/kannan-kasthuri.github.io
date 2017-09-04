@@ -44,7 +44,7 @@ Computational complexity is usually determined by counting instructions. Let's f
   M = A[1]
   # Go through the array and if the number in the array is less than M, then update M with that number
   for i = 2 to n, increment i
-    if A[i] is less than or equal to M
+    if (A[i] is less than or equal to M) then
         replace M with A[i]
     end if
   end for
@@ -69,12 +69,23 @@ Thus, the first assignment statement:
 
 will require $2$ instructions, one for looking up $A[1]$ and the other for assigning $A[1]$ to $M$. During the first time of the `for` loop, $i$ has to be assigned $2$ and the condition $2 \leq n$ needs to be evaluated, which will take two instuctions. After this, incrementing $i$ and checking if $i \leq n$ has to be done $n-1$ times, contributing $2(n-1)$ instructions.
 
-We can now define a mathematical function $g(n)$ that, given an $n$, gives us the number of instructions the algorithm needs. Thus, if we ignore the `for` loop body (for the moment), the number of instructions would be $g(n)=2+2+2(n-1)=4+2(n-1)$.
+We can now define a mathematical function $g(n)$ that, given an $n$, gives us the number of instructions the algorithm needs. Thus, if we ignore the `for` loop body (for the moment), the number of instructions would be $g(n)=2+2+2(n-1)=2n+2$.
 
+#### Worst-case complexity
 
+Let's look into the `for` loop. The following `if` statement always executes:
 
+```{r eval=FALSE}
+if (A[i] is less than or equal to M) then
+```
 
+which requires $2$ instructions (one for the assignment and another for comparison). However the body of the `if` statement depends on the value $A[i]$. Therefore, it is tough to define a mathematical function. For instance, if $A = \{4,3,2,1\}$ then the `if` loop will be executed every time, costing us $2$ additional instructions (one for lookup and another for replacement/assignment), a total of 4 instructions, whereas if $A = \{5,9,13,20\}$ the body of the loop will not be executed even once, costing us only $2$ instructions. 
 
+Often we will be interested in the worst-case because that is when the computation will be maximum. This is called the _worst case complexity_ - that is, it is the situation/complexity when we are highly unlucky. Thus, in the worst-case `if` is executed everytime costing us $4(n-1)$ for the entire `for` loop. Thus, the worst-case complexity function, $W(n)$, is given by,
+$$W(n) = 4+2(n-1)+4(n-1) = 6n-2.$$
+The best case is when the `if` loop body doesn't execute even once. Therefore, the best-case complexity, $B(n)$, is given by,
+$$ B(n) = 4+2(n-1)+2(n-1) = 4n.$$
+For a given, $n$, these functions, $W(n)$ and $B(n)$, will give us the number of instructions in the extreme cases.
 
 ---
 
