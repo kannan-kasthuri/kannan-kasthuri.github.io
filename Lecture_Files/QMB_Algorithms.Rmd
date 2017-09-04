@@ -110,7 +110,38 @@ which would take just one instruction in C is equvilalent to the following state
   }
 ```
 
-It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the rapidly growing term that depends on the input size. Such an analysis is referred to as _asymptotic analysis_. So the asymptotic behavior of $W(n) = 6n-2$ is just $n$. Mathematically speaking, it just says that as $n$ increase, $W(n)$ is as *bad* as $n$.
+It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the **rapidly growing term** that depends on the input size. Such an analysis is referred to as _asymptotic analysis_. So the asymptotic behavior of $W(n) = 6n-2$ is just $n$. Mathematically speaking, it just says that as $n$ increase, $W(n)$ is as *bad* as $n$.
+
+Let us try to analyze the asymptotic behavior of the following task. 
+
+**Task** Print the smallest number in a matrix $A(i,j)$ where $1 \leq i,j \leq n$, noting the column of the smallest element in each iteration, through _brute-force_ approach. 
+
+Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well. 
+
+**Algorithm** Here is the pesudocode:
+
+```{r eval=FALSE}
+
+01.  # Assign M to the first element in the matrix
+02.  M = A[1,1]
+03.  smallest_element_column = 1
+04.  # For every row i, iterate through all columns to see 
+05.  # If the number A[i,j] is smaller than or equal to M
+06.  for i = 1 to n, increment i
+07.    for j = 1 to n, increment j
+08.      if (A[i,j] is less than or equal to M) then
+09.          # If the number A[i,j] is smaller than or equal to M, change M to A[i,j] 
+10.          replace M with A[i,j]
+11.          # Note the column where the smallest element in the iteration appears
+12.          smallest_element_column = j
+13.      end if
+14.    end for       
+15.    print "Column " smallest_element_column " has the smallest element"
+16.  end for         
+17.  # Print the answer
+18.  print M is the smallest number
+```
+
 
 
 #### An Introduction to AoA - Sorting
