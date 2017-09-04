@@ -87,7 +87,7 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 
 ---
 
-##### Some sources for the presentation
+##### Selected materials 
 
 [The data science Venn diagram](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
 
