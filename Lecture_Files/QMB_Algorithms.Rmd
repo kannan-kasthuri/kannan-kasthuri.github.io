@@ -74,12 +74,12 @@ We can now define a mathematical function $g(n)$ that, given an $n$, gives us th
 
 ---
 
-#### Worst-case complexity
+#### Worst-case Complexity
 
 Let's look into the `for` loop. The following `if` statement always executes:
 
 ```{r eval=FALSE}
-if (A[i] is less than or equal to M) then
+  if (A[i] is less than or equal to M) then
 ```
 
 which requires $2$ instructions (one for the assignment and another for comparison). However the body of the `if` statement depends on the value $A[i]$. Therefore, it is tough to define a mathematical function. For instance, if $A = \{4,3,2,1\}$ then the `if` loop will be executed every time, costing us $2$ additional instructions (one for lookup and another for replacement/assignment), a total of 4 instructions, whereas if $A = \{5,9,13,20\}$ the body of the loop will not be executed even once, costing us only $2$ instructions. 
@@ -88,9 +88,30 @@ Often we will be interested in the worst-case because that is when the computati
 $$W(n) = 4+2(n-1)+4(n-1) = 6n-2.$$
 The best case is when the `if` loop body doesn't execute even once. Therefore, the best-case complexity, $B(n)$, is given by,
 $$ B(n) = 4+2(n-1)+2(n-1) = 4n.$$
-For a given, $n$, these functions, $W(n)$ and $B(n)$, will give us the number of instructions in the extreme cases.
+For a given, $n$, these functions, $W(n)$ and $B(n)$, will give us the number of instructions in the extreme cases, and gives an idea on how fast an algorithm can be as $n$ increases.
 
 ---
+
+#### Asymptotic Behavior
+
+We should keep in mind that the **actual** number of CPU instructions would depend on the complier in our program of choice. 
+For instance, the C compiler doesn't check if the specific array is within bounds, whereas a Pascal complier would. Therefore,
+the assignment statement,
+
+```{r eval=FALSE}
+  M := A[i]
+```
+
+which would take just one instruction in C is equvilalent to the following statements in the Pascal language:
+
+```{r eval=FALSE}
+  if (i >= 0 && i < n) {
+    M = A[i];
+  }
+```
+
+It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the rapidly growing term that depends on the input size. Such an analysis is referred to as _asymptotic analysis_. So the asymptotic behavior of $W(n) = 6n-2$ is just $n$. Mathematically speaking, it just says that as $n$ increase, $W(n)$ is as *bad* as $n$.
+
 
 #### An Introduction to AoA - Sorting
 
