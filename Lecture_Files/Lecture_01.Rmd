@@ -87,7 +87,7 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 
 ---
 
-##### Selected reading
+##### Some sources for the presentation
 
 [The data science Venn diagram](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
 
@@ -99,4 +99,6 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 
 [Here’s a Retail Job That’s Still in High Demand: Data Scientist](https://www.bloomberg.com/news/articles/2017-08-21/here-s-a-retail-job-that-s-still-in-high-demand-data-scientist)
 
+[Job Comparison – Data Scientist vs Data Engineer vs Statistician](https://www.analyticsvidhya.com/blog/2015/10/job-comparison-data-scientist-data-engineer-statistician/) - check out their cool infographics
 
+---
