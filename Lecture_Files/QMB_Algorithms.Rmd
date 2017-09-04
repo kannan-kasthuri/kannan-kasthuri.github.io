@@ -28,7 +28,8 @@ Which is a "better" sort, in terms of time, as the number of cards increase? The
 Fundemental to analysis of algorithms is complexity analysis which helps in determining the computational complexity of such algorithms. The computational (time) complexity of an algorithm is something that decides how fast the algorithm is run at the idea level (otherwise known as pseudocode), regardless of the programming language, operating system or the hardware. We want to evaluate and compare algorithms as they are: an actionable/programmable idea on how things could be computed. In other words, we are **not interested** in how fast a program is actually run, which depends on various factors including the structure of high-level languages, but rather how best (or worst) is the design behind the program, regardless of the language it is implemented (by analogy, a person could sort faster or slower and we are not interested in the speed someone sorts). Such meta-analysis enables us to say an algorithm has a better computational complexity than the other.
 
 Complexity analysis also allows us to explain how an algorithm would behave as the input size become large, or if the distribution of the input changes. For example, in the case of insertion or selection sort, we can _predict_ how the algorithm would perform if we give numbers that are already sorted vs. random unsorted numbers. Such predictions are important in practical programming since we can determine the scalability of operations assuming worst-case/best-case scenario.    
-<br>
+
+---
 
 #### Counting Instructions 
 
@@ -70,6 +71,8 @@ Thus, the first assignment statement:
 will require $2$ instructions, one for looking up $A[1]$ and the other for assigning $A[1]$ to $M$. During the first time of the `for` loop, $i$ has to be assigned $2$ and the condition $2 \leq n$ needs to be evaluated, which will take two instuctions. After this, incrementing $i$ and checking if $i \leq n$ has to be done $n-1$ times, contributing $2(n-1)$ instructions.
 
 We can now define a mathematical function $g(n)$ that, given an $n$, gives us the number of instructions the algorithm needs. Thus, if we ignore the `for` loop body (for the moment), the number of instructions would be $g(n)=2+2+2(n-1)=2n+2$.
+
+---
 
 #### Worst-case complexity
 
