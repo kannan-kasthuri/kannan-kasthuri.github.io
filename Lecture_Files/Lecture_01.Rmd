@@ -103,4 +103,6 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 
 [Introduction to Data Science](http://www.cs.tau.ac.il/~apartzin/ds2015/DS_CourseIntro.pdf)
 
+[R Bloggers](https://www.r-bloggers.com/)
+
 ---
