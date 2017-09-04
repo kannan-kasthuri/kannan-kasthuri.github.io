@@ -101,4 +101,6 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 
 [Job Comparison – Data Scientist vs Data Engineer vs Statistician](https://www.analyticsvidhya.com/blog/2015/10/job-comparison-data-scientist-data-engineer-statistician/) - check out their cool infographics
 
+[Introduction to Data Science](http://www.cs.tau.ac.il/~apartzin/ds2015/DS_CourseIntro.pdf)
+
 ---
