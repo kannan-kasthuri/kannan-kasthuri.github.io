@@ -87,7 +87,7 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 
 ---
 
-##### Selected materials 
+##### Selected materials and references
 
 [The data science Venn diagram](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
 
@@ -104,5 +104,7 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 [Introduction to Data Science](http://www.cs.tau.ac.il/~apartzin/ds2015/DS_CourseIntro.pdf)
 
 [R Bloggers](https://www.r-bloggers.com/)
+
+[Information management: Data domination](http://www.nature.com/nature/journal/v548/n7669/full/nj7669-613a.html?WT.mc_id=FBK_NatureNews&sf111552836=1)
 
 ---
