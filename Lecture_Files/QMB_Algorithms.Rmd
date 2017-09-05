@@ -171,8 +171,13 @@ Find the asymptotic behavior of the following functions:
 
 #### The complexity of insertion sort and selection sort
 
+<br>
 
+##### Insertion sort
 
+<br>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe>
 
 ---
 
