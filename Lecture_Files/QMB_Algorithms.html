@@ -181,11 +181,11 @@ $(document).ready(function () {
 <pre class="r"><code>  if (i &gt;= 0 &amp;&amp; i &lt; n) {
     M = A[i];
   }</code></pre>
-<p>It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the <strong>rapidly growing term</strong> that depends on the input size. Such an analysis is referred to as <em>asymptotic analysis</em>. So the asymptotic behavior of <span class="math inline">\(W(n) = 6n-2\)</span> is just <span class="math inline">\(n\)</span>. Mathematically speaking, it just says that as <span class="math inline">\(n\)</span> increase, <span class="math inline">\(W(n)\)</span> is as <em>bad</em> as <span class="math inline">\(n\)</span>.</p>
+<p>It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the <strong>rapidly growing term</strong> that depends on the input size. Such an analysis is referred to as <em>asymptotic analysis</em>. So the asymptotic behavior of <span class="math inline">\(W(n) = 6n-2\)</span> is just <span class="math inline">\(n\)</span>. Mathematically speaking, it just says that as <span class="math inline">\(n\)</span> increase, <span class="math inline">\(W(n)\)</span> is “as <em>bad</em> as <span class="math inline">\(n\)</span>” and is denoted by <span class="math inline">\(O(n)\)</span>.</p>
 <p>Let us try to analyze the asymptotic behavior of the following task.</p>
 <p><strong>Task</strong> Print the smallest number in a matrix <span class="math inline">\(A(i,j)\)</span> where <span class="math inline">\(1 \leq i,j \leq n\)</span>, noting the column of the smallest element in each iteration, through <em>brute-force</em> approach.</p>
-<p>Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well.</p>
-<p><strong>Algorithm</strong> Here is the pesudocode:</p>
+<p>Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. Usually that’s the simplest approach for solving a computational problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well.</p>
+<p><strong>Algorithm</strong> Here is the pesudocode (the lines are numbered to make the analysis easier):</p>
 <pre class="r"><code>01.  # Assign M to the first element in the matrix
 02.  M = A[1,1]
 03.  smallest_element_column = 1
@@ -204,19 +204,38 @@ $(document).ready(function () {
 16.  end for         
 17.  # Print the answer
 18.  print M is the smallest number</code></pre>
-</div>
-<div id="an-introduction-to-aoa---sorting" class="section level4">
-<h4>An Introduction to AoA - Sorting</h4>
-<div id="selection-sort" class="section level5">
-<h5>Selection Sort</h5>
-</div>
-<div id="insertion-sort" class="section level5">
-<h5>Insertion Sort</h5>
-</div>
-<div id="divide-and-conquer" class="section level5">
-<h5>Divide and Conquer</h5>
+<p>If we assume the above criteria for our hypothetical machine for per instruction cost, we note the following:</p>
+<ol style="list-style-type: decimal">
+<li>Lines 02 and 03 will count as <span class="math inline">\(3\)</span> instructions</li>
+<li>In the worst case, Lines 10 and 12 will execute <span class="math inline">\(n^2\)</span> times each costing <span class="math inline">\(5\)</span> instructions (<span class="math inline">\(2\)</span> for the <code>if</code>, <span class="math inline">\(2\)</span> for Line 10 and <span class="math inline">\(1\)</span> for Line 12)</li>
+<li>Line 15 will execute <span class="math inline">\(n\)</span> times and</li>
+<li>Line 18 will execute once costing <span class="math inline">\(1\)</span> instruction</li>
+</ol>
+<p>giving us the worst case complexity, <span class="math display">\[W(n) = 4+5n^2+n.\]</span> Hence, the aysmptotic behaviour, ignoring the constant factors and taking the rapidly growing term, is given by <span class="math inline">\(O(n^2)\)</span>.</p>
+<p><strong>Examples</strong></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(W(n) = 3n+2\)</span> - asymptotic behavior is given by <span class="math inline">\(O(n)\)</span>.</li>
+<li><span class="math inline">\(W(n) = 217\)</span> - asymptotic behavior is given by <span class="math inline">\(O(1)\)</span>, since <span class="math inline">\(217 = 1\times217\)</span>.</li>
+<li><span class="math inline">\(W(n) = n + \sqrt{n}\)</span> - asymptotic behavior is described by <span class="math inline">\(O(n)\)</span> since <span class="math inline">\(n\)</span> grows faster than <span class="math inline">\(\sqrt{n}\)</span>.</li>
+<li><span class="math inline">\(W(n) = n + e^{n}\)</span> - asymptotic behavior is given by <span class="math inline">\(O(e^{n})\)</span> since <span class="math inline">\(e^{n}\)</span> rapidly grows than <span class="math inline">\(n\)</span>, as <span class="math inline">\(n\)</span> increases.</li>
+</ol>
+<p><strong>Exercises</strong></p>
+<p>Find the asymptotic behavior of the following functions:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(W(n) = n^{3} + 3n\)</span></li>
+<li><span class="math inline">\(W(n) = 4^n + 1047\)</span></li>
+<li><span class="math inline">\(W(n) = 4^n + n^4\)</span></li>
+<li><span class="math inline">\(W(n) = n^n + n\)</span></li>
+</ol>
 <hr />
 </div>
+<div id="the-complexity-of-insertion-sort-and-selection-sort" class="section level4">
+<h4>The complexity of insertion sort and selection sort</h4>
+<hr />
+</div>
+<div id="divide-and-conquer" class="section level4">
+<h4>Divide and Conquer</h4>
+<hr />
 </div>
 <div id="dynamic-programming" class="section level4">
 <h4>Dynamic Programming</h4>

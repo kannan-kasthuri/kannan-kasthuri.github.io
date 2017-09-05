@@ -110,15 +110,15 @@ which would take just one instruction in C is equvilalent to the following state
   }
 ```
 
-It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the **rapidly growing term** that depends on the input size. Such an analysis is referred to as _asymptotic analysis_. So the asymptotic behavior of $W(n) = 6n-2$ is just $n$. Mathematically speaking, it just says that as $n$ increase, $W(n)$ is as *bad* as $n$.
+It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the **rapidly growing term** that depends on the input size. Such an analysis is referred to as _asymptotic analysis_. So the asymptotic behavior of $W(n) = 6n-2$ is just $n$. Mathematically speaking, it just says that as $n$ increase, $W(n)$ is "as *bad* as $n$" and is denoted by $O(n)$.
 
 Let us try to analyze the asymptotic behavior of the following task. 
 
 **Task** Print the smallest number in a matrix $A(i,j)$ where $1 \leq i,j \leq n$, noting the column of the smallest element in each iteration, through _brute-force_ approach. 
 
-Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well. 
+Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. Usually that's the simplest approach for solving a computational problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well. 
 
-**Algorithm** Here is the pesudocode:
+**Algorithm** Here is the pesudocode (the lines are numbered to make the analysis easier):
 
 ```{r eval=FALSE}
 
@@ -142,18 +142,41 @@ Brute force approach is where we test all possible candidates for a solution and
 18.  print M is the smallest number
 ```
 
+If we assume the above criteria for our hypothetical machine for per instruction cost, we note the following:
+
+1. Lines 02 and 03 will count as $3$ instructions
+2. In the worst case, Lines 10 and 12 will execute $n^2$ times each costing $5$ instructions ($2$ for the `if`, $2$ for Line 10 and $1$ for Line 12)
+3. Line 15 will execute $n$ times and 
+4. Line 18 will execute once costing $1$ instruction
+
+giving us the worst case complexity, $$W(n) = 4+5n^2+n.$$ Hence, the aysmptotic behaviour, ignoring the constant factors and taking the rapidly growing term, is given by $O(n^2)$.
+
+**Examples** 
+
+1. $W(n) = 3n+2$ - asymptotic behavior is given by $O(n)$.
+2. $W(n) = 217$  - asymptotic behavior is given by $O(1)$, since $217 = 1\times217$.
+3. $W(n) = n + \sqrt{n}$ - asymptotic behavior is described by $O(n)$ since $n$ grows faster than $\sqrt{n}$.
+4. $W(n) = n + e^{n}$ - asymptotic behavior is given by $O(e^{n})$ since $e^{n}$ rapidly grows than $n$, as $n$ increases.
+
+**Exercises**
+
+Find the asymptotic behavior of the following functions:
+
+1. $W(n) = n^{3} + 3n$
+2. $W(n) = 4^n + 1047$
+3. $W(n) = 4^n + n^4$
+4. $W(n) = n^n + n$
+
+---
+
+#### The complexity of insertion sort and selection sort
 
 
-#### An Introduction to AoA - Sorting
 
 
-##### Selection Sort
+---
 
-
-##### Insertion Sort
-
-
-##### Divide and Conquer 
+#### Divide and Conquer 
 
 
 ---
