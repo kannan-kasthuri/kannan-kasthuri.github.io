@@ -181,7 +181,7 @@ $(document).ready(function () {
 <pre class="r"><code>  if (i &gt;= 0 &amp;&amp; i &lt; n) {
     M = A[i];
   }</code></pre>
-<p>It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the <strong>rapidly growing term</strong> that depends on the input size. Such an analysis is referred to as <em>asymptotic analysis</em>. So the asymptotic behavior of <span class="math inline">\(W(n) = 6n-2\)</span> is just <span class="math inline">\(n\)</span>. Mathematically speaking, it just says that as <span class="math inline">\(n\)</span> increase, <span class="math inline">\(W(n)\)</span> is “as <em>bad</em> as <span class="math inline">\(n\)</span>” and is denoted by <span class="math inline">\(O(n)\)</span>.</p>
+<p>It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the <strong>rapidly growing term</strong> that depends on the input size. Such an analysis is referred to as <em>asymptotic analysis</em>. So the asymptotic behavior of <span class="math inline">\(W(n) = 6n-2\)</span> is just <span class="math inline">\(n\)</span>. Mathematically speaking, it just says that as <span class="math inline">\(n\)</span> increase, <span class="math inline">\(W(n)\)</span> could be “as <em>bad</em> as <span class="math inline">\(n\)</span>” and is denoted by <span class="math inline">\(O(n)\)</span>.</p>
 <p>Let us try to analyze the asymptotic behavior of the following task.</p>
 <p><strong>Task</strong> Print the smallest number in a matrix <span class="math inline">\(A(i,j)\)</span> where <span class="math inline">\(1 \leq i,j \leq n\)</span>, noting the column of the smallest element in each iteration, through <em>brute-force</em> approach.</p>
 <p>Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. Usually that’s the simplest approach for solving a computational problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well.</p>
@@ -205,13 +205,18 @@ $(document).ready(function () {
 17.  # Print the answer
 18.  print M is the smallest number</code></pre>
 <p>If we assume the above criteria for our hypothetical machine for per instruction cost, we note the following:</p>
-<ol style="list-style-type: decimal">
-<li>Lines 02 and 03 will count as <span class="math inline">\(3\)</span> instructions</li>
-<li>In the worst case, Lines 10 and 12 will execute <span class="math inline">\(n^2\)</span> times each costing <span class="math inline">\(5\)</span> instructions (<span class="math inline">\(2\)</span> for the <code>if</code>, <span class="math inline">\(2\)</span> for Line 10 and <span class="math inline">\(1\)</span> for Line 12)</li>
-<li>Line 15 will execute <span class="math inline">\(n\)</span> times and</li>
-<li>Line 18 will execute once costing <span class="math inline">\(1\)</span> instruction</li>
-</ol>
-<p>giving us the worst case complexity, <span class="math display">\[W(n) = 4+5n^2+n.\]</span> Hence, the aysmptotic behaviour, ignoring the constant factors and taking the rapidly growing term, is given by <span class="math inline">\(O(n^2)\)</span>.</p>
+<p><em>1.</em> Line <span class="math inline">\(02\)</span> will take <span class="math inline">\(2\)</span> instructions and Line <span class="math inline">\(03\)</span> will take <span class="math inline">\(1\)</span> making a total of <span class="math inline">\(3\)</span>.</p>
+<p><em>2.</em> In the worst case, the matrix <span class="math inline">\(A\)</span> could end up like this -</p>
+<p><span class="math display">\[ A = \begin{bmatrix}
+    51 &amp; 43 &amp; 39 \\
+    33 &amp; 32 &amp; 27 \\
+    25 &amp; 15 &amp; 2  \\
+\end{bmatrix}
+\]</span></p>
+<p>where <span class="math inline">\(a_{ij}\leq a_{mn}\)</span> for <span class="math inline">\(i\geq m\)</span> or <span class="math inline">\(j \geq n\)</span> and so every time the <code>if</code> loop has to be executed. Thus, Line <span class="math inline">\(10\)</span> and Line <span class="math inline">\(12\)</span> may execute <span class="math inline">\(n^2\)</span> times, each costing <span class="math inline">\(5\)</span> instructions (<span class="math inline">\(2\)</span> for the <code>if</code>, <span class="math inline">\(2\)</span> for Line <span class="math inline">\(10\)</span> and <span class="math inline">\(1\)</span> for Line <span class="math inline">\(12\)</span>).</p>
+<p><em>3.</em> Line <span class="math inline">\(15\)</span> will execute <span class="math inline">\(n\)</span> times and</p>
+<p><em>4.</em> Line <span class="math inline">\(18\)</span> will execute once costing <span class="math inline">\(1\)</span> instruction.</p>
+<p>Therefore, the worst case complexity is given by, <span class="math display">\[W(n) = 4+5n^2+n.\]</span> Hence, the aysmptotic behaviour, ignoring the constant factors and taking the rapidly growing term, is given by <span class="math inline">\(O(n^2)\)</span>.</p>
 <p><strong>Examples</strong></p>
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(W(n) = 3n+2\)</span> - asymptotic behavior is given by <span class="math inline">\(O(n)\)</span>.</li>
@@ -232,11 +237,9 @@ $(document).ready(function () {
 <div id="the-complexity-of-insertion-sort-and-selection-sort" class="section level4">
 <h4>The complexity of insertion sort and selection sort</h4>
 <p><br></p>
-<div id="insertion-sort" class="section level5">
-<h5>Insertion sort</h5>
+<div id="selection-sort" class="section level5">
+<h5>Selection sort</h5>
 <p><br></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen>
-</iframe>
 <hr />
 </div>
 </div>
@@ -246,16 +249,13 @@ $(document).ready(function () {
 </div>
 <div id="dynamic-programming" class="section level4">
 <h4>Dynamic Programming</h4>
-<div id="assembly-line-problem" class="section level5">
-<h5>Assembly Line Problem</h5>
-</div>
-<div id="finding-dna-subsequence" class="section level5">
-<h5>Finding DNA Subsequence</h5>
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe>
+-->
 <hr />
-</div>
 </div>
 <div id="greedy-algorithms" class="section level4">
 <h4>Greedy Algorithms</h4>
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe> -->
 <hr />
 </div>
 <div id="an-introduction-to-np-completeness" class="section level4">
@@ -265,6 +265,7 @@ $(document).ready(function () {
 <div id="references" class="section level4">
 <h4>References</h4>
 <p><a href="http://discrete.gr/complexity/">A Gentle Introduction to Algorithm Complexity Analysis</a> by Dionysis “dionyziz” Zindros</p>
+<hr />
 </div>
 </div>
 

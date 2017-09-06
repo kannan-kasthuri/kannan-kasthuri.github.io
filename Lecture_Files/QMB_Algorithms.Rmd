@@ -110,7 +110,7 @@ which would take just one instruction in C is equvilalent to the following state
   }
 ```
 
-It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the **rapidly growing term** that depends on the input size. Such an analysis is referred to as _asymptotic analysis_. So the asymptotic behavior of $W(n) = 6n-2$ is just $n$. Mathematically speaking, it just says that as $n$ increase, $W(n)$ is "as *bad* as $n$" and is denoted by $O(n)$.
+It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the **rapidly growing term** that depends on the input size. Such an analysis is referred to as _asymptotic analysis_. So the asymptotic behavior of $W(n) = 6n-2$ is just $n$. Mathematically speaking, it just says that as $n$ increase, $W(n)$ could be "as *bad* as $n$" and is denoted by $O(n)$.
 
 Let us try to analyze the asymptotic behavior of the following task. 
 
@@ -144,12 +144,24 @@ Brute force approach is where we test all possible candidates for a solution and
 
 If we assume the above criteria for our hypothetical machine for per instruction cost, we note the following:
 
-1. Lines 02 and 03 will count as $3$ instructions
-2. In the worst case, Lines 10 and 12 will execute $n^2$ times each costing $5$ instructions ($2$ for the `if`, $2$ for Line 10 and $1$ for Line 12)
-3. Line 15 will execute $n$ times and 
-4. Line 18 will execute once costing $1$ instruction
+*1.* Line $02$ will take $2$ instructions and Line $03$ will take $1$ making a total of $3$.
 
-giving us the worst case complexity, $$W(n) = 4+5n^2+n.$$ Hence, the aysmptotic behaviour, ignoring the constant factors and taking the rapidly growing term, is given by $O(n^2)$.
+*2.* In the worst case, the matrix $A$ could end up like this -
+
+$$ A = \begin{bmatrix}
+    51 & 43 & 39 \\
+    33 & 32 & 27 \\
+    25 & 15 & 2  \\
+\end{bmatrix}
+$$
+
+where $a_{ij}\leq a_{mn}$ for $i\geq m$ or $j \geq n$ and so every time the `if` loop has to be executed. Thus, Line $10$ and Line $12$ may execute $n^2$ times, each costing $5$ instructions ($2$ for the `if`, $2$ for Line $10$ and $1$ for Line $12$).
+
+*3.* Line $15$ will execute $n$ times and 
+
+*4.* Line $18$ will execute once costing $1$ instruction.
+
+Therefore, the worst case complexity is given by, $$W(n) = 4+5n^2+n.$$ Hence, the aysmptotic behaviour, ignoring the constant factors and taking the rapidly growing term, is given by $O(n^2)$.
 
 **Examples** 
 
@@ -173,11 +185,11 @@ Find the asymptotic behavior of the following functions:
 
 <br>
 
-##### Insertion sort
+##### Selection sort
 
 <br>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe>
+
 
 ---
 
@@ -188,17 +200,14 @@ Find the asymptotic behavior of the following functions:
 
 #### Dynamic Programming 
 
-
-##### Assembly Line Problem
-
-
-##### Finding DNA Subsequence
-
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe>
+-->
 
 ---
 
 #### Greedy Algorithms
 
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe> -->
 
 ---
 
@@ -211,4 +220,4 @@ Find the asymptotic behavior of the following functions:
 
 [A Gentle Introduction to Algorithm Complexity Analysis](http://discrete.gr/complexity/) by Dionysis "dionyziz" Zindros
 
-
+---
