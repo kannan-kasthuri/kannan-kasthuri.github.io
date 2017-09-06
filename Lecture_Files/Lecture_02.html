@@ -158,13 +158,25 @@ $(document).ready(function () {
 <hr />
 </div>
 </div>
+<div id="data-permanency-and-removing-objects" class="section level4">
+<h4>Data permanency and removing objects</h4>
+<p>During an R session, objects are created and stored by name. The R command:</p>
+<pre class="r"><code>  objects()</code></pre>
+<pre><code>## [1] &quot;r&quot; &quot;x&quot;</code></pre>
+<p>will display the objects that are currently stored in the session. The list of all such objects constitute the <em>workspace</em> of R. For removing objects, the function <code>rm</code> can be handy. For example,</p>
+<pre class="r"><code>  rm(r)
+  objects()</code></pre>
+<pre><code>## [1] &quot;x&quot;</code></pre>
+<p>will remove the object <code>r</code> created above. To remove multiple objects, we just list them with a comma delimiter, like, <code>rm(r,x)</code>.</p>
+<hr />
+</div>
 <div id="functions" class="section level4">
 <h4>Functions</h4>
 <p>R has a wide-range of built-in functions that are generally of the form:</p>
 <pre class="r"><code>  functionName(arg1 = val1, arg2 = val2, and so on)</code></pre>
 <p><strong>Note</strong>: Not all functions will have arguments. For instance, the function <code>date()</code> that prints the current date and time does not have any argument.</p>
 <pre class="r"><code>  date()</code></pre>
-<pre><code>## [1] &quot;Thu Aug 31 14:52:54 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Wed Sep  6 13:08:22 2017&quot;</code></pre>
 <p>One of the extremely helpful feature of RStudio is the <code>?</code> operator. You can use this to find out the description of the function in question, including its usage and arguments. <span style="color:blue"> <em>Question the function to know more about the function in question</em>. </span> For instance,</p>
 <pre class="r"><code>  ?date()</code></pre>
 <p>would describe the function <code>date()</code> in the help tab of the IDE.</p>
@@ -178,6 +190,37 @@ $(document).ready(function () {
 <pre class="r"><code>  seq(1,10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p>This demonstrates how function arguments are resolved in R. We can always specify <code>from/to = value</code>. But if we do not, R attempts to resolve by position. So in the above code, it is assumed that we want a sequence <code>from = 1</code> that goes <code>to = 10</code>. Although R can try to resolve arguments on its own, best practice is to specify it.</p>
+<hr />
+</div>
+<div id="simple-manipulations-vector-arithmetic" class="section level4">
+<h4>Simple manipulations: Vector arithmetic</h4>
+<p>The function <code>c()</code> combines values into a vector or a list. To set up a vector named <code>x</code>, say, consisting of eight numbers, namely, 12, 20.1, 53.6, 2, 7.43, 24, 8.2, and 6, the assign statement:</p>
+<pre class="r"><code>  x &lt;- c(12, 20.1, 53.6, 2, 7.43, 24, 8.2, 6)</code></pre>
+<p>will assign the vector to the object <code>x</code>. We can form mathematical expressions using <code>x</code> like any other variable. For example,</p>
+<pre class="r"><code>  sin(x)</code></pre>
+<pre><code>## [1] -0.5365729  0.9491246 -0.1917303  0.9092974  0.9114582 -0.9055784
+## [7]  0.9407306 -0.2794155</code></pre>
+<pre class="r"><code>  sqrt(x)</code></pre>
+<pre><code>## [1] 3.464102 4.483302 7.321202 1.414214 2.725803 4.898979 2.863564 2.449490</code></pre>
+<p>will list the <em>sine</em> and square root of each number in the vector <code>x</code>. We can also combine vector with itself:</p>
+<pre class="r"><code>  c(x,x)</code></pre>
+<pre><code>##  [1] 12.00 20.10 53.60  2.00  7.43 24.00  8.20  6.00 12.00 20.10 53.60
+## [12]  2.00  7.43 24.00  8.20  6.00</code></pre>
+<p>or include some numbers in-between <code>c(x,0,x)</code>.</p>
+<p>One of the greatest advantages in R (as opposed to say, Matlab) is that we can combine vectors of different length. For example, the following code:</p>
+<pre class="r"><code>   y &lt;- c(x,0,x)
+   v &lt;- 2*x + y  + 1
+   v</code></pre>
+<pre><code>##  [1]  37.00  61.30 161.80   7.00  23.29  73.00  25.60  19.00  25.00  53.20
+## [11] 128.30  58.60  17.86  56.43  41.40  21.20  31.00</code></pre>
+<p>is equivalent to the following addition:</p>
+<pre class="r"><code>  y: 12 20.1  53.6 2  7.43 24  8.2  6  0 12    20.1 53.6  2     7.43 24    8.2  6
+ 2x: 24 40.2 107.2 4 14.86 48 16.4 12 24 40.2 107.2  4   14.86 48    16.4 12   24
+  1:  1  1     1   1  1     1  1    1  1  1     1    1    1     1     1    1    1
+  ---------------------------------------------------------------------------------
+     37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 31
+  ---------------------------------------------------------------------------------</code></pre>
+<p>so the expression <code>2*x</code> is scaled to the length of the longest vector (here <code>y</code>).</p>
 </div>
 </div>
 

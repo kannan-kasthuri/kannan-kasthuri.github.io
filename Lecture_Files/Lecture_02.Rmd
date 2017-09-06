@@ -65,6 +65,24 @@ You can assign strings to objects using qutation marks. For example, the followi
 
 ---
 
+#### Data permanency and removing objects
+
+During an R session, objects are created and stored by name. The R command:
+
+```{r eval=TRUE}
+  objects()
+```
+will display the objects that are currently stored in the session. The list of all such objects constitute the _workspace_ of R. For removing objects, the function `rm` can be handy. For example,
+
+```{r eval=TRUE}
+  rm(r)
+  objects()
+```
+
+will remove the object `r` created above. To remove multiple objects, we just list them with a comma delimiter, like, `rm(r,x)`.
+
+---
+
 #### Functions
 
 R has a wide-range of built-in functions that are generally of the form:
@@ -107,4 +125,49 @@ is same as,
 
 This demonstrates how function arguments are resolved in R. We can always specify `from/to = value`. But if we do not, R attempts to resolve by position. So in the above code, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Although R can try to resolve arguments on its own, best practice is to specify it.
 
+---
 
+#### Simple manipulations: Vector arithmetic
+
+The function `c()` combines values into a vector or a list. To set up a vector named `x`, say, consisting of eight numbers, namely, 12, 20.1, 53.6, 2, 7.43, 24, 8.2, and 6, the assign statement:
+
+```{r eval=TRUE}
+  x <- c(12, 20.1, 53.6, 2, 7.43, 24, 8.2, 6)
+```
+
+will assign the vector to the object `x`. We can form mathematical expressions using `x` like any other variable. For example,  
+
+```{r eval=TRUE}
+  sin(x)
+  sqrt(x)
+```
+
+will list the _sine_ and square root of each number in the vector `x`. We can also combine vector with itself:
+
+```{r eval=TRUE}
+  c(x,x)
+```
+
+or include some numbers in-between `c(x,0,x)`.
+
+One of the greatest advantages in R (as opposed to say, Matlab) is that we can combine vectors of different length. For example, the following code:
+
+```{r eval=TRUE, warning=FALSE}
+   y <- c(x,0,x)
+   v <- 2*x + y  + 1
+   v
+```
+
+is equivalent to the following addition:
+
+```{r eval=FALSE}
+
+  y: 12 20.1  53.6 2  7.43 24  8.2  6  0 12    20.1 53.6  2     7.43 24    8.2  6
+ 2x: 24 40.2 107.2 4 14.86 48 16.4 12 24 40.2 107.2  4   14.86 48    16.4 12   24
+  1:  1  1     1   1  1     1  1    1  1  1     1    1    1     1     1    1    1
+  ---------------------------------------------------------------------------------
+     37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 31
+  ---------------------------------------------------------------------------------
+```
+
+so the expression `2*x` is scaled to the length of the longest vector (here `y`).
