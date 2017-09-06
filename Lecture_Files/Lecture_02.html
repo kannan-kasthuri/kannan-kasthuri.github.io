@@ -176,7 +176,7 @@ $(document).ready(function () {
 <pre class="r"><code>  functionName(arg1 = val1, arg2 = val2, and so on)</code></pre>
 <p><strong>Note</strong>: Not all functions will have arguments. For instance, the function <code>date()</code> that prints the current date and time does not have any argument.</p>
 <pre class="r"><code>  date()</code></pre>
-<pre><code>## [1] &quot;Wed Sep  6 14:41:57 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Wed Sep  6 16:49:14 2017&quot;</code></pre>
 <p>One of the extremely helpful feature of RStudio is the <code>?</code> operator. You can use this to find out the description of the function in question, including its usage and arguments. <span style="color:blue"> <em>Question the function to know more about the function in question</em>. </span> For instance,</p>
 <pre class="r"><code>  ?date()</code></pre>
 <p>would describe the function <code>date()</code> in the help tab of the IDE.</p>
@@ -217,9 +217,9 @@ $(document).ready(function () {
 <pre class="r"><code> y : 12 20.1  53.6 2  7.43 24  8.2  6  0 12    20.1 53.6  2     7.43 24    8.2  6
  2x: 24 40.2 107.2 4 14.86 48 16.4 12 24 40.2 107.2  4   14.86 48    16.4 12   24
  1 :  1  1     1   1  1     1  1    1  1  1     1    1    1     1     1    1    1
-  ---------------------------------------------------------------------------------
-     37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 31
-  ---------------------------------------------------------------------------------</code></pre>
+-----------------------------------------------------------------------------------
+sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 31
+-----------------------------------------------------------------------------------</code></pre>
 <p>so the expression <code>2*x</code> is scaled to the length of the longest vector (here <code>y</code>). This is called <em>recycling</em>.</p>
 <p>Several functions work as usual, like, <code>mean(), max(), min(), sort()</code> etc. Also, as such, square root of a negative number, like <code>sqrt(-19)</code> will retrun <code>NaN</code> and a warning, but <code>sqrt(-19+0i)</code> will work.</p>
 <div id="logical-vectors" class="section level5">
@@ -247,9 +247,12 @@ $(document).ready(function () {
 <hr />
 </div>
 </div>
-<div id="other-types-of-objects" class="section level4">
-<h4>Other types of objects</h4>
+<div id="basic-objects-and-data-types" class="section level4">
+<h4>Basic objects and data types</h4>
 <p>Vectors are the most important type of objects in R, but there are several other objects that we will encounter frequently.</p>
+<div id="objects" class="section level5">
+<h5>Objects</h5>
+<p>Here is a list of other important objects.</p>
 <ul>
 <li><p><em>matrices</em> or more generally arrays are multi-dimensional generalizations of vectors. In fact, they are vectors that can be indexed by two or more indices and will be printed in special ways.</p></li>
 <li><p><em>factors</em> provide compact ways to handle categorical data.</p></li>
@@ -257,7 +260,56 @@ $(document).ready(function () {
 <li><p><em>data frames</em> are matrix-like structures, in which the columns can be of different types. One can think of data frames as ‘data matrices’ with one row per observational unit but with (possibly) both numerical and categorical variables. Many experiments are best described by data frames: the treatments are categorical but the response is numeric.</p></li>
 <li><p><em>functions</em> are themselves objects in R which can be stored in the project’s workspace. This provides a simple and convenient way to extend R.</p></li>
 </ul>
+</div>
+<div id="data-types-and-coercion" class="section level5">
+<h5>Data types and coercion</h5>
+<p>The function <code>class()</code> can be used to reveal the data type. Basic data types are:</p>
+<ul>
+<li><p>Logical: <code>TRUE</code>, <code>FALSE</code> or <code>NA</code></p></li>
+<li><p>Numeric: 2.5, 17 etc.</p></li>
+<li><p>Integer: Integer numeric appending the letter <code>L</code> to it: 12L, 17L, -2L etc.</p></li>
+<li><p>Character: “R data types rock, etc.”</p></li>
+<li><p>Other atomic datatypes: <code>double</code>, <code>complex</code> and <code>raw</code>.</p></li>
+</ul>
+<pre class="r"><code>  # Reveal the class of the logical &quot;TRUE&quot;
+  class(TRUE)  </code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>  # Reveal the class of the number 2.5
+  class(2.5) </code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>  # Reveal the class of the number 2
+  class(2)  </code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>  # Reveal the class of the integer 2L
+  class(2L)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>  # Reveal the class of the character &quot;R data types rock, etc.&quot;
+  class(&quot;R data types rock, etc.&quot;)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p><strong>Note 1</strong>: By default an integer has a datatype as numeric as illustrated by <code>class(2)</code></p>
+<p><strong>Note 2</strong>: One can also use <code>is.<i>datatype(y)</i></code> to reveal the underlying datatype of the variable <code>y</code>. For example, <code>is.logical(x)</code> will return <code>TRUE</code> if <code>x</code> is a logical variable. Otherwise, it will return <code>FALSE</code>.</p>
+<p>One can <em>force</em> a data type to another through what is known as <em>coercion</em>. The function <code>as.<i>datatype(y)</i></code> will coerce the datatype of <code>y</code> into the specified datatype.</p>
+<pre class="r"><code>  # Coerce &quot;TRUE&quot; into integer
+  as.integer(TRUE)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>  # Coerce &quot;FALSE&quot; into integer
+  as.integer(FALSE)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>  # Coerce 2.5 as a character
+  as.character(2.5)</code></pre>
+<pre><code>## [1] &quot;2.5&quot;</code></pre>
+<pre class="r"><code>  # Coerce 2 as a numeric
+  as.numeric(&quot;2&quot;)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>  # Coerce the character &quot;4.5&quot; as an integer
+  as.integer(&quot;4.5&quot;) </code></pre>
+<pre><code>## [1] 4</code></pre>
+<p><strong>Note</strong>: There is an information loss when coercing non-integer values to integer values as revealed by the last example. Also, coercion is not always possible. For instance, coercing a charecter “hello” into numeric/integer will result in warning and <code>NA</code>.</p>
+<pre class="r"><code>  as.numeric(&quot;hello&quot;)</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1] NA</code></pre>
 <hr />
+</div>
 </div>
 <div id="selected-materials-and-references" class="section level4">
 <h4>Selected materials and references</h4>
