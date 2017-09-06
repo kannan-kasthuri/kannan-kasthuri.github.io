@@ -10,7 +10,7 @@ output: html_document
 
 ---
 
-#### R/RStudio Basics 
+#### R Basics 
 
 Launch RStudio. By default the panes should look something like this -
 
