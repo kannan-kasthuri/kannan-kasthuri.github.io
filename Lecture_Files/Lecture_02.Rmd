@@ -226,7 +226,7 @@ results of a statistical computation.
 
 * _data frames_ are matrix-like structures, in which the columns can be of different types. One can think of data frames as ‘data matrices’ with one row per observational unit but with (possibly) both numerical and categorical variables. Many experiments are best described by data frames: the treatments are categorical but the response is numeric.
 
-* _functions_ are themselves objects in R which can be stored in the project’s workspace. This provides a simple and convenient way to extend R. S
+* _functions_ are themselves objects in R which can be stored in the project’s workspace. This provides a simple and convenient way to extend R. 
 
 ---
 
