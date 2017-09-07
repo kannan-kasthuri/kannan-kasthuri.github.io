@@ -15,6 +15,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+The pdf copy of the presentation can be accessed [here](https://kannan-kasthuri.github.io/Lecture_Files/introduction.pdf).
+
 ##### Register a GitHub account - Do this first! 
 
 You are **required** to register for a free individual account at [GitHub](https://github.com/). You are encouraged to apply for [student developer pack](https://education.github.com/). They are free for students and awesome collection of tools and packages.
