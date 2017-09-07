@@ -7,11 +7,11 @@ output: html_document
 
 ---
 
-### An Introduction to Algorithms (Sept. 25, 2017)
+### An Introduction to Linear Algebra (Sept. 27, 2017)
+
+There is hardly any theory which is more elementary than linear algebra, in spite of the fact that generations of professors and textbook writers have obscured its simplicity by preposterous calculations with matrices. - Jean Dieudonné
 
 ---
-
-This lecture is designed to give a bird's eye view of analysis of algorithms. The subject is extremely vast and it is usually a semester long course (typically a core course) in computer science departments. 
 
 #### Motivation
 
