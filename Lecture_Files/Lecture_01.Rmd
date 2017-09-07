@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-##### Register a GitHub account - Do this first! 
+#### Register a GitHub account - Do this first! 
 
 You are **required** to register for a free individual account at [GitHub](https://github.com/). You are encouraged to apply for [student developer pack](https://education.github.com/). They are free for students and awesome collection of tools and packages.
 
@@ -25,7 +25,7 @@ I will need your email id's you used for registration in GitHub to invite you to
 
 ---
 
-##### R and RStudio
+#### R and RStudio
 
 You can install R from its source page <a href="https://www.r-project.org/"target="_blank"> here</a>. I would suggest installing the precompiled binary for your OS.
 
@@ -45,7 +45,7 @@ If you upgrade R, you will need to update any packages you have installed. The f
 
 ---
 
-##### How to add packages?
+#### How to add packages?
 
 Use the following template:
 
@@ -59,7 +59,7 @@ in the console and you should have it.
 
 ---
 
-##### Further resources/support
+#### Further resources/support
 
 * RStudio support: https://support.rstudio.com/hc/en-us
 
@@ -71,7 +71,7 @@ in the console and you should have it.
 
 ---
 
-##### Learn Git, Learn Git, Learn Git
+#### Learn Git, Learn Git, Learn Git
 
 *Terminal* is your friend. Getting comfortable using the terminal will go a long way in your career. 
 
@@ -87,7 +87,7 @@ Working with RStudio, Git and Github - we will demo this in the class, but [here
 
 ---
 
-##### Selected materials and references
+#### Selected materials and references
 
 [The data science Venn diagram](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
 
