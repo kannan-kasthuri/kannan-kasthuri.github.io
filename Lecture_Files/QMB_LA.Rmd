@@ -9,13 +9,14 @@ output: html_document
 
 ### An Introduction to Linear Algebra (Sept. 27, 2017)
 
-There is hardly any theory which is more elementary than linear algebra, in spite of the fact that generations of professors and textbook writers have obscured its simplicity by preposterous calculations with matrices. - Jean Dieudonné
+_There is hardly any theory which is more elementary than linear algebra, in spite of the fact that generations of professors and textbook writers have obscured its simplicity by preposterous calculations with matrices_. - Jean Dieudonné (1906-1992)
 
 ---
 
-#### Motivation
+#### Essence of linear algebra
 
-Computer programs are set of instructions, or algorithm, supplied by the programmer to accomplish a certain task. There can be several algorithms that can accomplish the same computational task. For instance, consider sorting a bunch of cards. This could be done at least in two different ways, namely, by insertion sort or through selection sort -
+Linear algebra is required knowledge for any technical discipline: Computer science, Physics, Electrical engineering, Mechanical engineering, Statistics etc. -although it is poorly understood by students.
+
 
 ---
 
