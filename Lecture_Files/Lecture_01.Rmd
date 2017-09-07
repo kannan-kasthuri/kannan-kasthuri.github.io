@@ -11,11 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Lecture 01 (Sept. 07, 2017)
+### Lecture 01 (Sept. 07, 2017) [[PDF](https://kannan-kasthuri.github.io/Lecture_Files/introduction.pdf)]
 
 ---
-
-The pdf copy of the presentation can be accessed [here](https://kannan-kasthuri.github.io/Lecture_Files/introduction.pdf).
 
 ##### Register a GitHub account - Do this first! 
 
