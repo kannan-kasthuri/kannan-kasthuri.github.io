@@ -37,7 +37,7 @@ Computational complexity is usually determined by counting instructions. Let's f
 
 **Task** Detrmine the minimum element in an array $A$ with $n$ elements addressed by $A[1], A[2],\dots, A[n]$.
 
-**Algorithm** The pesudocode to do this task is as follows:
+**Algorithm (Find_Minimum_in_Array_A[1,n])** The pesudocode to do this task is as follows:
 
 ```{r eval=FALSE}
 
@@ -50,7 +50,7 @@ Computational complexity is usually determined by counting instructions. Let's f
     end if
   end for
   # Print the answer
-  print M is the smallest number
+  print M is the smallest number and return M
     
 ```
 
@@ -118,7 +118,7 @@ Let us try to analyze the asymptotic behavior of the following task.
 
 Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. Usually that's the simplest approach for solving a computational problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well. 
 
-**Algorithm** Here is the pesudocode (the lines are numbered to make the analysis easier):
+**Algorithm (Find_Minimum_in_Matrix)** Here is the pesudocode (the lines are numbered to make the analysis easier):
 
 ```{r eval=FALSE}
 
@@ -183,9 +183,50 @@ Find the asymptotic behavior of the following functions:
 
 #### The complexity of insertion sort and selection sort
 
-<br>
+Given an array, selection sort and insertion sort are basic sorting techniques. We will analyze the complexity of these sorts.
 
 ##### Selection sort
+
+The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
+
+* The subarray which is already sorted.
+* Remaining subarray which is unsorted.
+
+In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray. Here is an example:
+
+```{r eval=FALSE}
+
+arr[] = 64 25 12 22 11
+
+# Find the minimum element in arr[0...4]
+# and place it at beginning
+11 25 12 22 64
+
+# Find the minimum element in arr[1...4]
+# and place it at beginning of arr[1...4]
+11 12 25 22 64
+
+# Find the minimum element in arr[2...4]
+# and place it at beginning of arr[2...4]
+11 12 22 25 64
+
+# Find the minimum element in arr[3...4]
+# and place it at beginning of arr[3...4]
+11 12 22 25 64 
+```
+**Algorithm (Selection_Sort)** Here is the pseudocode for this sorting algorithm given an array $A$ of $n$ input elements, where `Find_Minimum_in_Array_A[i,n]` is the algorithm defined previously.
+
+```{r eval=FALSE}
+
+01.  # Iterate through the array A picking minimum each time  
+02.  for i = 1 to n, increment i
+03.      m = Find_Minimum_in_Array_A[i,n] 
+04.      # Swap A[i] and m
+05.      swap(A[i],m)
+06.  end for
+17.  print and return A
+```
+
 
 <br>
 

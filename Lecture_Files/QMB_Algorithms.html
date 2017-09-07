@@ -119,8 +119,8 @@ $(document).ready(function () {
 </div>
 
 
-<div id="algorithms-sept.-20-2017" class="section level3">
-<h3>Algorithms (Sept. 20, 2017)</h3>
+<div id="an-introduction-to-algorithms-sept.-25-2017" class="section level3">
+<h3>An Introduction to Algorithms (Sept. 25, 2017)</h3>
 <hr />
 <p>This lecture is designed to give a bird’s eye view of analysis of algorithms. The subject is extremely vast and it is usually a semester long course (typically a core course) in computer science departments.</p>
 <div id="motivation" class="section level4">
@@ -140,7 +140,7 @@ $(document).ready(function () {
 <h4>Counting instructions</h4>
 <p>Computational complexity is usually determined by counting instructions. Let’s find the complexity for the following computational task.</p>
 <p><strong>Task</strong> Detrmine the minimum element in an array <span class="math inline">\(A\)</span> with <span class="math inline">\(n\)</span> elements addressed by <span class="math inline">\(A[1], A[2],\dots, A[n]\)</span>.</p>
-<p><strong>Algorithm</strong> The pesudocode to do this task is as follows:</p>
+<p><strong>Algorithm (Find_Minimum_in_Array_A[1,n])</strong> The pesudocode to do this task is as follows:</p>
 <pre class="r"><code>  # Assign M to the first element in the array
   M = A[1]
   # Go through the array and if the number in the array is less than M, then update M with that number
@@ -150,7 +150,7 @@ $(document).ready(function () {
     end if
   end for
   # Print the answer
-  print M is the smallest number</code></pre>
+  print M is the smallest number and return M</code></pre>
 <p>To work out the complexity we will assume that our hypothetical machine can perform the following operations as one instruction each:</p>
 <ul>
 <li>Assigning a value to a variable</li>
@@ -185,7 +185,7 @@ $(document).ready(function () {
 <p>Let us try to analyze the asymptotic behavior of the following task.</p>
 <p><strong>Task</strong> Print the smallest number in a matrix <span class="math inline">\(A(i,j)\)</span> where <span class="math inline">\(1 \leq i,j \leq n\)</span>, noting the column of the smallest element in each iteration, through <em>brute-force</em> approach.</p>
 <p>Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. Usually that’s the simplest approach for solving a computational problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well.</p>
-<p><strong>Algorithm</strong> Here is the pesudocode (the lines are numbered to make the analysis easier):</p>
+<p><strong>Algorithm (Find_Minimum_in_Matrix)</strong> Here is the pesudocode (the lines are numbered to make the analysis easier):</p>
 <pre class="r"><code>01.  # Assign M to the first element in the matrix
 02.  M = A[1,1]
 03.  smallest_element_column = 1
@@ -236,9 +236,40 @@ $(document).ready(function () {
 </div>
 <div id="the-complexity-of-insertion-sort-and-selection-sort" class="section level4">
 <h4>The complexity of insertion sort and selection sort</h4>
-<p><br></p>
+<p>Given an array, selection sort and insertion sort are basic sorting techniques. We will analyze the complexity of these sorts.</p>
 <div id="selection-sort" class="section level5">
 <h5>Selection sort</h5>
+<p>The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.</p>
+<ul>
+<li>The subarray which is already sorted.</li>
+<li>Remaining subarray which is unsorted.</li>
+</ul>
+<p>In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray. Here is an example:</p>
+<pre class="r"><code>arr[] = 64 25 12 22 11
+
+# Find the minimum element in arr[0...4]
+# and place it at beginning
+11 25 12 22 64
+
+# Find the minimum element in arr[1...4]
+# and place it at beginning of arr[1...4]
+11 12 25 22 64
+
+# Find the minimum element in arr[2...4]
+# and place it at beginning of arr[2...4]
+11 12 22 25 64
+
+# Find the minimum element in arr[3...4]
+# and place it at beginning of arr[3...4]
+11 12 22 25 64 </code></pre>
+<p><strong>Algorithm (Selection_Sort)</strong> Here is the pseudocode for this sorting algorithm given an array <span class="math inline">\(A\)</span> of <span class="math inline">\(n\)</span> input elements, where <code>Find_Minimum_in_Array_A[i,n]</code> is the algorithm defined previously.</p>
+<pre class="r"><code>01.  # Iterate through the array A picking minimum each time  
+02.  for i = 1 to n, increment i
+03.      m = Find_Minimum_in_Array_A[i,n] 
+04.      # Swap A[i] and m
+05.      swap(A[i],m)
+06.  end for
+17.  print and return A</code></pre>
 <p><br></p>
 <hr />
 </div>
