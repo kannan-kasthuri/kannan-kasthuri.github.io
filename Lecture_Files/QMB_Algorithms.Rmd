@@ -7,7 +7,7 @@ output: html_document
 
 ---
 
-### Algorithms (Sept. 20, 2017)
+### An Introduction to Algorithms (Sept. 20, 2017)
 
 ---
 
