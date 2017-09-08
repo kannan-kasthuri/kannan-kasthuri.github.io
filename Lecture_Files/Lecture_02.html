@@ -178,7 +178,8 @@ $(document).ready(function () {
 <p><br></p>
 <p><strong>Note</strong>: Not all functions will have arguments. For instance, the function <code>date()</code> that prints the current date and time does not have any argument.</p>
 <pre class="r"><code>  date()</code></pre>
-<pre><code>## [1] &quot;Fri Sep  8 12:16:24 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Fri Sep  8 16:42:09 2017&quot;</code></pre>
+<p><br></p>
 <p>One of the extremely helpful feature of RStudio is the <code>?</code> operator. You can use this to find out the description of the function in question, including its usage and arguments. <span style="color:blue"> <em>Question the function to know more about the function in question</em>. </span> For instance,</p>
 <pre class="r"><code>  ?date()</code></pre>
 <p>would describe the function <code>date()</code> in the help tab of the IDE.</p>
@@ -334,6 +335,7 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
 <li><p>Character: “R data types rock, etc.”</p></li>
 <li><p>Other atomic datatypes: <code>double</code>, <code>complex</code> and <code>raw</code>.</p></li>
 </ul>
+<p><br></p>
 <pre class="r"><code>  # Reveal the class of the logical &quot;TRUE&quot;
   class(TRUE)  </code></pre>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
@@ -373,6 +375,101 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
 <pre class="r"><code>  as.numeric(&quot;hello&quot;)</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>## [1] NA</code></pre>
+<p><br></p>
+<hr />
+</div>
+</div>
+<div id="matrices" class="section level4">
+<h4>Matrices</h4>
+<p>A matrix is a rectangular array of rows and columns.</p>
+<p><br></p>
+<div id="creating-a-matrix" class="section level5">
+<h5>Creating a matrix</h5>
+<pre class="r"><code>  # Create a matrix specifying the number of rows
+  matrix(1:6, nrow=2)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<pre class="r"><code>  # Create a matrix specifying the number of columns
+  matrix(1:6, ncol=2)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+<pre class="r"><code>  # Create a matrix specifying the number of rows &amp;
+  # distributing the numbers through rows first
+  matrix(1:6, nrow=2, byrow=TRUE)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6</code></pre>
+<pre class="r"><code>  # Create a matrix specifying both rows and columns
+  matrix(1:6, nrow=2, ncol=3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<p><br></p>
+<p>We can paste rows or columns using the functions <code>cbind()</code> (for coumumn binding) and `rbind() (for row binding) - really <strong>important</strong> - you will see them in lots of applications.</p>
+<pre class="r"><code>  # Combine as columns
+  cbind(1:3,1:3)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    2    2
+## [3,]    3    3</code></pre>
+<pre class="r"><code>  # Combine as rows
+  rbind(1:3,1:3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    1    2    3</code></pre>
+<p><br></p>
+<p>Naming a matrix can be done using <code>rownames()</code> and <code>colnames()</code> functions, just like we used the <code>names()</code> function for the vectors. Matrices can be combined using <code>cbind()</code> and <code>rbind()</code> functions.</p>
+<p><br> <strong>Classwork</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>What happens if the number of rows/coumns are more than the generated numbers when using the function <code>matrix()</code>?</li>
+<li>What happens in <code>cbind()</code> (and <code>rbind()</code>) if one of the columns (and rows) have more numbers than the other?</li>
+<li>Combine two matrices using <code>cbind()</code>.</li>
+<li>Can you “bind” two matrices of different data types? What happens when you do that?</li>
+</ol>
+<p><br></p>
+</div>
+<div id="subsetting-a-matrix" class="section level5">
+<h5>Subsetting a matrix</h5>
+<pre class="r"><code>  # Create a matrix
+  M &lt;- matrix(1:9,nrow=3)
+  # Subsetting through indices
+  # Print the element in row 2 and column 3
+  M[2,3]</code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="r"><code>  # Print all the elements in column 2
+  M[,2]</code></pre>
+<pre><code>## [1] 4 5 6</code></pre>
+<pre class="r"><code>  # Print all the elements in row 3
+  M[3,]</code></pre>
+<pre><code>## [1] 3 6 9</code></pre>
+<p><br></p>
+<p>We can also subset multiple elements - to do this we use the combine function, <code>c()</code> along with index notation. Thus, <code>M[2,c(2,3)]</code> will fetch all the elements in <span class="math inline">\(2\)</span>nd row and in columns <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span>. Subseting also works through column names and row names and could be combined with indices. Further, subsetting works on logicals the same way it works for vectors.</p>
+<p><br> <strong>Classwork</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>What will <code>M[5]</code> print? Specify the rationale behind this.</li>
+<li>What does this subset print, <code>M[c(2,3),c(1,2)]</code>?</li>
+</ol>
+<p><br></p>
+</div>
+<div id="matrix-arithmetic" class="section level5">
+<h5>Matrix arithmetic</h5>
+<p><code>rowSums()</code> and <code>colSums()</code> function provide the sums of rows and columns. Basic arithmetic operations involving matrix and scalar hold just like for vectors. For example, dividing a matrix by a number will divide each element by that number. How about matrix and vector operations? Recycling:</p>
+<pre class="r"><code>  # Create a matrix
+  M &lt;- matrix(1:9,nrow=3)
+  # Make a vector 
+  v &lt;- c(10,20,25)
+  # Matirx minus the vector
+  M-v</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   -9   -6   -3
+## [2,]  -18  -15  -12
+## [3,]  -22  -19  -16</code></pre>
+<p><br></p>
+<p><strong>Note 1</strong>: The result is same as <code>M - matrix(v, nrow=3, ncol=3)</code>. Although recycling provides a convinient way to manipulate matrix-vector operations, it is important to use such expression with caution. Whenever possible, try to convert the vector into matrix and work with matrices.</p>
+<p><strong>Note 2</strong>: Matrix multiplication is element-wise, unlike standard way of multiplying matrices (as in linear algebra). Matrices and vectors are very similar. The principle of coercion and recycling works almost the same.</p>
 <p><br></p>
 <hr />
 </div>
