@@ -66,13 +66,50 @@ Renaming factors can be done using the `level()` function.
   blood_type <- c("B", "A", "AB", "A", "O")
   # Find the factors
   blood_type_factor <- factor(blood_type)
+  blood_type_factor
   # Rename the factors
-  levels(blood_type_factor) <- c("BT_A", "BT_B", "BT_AB", "BT_O")
+  levels(blood_type_factor) <- c("BT_A", "BT_AB", "BT_B", "BT_O")
   blood_type_factor
 ```
 
+**Note** It is extremely **important** to follow the same order as the default order supplied by R. Otherwise, the result can be extremely confusing as the following exercise will show.
 
+<br>
+<span style="color:magenta">**Classwork**</span>: Rename the blood_type_factor in the above example as follows: 
 
+`levels(blood_type_factor) <- c("BT_A", "BT_B", "BT_AB", "BT_O")` 
+
+and justify the result of outputting `blood_type_factor`.
+<br>
+
+If you want to label the levels, it is always best to define the labels along with the levels like this -
+
+```{r eval=FALSE}
+  factor(blood_type, levels=c("A","B","AB","O"), labels=c("BT_A","BT_B","BT_AB","BT_O"))
+```
+
+##### Nominal vs. Ordinal factors
+
+_Nominal factors_: Categorical variables that cannot be ordered, like blood group. For example, it doesn't make sense to say blood group A < blood group B.
+
+_Ordinal factors_: Those categorical variables that can be ordered. For instance, tumor sizes. We can say T1 (tumor size 2cm or smaller) < T2 (tumor size larger than 2cm but smaller than 5 cm).
+
+R provides us with the way to impose order on factors. Simply use the argument "ordered=TRUE" inside the factor function.
+
+```{r eval=FALSE}
+  # Specify the tumor size vectore
+  tumor_size <- c("T1","T1","T2","T3","T1")
+  # Set the order by specifying "ordered=TRUE"
+  tumor_size_factor <- factor(tumor_size, ordered=TRUE, levels=c("T1","T2","T3"))
+  # Print the results
+  tumor_size_factor
+  # Compare one factor vs the other
+  tumor_size_factor[1] < tumor_size_factor[2]
+```
+
+<br>
+<span style="color:magenta">**Classwork**</span>: Use the inequality operator (< or >) on a nominal category and print the output.
+<br>
 
 #### Selected materials and references
 

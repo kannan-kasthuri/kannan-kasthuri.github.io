@@ -136,8 +136,8 @@ $(document).ready(function () {
 <li>Belong to a certain category.</li>
 <li>For statistical analysis, R calls them factors.</li>
 </ul>
-<div id="creating-factors" class="section level5">
-<h5>Creating factors</h5>
+<div id="creating-and-manipulating-factors" class="section level5">
+<h5>Creating and manipulating factors</h5>
 <pre class="r"><code>  # Create a blood group vector
   blood_group_vector &lt;- c(&quot;AB&quot;, &quot;O&quot;, &quot;B+&quot;, &quot;AB-&quot;, &quot;O&quot;, &quot;AB&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;AB-&quot;)
   # Create fatcors from the vector
@@ -151,12 +151,48 @@ $(document).ready(function () {
 <li>No more quotation marks.</li>
 </ol>
 <p>R encodes factors to integers for easier memory access and computations. This is done alphabetically. For example, A is assigned 1, AB is assigned 2 etc. This can be viewed by invoking the <code>str()</code> function:</p>
-<pre class="r"><code>  str(blood_group_factor)</code></pre>
+<pre class="r"><code>  # Show the structure of the blood group factor
+  str(blood_group_factor)</code></pre>
 <pre><code>##  Factor w/ 6 levels &quot;A&quot;,&quot;AB&quot;,&quot;AB-&quot;,..: 2 6 5 3 6 2 1 1 4 3</code></pre>
 <p>This can be over-ridden by specifying the levels argument for the <code>factor()</code> function.</p>
-<pre class="r"><code>  blood_group_factor2 &lt;- factor(blood_group_vector, levels = c(&quot;A&quot;, &quot;B&quot;, &quot;B+&quot;, &quot;AB&quot;, &quot;AB-&quot;, &quot;O&quot;))
+<pre class="r"><code>  # Define another set of levels over-riding default
+  blood_group_factor2 &lt;- factor(blood_group_vector, levels = c(&quot;A&quot;, &quot;B&quot;, &quot;B+&quot;, &quot;AB&quot;, &quot;AB-&quot;, &quot;O&quot;))
   str(blood_group_factor2)</code></pre>
 <pre><code>##  Factor w/ 6 levels &quot;A&quot;,&quot;B&quot;,&quot;B+&quot;,&quot;AB&quot;,..: 4 6 3 5 6 4 1 1 2 5</code></pre>
+<p>Renaming factors can be done using the <code>level()</code> function.</p>
+<pre class="r"><code>  # Define blood type
+  blood_type &lt;- c(&quot;B&quot;, &quot;A&quot;, &quot;AB&quot;, &quot;A&quot;, &quot;O&quot;)
+  # Find the factors
+  blood_type_factor &lt;- factor(blood_type)
+  blood_type_factor</code></pre>
+<pre><code>## [1] B  A  AB A  O 
+## Levels: A AB B O</code></pre>
+<pre class="r"><code>  # Rename the factors
+  levels(blood_type_factor) &lt;- c(&quot;BT_A&quot;, &quot;BT_AB&quot;, &quot;BT_B&quot;, &quot;BT_O&quot;)
+  blood_type_factor</code></pre>
+<pre><code>## [1] BT_B  BT_A  BT_AB BT_A  BT_O 
+## Levels: BT_A BT_AB BT_B BT_O</code></pre>
+<p><strong>Note</strong> It is extremely <strong>important</strong> to follow the same order as the default order supplied by R. Otherwise, the result can be extremely confusing as the following exercise will show.</p>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Rename the blood_type_factor in the above example as follows:</p>
+<p><code>levels(blood_type_factor) &lt;- c(&quot;BT_A&quot;, &quot;BT_B&quot;, &quot;BT_AB&quot;, &quot;BT_O&quot;)</code></p>
+<p>and justify the result of outputting <code>blood_type_factor</code>. <br></p>
+<p>If you want to label the levels, it is always best to define the labels along with the levels like this -</p>
+<pre class="r"><code>  factor(blood_type, levels=c(&quot;A&quot;,&quot;B&quot;,&quot;AB&quot;,&quot;O&quot;), labels=c(&quot;BT_A&quot;,&quot;BT_B&quot;,&quot;BT_AB&quot;,&quot;BT_O&quot;))</code></pre>
+</div>
+<div id="nominal-vs.ordinal-factors" class="section level5">
+<h5>Nominal vs. Ordinal factors</h5>
+<p><em>Nominal factors</em>: Categorical variables that cannot be ordered, like blood group. For example, it doesn’t make sense to say blood group A &lt; blood group B.</p>
+<p><em>Ordinal factors</em>: Those categorical variables that can be ordered. For instance, tumor sizes. We can say T1 (tumor size 2cm or smaller) &lt; T2 (tumor size larger than 2cm but smaller than 5 cm).</p>
+<p>R provides us with the way to impose order on factors. Simply use the argument “ordered=TRUE” inside the factor function.</p>
+<pre class="r"><code>  # Specify the tumor size vectore
+  tumor_size &lt;- c(&quot;T1&quot;,&quot;T1&quot;,&quot;T2&quot;,&quot;T3&quot;,&quot;T1&quot;)
+  # Set the order by specifying &quot;ordered=TRUE&quot;
+  tumor_size_factor &lt;- factor(tumor_size, ordered=TRUE, levels=c(&quot;T1&quot;,&quot;T2&quot;,&quot;T3&quot;))
+  # Print the results
+  tumor_size_factor
+  # Compare one factor vs the other
+  tumor_size_factor[1] &lt; tumor_size_factor[2]</code></pre>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Use the inequality operator (&lt; or &gt;) on a nominal category and print the output. <br></p>
 </div>
 </div>
 <div id="selected-materials-and-references" class="section level4">
