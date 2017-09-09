@@ -262,6 +262,48 @@ $(document).ready(function () {
 ##  $ Value   : num 140
 ##  $ Units   : chr &quot;mg/dL&quot;</code></pre>
 <p><strong>Note</strong>: List can contain another list, or any number of nested lists.</p>
+<div id="aceesing-and-extending-lists" class="section level5">
+<h5>Aceesing and extending lists</h5>
+<p>Difference between <code>[]</code> and <code>[[]]</code> is that, <code>[]</code> will return a list back and <code>[[]]</code> will return the elements in the list.</p>
+<pre class="r"><code>  # Define a list
+  blood_test &lt;- list(Fluid=&quot;Blood sugar&quot;,Category=&quot;High&quot;, Value=140, Units=&quot;mg/dL&quot;)
+  # Make another list containing this list
+  patient &lt;- list(Name=&quot;Mike&quot;,Age=36,Btest=blood_test)
+  # Access the first list
+  patient[1]</code></pre>
+<pre><code>## $Name
+## [1] &quot;Mike&quot;</code></pre>
+<pre class="r"><code>  # Access the third &quot;element&quot; - which is actually a list itself.
+  patient[[3]]</code></pre>
+<pre><code>## $Fluid
+## [1] &quot;Blood sugar&quot;
+## 
+## $Category
+## [1] &quot;High&quot;
+## 
+## $Value
+## [1] 140
+## 
+## $Units
+## [1] &quot;mg/dL&quot;</code></pre>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<ol style="list-style-type: decimal">
+<li>What does <code>patient[c(1,3)]</code> give us? Is it a list or elements?</li>
+<li>What does <code>patient[[c(1,3)]</code> give us? Is it a list or elements?</li>
+<li>How about <code>patient[[c(3,1)]</code>? What is the difference? ( <em>Hint</em>: <code>patient[[c(1,3)]</code> is same as <code>patient[[1]][[3]]</code>). <br></li>
+</ol>
+<p>Subsetting by names is super easy: just supply the name within brackets. For example, <code>patient[&quot;Name&quot;]</code> or <code>patient[[&quot;Name&quot;]]</code>. Subsetting by logicals will work only for returning the list. For instance, <code>patient[c(TRUE,FALSE)]</code>. It doesn’t make sense to return the elements through logicals, i.e., <code>patient[[c(TRUE,FALSE)]]</code>.</p>
+<p>Another cool way to access elements (just the same as using <code>[[]]</code>) is the use of <code>$</code> sign. However, to do this, the list should be named. For example, <code>patient$Name</code> will print the patient name.</p>
+<p><code>$</code> can also be used for extending lists:</p>
+<pre class="r"><code>  # Extend the list to include gender
+  patient$Gender &lt;- &quot;Male&quot;
+  # This is same as using double brackets
+  patient[[&quot;Gender&quot;]] &lt;- &quot;Male&quot;
+  # Extend the blood test list to include the date of the test
+  patient$Btest$Date &lt;- &quot;Sept.14&quot;</code></pre>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: How do you remove an element from a list? <br></p>
+<hr />
+</div>
 </div>
 <div id="selected-materials-and-references" class="section level4">
 <h4>Selected materials and references</h4>

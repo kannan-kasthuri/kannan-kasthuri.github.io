@@ -145,6 +145,50 @@ Naming a list can be done through the `names()` function or specifying it in the
 
 **Note**: List can contain another list, or any number of nested lists.
 
+##### Aceesing and extending lists
+
+Difference between `[]` and `[[]]` is that, `[]` will return a list back and `[[]]` will return the elements in the list.
+
+```{r eval=TRUE}
+  # Define a list
+  blood_test <- list(Fluid="Blood sugar",Category="High", Value=140, Units="mg/dL")
+  # Make another list containing this list
+  patient <- list(Name="Mike",Age=36,Btest=blood_test)
+  # Access the first list
+  patient[1]
+  # Access the third "element" - which is actually a list itself.
+  patient[[3]]
+```
+
+<br>
+<span style="color:magenta">**Classwork**</span>: 
+
+1. What does `patient[c(1,3)]` give us? Is it a list or elements?
+2. What does `patient[[c(1,3)]` give us? Is it a list or elements? 
+3. How about `patient[[c(3,1)]`? What is the difference? ( _Hint_: `patient[[c(1,3)]` is same as `patient[[1]][[3]]`).
+<br>
+
+Subsetting by names is super easy: just supply the name within brackets. For example, `patient["Name"]` or `patient[["Name"]]`. Subsetting by logicals will work only for returning the list. For instance, `patient[c(TRUE,FALSE)]`. It doesn't make sense to return the elements through logicals, i.e., `patient[[c(TRUE,FALSE)]]`.
+
+Another cool way to access elements (just the same as using `[[]]`) is the use of `$` sign. However, to do this, the list should be named. For example, `patient$Name` will print the patient name.
+
+`$` can also be used for extending lists:
+
+```{r eval=FALSE}
+  # Extend the list to include gender
+  patient$Gender <- "Male"
+  # This is same as using double brackets
+  patient[["Gender"]] <- "Male"
+  # Extend the blood test list to include the date of the test
+  patient$Btest$Date <- "Sept.14"
+```
+
+<br>
+<span style="color:magenta">**Classwork**</span>: How do you remove an element from a list?
+<br>
+
+---
+
 #### Selected materials and references
 
 [An Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf)
