@@ -1,0 +1,79 @@
+---
+# title: "Lecture 03"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Lecture 03 (Sept. 14, 2017)
+
+---
+
+#### R Basics II
+
+In this lecture we will consider other data structures, graphics and programming elements.
+
+---
+
+#### Factors
+
+Factors are determined through categorical variables. What are categorical variables?
+
+* Limited number of differing values.
+* Belong to a certain category.
+* For statistical analysis, R calls them factors.
+
+##### Creating and manipulating factors
+
+```{r eval=TRUE}
+  # Create a blood group vector
+  blood_group_vector <- c("AB", "O", "B+", "AB-", "O", "AB", "A", "A", "B", "AB-")
+  # Create fatcors from the vector
+  blood_group_factor <- factor(blood_group_vector)
+  blood_group_factor
+```
+
+**Note** 
+
+1. The levels are sorted alphabetically. 
+2. No more quotation marks.
+
+R encodes factors to integers for easier memory access and computations. This is done alphabetically. For example, A is assigned 1, AB is assigned 2 etc. This can be viewed by invoking the `str()` function:
+
+```{r eval=TRUE}
+  # Show the structure of the blood group factor
+  str(blood_group_factor)
+```
+
+This can be over-ridden by specifying the levels argument for the `factor()` function.
+
+```{r eval=TRUE}
+  # Define another set of levels over-riding default
+  blood_group_factor2 <- factor(blood_group_vector, levels = c("A", "B", "B+", "AB", "AB-", "O"))
+  str(blood_group_factor2)
+```
+
+Renaming factors can be done using the `level()` function.
+
+```{r eval=TRUE}
+  # Define blood type
+  blood_type <- c("B", "A", "AB", "A", "O")
+  # Find the factors
+  blood_type_factor <- factor(blood_type)
+  # Rename the factors
+  levels(blood_type_factor) <- c("BT_A", "BT_B", "BT_AB", "BT_O")
+  blood_type_factor
+```
+
+
+
+
+#### Selected materials and references
+
+[An Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf)
