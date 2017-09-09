@@ -189,12 +189,79 @@ $(document).ready(function () {
   # Set the order by specifying &quot;ordered=TRUE&quot;
   tumor_size_factor &lt;- factor(tumor_size, ordered=TRUE, levels=c(&quot;T1&quot;,&quot;T2&quot;,&quot;T3&quot;))
   # Print the results
-  tumor_size_factor
-  # Compare one factor vs the other
+  tumor_size_factor</code></pre>
+<pre><code>## [1] T1 T1 T2 T3 T1
+## Levels: T1 &lt; T2 &lt; T3</code></pre>
+<pre class="r"><code>  # Compare one factor vs the other
   tumor_size_factor[1] &lt; tumor_size_factor[2]</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Use the inequality operator (&lt; or &gt;) on a nominal category and print the output. <br></p>
 <hr />
 </div>
+</div>
+<div id="lists" class="section level4">
+<h4>Lists</h4>
+<p>Recall vectors and matrices can hold only one data type, like integer or character. Lists can hold multiple R objects, without having to perform coercion.</p>
+<pre class="r"><code>  # Defining different data type as vector
+  # Note coercion takes place
+  vec &lt;- c(&quot;Blood-sugar&quot;,&quot;High&quot;, 140, &quot;Units&quot;, &quot;mg/dL&quot;)
+  vec</code></pre>
+<pre><code>## [1] &quot;Blood-sugar&quot; &quot;High&quot;        &quot;140&quot;         &quot;Units&quot;       &quot;mg/dL&quot;</code></pre>
+<pre class="r"><code>  # And as a list
+  lst &lt;- list(&quot;Blood sugar&quot;,&quot;High&quot;, 140, &quot;mg/dL&quot;)
+  lst</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;Blood sugar&quot;
+## 
+## [[2]]
+## [1] &quot;High&quot;
+## 
+## [[3]]
+## [1] 140
+## 
+## [[4]]
+## [1] &quot;mg/dL&quot;</code></pre>
+<pre class="r"><code>  # One can use the list function to see if something is a list
+  is.list(lst)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>Naming a list can be done through the <code>names()</code> function or specifying it in the list itself.</p>
+<pre class="r"><code>  # Define list
+  lst &lt;- list(&quot;Blood sugar&quot;,&quot;High&quot;, 140, &quot;mg/dL&quot;)
+  # Assign names and print
+  names(lst) &lt;- c(&quot;Fluid&quot;,&quot;Category&quot;,&quot;Value&quot;,&quot;Units&quot;)
+  lst</code></pre>
+<pre><code>## $Fluid
+## [1] &quot;Blood sugar&quot;
+## 
+## $Category
+## [1] &quot;High&quot;
+## 
+## $Value
+## [1] 140
+## 
+## $Units
+## [1] &quot;mg/dL&quot;</code></pre>
+<pre class="r"><code>  # Specify within the list
+  list(Fluid=&quot;Blood sugar&quot;,Category=&quot;High&quot;, Value=140, Units=&quot;mg/dL&quot;)</code></pre>
+<pre><code>## $Fluid
+## [1] &quot;Blood sugar&quot;
+## 
+## $Category
+## [1] &quot;High&quot;
+## 
+## $Value
+## [1] 140
+## 
+## $Units
+## [1] &quot;mg/dL&quot;</code></pre>
+<pre class="r"><code>  # For compact display use the str() function
+  str(lst)</code></pre>
+<pre><code>## List of 4
+##  $ Fluid   : chr &quot;Blood sugar&quot;
+##  $ Category: chr &quot;High&quot;
+##  $ Value   : num 140
+##  $ Units   : chr &quot;mg/dL&quot;</code></pre>
+<p><strong>Note</strong>: List can contain another list, or any number of nested lists.</p>
 </div>
 <div id="selected-materials-and-references" class="section level4">
 <h4>Selected materials and references</h4>

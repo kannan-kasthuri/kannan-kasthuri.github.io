@@ -96,7 +96,7 @@ _Ordinal factors_: Those categorical variables that can be ordered. For instance
 
 R provides us with the way to impose order on factors. Simply use the argument "ordered=TRUE" inside the factor function.
 
-```{r eval=FALSE}
+```{r eval=TRUE}
   # Specify the tumor size vectore
   tumor_size <- c("T1","T1","T2","T3","T1")
   # Set the order by specifying "ordered=TRUE"
@@ -112,6 +112,38 @@ R provides us with the way to impose order on factors. Simply use the argument "
 <br>
 
 ---
+
+#### Lists
+
+Recall vectors and matrices can hold only one data type, like integer or character. Lists can hold multiple R objects, without having to perform coercion.
+
+```{r eval=TRUE}
+  # Defining different data type as vector
+  # Note coercion takes place
+  vec <- c("Blood-sugar","High", 140, "Units", "mg/dL")
+  vec
+  # And as a list
+  lst <- list("Blood sugar","High", 140, "mg/dL")
+  lst
+  # One can use the list function to see if something is a list
+  is.list(lst)
+```
+
+Naming a list can be done through the `names()` function or specifying it in the list itself.
+
+```{r eval=TRUE}
+  # Define list
+  lst <- list("Blood sugar","High", 140, "mg/dL")
+  # Assign names and print
+  names(lst) <- c("Fluid","Category","Value","Units")
+  lst
+  # Specify within the list
+  list(Fluid="Blood sugar",Category="High", Value=140, Units="mg/dL")
+  # For compact display use the str() function
+  str(lst)
+```  
+
+**Note**: List can contain another list, or any number of nested lists.
 
 #### Selected materials and references
 
