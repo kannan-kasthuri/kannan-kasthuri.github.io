@@ -15,9 +15,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-#### R Basics II
+#### R fundamentals 02: Advanced Data Types and Graphics
 
-In this lecture we will consider other data structures, graphics and programming elements.
+In this lecture we will consider other data types such as lists and data frames as well as graphics.
 
 ---
 
@@ -315,6 +315,15 @@ We can use the `order()` function to sort the entire data frame with respect to 
 <br>
 
 ---
+
+#### Graphics
+
+R has very strong graphical capabilities - primary reason why both industries and academics are interested.
+
+* Create plots with code
+* Replication and modification is easy
+* Reproducibility!
+* _graphics_ package loaded bu default produces great plots
 
 #### Selected materials and references
 
