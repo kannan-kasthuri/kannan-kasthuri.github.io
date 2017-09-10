@@ -15,8 +15,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-#### R Basics I
-
 Launch RStudio. By default the panes should look something like this -
 
 ---

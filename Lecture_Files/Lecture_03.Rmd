@@ -11,13 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Lecture 03 (Sept. 14, 2017)
+### R fundamentals 02: Advanced Data Types and Graphics (Sept. 14, 2017)
 
 ---
 
-#### R fundamentals 02: Advanced Data Types and Graphics
-
-In this lecture we will consider other data types such as lists and data frames as well as graphics.
+In this lecture we will consider other data types such as lists, data frames as well as graphics.
 
 ---
 
