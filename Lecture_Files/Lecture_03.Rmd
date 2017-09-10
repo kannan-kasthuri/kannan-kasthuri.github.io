@@ -322,6 +322,18 @@ R has very strong graphical capabilities - primary reason why both industries an
 * Replication and modification is easy
 * Reproducibility!
 * _graphics_ package loaded bu default produces great plots
+* Excellent packages like _ggplot2_, _ggvis_ and _lattice_
+
+##### _graphics_ package
+
+This package has many functions. Primarily `plot()` and `hist()` provide essential functionalities.
+
+The `plot()` package is: 
+
+1. Generic 
+2. Different inputs gives different plots
+3. Can plot several things like vectors, linear models, kernel densities etc.
+
 
 #### Selected materials and references
 
