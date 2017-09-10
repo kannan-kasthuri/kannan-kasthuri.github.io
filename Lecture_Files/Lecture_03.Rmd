@@ -226,6 +226,94 @@ Data frames can contain different types for each observation/row however each va
 **Note**: Data frames store character vectors as factors. You can over-ride this as follows: 
 `df <- data.frame(Name=name, Age=age, Cancer_Status=cancer, stringsAsFactors = FALSE)`
 
+##### Manipulating data frames: Subsetting
+
+```{r eval=TRUE}
+  # Create name, age and logical vectors
+  name <- c("Anne","James","Mike","Betty")
+  age <- c(20,43,27,25)
+  cancer <- c(TRUE,FALSE,FALSE,TRUE)
+  # Form a data frame
+  df <- data.frame(name,age,cancer)
+  df
+  # Subsetting by indices - works just like matrices
+  df[1,2]
+  # Subsetting by indices - one can use column names as well
+  df[1,"age"]
+  # Get the entire row/column - just like matrices
+  # Get the second row
+  df[2,]
+  # Get the "cancer" column
+  df[,"cancer"]
+  # Get all 2nd and 3rd observation with "name"" and "cancer"" status
+  df[c(2,3),c("name","cancer")]
+```  
+
+The only difference is when you specify a single number as index within `[]`. For matrices you get an element corresponding to the linear index but for data frame we'll get the column vector corresponding to the index. 
+
+```{r eval=TRUE}
+  # Print the second column
+  df[2]
+```
+
+This is becuase data frames are made up of lists of vectors of equal length. Thus, single `[2]` will correspond to the second element in the list, which is a _vector_ of ages.
+
+<br>
+<span style="color:magenta">**Classwork**</span>: Test the operations of lists (like `[age] & [["age"]]`) to data frames.
+<br>
+
+##### Manipulating data frames: Extending
+
+Extending a column is super easy. Since data frames are list of vectors one can just append a vector to the list. For instance, if we have a column of tumor size info like this for each patient: `c("T0","T3","T2","T0")`, the following code will append the vector.
+
+```{r eval=TRUE}
+  # Append tumor size vector
+  df$tumor_size <- c("T0","T3","T2","T0")
+  df
+```
+
+<br>
+<span style="color:magenta">**Classwork**</span>: 
+
+1. Use `cbind()` to append a vector of choice.
+2. What happens if the length of the appending vector is greater than (or less than) row dimensions?
+<br>
+
+In contrast, extending a row (or observation) is not straight-forward. This is because observations may contain different data types. To add observations, make a new data frame and append:
+
+```{r eval=TRUE}
+  # Create a data frame
+  tom <- data.frame(name="Tom", age=47,cancer="TRUE",tumor_size="T2")
+  # And append
+  df <- rbind(df,tom)
+  df
+```  
+
+<br>
+<span style="color:magenta">**Classwork**</span>:
+
+1. Can you use the `list()` function instead of the data frame function in the above code?
+2. What happens if you leave the arguments `name=`, `age=` etc. in the above code?
+<br>
+
+##### Manipulating data frames: Sorting
+
+We can use the `order()` function to sort the entire data frame with respect to a particular column.
+
+```{r eval=TRUE}
+  # Rank the entries of a column, say "age"
+  ranks <- order(df$age)
+  # Sort the data frame according to the rank
+  df[ranks,]
+```
+
+<br>
+<span style="color:magenta">**Classwork**</span>:
+
+1. What does `sort(df$age)` perform and how is it related to the ranks?
+2. Sort the entries in descending order of the age. _(Hint: Question the function to find out more about the function in question)_.
+<br>
+
 ---
 
 #### Selected materials and references

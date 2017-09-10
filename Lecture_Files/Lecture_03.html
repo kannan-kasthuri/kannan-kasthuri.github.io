@@ -349,7 +349,104 @@ $(document).ready(function () {
 <li>What happens if one of the vectors have unequal length? <br></li>
 </ol>
 <p><strong>Note</strong>: Data frames store character vectors as factors. You can over-ride this as follows: <code>df &lt;- data.frame(Name=name, Age=age, Cancer_Status=cancer, stringsAsFactors = FALSE)</code></p>
+<div id="manipulating-data-frames-subsetting" class="section level5">
+<h5>Manipulating data frames: Subsetting</h5>
+<pre class="r"><code>  # Create name, age and logical vectors
+  name &lt;- c(&quot;Anne&quot;,&quot;James&quot;,&quot;Mike&quot;,&quot;Betty&quot;)
+  age &lt;- c(20,43,27,25)
+  cancer &lt;- c(TRUE,FALSE,FALSE,TRUE)
+  # Form a data frame
+  df &lt;- data.frame(name,age,cancer)
+  df</code></pre>
+<pre><code>##    name age cancer
+## 1  Anne  20   TRUE
+## 2 James  43  FALSE
+## 3  Mike  27  FALSE
+## 4 Betty  25   TRUE</code></pre>
+<pre class="r"><code>  # Subsetting by indices - works just like matrices
+  df[1,2]</code></pre>
+<pre><code>## [1] 20</code></pre>
+<pre class="r"><code>  # Subsetting by indices - one can use column names as well
+  df[1,&quot;age&quot;]</code></pre>
+<pre><code>## [1] 20</code></pre>
+<pre class="r"><code>  # Get the entire row/column - just like matrices
+  # Get the second row
+  df[2,]</code></pre>
+<pre><code>##    name age cancer
+## 2 James  43  FALSE</code></pre>
+<pre class="r"><code>  # Get the &quot;cancer&quot; column
+  df[,&quot;cancer&quot;]</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE  TRUE</code></pre>
+<pre class="r"><code>  # Get all 2nd and 3rd observation with &quot;name&quot;&quot; and &quot;cancer&quot;&quot; status
+  df[c(2,3),c(&quot;name&quot;,&quot;cancer&quot;)]</code></pre>
+<pre><code>##    name cancer
+## 2 James  FALSE
+## 3  Mike  FALSE</code></pre>
+<p>The only difference is when you specify a single number as index within <code>[]</code>. For matrices you get an element corresponding to the linear index but for data frame we’ll get the column vector corresponding to the index.</p>
+<pre class="r"><code>  # Print the second column
+  df[2]</code></pre>
+<pre><code>##   age
+## 1  20
+## 2  43
+## 3  27
+## 4  25</code></pre>
+<p>This is becuase data frames are made up of lists of vectors of equal length. Thus, single <code>[2]</code> will correspond to the second element in the list, which is a <em>vector</em> of ages.</p>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Test the operations of lists (like <code>[age] &amp; [[&quot;age&quot;]]</code>) to data frames. <br></p>
+</div>
+<div id="manipulating-data-frames-extending" class="section level5">
+<h5>Manipulating data frames: Extending</h5>
+<p>Extending a column is super easy. Since data frames are list of vectors one can just append a vector to the list. For instance, if we have a column of tumor size info like this for each patient: <code>c(&quot;T0&quot;,&quot;T3&quot;,&quot;T2&quot;,&quot;T0&quot;)</code>, the following code will append the vector.</p>
+<pre class="r"><code>  # Append tumor size vector
+  df$tumor_size &lt;- c(&quot;T0&quot;,&quot;T3&quot;,&quot;T2&quot;,&quot;T0&quot;)
+  df</code></pre>
+<pre><code>##    name age cancer tumor_size
+## 1  Anne  20   TRUE         T0
+## 2 James  43  FALSE         T3
+## 3  Mike  27  FALSE         T2
+## 4 Betty  25   TRUE         T0</code></pre>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<ol style="list-style-type: decimal">
+<li>Use <code>cbind()</code> to append a vector of choice.</li>
+<li>What happens if the length of the appending vector is greater than (or less than) row dimensions? <br></li>
+</ol>
+<p>In contrast, extending a row (or observation) is not straight-forward. This is because observations may contain different data types. To add observations, make a new data frame and append:</p>
+<pre class="r"><code>  # Create a data frame
+  tom &lt;- data.frame(name=&quot;Tom&quot;, age=47,cancer=&quot;TRUE&quot;,tumor_size=&quot;T2&quot;)
+  # And append
+  df &lt;- rbind(df,tom)
+  df</code></pre>
+<pre><code>##    name age cancer tumor_size
+## 1  Anne  20   TRUE         T0
+## 2 James  43  FALSE         T3
+## 3  Mike  27  FALSE         T2
+## 4 Betty  25   TRUE         T0
+## 5   Tom  47   TRUE         T2</code></pre>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<ol style="list-style-type: decimal">
+<li>Can you use the <code>list()</code> function instead of the data frame function in the above code?</li>
+<li>What happens if you leave the arguments <code>name=</code>, <code>age=</code> etc. in the above code? <br></li>
+</ol>
+</div>
+<div id="manipulating-data-frames-sorting" class="section level5">
+<h5>Manipulating data frames: Sorting</h5>
+<p>We can use the <code>order()</code> function to sort the entire data frame with respect to a particular column.</p>
+<pre class="r"><code>  # Rank the entries of a column, say &quot;age&quot;
+  ranks &lt;- order(df$age)
+  # Sort the data frame according to the rank
+  df[ranks,]</code></pre>
+<pre><code>##    name age cancer tumor_size
+## 1  Anne  20   TRUE         T0
+## 4 Betty  25   TRUE         T0
+## 3  Mike  27  FALSE         T2
+## 2 James  43  FALSE         T3
+## 5   Tom  47   TRUE         T2</code></pre>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<ol style="list-style-type: decimal">
+<li>What does <code>sort(df$age)</code> perform and how is it related to the ranks?</li>
+<li>Sort the entries in descending order of the age. <em>(Hint: Question the function to find out more about the function in question)</em>. <br></li>
+</ol>
 <hr />
+</div>
 </div>
 <div id="selected-materials-and-references" class="section level4">
 <h4>Selected materials and references</h4>
