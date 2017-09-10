@@ -1,11 +1,9 @@
 ---
-# title: "Lecture 02"
-# author: "Kasthuri Kannan"
-# date: "Sept 07, 2017"
 output:
-  revealjs::revealjs_presentation:
-  pandoc_args: [ "--slide-level", "2" ]
-  
+  revealjs::revealjs_presentation: null
+  pandoc_args:
+  - --slide-level
+  - '2'
 ---
 
 ### Lecture 02 (Sept. 12, 2017)
@@ -14,6 +12,20 @@ output:
 
 <style type="text/css">
 p { text-align: left; }
+</style>
+
+<style>
+    .reveal .slides {
+        text-align: left;
+    }
+    .reveal .slides section>* {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .reveal .slide-number {
+    font-size: 24pt;
+    color: #ffffff;
 </style>
 
 #### R Basics I
@@ -50,29 +62,48 @@ For instance,
 will reveal _object x gets the value 18_. The double hash `##` is the result as it should appear in your console.
 
 ## 
+
 We will be using lots of assignments.
 
+<br>
 
-While `=` sign will equally work for assignments, it is best to use `<-` as this will avoid lots of confusion later on. 
+ While `=` sign will equally work for assignments, it is best to use `<-` as this will avoid lots of confusion later on. 
 
+<br>
 
 If you are lazy to use `<-` note that RStudio provides lots of shortcut options. 
 
+<br>
 
 For instance, the assignment operator `<-` has shortcut `Option+-` in Mac and `Alt+-` in windows. For a comprehensive list of shortcuts, refer to the list [here](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts). 
 
+##
 
 Moreover, `Option+Shift+k` (in Mac) in RStudio will bring keyboard shortcut reference card. 
 
-##
+<br>
 
 **Tip**: Note that RStudio automatically surrounds assignment operator with spaces. It is a good coding practice to allow spaces to enhance readability.
 
+<br>
+
 _Caveat_: Objects cannot start with certain charecters (such as comma, space), or start with numbers. [Snake case](https://en.wikipedia.org/wiki/Snake_case) and [Camel case](https://en.wikipedia.org/wiki/Camel_case) are a good practices for naming conventions.
+
+##
 
 ##### Be careful of what you type
 
-Whatever convention you prefer, maintain consistency. Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos. Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.
+Whatever convention you prefer, maintain consistency. 
+
+<br>
+
+Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos. 
+
+<br>
+
+Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.
+
+##
 
 You can assign strings to objects using qutation marks. For example, the following code assigns the string "R rocks" to object _r_.
 
@@ -87,6 +118,8 @@ You can assign strings to objects using qutation marks. For example, the followi
 
 ---
 
+##
+
 #### Rscripts
 
 Whatever we do in the console can be saved as an RScript in the editor and run in RStudio. To do this choose:
@@ -99,6 +132,8 @@ _File_ -> _New File_ -> _RScript_, type the scripts, save it and click _Run_ in 
 
 ---
 
+##
+
 #### Data permanency and removing objects
 
 During an R session, objects are created and stored by name. The R command:
@@ -107,16 +142,30 @@ During an R session, objects are created and stored by name. The R command:
   objects()
 ```
 
-will display the objects that are currently stored in the session. The list of all such objects constitute the _workspace_ of R. For removing objects, the function `rm` can be handy. For example,
+will display the objects that are currently stored in the session. 
+
+<br>
+
+The list of all such objects constitute the _workspace_ of R. 
+
+##
+
+For removing objects, the function `rm` can be handy. For example,
 
 ```{r eval=TRUE}
   rm(r)
   objects()
 ```
 
-will remove the object `r` created above. To remove multiple objects, we just list them with a comma delimiter, like, `rm(r,x)`.
+will remove the object `r` created above. 
+
+<br>
+
+To remove multiple objects, we just list them with a comma delimiter, like, `rm(r,x)`.
 
 ---
+
+##
 
 #### Functions
 
@@ -132,7 +181,17 @@ R has a wide-range of built-in functions that are generally of the form:
   date()
 ```
 
-One of the extremely helpful feature of RStudio is the `?` operator. You can use this to find out the description of the function in question, including its usage and arguments. <span style="color:blue"> _Question the function to know more about the function in question_. </span> For instance,
+##
+
+One of the extremely helpful feature of RStudio is the `?` operator. 
+
+<br>
+
+You can use this to find out the description of the function in question, including its usage and arguments. 
+
+<br>
+
+<span style="color:blue"> _Question the function to know more about the function in question_. </span> For instance,
 
 ```{r eval=FALSE}
   ?date()
@@ -140,13 +199,19 @@ One of the extremely helpful feature of RStudio is the `?` operator. You can use
 
 would describe the function `date()` in the help tab of the IDE.
 
+##
+
 **Tip**: If you type `da` in console and hit TAB, RStudio will try to autocomplete the function for you, suggesting hints on what possibly could be the built-in function. Also, if you type an open paranthesis, RStudio will also supply the closed parathesis.
+
+<br>
 
 Note that if you type the function name without any paranthesis, R will print the source code of the function, which is not you may probably want.
 
 <br>
 <span style="color:magenta">**Classwork**</span>: Consider the `seq` function. What does it do?
 <br>
+
+##
 
 Observe that:
 
@@ -160,25 +225,54 @@ is same as,
   seq(1,10)
 ```
 
-This demonstrates how function arguments are resolved in R. We can always specify `from/to = value`. But if we do not, R attempts to resolve by position. So in the above code, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Although R can try to resolve arguments on its own, best practice is to specify it.
+<br>
+
+This demonstrates how function arguments are resolved in R. 
+
+<br>
+
+We can always specify `from/to = value`. 
+
+##
+
+But if we do not, R attempts to resolve by position. So in the above code, it is assumed that we want a sequence `from = 1` that goes `to = 10`. 
+
+<br>
+
+Although R can try to resolve arguments on its own, best practice is to specify it.
 
 ---
 
 #### Simple manipulations: Vector arithmetic
 
-The function `c()` combines values into a vector or a list. To set up a vector named `x`, say, consisting of eight numbers, namely, 12, 20.1, 53.6, 2, 7.43, 24, 8.2, and 6, the assign statement:
+The function `c()` combines values into a vector or a list. 
+
+<br>
+
+To set up a vector named `x`, say, consisting of eight numbers, namely, 12, 20.1, 53.6, 2, 7.43, 24, 8.2, and 6, the assign statement:
 
 ```{r eval=TRUE}
   x <- c(12, 20.1, 53.6, 2, 7.43, 24, 8.2, 6)
 ```
 
-will assign the vector to the object `x`. We can form mathematical expressions using `x` like any other variable. For example,  
+will assign the vector to the object `x`. 
+
+##
+
+We can form mathematical expressions using `x` like any other variable. 
+
+For example,  
+
 ```{r eval=TRUE}
   sin(x)
   sqrt(x)
 ```
 
-will list the _sine_ and square root of each number in the vector `x`. We can also combine vector with itself:
+will list the _sine_ and square root of each number in the vector `x`. 
+
+##
+
+We can also combine vector with itself:
 
 ```{r eval=TRUE}
   c(x,x)
@@ -194,6 +288,8 @@ One of the greatest advantages in R (as opposed to say, Matlab) is that we can c
    v
 ```
 
+## 
+
 is equivalent to the following addition:
 
 ```{r eval=FALSE}
@@ -208,7 +304,15 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
 
 so the expression `2*x` is scaled to the length of the longest vector (here `y`). This is called _recycling_.
 
-Several functions work as usual, like, `mean(), max(), min(), sort()` etc. Also, as such, square root of a negative number, like `sqrt(-19)` will retrun `NaN` and a warning, but `sqrt(-19+0i)` will work.
+<br>
+
+Several functions work as usual, like, `mean(), max(), min(), sort()` etc. 
+
+##
+
+Also, as such, square root of a negative number, like `sqrt(-19)` will retrun `NaN` and a warning, but `sqrt(-19+0i)` will work.
+
+## 
 
 ##### Logical vectors
 
@@ -219,6 +323,8 @@ R allows manipulation of logical quantities. Logical quantities can consist of `
 ```
 
 generates logical vector corresponding to the elements of `x` that are greater than or less than 13.
+
+##
 
 ##### Naming vectors
 
@@ -239,6 +345,8 @@ Alternatively, one can name the vectors as follows:
   v
 ```
 
+##
+
 <br>
 <span style="color:magenta">**Classwork**</span>: 
 
@@ -246,6 +354,8 @@ Alternatively, one can name the vectors as follows:
 2. What if the length of either vectors (names or values) are not the same? 
 3. What happens if you label two numbers with the same name?
 <br>
+
+##
 
 ##### Subsetting vectors
 
@@ -260,6 +370,8 @@ Alternatively, one can name the vectors as follows:
   v[c(FALSE,TRUE,TRUE,FALSE)]
 ```
 
+## 
+
 <br>
 <span style="color:magenta">**Classwork**</span>: 
 
@@ -269,9 +381,13 @@ Alternatively, one can name the vectors as follows:
 4. What happens if the logical vector has less elements than the orginal vector `v` (remember _recyling_)?
 <br>
 
+##
+
 ##### Missing values 
 
 The function `is.na(x)` gives a logical vector of the same size as `x` with value `TRUE` if and only if the corresponding element in x is NA. The function `is.na()` also returns the value `TRUE` for `NaN`. To differentiate these, R also provides a function `is.nan()` that returns `TRUE` only for `NaN`.
+
+##
 
 <br>
 <span style="color:magenta">**Classwork**</span>: 
@@ -280,13 +396,21 @@ The function `is.na(x)` gives a logical vector of the same size as `x` with valu
 2. Extend this to a vector of length $5000$.
 <br>
 
+##
+
 ##### Character vectors
 
-Character strings are entered using either matching double `(")` or single `(’)` quotes, but are printed using double quotes (or sometimes without quotes). The `paste()` function takes an arbitrary number of arguments and concatenates them one by one into character strings. 
+Character strings are entered using either matching double `(")` or single `(’)` quotes, but are printed using double quotes (or sometimes without quotes). 
+
+<br>
+
+The `paste()` function takes an arbitrary number of arguments and concatenates them one by one into character strings. 
 
 ```{r eval=TRUE, warning=FALSE}
   paste(c("X","Y"), "ab,b")
 ```
+
+##
 
 Note that by default the arguments are by default separated in the result by a single blank character, but this can be changed by the named argument, `sep=string`, which changes it to string, possibly empty. Thus,
 
@@ -296,11 +420,15 @@ Note that by default the arguments are by default separated in the result by a s
 
 will render the arguments together.
 
+##
+
 <br>
 <span style="color:magenta">**Classwork**</span>: Play with the `sep` argument to include other type of delimiters (like comma etc.)
 <br>
 
 ---
+
+##
 
 #### Basic objects and data types
 
@@ -315,12 +443,16 @@ ways.
 
 * _factors_ provide compact ways to handle categorical data.
 
+##
+
 * _lists_ are a general form of vector in which the various elements need not be of the same type, and are often themselves vectors or lists. Lists provide a convenient way to return the
 results of a statistical computation.
 
 * _data frames_ are matrix-like structures, in which the columns can be of different types. One can think of data frames as ‘data matrices’ with one row per observational unit but with (possibly) both numerical and categorical variables. Many experiments are best described by data frames: the treatments are categorical but the response is numeric.
 
 * _functions_ are themselves objects in R which can be stored in the project’s workspace. This provides a simple and convenient way to extend R. 
+
+##
 
 ##### Data types and coercion
 
@@ -336,6 +468,8 @@ The function `class()` can be used to reveal the data type. Basic data types are
 
 * Other atomic datatypes: `double`, `complex` and `raw`.
 
+##
+
 ```{r eval=TRUE, warning=FALSE}
   # Reveal the class of the logical "TRUE"
   class(TRUE)  
@@ -343,17 +477,30 @@ The function `class()` can be used to reveal the data type. Basic data types are
   class(2.5) 
   # Reveal the class of the number 2
   class(2)  
+```
+
+##
+
+```{r eval=TRUE, warning=FALSE}
   # Reveal the class of the integer 2L
   class(2L)
   # Reveal the class of the character "R data types rock, etc."
   class("R data types rock, etc.")
 ```
 
+<br>
+
 **Note 1**: By default an integer has a datatype as numeric as illustrated by `class(2)`
 
 **Note 2**: One can also use <code>is.<i>datatype(y)</i></code> to reveal the underlying datatype of the variable `y`. For example, `is.logical(x)` will return `TRUE` if `x` is a logical variable. Otherwise, it will return `FALSE`.
 
-One can _force_ a data type to another through what is known as _coercion_. The function <code>as.<i>datatype(y)</i></code> will coerce the datatype of `y` into the specified datatype.
+##
+
+One can _force_ a data type to another through what is known as _coercion_. 
+
+<br>
+
+The function <code>as.<i>datatype(y)</i></code> will coerce the datatype of `y` into the specified datatype.
 
 ```{r eval=TRUE, warning=FALSE}
   # Coerce "TRUE" into integer

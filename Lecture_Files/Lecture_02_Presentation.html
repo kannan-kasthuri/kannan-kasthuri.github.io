@@ -494,6 +494,19 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <style type="text/css">
 p { text-align: left; }
 </style>
+<style>
+    .reveal .slides {
+        text-align: left;
+    }
+    .reveal .slides section>* {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .reveal .slide-number {
+    font-size: 24pt;
+    color: #ffffff;
+</style>
 <h4 id="r-basics-i">R Basics I</h4>
 <p>Launch RStudio. By default the panes should look something like this -</p>
 </section>
@@ -520,76 +533,133 @@ p { text-align: left; }
 <section id="section" class="slide level2">
 <h1></h1>
 <p>We will be using lots of assignments.</p>
+<p><br></p>
 <p>While <code>=</code> sign will equally work for assignments, it is best to use <code>&lt;-</code> as this will avoid lots of confusion later on.</p>
+<p><br></p>
 <p>If you are lazy to use <code>&lt;-</code> note that RStudio provides lots of shortcut options.</p>
+<p><br></p>
 <p>For instance, the assignment operator <code>&lt;-</code> has shortcut <code>Option+-</code> in Mac and <code>Alt+-</code> in windows. For a comprehensive list of shortcuts, refer to the list <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">here</a>.</p>
-<p>Moreover, <code>Option+Shift+k</code> (in Mac) in RStudio will bring keyboard shortcut reference card.</p>
 </section>
 <section id="section-1" class="slide level2">
 <h1></h1>
+<p>Moreover, <code>Option+Shift+k</code> (in Mac) in RStudio will bring keyboard shortcut reference card.</p>
+<p><br></p>
 <p><strong>Tip</strong>: Note that RStudio automatically surrounds assignment operator with spaces. It is a good coding practice to allow spaces to enhance readability.</p>
+<p><br></p>
 <p><em>Caveat</em>: Objects cannot start with certain charecters (such as comma, space), or start with numbers. <a href="https://en.wikipedia.org/wiki/Snake_case">Snake case</a> and <a href="https://en.wikipedia.org/wiki/Camel_case">Camel case</a> are a good practices for naming conventions.</p>
+</section>
+<section id="section-2" class="slide level2">
+<h1></h1>
 <h5 id="be-careful-of-what-you-type">Be careful of what you type</h5>
-<p>Whatever convention you prefer, maintain consistency. Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos. Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.</p>
+<p>Whatever convention you prefer, maintain consistency.</p>
+<p><br></p>
+<p>Consistancy and accuracy are critical when dealing with computers and programming. Whenever you run into errors the first thing you check are the typos.</p>
+<p><br></p>
+<p>Case matters, typos matter. In my experience, I have found almost all the errors made by beginners are attributed to typographical errors. There is no other way than getting better at typing and checking/re-checking.</p>
+</section>
+<section id="section-3" class="slide level2">
+<h1></h1>
 <p>You can assign strings to objects using qutation marks. For example, the following code assigns the string “R rocks” to object <em>r</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  r &lt;-<span class="st"> &quot;R rocks&quot;</span>
   r</code></pre></div>
 <pre><code>## [1] &quot;R rocks&quot;</code></pre>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Assign the string <em>hello world</em> to object <em>h</em> and print the result. <br></p>
 </section>
-<section class="slide level2">
-
+<section id="section-4" class="slide level2">
+<h1></h1>
 <h4 id="rscripts">Rscripts</h4>
 <p>Whatever we do in the console can be saved as an RScript in the editor and run in RStudio. To do this choose:</p>
 <p><em>File</em> -&gt; <em>New File</em> -&gt; <em>RScript</em>, type the scripts, save it and click <em>Run</em> in the editor.</p>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Do the above classwork as an RScript and run. <br></p>
 </section>
-<section class="slide level2">
-
+<section id="section-5" class="slide level2">
+<h1></h1>
 <h4 id="data-permanency-and-removing-objects">Data permanency and removing objects</h4>
 <p>During an R session, objects are created and stored by name. The R command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">objects</span>()</code></pre></div>
 <pre><code>## [1] &quot;r&quot; &quot;x&quot;</code></pre>
-<p>will display the objects that are currently stored in the session. The list of all such objects constitute the <em>workspace</em> of R. For removing objects, the function <code>rm</code> can be handy. For example,</p>
+<p>will display the objects that are currently stored in the session.</p>
+<p><br></p>
+<p>The list of all such objects constitute the <em>workspace</em> of R.</p>
+</section>
+<section id="section-6" class="slide level2">
+<h1></h1>
+<p>For removing objects, the function <code>rm</code> can be handy. For example,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">rm</span>(r)
   <span class="kw">objects</span>()</code></pre></div>
 <pre><code>## [1] &quot;x&quot;</code></pre>
-<p>will remove the object <code>r</code> created above. To remove multiple objects, we just list them with a comma delimiter, like, <code>rm(r,x)</code>.</p>
+<p>will remove the object <code>r</code> created above.</p>
+<p><br></p>
+<p>To remove multiple objects, we just list them with a comma delimiter, like, <code>rm(r,x)</code>.</p>
 </section>
-<section class="slide level2">
-
+<section id="section-7" class="slide level2">
+<h1></h1>
 <h4 id="functions">Functions</h4>
 <p>R has a wide-range of built-in functions that are generally of the form:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">functionName</span>(<span class="dt">arg1 =</span> val1, <span class="dt">arg2 =</span> val2, and so on)</code></pre></div>
 <p><strong>Note</strong>: Not all functions will have arguments. For instance, the function <code>date()</code> that prints the current date and time does not have any argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">date</span>()</code></pre></div>
-<pre><code>## [1] &quot;Sat Sep  9 20:59:43 2017&quot;</code></pre>
-<p>One of the extremely helpful feature of RStudio is the <code>?</code> operator. You can use this to find out the description of the function in question, including its usage and arguments. <span style="color:blue"> <em>Question the function to know more about the function in question</em>. </span> For instance,</p>
+<pre><code>## [1] &quot;Sun Sep 10 14:58:57 2017&quot;</code></pre>
+</section>
+<section id="section-8" class="slide level2">
+<h1></h1>
+<p>One of the extremely helpful feature of RStudio is the <code>?</code> operator.</p>
+<p><br></p>
+<p>You can use this to find out the description of the function in question, including its usage and arguments.</p>
+<p><br></p>
+<p><span style="color:blue"> <em>Question the function to know more about the function in question</em>. </span> For instance,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  ?<span class="kw">date</span>()</code></pre></div>
 <p>would describe the function <code>date()</code> in the help tab of the IDE.</p>
+</section>
+<section id="section-9" class="slide level2">
+<h1></h1>
 <p><strong>Tip</strong>: If you type <code>da</code> in console and hit TAB, RStudio will try to autocomplete the function for you, suggesting hints on what possibly could be the built-in function. Also, if you type an open paranthesis, RStudio will also supply the closed parathesis.</p>
+<p><br></p>
 <p>Note that if you type the function name without any paranthesis, R will print the source code of the function, which is not you may probably want.</p>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Consider the <code>seq</code> function. What does it do? <br></p>
+</section>
+<section id="section-10" class="slide level2">
+<h1></h1>
 <p>Observe that:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">10</span>)</code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p>is same as,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)</code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<p>This demonstrates how function arguments are resolved in R. We can always specify <code>from/to = value</code>. But if we do not, R attempts to resolve by position. So in the above code, it is assumed that we want a sequence <code>from = 1</code> that goes <code>to = 10</code>. Although R can try to resolve arguments on its own, best practice is to specify it.</p>
+<p><br></p>
+<p>This demonstrates how function arguments are resolved in R.</p>
+<p><br></p>
+<p>We can always specify <code>from/to = value</code>.</p>
+</section>
+<section id="section-11" class="slide level2">
+<h1></h1>
+<p>But if we do not, R attempts to resolve by position. So in the above code, it is assumed that we want a sequence <code>from = 1</code> that goes <code>to = 10</code>.</p>
+<p><br></p>
+<p>Although R can try to resolve arguments on its own, best practice is to specify it.</p>
 </section>
 <section class="slide level2">
 
 <h4 id="simple-manipulations-vector-arithmetic">Simple manipulations: Vector arithmetic</h4>
-<p>The function <code>c()</code> combines values into a vector or a list. To set up a vector named <code>x</code>, say, consisting of eight numbers, namely, 12, 20.1, 53.6, 2, 7.43, 24, 8.2, and 6, the assign statement:</p>
+<p>The function <code>c()</code> combines values into a vector or a list.</p>
+<p><br></p>
+<p>To set up a vector named <code>x</code>, say, consisting of eight numbers, namely, 12, 20.1, 53.6, 2, 7.43, 24, 8.2, and 6, the assign statement:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>, <span class="fl">20.1</span>, <span class="fl">53.6</span>, <span class="dv">2</span>, <span class="fl">7.43</span>, <span class="dv">24</span>, <span class="fl">8.2</span>, <span class="dv">6</span>)</code></pre></div>
-<p>will assign the vector to the object <code>x</code>. We can form mathematical expressions using <code>x</code> like any other variable. For example,</p>
+<p>will assign the vector to the object <code>x</code>.</p>
+</section>
+<section id="section-12" class="slide level2">
+<h1></h1>
+<p>We can form mathematical expressions using <code>x</code> like any other variable.</p>
+<p>For example,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">sin</span>(x)</code></pre></div>
 <pre><code>## [1] -0.5365729  0.9491246 -0.1917303  0.9092974  0.9114582 -0.9055784
 ## [7]  0.9407306 -0.2794155</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">sqrt</span>(x)</code></pre></div>
 <pre><code>## [1] 3.464102 4.483302 7.321202 1.414214 2.725803 4.898979 2.863564 2.449490</code></pre>
-<p>will list the <em>sine</em> and square root of each number in the vector <code>x</code>. We can also combine vector with itself:</p>
+<p>will list the <em>sine</em> and square root of each number in the vector <code>x</code>.</p>
+</section>
+<section id="section-13" class="slide level2">
+<h1></h1>
+<p>We can also combine vector with itself:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">c</span>(x,x)</code></pre></div>
 <pre><code>##  [1] 12.00 20.10 53.60  2.00  7.43 24.00  8.20  6.00 12.00 20.10 53.60
 ## [12]  2.00  7.43 24.00  8.20  6.00</code></pre>
@@ -600,6 +670,9 @@ p { text-align: left; }
    v</code></pre></div>
 <pre><code>##  [1]  37.00  61.30 161.80   7.00  23.29  73.00  25.60  19.00  25.00  53.20
 ## [11] 128.30  58.60  17.86  56.43  41.40  21.20  31.00</code></pre>
+</section>
+<section id="section-14" class="slide level2">
+<h1></h1>
 <p>is equivalent to the following addition:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> y :<span class="st"> </span><span class="dv">12</span> <span class="fl">20.1</span>  <span class="fl">53.6</span> <span class="dv">2</span>  <span class="fl">7.43</span> <span class="dv">24</span>  <span class="fl">8.2</span>  <span class="dv">6</span>  <span class="dv">0</span> <span class="dv">12</span>    <span class="fl">20.1</span> <span class="fl">53.6</span>  <span class="dv">2</span>     <span class="fl">7.43</span> <span class="dv">24</span>    <span class="fl">8.2</span>  <span class="dv">6</span>
  2x:<span class="st"> </span><span class="dv">24</span> <span class="fl">40.2</span> <span class="fl">107.2</span> <span class="dv">4</span> <span class="fl">14.86</span> <span class="dv">48</span> <span class="fl">16.4</span> <span class="dv">12</span> <span class="dv">24</span> <span class="fl">40.2</span> <span class="fl">107.2</span>  <span class="dv">4</span>   <span class="fl">14.86</span> <span class="dv">48</span>    <span class="fl">16.4</span> <span class="dv">12</span>   <span class="dv">24</span>
@@ -608,11 +681,22 @@ p { text-align: left; }
 sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</span> <span class="fl">161.8</span> <span class="dv">7</span> <span class="fl">23.29</span> <span class="dv">73</span> <span class="fl">25.6</span> <span class="dv">19</span> <span class="dv">25</span> <span class="fl">53.2</span> <span class="fl">128.3</span> <span class="fl">58.6</span> <span class="fl">17.86</span> <span class="fl">56.43</span> <span class="fl">41.4</span> <span class="fl">21.2</span> <span class="dv">31</span>
 -----------------------------------------------------------------------------------</code></pre></div>
 <p>so the expression <code>2*x</code> is scaled to the length of the longest vector (here <code>y</code>). This is called <em>recycling</em>.</p>
-<p>Several functions work as usual, like, <code>mean(), max(), min(), sort()</code> etc. Also, as such, square root of a negative number, like <code>sqrt(-19)</code> will retrun <code>NaN</code> and a warning, but <code>sqrt(-19+0i)</code> will work.</p>
+<p><br></p>
+<p>Several functions work as usual, like, <code>mean(), max(), min(), sort()</code> etc.</p>
+</section>
+<section id="section-15" class="slide level2">
+<h1></h1>
+<p>Also, as such, square root of a negative number, like <code>sqrt(-19)</code> will retrun <code>NaN</code> and a warning, but <code>sqrt(-19+0i)</code> will work.</p>
+</section>
+<section id="section-16" class="slide level2">
+<h1></h1>
 <h5 id="logical-vectors">Logical vectors</h5>
 <p>R allows manipulation of logical quantities. Logical quantities can consist of <code>TRUE</code>, <code>FALSE</code> or <code>NA</code>. Logical vectors are generated by conditions. This assignment:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  logical_vector &lt;-<span class="st"> </span>x &gt;<span class="st"> </span><span class="dv">13</span></code></pre></div>
 <p>generates logical vector corresponding to the elements of <code>x</code> that are greater than or less than 13.</p>
+</section>
+<section id="section-17" class="slide level2">
+<h1></h1>
 <h5 id="naming-vectors">Naming vectors</h5>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Create a numeric vector</span>
   v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">15</span>,<span class="dv">5</span>,<span class="dv">7</span>)
@@ -628,12 +712,18 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
   v</code></pre></div>
 <pre><code>##     two fifteen    five   seven 
 ##       2      15       5       7</code></pre>
+</section>
+<section id="section-18" class="slide level2">
+<h1></h1>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
 <ol type="1">
 <li>What happens if you type <code>names(n) &lt;- v</code>?</li>
 <li>What if the length of either vectors (names or values) are not the same?</li>
 <li>What happens if you label two numbers with the same name? <br></li>
 </ol>
+</section>
+<section id="section-19" class="slide level2">
+<h1></h1>
 <h5 id="subsetting-vectors">Subsetting vectors</h5>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Subsetting by index</span>
    v[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</code></pre></div>
@@ -651,6 +741,9 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
   v[<span class="kw">c</span>(<span class="ot">FALSE</span>,<span class="ot">TRUE</span>,<span class="ot">TRUE</span>,<span class="ot">FALSE</span>)]</code></pre></div>
 <pre><code>## fifteen    five 
 ##      15       5</code></pre>
+</section>
+<section id="section-20" class="slide level2">
+<h1></h1>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
 <ol type="1">
 <li>What happens if you swap the index?</li>
@@ -658,25 +751,42 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 <li>Does the “subseting some”&quot; operation work with names?</li>
 <li>What happens if the logical vector has less elements than the orginal vector <code>v</code> (remember <em>recyling</em>)? <br></li>
 </ol>
+</section>
+<section id="section-21" class="slide level2">
+<h1></h1>
 <h5 id="missing-values">Missing values</h5>
 <p>The function <code>is.na(x)</code> gives a logical vector of the same size as <code>x</code> with value <code>TRUE</code> if and only if the corresponding element in x is NA. The function <code>is.na()</code> also returns the value <code>TRUE</code> for <code>NaN</code>. To differentiate these, R also provides a function <code>is.nan()</code> that returns <code>TRUE</code> only for <code>NaN</code>.</p>
+</section>
+<section id="section-22" class="slide level2">
+<h1></h1>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
 <ol type="1">
 <li>Make a vector of length <span class="math inline">\(5\)</span> with <code>NA</code> in them and test for missing values using the <code>is.na()</code> function.</li>
 <li>Extend this to a vector of length <span class="math inline">\(5000\)</span>. <br></li>
 </ol>
+</section>
+<section id="section-23" class="slide level2">
+<h1></h1>
 <h5 id="character-vectors">Character vectors</h5>
-<p>Character strings are entered using either matching double <code>(&quot;)</code> or single <code>(’)</code> quotes, but are printed using double quotes (or sometimes without quotes). The <code>paste()</code> function takes an arbitrary number of arguments and concatenates them one by one into character strings.</p>
+<p>Character strings are entered using either matching double <code>(&quot;)</code> or single <code>(’)</code> quotes, but are printed using double quotes (or sometimes without quotes).</p>
+<p><br></p>
+<p>The <code>paste()</code> function takes an arbitrary number of arguments and concatenates them one by one into character strings.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>), <span class="st">&quot;ab,b&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;X ab,b&quot; &quot;Y ab,b&quot;</code></pre>
+</section>
+<section id="section-24" class="slide level2">
+<h1></h1>
 <p>Note that by default the arguments are by default separated in the result by a single blank character, but this can be changed by the named argument, <code>sep=string</code>, which changes it to string, possibly empty. Thus,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">paste</span>(<span class="kw">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>), <span class="st">&quot;ab,b&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;Xab,b&quot; &quot;Yab,b&quot;</code></pre>
 <p>will render the arguments together.</p>
+</section>
+<section id="section-25" class="slide level2">
+<h1></h1>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Play with the <code>sep</code> argument to include other type of delimiters (like comma etc.) <br></p>
 </section>
-<section class="slide level2">
-
+<section id="section-26" class="slide level2">
+<h1></h1>
 <h4 id="basic-objects-and-data-types">Basic objects and data types</h4>
 <p>Vectors are the most important type of objects in R, but there are several other objects that we will encounter frequently.</p>
 <h5 id="objects">Objects</h5>
@@ -684,10 +794,18 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 <ul>
 <li><p><em>matrices</em> or more generally arrays are multi-dimensional generalizations of vectors. In fact, they are vectors that can be indexed by two or more indices and will be printed in special ways.</p></li>
 <li><p><em>factors</em> provide compact ways to handle categorical data.</p></li>
+</ul>
+</section>
+<section id="section-27" class="slide level2">
+<h1></h1>
+<ul>
 <li><p><em>lists</em> are a general form of vector in which the various elements need not be of the same type, and are often themselves vectors or lists. Lists provide a convenient way to return the results of a statistical computation.</p></li>
 <li><p><em>data frames</em> are matrix-like structures, in which the columns can be of different types. One can think of data frames as ‘data matrices’ with one row per observational unit but with (possibly) both numerical and categorical variables. Many experiments are best described by data frames: the treatments are categorical but the response is numeric.</p></li>
 <li><p><em>functions</em> are themselves objects in R which can be stored in the project’s workspace. This provides a simple and convenient way to extend R.</p></li>
 </ul>
+</section>
+<section id="section-28" class="slide level2">
+<h1></h1>
 <h5 id="data-types-and-coercion">Data types and coercion</h5>
 <p>The function <code>class()</code> can be used to reveal the data type. Basic data types are:</p>
 <ul>
@@ -697,6 +815,9 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 <li><p>Character: “R data types rock, etc.”</p></li>
 <li><p>Other atomic datatypes: <code>double</code>, <code>complex</code> and <code>raw</code>.</p></li>
 </ul>
+</section>
+<section id="section-29" class="slide level2">
+<h1></h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Reveal the class of the logical &quot;TRUE&quot;</span>
   <span class="kw">class</span>(<span class="ot">TRUE</span>)  </code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
@@ -706,15 +827,24 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Reveal the class of the number 2</span>
   <span class="kw">class</span>(<span class="dv">2</span>)  </code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
+</section>
+<section id="section-30" class="slide level2">
+<h1></h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Reveal the class of the integer 2L</span>
   <span class="kw">class</span>(2L)</code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Reveal the class of the character &quot;R data types rock, etc.&quot;</span>
   <span class="kw">class</span>(<span class="st">&quot;R data types rock, etc.&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
+<p><br></p>
 <p><strong>Note 1</strong>: By default an integer has a datatype as numeric as illustrated by <code>class(2)</code></p>
 <p><strong>Note 2</strong>: One can also use <code>is.<i>datatype(y)</i></code> to reveal the underlying datatype of the variable <code>y</code>. For example, <code>is.logical(x)</code> will return <code>TRUE</code> if <code>x</code> is a logical variable. Otherwise, it will return <code>FALSE</code>.</p>
-<p>One can <em>force</em> a data type to another through what is known as <em>coercion</em>. The function <code>as.<i>datatype(y)</i></code> will coerce the datatype of <code>y</code> into the specified datatype.</p>
+</section>
+<section id="section-31" class="slide level2">
+<h1></h1>
+<p>One can <em>force</em> a data type to another through what is known as <em>coercion</em>.</p>
+<p><br></p>
+<p>The function <code>as.<i>datatype(y)</i></code> will coerce the datatype of <code>y</code> into the specified datatype.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Coerce &quot;TRUE&quot; into integer</span>
   <span class="kw">as.integer</span>(<span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>## [1] 1</code></pre>
