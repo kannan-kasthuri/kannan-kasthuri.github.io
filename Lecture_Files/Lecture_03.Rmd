@@ -189,6 +189,45 @@ Another cool way to access elements (just the same as using `[[]]`) is the use o
 
 ---
 
+#### Data frames
+
+Datasets come with various shapes and sizes. Usually they constitute:
+
+* Observations (eg. each row is an observation)
+* Variables (eg. each column is a variable)
+* Matrix consitute only one data type
+* List is not practical 
+
+Data frames can contain different types for each observation/row however each variable (or a column) should have a same data type. Usually data frames are imported - through CSV, or Excel etc. However, we can create a data frame as well.
+
+```{r eval=TRUE}
+  # Create name, age and logical vectors
+  name <- c("Anne","James","Mike","Betty")
+  age <- c(20,43,27,25)
+  cancer <- c(TRUE,FALSE,FALSE,TRUE)
+  # Form a data frame
+  df <- data.frame(name,age,cancer)
+  df
+  # Create names function (like we did for vectors)
+  names(df) <- c("Name","Age","Cancer_Status")
+  df
+  # Or specify inside data frame
+  df <- data.frame(Name=name, Age=age, Cancer_Status=cancer)
+  df
+```
+
+<br>
+<span style="color:magenta">**Classwork**</span>: 
+
+1. Examine the structure of the data frame.
+2. What happens if one of the vectors have unequal length?
+<br>
+
+**Note**: Data frames store character vectors as factors. You can over-ride this as follows: 
+`df <- data.frame(Name=name, Age=age, Cancer_Status=cancer, stringsAsFactors = FALSE)`
+
+---
+
 #### Selected materials and references
 
 [An Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf)

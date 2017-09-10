@@ -305,6 +305,52 @@ $(document).ready(function () {
 <hr />
 </div>
 </div>
+<div id="data-frames" class="section level4">
+<h4>Data frames</h4>
+<p>Datasets come with various shapes and sizes. Usually they constitute:</p>
+<ul>
+<li>Observations (eg. each row is an observation)</li>
+<li>Variables (eg. each column is a variable)</li>
+<li>Matrix consitute only one data type</li>
+<li>List is not practical</li>
+</ul>
+<p>Data frames can contain different types for each observation/row however each variable (or a column) should have a same data type. Usually data frames are imported - through CSV, or Excel etc. However, we can create a data frame as well.</p>
+<pre class="r"><code>  # Create name, age and logical vectors
+  name &lt;- c(&quot;Anne&quot;,&quot;James&quot;,&quot;Mike&quot;,&quot;Betty&quot;)
+  age &lt;- c(20,43,27,25)
+  cancer &lt;- c(TRUE,FALSE,FALSE,TRUE)
+  # Form a data frame
+  df &lt;- data.frame(name,age,cancer)
+  df</code></pre>
+<pre><code>##    name age cancer
+## 1  Anne  20   TRUE
+## 2 James  43  FALSE
+## 3  Mike  27  FALSE
+## 4 Betty  25   TRUE</code></pre>
+<pre class="r"><code>  # Create names function (like we did for vectors)
+  names(df) &lt;- c(&quot;Name&quot;,&quot;Age&quot;,&quot;Cancer_Status&quot;)
+  df</code></pre>
+<pre><code>##    Name Age Cancer_Status
+## 1  Anne  20          TRUE
+## 2 James  43         FALSE
+## 3  Mike  27         FALSE
+## 4 Betty  25          TRUE</code></pre>
+<pre class="r"><code>  # Or specify inside data frame
+  df &lt;- data.frame(Name=name, Age=age, Cancer_Status=cancer)
+  df</code></pre>
+<pre><code>##    Name Age Cancer_Status
+## 1  Anne  20          TRUE
+## 2 James  43         FALSE
+## 3  Mike  27         FALSE
+## 4 Betty  25          TRUE</code></pre>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<ol style="list-style-type: decimal">
+<li>Examine the structure of the data frame.</li>
+<li>What happens if one of the vectors have unequal length? <br></li>
+</ol>
+<p><strong>Note</strong>: Data frames store character vectors as factors. You can over-ride this as follows: <code>df &lt;- data.frame(Name=name, Age=age, Cancer_Status=cancer, stringsAsFactors = FALSE)</code></p>
+<hr />
+</div>
 <div id="selected-materials-and-references" class="section level4">
 <h4>Selected materials and references</h4>
 <p><a href="https://cran.r-project.org/doc/manuals/R-intro.pdf">An Introduction to R</a></p>
