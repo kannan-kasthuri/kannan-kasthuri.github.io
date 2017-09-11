@@ -139,8 +139,77 @@ Scaling a vector by a constant expands or squishes it by the factor it is scaled
 
 At the end of the day, it doesn't matter if you think vectors as fundamentally arrows in space (physcists view) with numbers associated to them or lists of numbers (computer scientists view) with arrows associated with them, the usefullness of linear algebra lies in the fact that these notions are interchangeable. This gives data scientits to conceptualize numbers in a visual way (like PCA) that identifies patterns in data and gives a global view of what certain operations do. On the other hand it gives physicists and graphics programmers a language to describe and manipulate space that can be crunched and run in a computer.
 
+
+**Vector space (Technical Definition)**: A space containing vectors where any two vectors can be added and any vector can be multipled by scalars, to produce another vector.
+
 ---
 
 #### Linear combinations, span and basis vectors
+
+---
+
+_Mathematics requires a small dose, not of genius, but of an imaginative freedom which, in a larger dose, would be insanity._ - Angus K. Rodgers
+
+In two dimensions, there are two special vectors, $\hat{i}$, one that points in the $x$-direction and $\hat{j}$, the one that points in the $y$-direction. Then each coordinate can be imagined as scalers. One can think of:
+
+* $x$-coordinate as a scalar that scales $\hat{i}$ and 
+* $y$-coordinate as a scaler that scales $\hat{j}$.
+
+---
+
+![](cord_as_scalars.png)
+
+
+---
+
+$\hat{i}$ and $\hat{j}$ have a special name - **basis vectors** of the $xy$- coordinate system. What if we choose different basis vectors? 
+
+---
+
+![](basis.png)
+
+---
+
+Then the _values_ of the coordinates will change depening on this change in the basis vectors. Thus, anytime, you define a vector using numbers, the coordinates implicitly depend on the basis vectors.
+
+**Terminology**: If $\vec{u}$ and $\vec{v}$ are two vectors and $a$ and $b$ are scalars, the sum $a\vec{u}+b\vec{v}$ is called the _linear combination_ of the vectors. Why is the name called linear combination? What is so "liny" about them?
+
+Fix one of the scalars and allow the value to roam freely, we get a line.
+
+---
+
+![](why_lin_combo.png)
+
+---
+
+**Terminology**: If you allow both $a$ and $b$ freely, the resulting sum is called the _span_ of the vectors $\vec{u}$ and $\vec{v}$. 
+
+Three things can happen in two-dimensions:
+
+* If $\vec{u}$ and $\vec{v}$ are zero, then their span is zero.
+* If $\vec{u}$ and $\vec{v}$ are in the same direction, then the span will be a line.
+* If $\vec{u}$ and $\vec{v}$ are in different directions, then span will be the entire two-dimensional plane.
+
+---
+
+**Question**: What is the span of two vectors in 3-d space? 
+
+---
+
+![](2vec_3d_span.png)
+
+---
+
+How about if we add one more vector? If the third vector is in the same plane - we are trapped!!
+
+---
+
+![](trapped.png)
+
+---
+
+Another way of saying this is the vectors are _linearly dependent_. Otherwise, the plane will move (think of continously varying the third vector) and the vectors are referred as _linearly independent_.
+
+**Basis (Technical Definition)**: The _basis_ of a _vector space_ is a set of linerly independent vectors that _span_ the entire space. Why this definition makes sense?
 
 ---
