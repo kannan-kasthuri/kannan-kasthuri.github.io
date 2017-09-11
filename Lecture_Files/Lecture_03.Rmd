@@ -334,6 +334,11 @@ The `plot()` package is:
 2. Different inputs gives different plots
 3. Can plot several things like vectors, linear models, kernel densities etc.
 
+```{r eval=TRUE}
+  # Import the HANES data set
+
+```
+
 
 #### Selected materials and references
 
