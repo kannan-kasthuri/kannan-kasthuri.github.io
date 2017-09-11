@@ -335,8 +335,19 @@ The `plot()` package is:
 3. Can plot several things like vectors, linear models, kernel densities etc.
 
 ```{r eval=TRUE}
+  # Install RCurl package and load the package
+  library(RCurl)
   # Import the HANES data set
-
+  URL <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  HANES <- read.csv(text=getURL(URL))
+  # Observe the structure
+  str(HANES)
+  # Note that GENDER and AGEGROUP are integers but they should be factors
+  # Convert them to factors
+  HANES$GENDER <- as.factor(HANES$GENDER)
+  HANES$AGEGROUP <- as.factor(HANES$AGEGROUP)
+  str(HANES)
+  
 ```
 
 
