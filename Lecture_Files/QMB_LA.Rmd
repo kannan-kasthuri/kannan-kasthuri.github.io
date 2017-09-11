@@ -15,210 +15,132 @@ _There is hardly any theory which is more elementary than linear algebra, in spi
 
 #### Essence of linear algebra
 
-Linear algebra is required knowledge for any technical discipline: Computer science, Physics, Electrical engineering, Mechanical engineering, Statistics etc. -although it is poorly understood by students.
+Linear algebra is required knowledge for any technical discipline: Computer science, Physics, Electrical engineering, Mechanical engineering, Statistics etc. -although it is poorly understood by students. We probably would have learned so many (crazy) things like,
 
+$$ A \times B= \begin{bmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33}  \\
+\end{bmatrix}
+\begin{bmatrix}
+    b_{11} & b_{12} & b_{13} \\
+    b_{21} & b_{22} & b_{23} \\
+    b_{31} & b_{32} & b_{33}  \\
+\end{bmatrix}= 
+$$
+$$
+\begin{bmatrix}
+    a_{11}b_{11}+a_{11}b_{21}+a_{11}b_{31} & a_{12}b_{12}+a_{12}b_{22}+a_{12}b_{32} & a_{13}b_{13}+a_{13}b_{23}+a_{12}b_{33} \\
+    a_{21}b_{11}+a_{21}b_{21}+a_{21}b_{31} & a_{22}b_{12}+a_{22}b_{22}+a_{22}b_{32} & a_{23}b_{13}+a_{23}b_{23}+a_{23}b_{33} \\
+    a_{31}b_{11}+a_{31}b_{21}+a_{31}b_{31} & a_{32}b_{12}+a_{32}b_{22}+a_{32}b_{32} & a_{33}b_{13}+a_{33}b_{23}+a_{33}b_{33} \\
+\end{bmatrix}
+$$
+or determinant
 
----
+$$ det(A)= 
+\begin{vmatrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22}\\
+\end{vmatrix} = a_{11}a_{22}-a_{12}a_{21}
+$$
+or cross products,
 
-<center>![](insertion_selection_sort.png)</center>
+$$ v \times u= 
+det\begin{vmatrix}
+    \hat{i} & \hat{j} & \hat{k}\\
+    v_{1} & v_{2} & v_{3} \\
+    u_{1} & u_{2} & u_{3}
+\end{vmatrix} 
+$$
 
----
+or eigenvalues,
 
-Which is a "better" sort, in terms of time, as the number of cards increase? The word "better" here is often referred as _computational complexity_ in the context of analysis of algorithms. 
+$$ det(A-\lambda I) = 0$$
 
-Fundemental to analysis of algorithms is complexity analysis which helps in determining the computational complexity of such algorithms. The computational (time) complexity of an algorithm is something that decides how fast the algorithm is run at the idea level (otherwise known as pseudocode), regardless of the programming language, operating system or the hardware. We want to evaluate and compare algorithms as they are: an actionable/programmable idea on how things could be computed. In other words, we are **not interested** in how fast a program is actually run, which depends on various factors including the structure of high-level languages, but rather how best (or worst) is the design behind the program, regardless of the language it is implemented (by analogy, a person could sort faster or slower and we are not interested in the speed someone sorts). Such meta-analysis enables us to say an algorithm has a better computational complexity than the other.
+But they might really come out without understanding why they are defined the way they are. We are vaguely aware of the geometric intuition behind such definitions. Numeric and geometric understanding differ fundementally. While numeric understanding allows us to do actual computations, geometric understanding is helpful for:
 
-Complexity analysis also allows us to explain how an algorithm would behave as the input size become large, or if the distribution of the input changes. For example, in the case of insertion or selection sort, we can _predict_ how the algorithm would perform if we give numbers that are already sorted vs. random unsorted numbers. Such predictions are important in practical programming since we can determine the scalability of operations assuming worst-case/best-case scenario.    
-
----
-
-#### Counting instructions 
-
-Computational complexity is usually determined by counting instructions. Let's find the complexity for the following computational task.
-
-**Task** Detrmine the minimum element in an array $A$ with $n$ elements addressed by $A[1], A[2],\dots, A[n]$.
-
-**Algorithm** The pesudocode to do this task is as follows:
-
-```{r eval=FALSE}
-
-  # Assign M to the first element in the array
-  M = A[1]
-  # Go through the array and if the number in the array is less than M, then update M with that number
-  for i = 2 to n, increment i
-    if (A[i] is less than or equal to M) then
-        replace M with A[i]
-    end if
-  end for
-  # Print the answer
-  print M is the smallest number
-    
-```
-
-To work out the complexity we will assume that our hypothetical machine can perform the following operations as one instruction each:
-
-* Assigning a value to a variable
-* Looking up the value of a particular element in an array
-* Comparing two values
-* Incrementing a value
-* Basic arithmetic operations such as addition and multiplication
-
-Thus, the first assignment statement:
-
-```{r eval=FALSE}
-  M = A[1]
-```
-
-will require $2$ instructions, one for looking up $A[1]$ and the other for assigning $A[1]$ to $M$. During the first time of the `for` loop, $i$ has to be assigned $2$ and the condition $2 \leq n$ needs to be evaluated, which will take two instuctions. After this, incrementing $i$ and checking if $i \leq n$ has to be done $n-1$ times, contributing $2(n-1)$ instructions.
-
-We can now define a mathematical function $g(n)$ that, given an $n$, gives us the number of instructions the algorithm needs. Thus, if we ignore the `for` loop body (for the moment), the number of instructions would be $g(n)=2+2+2(n-1)=2n+2$.
+* judging what tools are useful for what problems, 
+* feel the problem and 
+* know how to interpret the results.
 
 ---
 
-#### Worst-case/Best-case complexity
-
-Let's look into the `for` loop. The following `if` statement always executes:
-
-```{r eval=FALSE}
-  if (A[i] is less than or equal to M) then
-```
-
-which requires $2$ instructions (one for the assignment and another for comparison). However the body of the `if` statement depends on the value $A[i]$. Therefore, it is tough to define a mathematical function. For instance, if $A = \{4,3,2,1\}$ then the `if` loop will be executed every time, costing us $2$ additional instructions (one for lookup and another for replacement/assignment), a total of 4 instructions, whereas if $A = \{5,9,13,20\}$ the body of the loop will not be executed even once, costing us only $2$ instructions. 
-
-Often we will be interested in the worst-case because that is when the computation will be maximum. This is called the _worst case complexity_ - that is, it is the situation/complexity when we are highly unlucky. Thus, in the worst-case `if` is executed everytime costing us $4(n-1)$ for the entire `for` loop. Thus, the worst-case complexity function, $W(n)$, is given by,
-$$W(n) = 4+2(n-1)+4(n-1) = 6n-2.$$
-The best case is when the `if` loop body doesn't execute even once. Therefore, the best-case complexity, $B(n)$, is given by,
-$$ B(n) = 4+2(n-1)+2(n-1) = 4n.$$
-For a given, $n$, these functions, $W(n)$ and $B(n)$ provides us a huristic on the number of instructions in the extreme cases, and gives an idea on how fast an algorithm is run as $n$ increases.
+![](LAapp.png)
 
 ---
 
-#### Asymptotic behavior
+Without geometric understaning, professors teaching applications look like wizzards and linear algebra looks intimidating!
 
-We should keep in mind that the **actual** number of CPU instructions would depend on the complier in our program of choice. 
-For instance, the C compiler doesn't check if the specific array is within bounds, whereas a Pascal complier would. Therefore,
-the assignment statement,
+For example, if you are taught from your young age that `sin` function is:
 
-```{r eval=FALSE}
-  M := A[i]
-```
+$$ sin(x) = x-\frac{x^3}{3!}+\frac{x^5}{5!}+\dots+(-1)^{n}\frac{x^{2n+1}}{(2n+1)!}+\dots$$
+and vaguely know it is related to triangles. If you are sitting in a physics class learning trajectories, it may seem magical.
 
-which would take just one instruction in C is equvilalent to the following statements in the Pascal language:
+---
 
-```{r eval=FALSE}
-  if (i >= 0 && i < n) {
-    M = A[i];
-  }
-```
+![](traj1.png)
 
-It makes more sense to ignore the additive and multiplicative constants in our analysis and keep only the **rapidly growing term** that depends on the input size. Such an analysis is referred to as _asymptotic analysis_. So the asymptotic behavior of $W(n) = 6n-2$ is just $n$. Mathematically speaking, it just says that as $n$ increase, $W(n)$ could be "as *bad* as $n$" and is denoted by $O(n)$.
+---
 
-Let us try to analyze the asymptotic behavior of the following task. 
+Luckily, linear algebra is not too different! There are **visual** intuitions underlying the subject. And unlike the above `sin` example, the visual intuitions are much straight forward and lot of what it has been taught in a numeric way will sound more reasonable. In fairness, many professors will make an attempt to convey the geometric understanding, but lots of courses spend disproportinate amount of time in numerical side of things, especially in this day and age where numerical computations can be left to computers and we focussing on conceptual ideas. In the following sections, we will try to understand the basics of linear algebra through geometric intuition.
 
-**Task** Print the smallest number in a matrix $A(i,j)$ where $1 \leq i,j \leq n$, noting the column of the smallest element in each iteration, through _brute-force_ approach. 
+---
 
-Brute force approach is where we test all possible candidates for a solution and checking whether it solves our problem. Usually that's the simplest approach for solving a computational problem. The pseudocode for such algorithm is similar to the previous example except that we need to iterate through the columns as well. 
+#### Vectors: What even are they?
 
-**Algorithm** Here is the pesudocode (the lines are numbered to make the analysis easier):
+_The introduction of numbers as coordinates is an act of violence_ - Hermann Weyl
 
-```{r eval=FALSE}
+Vectors are seen differently by different folks.
 
-01.  # Assign M to the first element in the matrix
-02.  M = A[1,1]
-03.  smallest_element_column = 1
-04.  # For every row i, iterate through all columns to see 
-05.  # If the number A[i,j] is smaller than or equal to M
-06.  for i = 1 to n, increment i
-07.    for j = 1 to n, increment j
-08.      if (A[i,j] is less than or equal to M) then
-09.          # If the number A[i,j] is smaller than or equal to M, change M to A[i,j] 
-10.          replace M with A[i,j]
-11.          # Note the column where the smallest element in the iteration appears
-12.          smallest_element_column = j
-13.      end if
-14.    end for       
-15.    print "Column " smallest_element_column " has the smallest element"
-16.  end for         
-17.  # Print the answer
-18.  print M is the smallest number
-```
+* Physics student perspective: Magnitude and direction. Coordinate free. Eg., _force_.
 
-If we assume the above criteria for our hypothetical machine for per instruction cost, we note the following:
+* CS student perspective: Ordered lists of numbers. Model using array of numbers where order matters. In R programming it is essentially a list with same data type.
 
-*1.* Line $02$ will take $2$ instructions and Line $03$ will take $1$ making a total of $3$.
+* Math student perspective: Tries to generalize both these views. A vector can be anything as long as we can add two vectors or multiply a vector with a scalar.
 
-*2.* In the worst case, the matrix $A$ could end up like this -
+The later view comes from the fact that addition and scalar multiplication is extremely useful throughout linear algebra. In math, we always think a vector is rooted in some origin. In two dimensions, every pair of numbers is associated with only one vector and every vector is associated with only one pair of numbers.
 
-$$ A = \begin{bmatrix}
-    51 & 43 & 39 \\
-    33 & 32 & 27 \\
-    25 & 15 & 2  \\
+##### Vector addition
+
+Vector addition is an extension of 1-d addition.
+
+---
+
+![](vadd.png)
+
+---
+
+In general, 
+
+$$  
+\begin{bmatrix}
+    x_1 \\
+    y_1 \\
+\end{bmatrix}  +
+\begin{bmatrix}
+    x_2 \\
+    y_2 \\
+\end{bmatrix}  =
+\begin{bmatrix}
+    x_1+x_2 \\
+    y_1+y_2 \\
 \end{bmatrix}
 $$
 
-where $a_{ij}\leq a_{mn}$ for $i\geq m$ or $j \geq n$ and so every time the `if` loop has to be executed. Thus, Line $10$ and Line $12$ may execute $n^2$ times, each costing $5$ instructions ($2$ for the `if`, $2$ for Line $10$ and $1$ for Line $12$).
+##### Scalar multiplication
 
-*3.* Line $15$ will execute $n$ times and 
-
-*4.* Line $18$ will execute once costing $1$ instruction.
-
-Therefore, the worst case complexity is given by, $$W(n) = 4+5n^2+n.$$ Hence, the aysmptotic behaviour, ignoring the constant factors and taking the rapidly growing term, is given by $O(n^2)$.
-
-**Examples** 
-
-1. $W(n) = 3n+2$ - asymptotic behavior is given by $O(n)$.
-2. $W(n) = 217$  - asymptotic behavior is given by $O(1)$, since $217 = 1\times217$.
-3. $W(n) = n + \sqrt{n}$ - asymptotic behavior is described by $O(n)$ since $n$ grows faster than $\sqrt{n}$.
-4. $W(n) = n + e^{n}$ - asymptotic behavior is given by $O(e^{n})$ since $e^{n}$ rapidly grows than $n$, as $n$ increases.
-
-**Exercises**
-
-Find the asymptotic behavior of the following functions:
-
-1. $W(n) = n^{3} + 3n$
-2. $W(n) = 4^n + 1047$
-3. $W(n) = 4^n + n^4$
-4. $W(n) = n^n + n$
+Scaling a vector by a constant expands or squishes it by the factor it is scaled,
 
 ---
 
-#### The complexity of insertion sort and selection sort
-
-<br>
-
-##### Selection sort
-
-<br>
-
-
+![](scm.png)
 
 ---
 
-#### Divide and Conquer 
-
-
----
-
-#### Dynamic Programming 
-
-<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe>
--->
+At the end of the day, it doesn't matter if you think vectors as fundamentally arrows in space (physcists view) with numbers associated to them or lists of numbers (computer scientists view) with arrows associated with them, the usefullness of linear algebra lies in the fact that these notions are interchangeable. This gives data scientits to conceptualize numbers in a visual way (like PCA) that identifies patterns in data and gives a global view of what certain operations do. On the other hand it gives physicists and graphics programmers a language to describe and manipulate space that can be crunched and run in a computer.
 
 ---
 
-#### Greedy Algorithms
-
-<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe> -->
-
----
-
-#### An Introduction to NP-completeness
-
-
----
-
-#### References
-
-[A Gentle Introduction to Algorithm Complexity Analysis](http://discrete.gr/complexity/) by Dionysis "dionyziz" Zindros
+#### Linear combinations, span and basis vectors
 
 ---
