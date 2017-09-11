@@ -213,3 +213,65 @@ Another way of saying this is the vectors are _linearly dependent_. Otherwise, t
 **Basis (Technical Definition)**: The _basis_ of a _vector space_ is a set of linerly independent vectors that _span_ the entire space. Why this definition makes sense?
 
 ---
+
+#### Linear transformations and matrices
+
+_Unfortunately no one can be told what the Matrix is. You have to see it for yourself_. - Morpheus
+
+As the name suggests, transformation essentially means a function - takes an input vector and spits another vector. Arbitrary transformations like this are not _linear_. 
+
+---
+
+![](arb_tra.png)
+
+---
+
+The key word is linear. All lines should remain lines and the origin should be fixed. Thus, this is not a linear transformation.
+
+---
+
+![](not_linear.png)
+
+---
+
+And not this as well (since origin moves)...
+
+---
+
+![](origin_moves.png)
+
+---
+
+How about this? 
+
+---
+
+![](lines_squished.png)
+
+---
+
+**Note**: This keeps lines as lines and the origin fixed.
+
+---
+
+![](diag_lines_curvy.png)
+
+---
+
+In general, one can think of linear transformation as some function that keeps grid lines parallel and evenly spaced.
+
+---
+
+![](linear_trans.png)
+
+---
+
+Some are simple to think about - like rotation for instance,
+
+---
+
+![](rotation.png)
+
+---
+
+How do we describe these transformations numerically? 
