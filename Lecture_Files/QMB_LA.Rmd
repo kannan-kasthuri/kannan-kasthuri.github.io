@@ -74,7 +74,7 @@ Without geometric understaning, professors teaching applications look like wizza
 For example, if you are taught from your young age that `sin` function is:
 
 $$ sin(x) = x-\frac{x^3}{3!}+\frac{x^5}{5!}+\dots+(-1)^{n}\frac{x^{2n+1}}{(2n+1)!}+\dots$$
-and vaguely know it is related to triangles. If you are sitting in a physics class learning trajectories, it may seem magical.
+and vaguely know it is related to triangles. If you are sitting in a physics class learning trajectories, this may seem magical.
 
 ---
 
