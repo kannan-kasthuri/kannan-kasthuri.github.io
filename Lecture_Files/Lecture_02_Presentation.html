@@ -599,7 +599,7 @@ p { text-align: left; }
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">functionName</span>(<span class="dt">arg1 =</span> val1, <span class="dt">arg2 =</span> val2, and so on)</code></pre></div>
 <p><strong>Note</strong>: Not all functions will have arguments. For instance, the function <code>date()</code> that prints the current date and time does not have any argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">date</span>()</code></pre></div>
-<pre><code>## [1] &quot;Sun Sep 10 14:58:57 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Mon Sep 11 21:21:27 2017&quot;</code></pre>
 </section>
 <section id="section-8" class="slide level2">
 <h1></h1>
@@ -881,6 +881,9 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 ## [1,]    1    4
 ## [2,]    2    5
 ## [3,]    3    6</code></pre>
+</section>
+<section id="section-32" class="slide level2">
+<h1></h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Create a matrix specifying the number of rows &amp;</span>
   <span class="co"># distributing the numbers through rows first</span>
   <span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dt">nrow=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</code></pre></div>
@@ -892,6 +895,9 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    3    5
 ## [2,]    2    4    6</code></pre>
+</section>
+<section id="section-33" class="slide level2">
+<h1></h1>
 <p>We can paste rows or columns using the functions <code>cbind()</code> (for coumumn binding) and `rbind() (for row binding) - really <strong>important</strong> - you will see them in lots of applications.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Combine as columns</span>
   <span class="kw">cbind</span>(<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">1</span>:<span class="dv">3</span>)</code></pre></div>
@@ -904,7 +910,13 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]    1    2    3</code></pre>
+</section>
+<section id="section-34" class="slide level2">
+<h1></h1>
 <p>Naming a matrix can be done using <code>rownames()</code> and <code>colnames()</code> functions, just like we used the <code>names()</code> function for the vectors. Matrices can be combined using <code>cbind()</code> and <code>rbind()</code> functions.</p>
+</section>
+<section id="section-35" class="slide level2">
+<h1></h1>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
 <ol type="1">
 <li>What happens if the number of rows/coumns are more than the generated numbers when using the function <code>matrix()</code>?</li>
@@ -912,6 +924,9 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 <li>Combine two matrices using <code>cbind()</code>.</li>
 <li>Can you “bind” two matrices of different data types? What happens when you do that? <br></li>
 </ol>
+</section>
+<section id="section-36" class="slide level2">
+<h1></h1>
 <h5 id="subsetting-a-matrix">Subsetting a matrix</h5>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Create a matrix</span>
   M &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">9</span>,<span class="dt">nrow=</span><span class="dv">3</span>)
@@ -925,14 +940,31 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Print all the elements in row 3</span>
   M[<span class="dv">3</span>,]</code></pre></div>
 <pre><code>## [1] 3 6 9</code></pre>
-<p>We can also subset multiple elements - to do this we use the combine function, <code>c()</code> along with index notation. Thus, <code>M[2,c(2,3)]</code> will fetch all the elements in <span class="math inline">\(2\)</span>nd row and in columns <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span>. Subseting also works through column names and row names and could be combined with indices. Further, subsetting works on logicals the same way it works for vectors.</p>
+</section>
+<section id="section-37" class="slide level2">
+<h1></h1>
+<p>We can also subset multiple elements - to do this we use the combine function, <code>c()</code> along with index notation.</p>
+<p>Thus, <code>M[2,c(2,3)]</code> will fetch all the elements in <span class="math inline">\(2\)</span>nd row and in columns <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span>.</p>
+<p>Subseting also works through column names and row names and could be combined with indices. Further, subsetting works on logicals the same way it works for vectors.</p>
+</section>
+<section id="section-38" class="slide level2">
+<h1></h1>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
 <ol type="1">
 <li>What will <code>M[5]</code> print? Specify the rationale behind this.</li>
 <li>What does this subset print, <code>M[c(2,3),c(1,2)]</code>? <br></li>
 </ol>
+</section>
+<section id="section-39" class="slide level2">
+<h1></h1>
 <h5 id="matrix-arithmetic">Matrix arithmetic</h5>
-<p><code>rowSums()</code> and <code>colSums()</code> function provide the sums of rows and columns. Basic arithmetic operations involving matrix and scalar hold just like for vectors. For example, dividing a matrix by a number will divide each element by that number. How about matrix and vector operations? Recycling:</p>
+<p><code>rowSums()</code> and <code>colSums()</code> function provide the sums of rows and columns.</p>
+<p>Basic arithmetic operations involving matrix and scalar hold just like for vectors.</p>
+<p>For example, dividing a matrix by a number will divide each element by that number.</p>
+</section>
+<section id="section-40" class="slide level2">
+<h1></h1>
+<p>How about matrix and vector operations? Recycling:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># Create a matrix</span>
   M &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>:<span class="dv">9</span>,<span class="dt">nrow=</span><span class="dv">3</span>)
   <span class="co"># Make a vector </span>
@@ -943,8 +975,16 @@ sum:<span class="st"> </span><span class="dv">37</span> <span class="fl">61.3</s
 ## [1,]   -9   -6   -3
 ## [2,]  -18  -15  -12
 ## [3,]  -22  -19  -16</code></pre>
-<p><strong>Note 1</strong>: The result is same as <code>M - matrix(v, nrow=3, ncol=3)</code>. Although recycling provides a convinient way to manipulate matrix-vector operations, it is important to use such expression with caution. Whenever possible, try to convert the vector into matrix and work with matrices.</p>
+</section>
+<section id="section-41" class="slide level2">
+<h1></h1>
+<p><strong>Note 1</strong>: The result is same as <code>M - matrix(v, nrow=3, ncol=3)</code>.</p>
+<p>Although recycling provides a convinient way to manipulate matrix-vector operations, it is important to use such expression with caution.</p>
+<p>Whenever possible, try to convert the vector into matrix and work with matrices.</p>
 <p><strong>Note 2</strong>: Matrix multiplication is element-wise, unlike standard way of multiplying matrices (as in linear algebra). Matrices and vectors are very similar. The principle of coercion and recycling works almost the same.</p>
+</section>
+<section id="section-42" class="slide level2">
+<h1></h1>
 <p><br> <span style="color:magenta"><strong>Classwork</strong></span>: What happens if you subtract/add/multiply two matrices of different size? <br></p>
 </section>
 <section class="slide level2">
