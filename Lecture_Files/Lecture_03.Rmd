@@ -417,8 +417,54 @@ We suddenly note that there are two different clusters of patients - one with lo
 
 <br>
 
+We can also plot two categorical variables. Let us plot GENDER and AGEGROUP factors.
+
+```{r eval=TRUE}
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Plot GENDER vs AGEGROUP
+  plot(HANES$GENDER,HANES$AGEGROUP)
+  # Swap AGEGROUP vs GENDER
+  plot(HANES$AGEGROUP,HANES$GENDER)
+```
+
+Note that R already prints proportion as it displays the plots. The first element is the $x$-axis and the second element is the $y$-axis.
+
+Next we will see the `hist()` function. `hist()` is a short form for histogram. The `hist()` function:
+
+* Visual representation of distribution
+* Bins all values
+* Plots frequency of bins
+
+Here is an example to find the distribution of A1C variable for the male population.
+
+```{r eval=TRUE}
+  # Form a logical vector consisting only the MALE gender
+  HANES_MALE <- HANES$GENDER == "M"
+  # Select only the records for the male population
+  MALES_DF <- HANES[HANES_MALE,]
+  # Make an historgam
+  hist(MALES_DF$A1C)
+```
+
+Observe that the Glycohemoglobin percentage lies between $5-6$ for most of the men. Note that R has also chosen the number of bins, $6$ by default. You can increase (or decrease) the number of bins using the "breaks" argument. There are other cool tools like `barplot()`, `boxplot()`, `pairs()` in the _graphics_ package. 
+
+<br>
+<span style="color:Blue">**Classwork**</span>: 
+
+1. Find the distribution of A1C for the female population in the above data set. Are they different?
+2. Find the distribution of A1C for three age groups in the above data set. Is there a difference? 
+3. Try to find the distribution of one more numeric variable (other than A1C) for the three age-groups.
+4. Increase the number of bins to $10$ in the above exercise.
+
+<br>
+
 ---
 
 #### Selected materials and references
 
 [An Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf)
+
+---
