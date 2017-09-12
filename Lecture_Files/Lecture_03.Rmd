@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### R fundamentals 02: Advanced Data Types and Graphics (Sept. 14, 2017)
+### R fundamentals 02: Advanced data types and graphics (Sept. 14, 2017)
 
 ---
 

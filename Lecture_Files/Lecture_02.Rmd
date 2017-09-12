@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### R fundamentals 01: Elementary Data Types (Sept. 12, 2017)
+### R fundamentals 01: Elementary data types (Sept. 12, 2017)
 
 ---
 
