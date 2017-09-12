@@ -386,7 +386,7 @@ Of course, we can plot two numerical variables:
 
 ```{r eval=TRUE}
   # Plot two numerical variables 
-  # A1C - Hemoglobin percentage, UACR - Urine Albumin/Creatinine Ratio
+  # A1c - Hemoglobin percentage, UACR - Urine Albumin/Creatinine Ratio
   plot(HANES$A1C,HANES$UACR)
 ```
 
@@ -405,7 +405,7 @@ Although the scaling is okay now, the relationship is extremely complicated. One
   plot(log(HANES$A1C), log(HANES$UACR))
 ```
 
-We suddenly note that there are two different clusters of patients - one with low UACR values and another with high UACR values.
+We suddenly note that there are two different clusters of patients - one with low UACR values and another with high UACR values, both corresponding to a mean $log(A1c)$ of about $1.7$.
 
 <br>
 <span style="color:Blue">**Project**</span>: 
@@ -413,6 +413,7 @@ We suddenly note that there are two different clusters of patients - one with lo
 1. Explore these patients groups in detail and come up with explanations on why there are two groups. 
 2. Research on A1C and UACR and how they are related. 
 3. What other variables distingush these two groups?
+4. Are one group of patients more diabetic than the other?
 
 <br>
 
