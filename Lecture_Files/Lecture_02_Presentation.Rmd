@@ -6,7 +6,7 @@ output:
   - '2'
 ---
 
-### Lecture 02 (Sept. 12, 2017)
+### R fundamentals 01: Elementary Data Types (Sept. 12)
 
 ---
 
