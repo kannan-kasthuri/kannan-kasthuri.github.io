@@ -361,6 +361,12 @@ Note that GENDER, AGEGROUP and HSQ_1 are integers but in fact they should be fac
   str(HANES)
 ```
 
+Let's plot a categorical variable, for instance gender.
+
+```{r eval=TRUE}
+  plot(HANES$GENDER)
+```
+
 
 #### Selected materials and references
 
