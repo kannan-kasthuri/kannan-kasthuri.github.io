@@ -364,9 +364,59 @@ Note that GENDER, AGEGROUP and HSQ_1 are integers but in fact they should be fac
 Let's plot a categorical variable, for instance gender.
 
 ```{r eval=TRUE}
+  # Plot the factor gender
   plot(HANES$GENDER)
 ```
 
+<br>
+<span style="color:magenta">**Classwork**</span>:
+
+1. Is the above plot informative?
+2. What will you do to make it more informative?
+<br>
+
+Let's now plot a numerical variable.
+
+```{r eval=TRUE}
+  # Plot a numerical variable
+  plot(HANES$A1C)
+```
+
+Of course, we can plot two numerical variables:
+
+```{r eval=TRUE}
+  # Plot two numerical variables 
+  # A1C - Hemoglobin percentage, UACR - Urine Albumin/Creatinine Ratio
+  plot(HANES$A1C,HANES$UACR)
+```
+
+
+Note that R autamatically renders them as a scatter plot. However, this plot is unformative as the data is poorly scaled. One can scale the data using the "ylim" argument:
+
+```{r eval=TRUE}
+  # Plot two numerical variables with appropriate scaling
+  plot(HANES$A1C,HANES$UACR, ylim=c(0,10))
+```
+
+Although the scaling is okay now, the relationship is extremely complicated. One of the transformations to understand relationships between the variables is the `log()` function. We can apply logrithm to both variables -
+
+```{r eval=TRUE}
+  # Transform the data using the log function and plot the result
+  plot(log(HANES$A1C), log(HANES$UACR))
+```
+
+We suddenly note that there are two different clusters of patients - one with low UACR values and another with high UACR values.
+
+<br>
+<span style="color:Blue">**Project**</span>: 
+
+1. Explore these patients groups in detail and come up with explanations on why there are two groups. 
+2. Research on A1C and UACR and how they are related. 
+3. What other variables distingush these two groups?
+
+<br>
+
+---
 
 #### Selected materials and references
 
