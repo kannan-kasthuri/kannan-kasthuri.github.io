@@ -458,8 +458,87 @@ Observe that the Glycohemoglobin percentage lies between $5-6$ for most of the m
 2. Find the distribution of A1C for three age groups in the above data set. Is there a difference? 
 3. Try to find the distribution of one more numeric variable (other than A1C) for the three age-groups.
 4. Increase the number of bins to $10$ in the above exercise.
+<br>
+
+---
+
+#### Customizing plots
+
+How does this plot look?
+
+```{r eval=TRUE}
+  # Plot LDL values vs HDL values
+  plot(HANES$LDL, HANES$HDL)
+```
+
+compared to this -
+
+```{r eval=TRUE}
+  # Plot GLUCOSE vs GLUCOSESI with parameters
+  plot(HANES$GLUCOSE, HANES$GLUCOSESI, xlab= "Plasma Glucose", 
+         ylab = "Blood Glucose SI units", main = "Plasma vs Blood Glucose", type = "o", col="blue")
+```
+
+To do good data science, it certainly not only helps to know correlations between the variables (in the above figure, we know blood glucose levels and plasma glucose levels correlate), but how we present data matters!
+
+Some plot function characteristics:
+
+* _xlab_: Horizontal axis label
+
+* _ylab_: Vertical axis label
+
+* _main_: Plot title
+
+* _type_: Plot type
+
+* _col_: Plot color
 
 <br>
+<span style="color:Blue">**Classwork**</span>: Change the type to "l" and report the plot type. 
+<br>
+
+Graphical parameters are not maintained throughout session. If you want to maintain graphical parameters, use the `par()` function. For example,
+
+```{r eval=TRUE}
+  # Set the graphical parameter par's so that color red is held
+  par(col="red")
+  # Plot LDL vs HDL
+  plot(HANES$LDL, HANES$HDL)
+  # Plot Hemoglobin vs HDL
+  plot(HANES$A1C, HANES$HDL)
+```
+
+More graphical parameters:
+
+* _col.main_: Color of the main title
+* _cex.axis_: Size of the axis numbers (towards 0 is more smaller). Just like "col" parameter has variants such as "main", "cex" also has other variants - "axis" is one of them.
+* _lty_: Specifies the line type - solid, dashed etc. (1 is a full line, 2 is dashed etc.)
+* _pch_: Plot symbol. More than 35 types of symbols.
+
+---
+
+#### Multiple graphs
+
+So far we saw single plots of data, with no combinations and layers. It may be good to plot several. We can use "mfrow" with the `par()` function.
+
+```{r eval=TRUE}
+  # Set the par function with mfrow to 2x2 "grid"
+  par(mfrow = c(2,2))
+  # Plot LDL vs HDL
+  plot(HANES$LDL, HANES$HDL)
+  # Plot A1C vs HDL
+  plot(HANES$A1C, HANES$HDL)
+  # Plot GLUCOSE vs HDL
+  plot(HANES$GLUCOSE, HANES$HDL)
+  # Plot CHOLESTEROLTOTAL vs HDL
+  plot(HANES$CHOLESTEROLTOTAL, HANES$HDL)
+```
+
+<br>
+<span style="color:Blue">**Classwork**</span>: Do the above exercise with "mfcol" argument. How does it plot?
+<br>
+
+To reset the plot to 1 figure, one can use `par(mfrow = c(1,1))`, that will get us back to normal.
 
 ---
 
