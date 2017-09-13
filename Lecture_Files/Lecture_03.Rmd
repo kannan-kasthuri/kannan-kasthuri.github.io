@@ -405,9 +405,9 @@ Although the scaling is okay now, the relationship is extremely complicated. One
   plot(log(HANES$A1C), log(HANES$UACR))
 ```
 
-We suddenly note that there are two different clusters of patients - one with low UACR values and another with high UACR values, both corresponding to a mean $log(A1c)$ of about $1.7$.
+We note that there are two different clusters of patients - one with low UACR values and another with high UACR values, both corresponding to a mean $log(A1c)$ of about $1.7$.
 
-<br>
+<!-- <br>
 <span style="color:Blue">**Project**</span>: 
 
 1. Explore these patients groups in detail and come up with explanations on why there are two groups. 
@@ -415,7 +415,7 @@ We suddenly note that there are two different clusters of patients - one with lo
 3. What other variables distingush these two groups?
 4. Are one group of patients more diabetic than the other?
 
-<br>
+<br> -->
 
 We can also plot two categorical variables. Let us plot GENDER and AGEGROUP factors.
 
@@ -460,9 +460,7 @@ Observe that the Glycohemoglobin percentage lies between $5-6$ for most of the m
 4. Increase the number of bins to $10$ in the above exercise.
 <br>
 
----
-
-#### Customizing plots
+##### Customizing plots
 
 How does this plot look?
 
@@ -479,7 +477,7 @@ compared to this -
          ylab = "Blood Glucose SI units", main = "Plasma vs Blood Glucose", type = "o", col="blue")
 ```
 
-To do good data science, it certainly not only helps to know correlations between the variables (in the above figure, we know blood glucose levels and plasma glucose levels correlate), but how we present data matters!
+To do good data science, it certainly not only helps to know correlations between the variables (in the above figure, we know blood glucose levels and plasma glucose levels are the same), but how we present the data matters!
 
 Some plot function characteristics:
 
@@ -515,9 +513,8 @@ More graphical parameters:
 * _lty_: Specifies the line type - solid, dashed etc. (1 is a full line, 2 is dashed etc.)
 * _pch_: Plot symbol. More than 35 types of symbols.
 
----
 
-#### Multiple graphs
+##### Multiple graphs
 
 So far we saw single plots of data, with no combinations and layers. It may be good to plot several. We can use "mfrow" with the `par()` function.
 
@@ -539,6 +536,91 @@ So far we saw single plots of data, with no combinations and layers. It may be g
 <br>
 
 To reset the plot to 1 figure, one can use `par(mfrow = c(1,1))`, that will get us back to normal.
+
+##### The `layout()` function
+
+Facilitates more complex plot arrangements.
+
+```{r eval=TRUE}
+  # Create a grid on how our figures should appear
+  grid <- matrix(c(1,1,2,3), nrow=2,ncol=2,byrow=TRUE)
+  # Pass it to the layout function
+  layout(grid)
+  # Plot LDL vs HDL
+  plot(HANES$LDL, HANES$HDL)
+  # Plot GLUCOSE vs HDL
+  plot(HANES$GLUCOSE, HANES$HDL)
+  # Plot CHOLESTEROLTOTAL vs HDL
+  plot(HANES$CHOLESTEROLTOTAL, HANES$HDL)
+  # Reset the layout
+  layout(1)
+```
+
+**Tip**: Resetting everytime might be too tedious. A trick is to assign the old setting to an object and reuse it when necessary:
+
+```{r eval=TRUE, warning=FALSE}
+  # Assign the old parameters to an object
+  old_parameters <- par()
+  # Change to new parameters
+  par(col="red")
+  # Plot LDL vs HDL
+  plot(HANES$LDL, HANES$HDL)
+  # Reset to old parameters
+  par(old_parameters)
+  # Test the original settings
+  plot(HANES$LDL, HANES$HDL)
+```
+
+Stacking graphical elements. It's a great way of adding more information to the plots.
+
+```{r eval=TRUE, warning=FALSE}
+  # Plot A1C vs GLUCOSESI
+  plot(HANES$A1C,HANES$GLUCOSESI, xlim=c(6,8), ylim=c(3,10))
+  # Using linear fit model. 
+  # Note: `lm()` function will return a vector of coefficients for the fit
+  lm_glucose_SI <- lm(HANES$A1C ~ HANES$GLUCOSESI)
+  # Stack the linear model on top of the plot with line width 2 (specified by `lwd` argument)
+  abline(coef(lm_glucose_SI),lwd = 2)
+```
+
+---
+
+<br>
+<span style="color:Blue">**Classwork**</span>: Make a plot and add elements through the functions `points()`, `lines()`, `segments()` and `text()`.
+<br>
+
+Adding lines may not be visually appealing if you ignore the order. In fact, it can make it worse:
+
+```{r eval=TRUE, warning=FALSE}
+  # Plot A1C vs GLUCOSESI
+  plot(HANES$A1C,HANES$GLUCOSESI, xlim=c(6,8), ylim=c(3,10))
+  # Using linear fit model. 
+  # Note: `lm()` function will return a vector of coefficients for the fit
+  lm_glucose_SI <- lm(HANES$A1C ~ HANES$GLUCOSESI)
+  # Stack the linear model on top of the plot with line width 2 (specified by `lwd` argument)
+  abline(coef(lm_glucose_SI),lwd = 2)
+  # Adding lines to the plot
+  lines(HANES$GLUCOSESI,HANES$A1C)
+```
+
+However, if you order your data, it may be really informative on how the errors are distributed:
+
+```{r eval=TRUE, warning=FALSE}
+  # Plot A1C vs GLUCOSESI
+  plot(HANES$A1C,HANES$GLUCOSESI, xlim=c(6,8), ylim=c(3,10))
+  # Using linear fit model. 
+  # Note: `lm()` function will return a vector of coefficients for the fit
+  lm_glucose_SI <- lm(HANES$A1C ~ HANES$GLUCOSESI)
+  # Stack the linear model on top of the plot with line width 2 (specified by `lwd` argument)
+  abline(coef(lm_glucose_SI),lwd = 2)
+  # Order GLUCOSESI
+  ranks <- order(HANES$GLUCOSESI)
+  # And then add the lines
+  lines(HANES$GLUCOSESI[ranks],HANES$A1C[ranks])
+```
+
+
+Ordering and sorting can be really handy in data manupilation and plotting.
 
 ---
 
