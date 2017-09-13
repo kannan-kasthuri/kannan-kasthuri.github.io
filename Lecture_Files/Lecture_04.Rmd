@@ -73,10 +73,42 @@ As an example,
   }
 ```
 
+R provides logical operators:
+
+* AND with symbol &
+* OR with symbol |
+* NOT with symbol !
+
+```{r eval=FALSE}
+  # AND truth table
+  TRUE  & TRUE   : TRUE
+  TRUE  & FALSE  : FALSE
+  FALSE & TRUE   : FALSE
+  FALSE & FALSE  : FALSE
+```
+
+Example: `x <- 5` and `(x >3) & (x <8)` will evaluate to `TRUE`.
+
+```{r eval=FALSE}
+  # OR truth table
+  TRUE  | TRUE   : TRUE
+  TRUE  | FALSE  : TRUE
+  FALSE | TRUE   : TRUE
+  FALSE | FALSE  : FALSE
+```
+
+Example: `x <- 5` and `(x >5) | (x <8)` will evaluate to `FALSE`.
+
+```{r eval=FALSE}
+  # NOT truth table
+  !TRUE  : FALSE
+  !FALSE : TRUE
+```
+
+Example:  `x <- 5` and `!((x >5) | (x <8))` will evaluate to `TRUE`.
 
 <br>
 <span style="color:magenta">**Classwork**</span>: Create an R script that returns the max value of a vector x with length 3. Don’t use the aid of an auxiliary variable.
-
 <br>
 
 **Note**: R comes out of the loop as soon as the condition is met. It will **not** evaluate further conditions down the line even if they satisfy.
@@ -94,6 +126,18 @@ As an example,
     print("x is neither divisible by 2 nor 3")
   }
 ```
+
+We can apply logical operators on vectors and matrices - works element wise:
+
+`c(TRUE,TRUE,FALSE) & c(FALSE,TRUE,TRUE)` will evaluate to `FALSE TRUE FALSE`.
+
+`c(TRUE,TRUE,FALSE) | c(FALSE,TRUE,TRUE)` will evaluate to `TRUE TRUE TRUE`.
+
+Also, we have `&&` and `||` operators in R. The difference between single `&`and `&&`is that, `&&` will only look at the first elements of the vectors. Similarly for `||`. Thus,
+
+`c(TRUE,TRUE,FALSE) && c(FALSE,TRUE,TRUE)` will evaluate to `FALSE` and 
+
+`c(TRUE,TRUE,FALSE) | c(FALSE,TRUE,TRUE)` will evaluate to `TRUE`.
 
 ---
 

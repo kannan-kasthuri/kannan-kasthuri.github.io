@@ -158,8 +158,29 @@ $(document).ready(function () {
   else {
     expression 3
   }</code></pre>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Create an R script that returns the max value of a vector x with length 3. Don’t use the aid of an auxiliary variable.</p>
-<p><br></p>
+<p>R provides logical operators:</p>
+<ul>
+<li>AND with symbol &amp;</li>
+<li>OR with symbol |</li>
+<li>NOT with symbol !</li>
+</ul>
+<pre class="r"><code>  # AND truth table
+  TRUE  &amp; TRUE   : TRUE
+  TRUE  &amp; FALSE  : FALSE
+  FALSE &amp; TRUE   : FALSE
+  FALSE &amp; FALSE  : FALSE</code></pre>
+<p>Example: <code>x &lt;- 5</code> and <code>(x &gt;3) &amp; (x &lt;8)</code> will evaluate to <code>TRUE</code>.</p>
+<pre class="r"><code>  # OR truth table
+  TRUE  | TRUE   : TRUE
+  TRUE  | FALSE  : TRUE
+  FALSE | TRUE   : TRUE
+  FALSE | FALSE  : FALSE</code></pre>
+<p>Example: <code>x &lt;- 5</code> and <code>(x &gt;5) | (x &lt;8)</code> will evaluate to <code>FALSE</code>.</p>
+<pre class="r"><code>  # NOT truth table
+  !TRUE  : FALSE
+  !FALSE : TRUE</code></pre>
+<p>Example: <code>x &lt;- 5</code> and <code>!((x &gt;5) | (x &lt;8))</code> will evaluate to <code>TRUE</code>.</p>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Create an R script that returns the max value of a vector x with length 3. Don’t use the aid of an auxiliary variable. <br></p>
 <p><strong>Note</strong>: R comes out of the loop as soon as the condition is met. It will <strong>not</strong> evaluate further conditions down the line even if they satisfy.</p>
 <pre class="r"><code>  # Assign x to 6
   x &lt;- 6
@@ -173,6 +194,12 @@ $(document).ready(function () {
     print(&quot;x is neither divisible by 2 nor 3&quot;)
   }</code></pre>
 <pre><code>## [1] &quot;x is divisioble by 2&quot;</code></pre>
+<p>We can apply logical operators on vectors and matrices - works element wise:</p>
+<p><code>c(TRUE,TRUE,FALSE) &amp; c(FALSE,TRUE,TRUE)</code> will evaluate to <code>FALSE TRUE FALSE</code>.</p>
+<p><code>c(TRUE,TRUE,FALSE) | c(FALSE,TRUE,TRUE)</code> will evaluate to <code>TRUE TRUE TRUE</code>.</p>
+<p>Also, we have <code>&amp;&amp;</code> and <code>||</code> operators in R. The difference between single <code>&amp;</code>and <code>&amp;&amp;</code>is that, <code>&amp;&amp;</code> will only look at the first elements of the vectors. Similarly for <code>||</code>. Thus,</p>
+<p><code>c(TRUE,TRUE,FALSE) &amp;&amp; c(FALSE,TRUE,TRUE)</code> will evaluate to <code>FALSE</code> and</p>
+<p><code>c(TRUE,TRUE,FALSE) | c(FALSE,TRUE,TRUE)</code> will evaluate to <code>TRUE</code>.</p>
 <hr />
 </div>
 <div id="selected-materials-and-references" class="section level4">
