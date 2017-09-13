@@ -125,8 +125,8 @@ $(document).ready(function () {
 <hr />
 <p>As the last part of R fundamentals series, we will study elements of R programming.</p>
 <hr />
-<div id="conditional-statements-in-r" class="section level4">
-<h4>Conditional statements in R</h4>
+<div id="conditional-statements-and-operators-in-r" class="section level4">
+<h4>Conditional statements and operators in R</h4>
 <p>R provides syntax to evaluate conditions.</p>
 <pre class="r"><code>  if (condition) {
     expression
@@ -200,6 +200,82 @@ $(document).ready(function () {
 <p>Also, we have <code>&amp;&amp;</code> and <code>||</code> operators in R. The difference between single <code>&amp;</code>and <code>&amp;&amp;</code>is that, <code>&amp;&amp;</code> will only look at the first elements of the vectors. Similarly for <code>||</code>. Thus,</p>
 <p><code>c(TRUE,TRUE,FALSE) &amp;&amp; c(FALSE,TRUE,TRUE)</code> will evaluate to <code>FALSE</code> and</p>
 <p><code>c(TRUE,TRUE,FALSE) | c(FALSE,TRUE,TRUE)</code> will evaluate to <code>TRUE</code>.</p>
+<p>We can check two objects are equal by the <code>==</code> sign or inequality using <code>!=</code> operator.</p>
+<pre class="r"><code>  # Check the quality of logical objects
+  TRUE == TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>  # Check the quality of logical objects
+  TRUE == FALSE</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>  # Compare strings
+  &quot;hi&quot; == &quot;hello&quot;</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>  # Or numbers
+  2 == 2</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>  # Check inequlaity
+  2 != 3</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>In fact, we can use comparison operators for objects!</p>
+<pre class="r"><code>  # Use comparison on objects
+  &quot;hello&quot; &gt;= &quot;goodbye&quot;</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>  # How about on logicals?
+  TRUE &lt; FALSE</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>Why is the comparison <code>TRUE &lt; FALSE</code> evaluates to <code>FALSE</code> despite the fact that <code>T &lt; F</code> in R? Becuase logicals are <em>coerced</em>. <code>TRUE</code> coresponds to 1 and <code>FALSE</code> to 0. We can also use comparison operators on vectors.</p>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<ol style="list-style-type: decimal">
+<li>Compare two vectors of equal length and output the result.</li>
+<li>How about vectors of unequal length? Why does the result makes sense?</li>
+<li>Compare two matrices and lists and explain how R handles such comparisons.</li>
+</ol>
+<p><br></p>
+<hr />
+</div>
+<div id="functions-and-data-structures-in-r" class="section level4">
+<h4>Functions and data structures in R</h4>
+<p>The general syntax of a function:</p>
+<pre class="r"><code>  my_function &lt;- function(arg 1, agr 2) {
+    body of the function
+  }</code></pre>
+<p>Unlike some other languages, in R, there is no special syntax for naming a function. One just defines like any other vector.</p>
+<p>Consider a simple function,</p>
+<pre class="r"><code>  # The add function
+  add &lt;- function(x, y=1) {
+    x+y
+  }</code></pre>
+<p>If y is not given any value, it will take the default argument. There is no difference between the functions we define and R supplied functions. There are three components foe every function, the formal, the body and the environment.</p>
+<pre class="r"><code>  # The add function
+  add &lt;- function(x, y=1) {
+    x+y
+  }
+  # Print the formals arguments
+  formals(add)</code></pre>
+<pre><code>## $x
+## 
+## 
+## $y
+## [1] 1</code></pre>
+<pre class="r"><code>  # Print the body 
+  body(add)</code></pre>
+<pre><code>## {
+##     x + y
+## }</code></pre>
+<pre class="r"><code>  # Print the environment
+  environment(add)</code></pre>
+<pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
+<p>Environment is typically invisible, but it is important on how the function behaves. We will soon see scope for functions. In this case the environment is the global environment.</p>
+<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: What does this function do?</p>
+<pre class="r"><code>  f &lt;- function(x) {
+          if (x&lt;0) {
+              -x
+          } else {
+               x
+            }
+        }</code></pre>
+<p><br></p>
+<p>Functions are just objects in R and act like any other object. You can assign a function to any other object and the object will behave exactly like the assigned function. Function need not have any name - they are called anonymous functions. Anonymous functions has to be called in one line. For example, <code>(function (x) {x+1})(2)</code> is an increment function that will produce the output 3.</p>
 <hr />
 </div>
 <div id="selected-materials-and-references" class="section level4">

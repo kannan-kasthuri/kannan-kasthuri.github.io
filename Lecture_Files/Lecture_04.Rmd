@@ -19,7 +19,7 @@ As the last part of R fundamentals series, we will study elements of R programmi
 
 ---
 
-#### Conditional statements in R
+#### Conditional statements and operators in R
 
 R provides syntax to evaluate conditions. 
 
@@ -138,6 +138,99 @@ Also, we have `&&` and `||` operators in R. The difference between single `&`and
 `c(TRUE,TRUE,FALSE) && c(FALSE,TRUE,TRUE)` will evaluate to `FALSE` and 
 
 `c(TRUE,TRUE,FALSE) | c(FALSE,TRUE,TRUE)` will evaluate to `TRUE`.
+
+We can check two objects are equal by the `==` sign or inequality using `!=` operator. 
+
+```{r eval=TRUE}
+  # Check the quality of logical objects
+  TRUE == TRUE
+  # Check the quality of logical objects
+  TRUE == FALSE
+  # Compare strings
+  "hi" == "hello"
+  # Or numbers
+  2 == 2
+  # Check inequlaity
+  2 != 3
+```
+
+In fact, we can use comparison operators for objects!
+
+```{r eval=TRUE}
+  # Use comparison on objects
+  "hello" >= "goodbye"
+  # How about on logicals?
+  TRUE < FALSE
+```
+
+Why is the comparison `TRUE < FALSE` evaluates to `FALSE` despite the fact that `T < F` in R? Becuase logicals are _coerced_. `TRUE` coresponds to 1 and `FALSE` to 0. We can also use comparison operators on vectors.
+
+<br>
+<span style="color:magenta">**Classwork**</span>: 
+
+1. Compare two vectors of equal length and output the result.
+2. How about vectors of unequal length? Why does the result makes sense?
+3. Compare two matrices and lists and explain how R handles such comparisons.
+
+<br>
+
+---
+
+#### Functions and data structures in R
+
+The general syntax of a function:
+
+```{r eval=FALSE}
+  
+  my_function <- function(arg 1, agr 2) {
+    body of the function
+  }
+```
+
+Unlike some other languages, in R, there is no special syntax for naming a function. One just defines like any other vector. 
+
+Consider a simple function,
+
+```{r eval=FALSE}
+  # The add function
+  add <- function(x, y=1) {
+    x+y
+  }
+```
+
+If y is not given any value, it will take the default argument. There is no difference between the functions we define and R supplied functions. There are three components foe every function, the formal, the body and the environment.
+
+```{r eval=TRUE}
+  # The add function
+  add <- function(x, y=1) {
+    x+y
+  }
+  # Print the formals arguments
+  formals(add)
+  # Print the body 
+  body(add)
+  # Print the environment
+  environment(add)
+```
+
+Environment is typically invisible, but it is important on how the function behaves. We will soon see scope for functions. In this case the environment is the global environment.
+
+<br>
+<span style="color:magenta">**Classwork**</span>: What does this function do?
+
+```{r eval=FALSE}
+  f <- function(x) {
+          if (x<0) {
+              -x
+          } else {
+               x
+            }
+        }
+```
+
+<br>
+
+Functions are just objects in R and act like any other object. You can assign a function to any other object and the object will behave exactly like the assigned function. Function need not have any name - they are called anonymous functions. Anonymous functions has to be called in one line. For example, `(function (x) {x+1})(2)` is an increment function that will produce the output 3.
 
 ---
 
