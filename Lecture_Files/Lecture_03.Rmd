@@ -15,9 +15,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-In this lecture we will consider other data types such as lists, data frames as well as graphics.
+#### Recorded Stream
 
 ---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wB8941-5r74" frameborder="0" allowfullscreen></iframe>
+
+---
+
+In this lecture we will consider other data types such as lists, data frames as well as graphics.
 
 #### Factors
 

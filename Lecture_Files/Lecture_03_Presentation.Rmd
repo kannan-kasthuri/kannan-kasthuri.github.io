@@ -707,10 +707,15 @@ Graphical parameters are not maintained throughout session. If you want to maint
 
 Now make another plot:
 
-```{r eval=TRUE}
+```{r eval=FALSE}
   # Plot Hemoglobin vs HDL
   plot(HANES$A1C, HANES$HDL)
 ```
+
+---
+
+![](par_maintained.png)
+
 
 ##
 
