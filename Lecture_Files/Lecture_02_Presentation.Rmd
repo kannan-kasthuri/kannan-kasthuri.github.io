@@ -113,7 +113,7 @@ You can assign strings to objects using qutation marks. For example, the followi
 ```
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Assign the string _hello world_ to object _h_ and print the result.
+<span style="color:blue">**Classwork/Homework**</span>: Assign the string _hello world_ to object _h_ and print the result.
 <br>
 
 ---
@@ -127,7 +127,7 @@ Whatever we do in the console can be saved as an RScript in the editor and run i
 _File_ -> _New File_ -> _RScript_, type the scripts, save it and click _Run_ in the editor.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Do the above classwork as an RScript and run.
+<span style="color:blue">**Classwork/Homework**</span>: Do the above classwork as an RScript and run.
 <br>
 
 ---
@@ -208,7 +208,7 @@ would describe the function `date()` in the help tab of the IDE.
 Note that if you type the function name without any paranthesis, R will print the source code of the function, which is not you may probably want.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Consider the `seq` function. What does it do?
+<span style="color:blue">**Classwork/Homework**</span>: Consider the `seq` function. What does it do?
 <br>
 
 ##
@@ -348,7 +348,7 @@ Alternatively, one can name the vectors as follows:
 ##
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. What happens if you type `names(n) <- v`? 
 2. What if the length of either vectors (names or values) are not the same? 
@@ -373,7 +373,7 @@ Alternatively, one can name the vectors as follows:
 ## 
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. What happens if you swap the index? 
 2. What happens if you subset by the name not present, like `v[c("two","three")]`? 
@@ -390,7 +390,7 @@ The function `is.na(x)` gives a logical vector of the same size as `x` with valu
 ##
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. Make a vector of length $5$ with `NA` in them and test for missing values using the `is.na()` function. 
 2. Extend this to a vector of length $5000$.
@@ -423,7 +423,7 @@ will render the arguments together.
 ##
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Play with the `sep` argument to include other type of delimiters (like comma etc.)
+<span style="color:blue">**Classwork/Homework**</span>: Play with the `sep` argument to include other type of delimiters (like comma etc.)
 <br>
 
 ---
@@ -564,7 +564,7 @@ Naming a matrix can be done using `rownames()` and `colnames()` functions, just 
 ##
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. What happens if the number of rows/coumns are more than the generated numbers when using the function `matrix()`?
 2. What happens in `cbind()` (and `rbind()`) if one of the columns (and rows) have more numbers than the other?
@@ -600,7 +600,7 @@ Subseting also works through column names and row names and could be combined wi
 ##
 
 <br>
-<span style="color:magenta">**Classwork**</span>:
+<span style="color:blue">**Classwork/Homework**</span>:
 
 1. What will `M[5]` print? Specify the rationale behind this.
 2. What does this subset print, `M[c(2,3),c(1,2)]`? 
@@ -642,7 +642,7 @@ Whenever possible, try to convert the vector into matrix and work with matrices.
 ##
 
 <br>
-<span style="color:magenta">**Classwork**</span>: What happens if you subtract/add/multiply two matrices of different size?
+<span style="color:blue">**Classwork/Homework**</span>: What happens if you subtract/add/multiply two matrices of different size?
 <br>
 
 ---

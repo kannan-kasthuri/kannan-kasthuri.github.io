@@ -72,7 +72,7 @@ You can assign strings to objects using qutation marks. For example, the followi
 ```
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Assign the string _hello world_ to object _h_ and print the result.
+<span style="color:blue">**Classwork/Homework**</span>: Assign the string _hello world_ to object _h_ and print the result.
 <br>
 
 ---
@@ -84,7 +84,7 @@ Whatever we do in the console can be saved as an RScript in the editor and run i
 _File_ -> _New File_ -> _RScript_, type the scripts, save it and click _Run_ in the editor.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Do the above classwork as an RScript and run.
+<span style="color:blue">**Classwork/Homework**</span>: Do the above classwork as an RScript and run.
 <br>
 
 ---
@@ -135,7 +135,7 @@ would describe the function `date()` in the help tab of the IDE.
 Note that if you type the function name without any paranthesis, R will print the source code of the function, which is not you may probably want.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Consider the `seq` function. What does it do?
+<span style="color:blue">**Classwork/Homework**</span>: Consider the `seq` function. What does it do?
 <br>
 
 Observe that:
@@ -230,7 +230,7 @@ Alternatively, one can name the vectors as follows:
 ```
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. What happens if you type `names(n) <- v`? 
 2. What if the length of either vectors (names or values) are not the same? 
@@ -251,7 +251,7 @@ Alternatively, one can name the vectors as follows:
 ```
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. What happens if you swap the index? 
 2. What happens if you subset by the name not present, like `v[c("two","three")]`? 
@@ -264,7 +264,7 @@ Alternatively, one can name the vectors as follows:
 The function `is.na(x)` gives a logical vector of the same size as `x` with value `TRUE` if and only if the corresponding element in x is NA. The function `is.na()` also returns the value `TRUE` for `NaN`. To differentiate these, R also provides a function `is.nan()` that returns `TRUE` only for `NaN`.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. Make a vector of length $5$ with `NA` in them and test for missing values using the `is.na()` function. 
 2. Extend this to a vector of length $5000$.
@@ -287,7 +287,7 @@ Note that by default the arguments are by default separated in the result by a s
 will render the arguments together.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Play with the `sep` argument to include other type of delimiters (like comma etc.)
+<span style="color:blue">**Classwork/Homework**</span>: Play with the `sep` argument to include other type of delimiters (like comma etc.)
 <br>
 
 ---
@@ -396,7 +396,7 @@ We can paste rows or columns using the functions `cbind()` (for coumumn binding)
 Naming a matrix can be done using `rownames()` and `colnames()` functions, just like we used the `names()` function for the vectors. Matrices can be combined using `cbind()` and `rbind()` functions.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. What happens if the number of rows/coumns are more than the generated numbers when using the function `matrix()`?
 2. What happens in `cbind()` (and `rbind()`) if one of the columns (and rows) have more numbers than the other?
@@ -422,7 +422,7 @@ Naming a matrix can be done using `rownames()` and `colnames()` functions, just 
 We can also subset multiple elements - to do this we use the combine function, `c()` along with index notation. Thus, `M[2,c(2,3)]` will fetch all the elements in $2$nd row and in columns $2$ and $3$. Subseting also works through column names and row names and could be combined with indices. Further, subsetting works on logicals the same way it works for vectors.
 
 <br>
-<span style="color:magenta">**Classwork**</span>:
+<span style="color:blue">**Classwork/Homework**</span>:
 
 1. What will `M[5]` print? Specify the rationale behind this.
 2. What does this subset print, `M[c(2,3),c(1,2)]`? 
@@ -446,7 +446,7 @@ We can also subset multiple elements - to do this we use the combine function, `
 **Note 2**: Matrix multiplication is element-wise, unlike standard way of multiplying matrices (as in linear algebra). Matrices and vectors are very similar. The principle of coercion and recycling works almost the same.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: What happens if you subtract/add/multiply two matrices of different size?
+<span style="color:blue">**Classwork/Homework**</span>: What happens if you subtract/add/multiply two matrices of different size?
 <br>
 
 ---

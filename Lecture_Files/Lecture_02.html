@@ -159,7 +159,7 @@ $(document).ready(function () {
 <pre class="r"><code>  r &lt;- &quot;R rocks&quot;
   r</code></pre>
 <pre><code>## [1] &quot;R rocks&quot;</code></pre>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Assign the string <em>hello world</em> to object <em>h</em> and print the result. <br></p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Assign the string <em>hello world</em> to object <em>h</em> and print the result. <br></p>
 <hr />
 </div>
 </div>
@@ -167,7 +167,7 @@ $(document).ready(function () {
 <h4>Rscripts</h4>
 <p>Whatever we do in the console can be saved as an RScript in the editor and run in RStudio. To do this choose:</p>
 <p><em>File</em> -&gt; <em>New File</em> -&gt; <em>RScript</em>, type the scripts, save it and click <em>Run</em> in the editor.</p>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Do the above classwork as an RScript and run. <br></p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Do the above classwork as an RScript and run. <br></p>
 <hr />
 </div>
 <div id="data-permanency-and-removing-objects" class="section level4">
@@ -188,13 +188,13 @@ $(document).ready(function () {
 <pre class="r"><code>  functionName(arg1 = val1, arg2 = val2, and so on)</code></pre>
 <p><strong>Note</strong>: Not all functions will have arguments. For instance, the function <code>date()</code> that prints the current date and time does not have any argument.</p>
 <pre class="r"><code>  date()</code></pre>
-<pre><code>## [1] &quot;Tue Sep 12 16:16:53 2017&quot;</code></pre>
+<pre><code>## [1] &quot;Thu Sep 14 10:52:38 2017&quot;</code></pre>
 <p>One of the extremely helpful feature of RStudio is the <code>?</code> operator. You can use this to find out the description of the function in question, including its usage and arguments. <span style="color:blue"> <em>Question the function to know more about the function in question</em>. </span> For instance,</p>
 <pre class="r"><code>  ?date()</code></pre>
 <p>would describe the function <code>date()</code> in the help tab of the IDE.</p>
 <p><strong>Tip</strong>: If you type <code>da</code> in console and hit TAB, RStudio will try to autocomplete the function for you, suggesting hints on what possibly could be the built-in function. Also, if you type an open paranthesis, RStudio will also supply the closed parathesis.</p>
 <p>Note that if you type the function name without any paranthesis, R will print the source code of the function, which is not you may probably want.</p>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Consider the <code>seq</code> function. What does it do? <br></p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Consider the <code>seq</code> function. What does it do? <br></p>
 <p>Observe that:</p>
 <pre class="r"><code>  seq(from=1,to=10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -256,7 +256,7 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
   v</code></pre>
 <pre><code>##     two fifteen    five   seven 
 ##       2      15       5       7</code></pre>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>:</p>
 <ol style="list-style-type: decimal">
 <li>What happens if you type <code>names(n) &lt;- v</code>?</li>
 <li>What if the length of either vectors (names or values) are not the same?</li>
@@ -281,7 +281,7 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
   v[c(FALSE,TRUE,TRUE,FALSE)]</code></pre>
 <pre><code>## fifteen    five 
 ##      15       5</code></pre>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>:</p>
 <ol style="list-style-type: decimal">
 <li>What happens if you swap the index?</li>
 <li>What happens if you subset by the name not present, like <code>v[c(&quot;two&quot;,&quot;three&quot;)]</code>?</li>
@@ -292,7 +292,7 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
 <div id="missing-values" class="section level5">
 <h5>Missing values</h5>
 <p>The function <code>is.na(x)</code> gives a logical vector of the same size as <code>x</code> with value <code>TRUE</code> if and only if the corresponding element in x is NA. The function <code>is.na()</code> also returns the value <code>TRUE</code> for <code>NaN</code>. To differentiate these, R also provides a function <code>is.nan()</code> that returns <code>TRUE</code> only for <code>NaN</code>.</p>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>:</p>
 <ol style="list-style-type: decimal">
 <li>Make a vector of length <span class="math inline">\(5\)</span> with <code>NA</code> in them and test for missing values using the <code>is.na()</code> function.</li>
 <li>Extend this to a vector of length <span class="math inline">\(5000\)</span>. <br></li>
@@ -307,7 +307,7 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
 <pre class="r"><code>  paste(c(&quot;X&quot;,&quot;Y&quot;), &quot;ab,b&quot;, sep=&quot;&quot;)</code></pre>
 <pre><code>## [1] &quot;Xab,b&quot; &quot;Yab,b&quot;</code></pre>
 <p>will render the arguments together.</p>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: Play with the <code>sep</code> argument to include other type of delimiters (like comma etc.) <br></p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Play with the <code>sep</code> argument to include other type of delimiters (like comma etc.) <br></p>
 <hr />
 </div>
 </div>
@@ -415,7 +415,7 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
 ## [1,]    1    2    3
 ## [2,]    1    2    3</code></pre>
 <p>Naming a matrix can be done using <code>rownames()</code> and <code>colnames()</code> functions, just like we used the <code>names()</code> function for the vectors. Matrices can be combined using <code>cbind()</code> and <code>rbind()</code> functions.</p>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>:</p>
 <ol style="list-style-type: decimal">
 <li>What happens if the number of rows/coumns are more than the generated numbers when using the function <code>matrix()</code>?</li>
 <li>What happens in <code>cbind()</code> (and <code>rbind()</code>) if one of the columns (and rows) have more numbers than the other?</li>
@@ -438,7 +438,7 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
   M[3,]</code></pre>
 <pre><code>## [1] 3 6 9</code></pre>
 <p>We can also subset multiple elements - to do this we use the combine function, <code>c()</code> along with index notation. Thus, <code>M[2,c(2,3)]</code> will fetch all the elements in <span class="math inline">\(2\)</span>nd row and in columns <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span>. Subseting also works through column names and row names and could be combined with indices. Further, subsetting works on logicals the same way it works for vectors.</p>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>:</p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>:</p>
 <ol style="list-style-type: decimal">
 <li>What will <code>M[5]</code> print? Specify the rationale behind this.</li>
 <li>What does this subset print, <code>M[c(2,3),c(1,2)]</code>? <br></li>
@@ -459,7 +459,7 @@ sum: 37 61.3 161.8 7 23.29 73 25.6 19 25 53.2 128.3 58.6 17.86 56.43 41.4 21.2 3
 ## [3,]  -22  -19  -16</code></pre>
 <p><strong>Note 1</strong>: The result is same as <code>M - matrix(v, nrow=3, ncol=3)</code>. Although recycling provides a convinient way to manipulate matrix-vector operations, it is important to use such expression with caution. Whenever possible, try to convert the vector into matrix and work with matrices.</p>
 <p><strong>Note 2</strong>: Matrix multiplication is element-wise, unlike standard way of multiplying matrices (as in linear algebra). Matrices and vectors are very similar. The principle of coercion and recycling works almost the same.</p>
-<p><br> <span style="color:magenta"><strong>Classwork</strong></span>: What happens if you subtract/add/multiply two matrices of different size? <br></p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: What happens if you subtract/add/multiply two matrices of different size? <br></p>
 <hr />
 </div>
 </div>
