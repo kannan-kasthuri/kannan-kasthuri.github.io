@@ -11,42 +11,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Homework 01 (due Sept. 27,2017)
+### Homework 01 (due Sept. 27,2017, 5pm)
 
 ---
 
-* General guidelines for homeworks and how to submit them is given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html).
+General guidelines for homeworks and how to submit them is given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html).
 
-* You may need lectures 1-3 (until R Markdown) before attempting to complete this. There is sufficient time to work on this. 
 
-<br>
+There are three parts of HW1: finish classwork of lecture2, 3 and upload it through github classroom. Please name your assignment as HW1_fistname_lastname. HW1 is due to Sept. 27 5pm. If you have any questions about HW1, feel free to contact Yuhan, yuhan.hao at nyumc.org
 
-##### Edit README.md
+You may use Rscript to complete this assignment. 
 
-Claim your repository in [GitHub page](https://github.com/PDA-NYU-Fall-2017) created for this course. It should look like this (with your name instead):
+**Note**: You need to write a README.txt as given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html).
 
----
-
-![](Git_Repo_Example.png)
-
----
-
-At this point, if the class has been a smooth sail for you, you should be able to pull the repository into RStudio, edit the README.md file using RStudio editor, and push it back to the repository. 
-
-You may alternatively edit the file in GitHub browser. Try it out.
-
-This is the assignment. Edit README.md file by pulling into RStudio, editing, saving and pushing it. Also, edit the file in Github browser. Be creative.
 
 ---
 
 ##### Report how you did it? - we really care for you
 
-Write a description in README.md how you got the changes.
-
-1. What changes you made using the Github browser?
-
-2. What changes you made using RStudio - by editing locally, saving, commiting, and pushing to github.com?
-
-Feel free to write how this exercise worked for you and other things you read (related to this course). This can be removed later.
+Feel free to write how this exercise worked for you and other things you read (related to this course) in README.txt. The reposotories are private and can be accessed ony by the admins. And also, this can be removed later.
 
 ---
