@@ -232,6 +232,98 @@ Environment is typically invisible, but it is important on how the function beha
 
 Functions are just objects in R and act like any other object. You can assign a function to any other object and the object will behave exactly like the assigned function. Function need not have any name - they are called anonymous functions. Anonymous functions has to be called in one line. For example, `(function (x) {x+1})(2)` is an increment function that will produce the output 3.
 
+##### Scoping
+
+R looks into the function scope for values.
+
+```{r eval=TRUE}
+  # Assign the value 10 for x
+  x <- 10
+  # Define a function f that returns a vector
+  f <- function() {
+    x <- 1
+    y <- 3
+    c(x,y)
+  }
+  # Print the function
+  f()
+```
+
+If the value is not in the scope, it looks one level above.
+
+```{r eval=TRUE}
+  # Assign the value 10 for x
+  x <- 10
+  # Define a function f that returns a vector
+  f <- function() {
+    y <- 3
+    c(x,y)
+  }
+  # Print the function 
+  # Note x is not in the scope
+  f()
+```
+
+<br>
+<span style="color:magenta">**Classwork**</span>: Use `rm(x)` in the above code to remove x from the global environment and report what happens when you call the function.
+
+<br>
+
+Scoping defines _where_ and not _when_ to look for a function. 
+
+```{r eval=TRUE}
+  # Define a function
+  f <- function() x
+  x <- 15
+  f()
+  x <- 20
+  f()
+```
+
+
+This is a highly undersirable behaviour. So always as a practice design functions using the variables you'll use and not leave it to the environment. 
+
+Lookup works the same for functions when it comes to scoping.
+
+```{r eval=TRUE}
+  # Define a function l
+  l <- function() x + 20
+  # Define another function and define l inside f
+  f <- function() {
+        l <- function(x) x +15
+        l(20)
+  }
+  f()
+
+```
+
+If you use name like a function, R ignores any non-function objects when it looks it up. Here is an example:
+
+```{r eval=TRUE}
+  # Define c
+  c <- 20
+  # Use c as a combine 
+  # R ignores the function aspect of c
+  c(c=c)
+```
+
+Each call to a function has its own clean environment.
+
+```{r eval=TRUE}
+  # Define a function
+  f <- function() {
+    if (!exists("a")) {
+      a <- 10
+    } else {
+      a <- a + 1
+    }
+    print(a)
+  }
+ f()
+```
+
+Everytime the working environment for this function is empty and so it is going to print only 10.
+
 ---
 
 #### Selected materials and references
