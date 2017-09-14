@@ -21,17 +21,17 @@ The following are pre-requisites for submitting the homework.
 
 * We assume you already have a Github account and you are able to push/pull into Github. If not, please read [Lecture 01](https://kannan-kasthuri.github.io/Lecture_Files/Lecture_01.html).
 
-* Claim your repository in Github - otherwise ask me and I will make you one.
+* Claim your repository in Github - just accept your assignment invitation.
 
 ---
 
 ##### README.txt
 
-As your first homework, you will create a README.txt file and push it into your repository. You need to constantly update this README.txt file as you work through the rest of the homeworks.
+As a part of your first homework, you will also create a README.txt file and push it into your repository. For every assignment you do, you have to create a README.txt file. It could be a very simple file, but you need to make one. Assignments without README.txt **will not** be graded and given zero.
 
 ---
 
-##### Naming files
+##### Naming files (after the first homework)
 
 Throughout this course you will create R Markdown files and render it as html which you will push to your coursework repository. Your markdown files **should be named** with an extension ".Rmd" or ".rmd". RStudio’s “Knit to HTML” button will compile the document for you to actual HTML and open a preview. 
 You may want to read the chapter [R Markdown](http://r4ds.had.co.nz/r-markdown.html) in the book R for Data Science if you want to get started before we cover this in the class.
@@ -42,33 +42,51 @@ Make sure you organize your files really well and name appropriately so it is ea
 
 ##### How to submit homework?
 
-1. Make sure you have saved the work in your local directory. When you hit the save icon in the RStudio editor, you will see the markdown .Rmd file popping up in the Git panel of RStudio, ready to be committed.
+1. Accept your assignment in your GitHub home page. A repository will be created. 
 
-2. Click "Knit to HTML" in RStudio editor to render the associated HTML file. A preview of the HTML file should pop up. At this point you will see two files, the markdown and the html documents, ready to be committed to Git. 
+2. Open _RStudio -> New Project... -> Version Control -> Git_
+
+3. Copy and paste the link of the repository. Choose the project desitination folder name and path.
+
+4. Work on your homework. Make README.txt and save it to the directory.
+
+5. Make sure you have saved the work in your local directory.  
+
+6. When you hit the save icon in the RStudio editor, you will see the saved file popping up in the Git panel of RStudio, ready to be committed. In case of markdown files (from home work 2), you need to do "Knit to HTML" in RStudio editor to render the associated HTML file.
+
+7. The saved file should pop up in the Git pane in the environment pane. In case of _knitted_ markdown file, you will see two files, the markdown and the html documents, ready to be committed to Git (after you knit). 
+
+---
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("../Figures/Fig_2.html")
 ```
 <br>
 
-3. Check the files, write a commit message and commit the work to your Git repository.
+---
+
+8. Check the files, write a commit message and commit the work to your Git repository.
+
+---
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("../Figures/Fig_3.html")
 ```
 <br>
 
-4. Push your work into Github.
+---
+
+9. Push your work into Github.
+
+---
 
 ```{r, echo=FALSE}
 htmltools::includeHTML("../Figures/Fig_4.html")
 ```
 <br>
 
-5. Indicate that you have completed your work by creating a "New issue" in our [discussion page](https://github.com/PDA-NYU-Fall-2017/Discussion/issues) with the "file path" information for your .Rmd and .html files and submit it. You are done now.
+---
 
-```{r, echo=FALSE}
-htmltools::includeHTML("../Figures/Fig_5.html")
-```
+You are done now.
 
 ---
