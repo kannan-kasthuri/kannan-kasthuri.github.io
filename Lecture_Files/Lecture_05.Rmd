@@ -20,8 +20,6 @@ Data exploration is the art of looking at the data, rapidly generating hypothese
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: Get  familiar with HANES and MIMIC3 data sets - we will be extensively using them.
 
-<br>
-
 ---
 
 #### Prerequisites
@@ -248,6 +246,108 @@ What are the advantages to using faceting instead of the colour aesthetic? What 
 6. When using `facet_grid()` you should usually put the variable with more unique levels in the columns. Why?
 
 ---
+
+#### Geometric objects
+
+How are these two plots similar?
+
+```{r eval=TRUE, warning=FALSE, message=FALSE, echo=FALSE}
+  # Plot UCREATININE vs UALBUMIN, coloring GENDER
+  ggplot(data = HANES) + 
+    geom_point(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
+    xlim(c(0,100)) + ylim(c(0,10))
+```
+
+```{r eval=TRUE, warning=FALSE, message=FALSE, echo=FALSE}
+  # Smooth UCREATININE vs UALBUMIN, coloring GENDER
+  ggplot(data = HANES) + 
+    geom_smooth(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
+    xlim(c(0,100)) + ylim(c(0,10))
+```
+
+Both plots contain the same x variable, the same y variable, and both describe the same data. But the plots are not identical. Each plot uses a different visual object to represent the data. In ggplot2 syntax, they're called **geoms**.
+
+A **geom** is the geometrical object that a plot uses to represent data. 
+
+Plots are often described by the type of geom that the plot uses. For example, bar charts use bar geoms, line charts use line geoms, boxplots use boxplot geoms, and so on. Scatterplots break the trend; they use the point geom. We can use different geoms to plot the same data. The plot on top uses the point geom, and the plot in the bottom uses the smooth geom, a smooth line fitted to the data.
+
+Here is the point geom code:
+
+```{r eval=FALSE, warning=FALSE, message=FALSE, echo=TRUE, results="hide"}
+  # Plot point geom (scatter plot) UCREATININE vs UALBUMIN, coloring GENDER
+  ggplot(data = HANES) + 
+  geom_point(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
+  xlim(c(0,100)) + ylim(c(0,10))
+```
+
+And here is the line geom code:
+
+```{r eval=FALSE, warning=FALSE, message=FALSE, echo=TRUE, results="hide"}
+  # Plot smooth geom UCREATININE vs UALBUMIN, coloring GENDER
+  ggplot(data = HANES) + 
+  geom_smooth(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
+  xlim(c(0,100)) + ylim(c(0,10))
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Try `geom_smmoth` on different variables in HANES and MIMIC3 data frames.
+
+Every geom function in ggplot2 takes a mapping argument. 
+
+However, not every aesthetic works with every geom. We could set the shape of a point, but we cannot set the “shape” of a line. 
+
+On the other hand, we could set the color/linetype of a line. 
+
+`geom_smooth()` will draw a different line, with a different color for male and female, for each unique value of the variable that we map to color. One can also specify `linetype` instead of color.
+
+In fact, we can over lay two geoms on the **same** plot - super cool, isn't it (compare it with `abline()` function):
+
+```{r eval=TRUE, warning=FALSE, message=FALSE, echo=TRUE}
+  # Plot smooth and point geom in the same plot 
+  ggplot(data = HANES) + 
+  geom_smooth(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
+  xlim(c(0,100)) + ylim(c(0,10)) +
+  geom_point(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER))
+```
+
+**Note**: This introduces some duplication in our code. Imagine if we wanted to change the y-axis to display UACR values instead of UALBUMIN. We need to change the variable in two places, and we might forget to update one. We can avoid this type of repetition by passing a set of mappings to the `ggplot()` function. ggplot2 will treat these mappings as global mappings that apply to each geom in the graph. In other words, this code will produce the same plot as the previous code:
+
+```{r eval=TRUE, warning=FALSE, message=FALSE, echo=TRUE}
+  # Plot smooth and point geom in the same plot 
+  ggplot(data = HANES, mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
+  xlim(c(0,100)) + ylim(c(0,10)) +
+  geom_smooth() + 
+  geom_point()
+```
+
+If we place mappings in a geom function, ggplot2 will treat them as local mappings for the layer. 
+
+It will use these mappings to extend or overwrite the global mappings for that layer only. 
+
+This makes it possible to display different aesthetics in different layers.
+
+```{r eval=TRUE, warning=FALSE, message=FALSE, echo=TRUE}
+  # Plot smooth and point geom in the same plot 
+  ggplot(data = HANES, mapping = aes(x = UCREATININE, y = UALBUMIN)) + 
+  xlim(c(0,100)) + ylim(c(0,10)) +
+  geom_smooth(mapping = aes(color = AGEGROUP)) + 
+  geom_point() 
+```
+
+**Note**: One can use this idea for plotting _different_ data to different layers. For example, the geom `geom_point` can be specified to select DX_DBTS variable consisting only diabetic people, for instance.
+
+ggplot2 provides over 30 geoms, and extension packages provide even more (see https://www.ggplot2-exts.org for a sampling). The best way to get a comprehensive overview is the ggplot2 cheatsheet, which you can find at http://rstudio.com/cheatsheets. To learn more about any single geom, use help: ?geom_smooth.
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+1. What does the `group` argument in aesthetics in the line geom do? Try it in an example and report the result.
+2. What geom would you use to draw a line chart? A boxplot? A histogram? An area chart?
+3. What does `show.legend = FALSE` do? What happens if you remove it?
+4. What does the `se` argument to `geom_smooth()` do?
+5. Read sections 3.7, 3.8 in the book [R for Data Science](http://r4ds.had.co.nz/). For each code example (ignore code in exercises) given in these sections, you need to provide similar examples using HANES/MIMIC3 data sets. Also, change the documentation to reflect your demo.
+
+<br>
 
 #### Selected materials and references
 
