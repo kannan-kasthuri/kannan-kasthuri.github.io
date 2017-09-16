@@ -11,11 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### R fundamentals 03: Elements of programming  (Sept. 19, 2017)
+### R fundamentals 03: Elements of programming, markdown  (Sept. 19, 2017)
 
 ---
 
-As the last part of R fundamentals series, we will study elements of R programming.
+As the last part of R fundamentals series, we will study elements of R programming and R markdown.
 
 ---
 
@@ -324,7 +324,29 @@ Each call to a function has its own clean environment.
 
 Everytime the working environment for this function is empty and so it is going to print only 10.
 
----
+##### A note on data structures
+
+**Atomic vectors** are of six types: logical, integer, double, character, complex and raw.
+
+**Linked lists** aka lists are like vectors but can hold multiple data types. Lists can also contain lists.
+
+Every data structure has two key properties. The `typeof()` function that specifies the type of the data structure and `length()` function that gives the length of the data structure.
+
+Another important object in R is the `NULL` that specifies the absence of elements in a data structure. Compare this with `NA` that specifies the absense of values in a data structure. This can be seen as follows:
+
+```{r eveal=TRUE}
+  # Find the type and length of NULL
+  typeof(NULL)
+  length(NULL)
+  # Find the type and length of NA
+  typeof(NA)
+  length(NA)
+```
+
+**Quiz**: How do you test for `NA` in a vector?
+
+In fact there are many types of `NA` depending on the data type, one for each atomic type (like `NA` for integer etc.). Missing values are contagious - any mathematical operation involving `NA` will result in NA. Any logical comparison involving `NA` will result in `NA` too (like `NA == NA`).
+
 
 #### Selected materials and references
 

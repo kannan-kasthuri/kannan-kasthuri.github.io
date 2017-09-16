@@ -120,10 +120,10 @@ $(document).ready(function () {
 
 
 <hr />
-<div id="r-fundamentals-03-elements-of-programming-sept.-19-2017" class="section level3">
-<h3>R fundamentals 03: Elements of programming (Sept. 19, 2017)</h3>
+<div id="r-fundamentals-03-elements-of-programming-markdown-sept.-19-2017" class="section level3">
+<h3>R fundamentals 03: Elements of programming, markdown (Sept. 19, 2017)</h3>
 <hr />
-<p>As the last part of R fundamentals series, we will study elements of R programming.</p>
+<p>As the last part of R fundamentals series, we will study elements of R programming and R markdown.</p>
 <hr />
 <div id="conditional-statements-and-operators-in-r" class="section level4">
 <h4>Conditional statements and operators in R</h4>
@@ -345,7 +345,25 @@ $(document).ready(function () {
  f()</code></pre>
 <pre><code>## [1] 10</code></pre>
 <p>Everytime the working environment for this function is empty and so it is going to print only 10.</p>
-<hr />
+</div>
+<div id="a-note-on-data-structures" class="section level5">
+<h5>A note on data structures</h5>
+<p><strong>Atomic vectors</strong> are of six types: logical, integer, double, character, complex and raw.</p>
+<p><strong>Linked lists</strong> aka lists are like vectors but can hold multiple data types. Lists can also contain lists.</p>
+<p>Every data structure has two key properties. The <code>typeof()</code> function that specifies the type of the data structure and <code>length()</code> function that gives the length of the data structure.</p>
+<p>Another important object in R is the <code>NULL</code> that specifies the absence of elements in a data structure. Compare this with <code>NA</code> that specifies the absense of values in a data structure. This can be seen as follows:</p>
+<pre class="r"><code>  # Find the type and length of NULL
+  typeof(NULL)</code></pre>
+<pre><code>## [1] &quot;NULL&quot;</code></pre>
+<pre class="r"><code>  length(NULL)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>  # Find the type and length of NA
+  typeof(NA)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>  length(NA)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p><strong>Quiz</strong>: How do you test for <code>NA</code> in a vector?</p>
+<p>In fact there are many types of <code>NA</code> depending on the data type, one for each atomic type (like <code>NA</code> for integer etc.). Missing values are contagious - any mathematical operation involving <code>NA</code> will result in NA. Any logical comparison involving <code>NA</code> will result in <code>NA</code> too (like <code>NA == NA</code>).</p>
 </div>
 </div>
 <div id="selected-materials-and-references" class="section level4">
