@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 General guidelines for homeworks and how to submit them is given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html).
 
 
-There are three parts of HW1: finish classwork of lecture2, 3 and upload it through github classroom. Please name your assignment as HW1_fistname_lastname. HW1 is due to Sept. 27 5pm. If you have any questions about HW1, feel free to contact Yuhan, yuhan.hao at nyumc.org
+There are three parts of HW1: finish classwork/homework of Lectures 02 and 03 and push it through git (using the terminal or through RStudio). Please name your assignment as HW1_fistname_lastname. HW1 is due to Sept. 27, 5pm. If you have any questions about HW1, feel free to contact Yuhan, yuhan.hao at nyumc.org
 
 You may use Rscript to complete this assignment. 
 
