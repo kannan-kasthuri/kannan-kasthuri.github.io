@@ -1,0 +1,46 @@
+---
+# title: "Lecture 01"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Project Assesments
+
+---
+
+Reading and doing both constitute good project management. Final submission will be assessed based on your reading on data science as well as working towards your project. The first part will focus on your interest (and communicating) in doing data science and the second part will be aimed at identifying where you stand on the project, to help you meet the final delivarable.
+
+---
+
+##### Part I: Reading/doing and presentation 
+
+On one of the two days, Oct. 10 or Oct. 12, 2017, you will be given about 10 minutes time to present on any of the following topics. You may have a maximum of 6 slides, within which you have to convey, in broadest terms possible, on what you learned on the topic. It could as well be analysis report and directed insights based on analysis tools (see below). Your time slot will be sent to you.
+
+**Grammar of graphics**: A grammar of graphics is a tool that enables us to concisely describe the components of a graphic. Such a grammar allows us to move beyond named graphics (e.g., the ``scatterplot'') and gain insight into the deep structure that underlies statistical graphics$^{1}$. Here is the [original paper](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf). You may apply grammar of graphics (ggplot) to your data set and explain the results.
+
+**KNIME**: KNIME is an analytics platform and a leading open solution for data-driven innovation, designed for discovering the potential hidden in data, mining for fresh insights, or predicting new futures$^{2}$. You may make a demo of KNIME or analyze your dataset using KNIME, describing the workflow. KNIME can be downloaded for free [here](https://www.knime.com/downloads).
+
+**Reading List**: You may read any chapter in the books given in the section "Statistics and Algorithms Theory" listed [here](http://blog.shawnhermans.com/2014/07/28/big-data-reading-list.html), and present it.
+
+---
+
+##### Part II: Mid-term project assessment
+
+You have to apply the explore and wrangle paradigm on the data set of your choice and submit the results. This will be your home work assignment # 04. The due date is Oct. 26 at 5pm. 
+
+---
+
+##### References
+
+1. http://vita.had.co.nz/papers/layered-grammar.html
+
+2. https://www.knime.com/about
+
+---
