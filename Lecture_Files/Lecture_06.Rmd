@@ -15,6 +15,45 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+We will work with HANES data set. In the spirit of in the data transformation section in R for Data Science, we will look into the `dplyr()` functions. As usual, we will first import the curated HANES data set in RStudio:
+
+```{r eval=TRUE, message=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Rename the HSQ_1 factor for identification
+  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
+  # Rename the DX_DBTS as a factor
+  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
+  # Omit all NA from the data frame
+  HANES <- na.omit(HANES)
+  # Observe the structure
+  str(HANES)
+```
+
+We will see more about tibbles in the wrangle section but we will make a short note of it now.
+
+A tibble, or `tbl_df`, is a modern reimagining of the data frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces one to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced `print method()` which makes them easier to use with large datasets containing complex objects.
+
+To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on..
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Load the tidyverse library
+  library(tidyverse)
+  # Convert HANES data frame into a tibble and observe it
+  HANES_TIB <- as.tibble(HANES)
+  HANES_TIB
+```
 
 
 #### Selected materials and references

@@ -123,6 +123,80 @@ $(document).ready(function () {
 <div id="data-science-fundamentals-02-transform-sept.-26-2017" class="section level3">
 <h3>Data science fundamentals 02: Transform (Sept. 26, 2017)</h3>
 <hr />
+<p>We will work with HANES data set. In the spirit of in the data transformation section in R for Data Science, we will look into the <code>dplyr()</code> functions. As usual, we will first import the curated HANES data set in RStudio:</p>
+<pre class="r"><code>  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 &lt;- &quot;https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io&quot;
+  URL_text_2 &lt;- &quot;/master/Datasets/HANES/NYC_HANES_DIAB.csv&quot;
+  # Paste it to constitute a single URL 
+  URL &lt;- paste(URL_text_1,URL_text_2, sep=&quot;&quot;)
+  HANES &lt;- read.csv(text=getURL(URL))
+  # Rename the GENDER factor for identification
+  HANES$GENDER &lt;- factor(HANES$GENDER, labels=c(&quot;M&quot;,&quot;F&quot;))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP &lt;- factor(HANES$AGEGROUP, labels=c(&quot;20-39&quot;,&quot;40-59&quot;,&quot;60+&quot;))
+  # Rename the HSQ_1 factor for identification
+  HANES$HSQ_1 &lt;- factor(HANES$HSQ_1, labels=c(&quot;Excellent&quot;,&quot;Very Good&quot;,&quot;Good&quot;, &quot;Fair&quot;, &quot;Poor&quot;))
+  # Rename the DX_DBTS as a factor
+  HANES$DX_DBTS &lt;- factor(HANES$DX_DBTS, labels=c(&quot;DIAB&quot;,&quot;DIAB NO_DX&quot;,&quot;NO DIAB&quot;))
+  # Omit all NA from the data frame
+  HANES &lt;- na.omit(HANES)
+  # Observe the structure
+  str(HANES)</code></pre>
+<pre><code>## 'data.frame':    1112 obs. of  23 variables:
+##  $ KEY              : Factor w/ 1527 levels &quot;133370A&quot;,&quot;133370B&quot;,..: 28 43 44 53 55 70 84 90 100 107 ...
+##  $ GENDER           : Factor w/ 2 levels &quot;M&quot;,&quot;F&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ SPAGE            : int  29 28 27 24 30 26 31 32 34 32 ...
+##  $ AGEGROUP         : Factor w/ 3 levels &quot;20-39&quot;,&quot;40-59&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ HSQ_1            : Factor w/ 5 levels &quot;Excellent&quot;,&quot;Very Good&quot;,..: 2 2 2 1 1 3 1 2 1 3 ...
+##  $ UCREATININE      : int  105 53 314 105 163 150 46 36 177 156 ...
+##  $ UALBUMIN         : num  0.707 1 8 4 3 2 2 0.707 4 3 ...
+##  $ UACR             : num  0.00673 2 3 4 2 ...
+##  $ MERCURYU         : num  0.37 0.106 0.487 2.205 0.979 ...
+##  $ DX_DBTS          : Factor w/ 3 levels &quot;DIAB&quot;,&quot;DIAB NO_DX&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ A1C              : num  5 5.2 4.8 5.1 4.3 5.2 4.8 5.2 4.8 5.2 ...
+##  $ CADMIUM          : num  0.2412 0.1732 0.0644 0.0929 0.1202 ...
+##  $ LEAD             : num  1.454 1.019 0.863 1.243 0.612 ...
+##  $ MERCURYTOTALBLOOD: num  2.34 2.57 1.32 14.66 2.13 ...
+##  $ HDL              : int  42 51 42 61 52 50 57 56 42 44 ...
+##  $ CHOLESTEROLTOTAL : int  184 157 145 206 120 155 156 235 156 120 ...
+##  $ GLUCOSESI        : num  4.61 4.77 5.16 5 5.11 ...
+##  $ CREATININESI     : num  74.3 73 80 84.9 66 ...
+##  $ CREATININE       : num  0.84 0.83 0.91 0.96 0.75 0.99 0.9 0.84 0.93 1.09 ...
+##  $ TRIGLYCERIDE     : int  156 43 108 65 51 29 31 220 82 35 ...
+##  $ GLUCOSE          : int  83 86 93 90 92 85 72 87 96 92 ...
+##  $ COTININE         : num  31.5918 0.0635 0.035 0.0514 0.035 ...
+##  $ LDLESTIMATE      : int  111 97 81 132 58 99 93 135 98 69 ...
+##  - attr(*, &quot;na.action&quot;)=Class 'omit'  Named int [1:415] 2 15 16 24 26 28 33 34 35 39 ...
+##   .. ..- attr(*, &quot;names&quot;)= chr [1:415] &quot;2&quot; &quot;15&quot; &quot;16&quot; &quot;24&quot; ...</code></pre>
+<p>We will see more about tibbles in the wrangle section but we will make a short note of it now.</p>
+<p>A tibble, or <code>tbl_df</code>, is a modern reimagining of the data frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces one to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced <code>print method()</code> which makes them easier to use with large datasets containing complex objects.</p>
+<p>To convert a data frame to a tibble, we can use the function <code>as.tibble(df)</code> where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on..</p>
+<pre class="r"><code>  # Load the tidyverse library
+  library(tidyverse)
+  # Convert HANES data frame into a tibble and observe it
+  HANES_TIB &lt;- as.tibble(HANES)
+  HANES_TIB</code></pre>
+<pre><code>## # A tibble: 1,112 x 23
+##        KEY GENDER SPAGE AGEGROUP     HSQ_1 UCREATININE UALBUMIN
+##  *  &lt;fctr&gt; &lt;fctr&gt; &lt;int&gt;   &lt;fctr&gt;    &lt;fctr&gt;       &lt;int&gt;    &lt;dbl&gt;
+##  1 134040A      M    29    20-39 Very Good         105    0.707
+##  2 134460B      M    28    20-39 Very Good          53    1.000
+##  3 134490A      M    27    20-39 Very Good         314    8.000
+##  4 134620A      M    24    20-39 Excellent         105    4.000
+##  5 134670A      M    30    20-39 Excellent         163    3.000
+##  6 135210B      M    26    20-39      Good         150    2.000
+##  7 135420A      M    31    20-39 Excellent          46    2.000
+##  8 135740A      M    32    20-39 Very Good          36    0.707
+##  9 136020A      M    34    20-39 Excellent         177    4.000
+## 10 136250A      M    32    20-39      Good         156    3.000
+## # ... with 1,102 more rows, and 16 more variables: UACR &lt;dbl&gt;,
+## #   MERCURYU &lt;dbl&gt;, DX_DBTS &lt;fctr&gt;, A1C &lt;dbl&gt;, CADMIUM &lt;dbl&gt;, LEAD &lt;dbl&gt;,
+## #   MERCURYTOTALBLOOD &lt;dbl&gt;, HDL &lt;int&gt;, CHOLESTEROLTOTAL &lt;int&gt;,
+## #   GLUCOSESI &lt;dbl&gt;, CREATININESI &lt;dbl&gt;, CREATININE &lt;dbl&gt;,
+## #   TRIGLYCERIDE &lt;int&gt;, GLUCOSE &lt;int&gt;, COTININE &lt;dbl&gt;, LDLESTIMATE &lt;int&gt;</code></pre>
 <div id="selected-materials-and-references" class="section level4">
 <h4>Selected materials and references</h4>
 <p><a href="https://cran.r-project.org/doc/manuals/R-intro.pdf">R for Data Science - Data Transformation Part</a></p>
