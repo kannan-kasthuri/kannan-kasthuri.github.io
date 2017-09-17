@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### R fundamentals 03: Elements of programming, markdown  (Sept. 19, 2017)
+### R fundamentals 03: Elements of programming, R Markdown  (Sept. 19, 2017)
 
 ---
 
@@ -41,7 +41,7 @@ As an example,
 ```
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Change x to 5 and re-run the above code. What does that print?
+<span style="color:blue">**Classwork/Homework**</span>: Change x to 5 and re-run the above code. What does that print?
 
 <br>
 
@@ -56,7 +56,7 @@ As an example,
 
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Evaluate the above code with the else statement printing "x is positive or zero", when it is.
+<span style="color:blue">**Classwork/Homework**</span>: Evaluate the above code with the else statement printing "x is positive or zero", when it is.
 
 <br>
 
@@ -108,7 +108,7 @@ Example: `x <- 5` and `(x >5) | (x <8)` will evaluate to `FALSE`.
 Example:  `x <- 5` and `!((x >5) | (x <8))` will evaluate to `TRUE`.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Create an R script that returns the max value of a vector x with length 3. Don’t use the aid of an auxiliary variable.
+<span style="color:blue">**Classwork/Homework**</span>: Create an R script that returns the max value of a vector x with length 3. Don’t use the aid of an auxiliary variable.
 <br>
 
 **Note**: R comes out of the loop as soon as the condition is met. It will **not** evaluate further conditions down the line even if they satisfy.
@@ -166,7 +166,7 @@ In fact, we can use comparison operators for objects!
 Why is the comparison `TRUE < FALSE` evaluates to `FALSE` despite the fact that `T < F` in R? Becuase logicals are _coerced_. `TRUE` coresponds to 1 and `FALSE` to 0. We can also use comparison operators on vectors.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: 
+<span style="color:blue">**Classwork/Homework**</span>: 
 
 1. Compare two vectors of equal length and output the result.
 2. How about vectors of unequal length? Why does the result makes sense?
@@ -216,7 +216,7 @@ If y is not given any value, it will take the default argument. There is no diff
 Environment is typically invisible, but it is important on how the function behaves. We will soon see scope for functions. In this case the environment is the global environment.
 
 <br>
-<span style="color:magenta">**Classwork**</span>: What does this function do?
+<span style="color:blue">**Classwork/Homework**</span>: What does this function do?
 
 ```{r eval=FALSE}
   f <- function(x) {
@@ -265,7 +265,7 @@ If the value is not in the scope, it looks one level above.
 ```
 
 <br>
-<span style="color:magenta">**Classwork**</span>: Use `rm(x)` in the above code to remove x from the global environment and report what happens when you call the function.
+<span style="color:blue">**Classwork/Homework**</span>: Use `rm(x)` in the above code to remove x from the global environment and report what happens when you call the function.
 
 <br>
 
@@ -347,6 +347,61 @@ Another important object in R is the `NULL` that specifies the absence of elemen
 
 In fact there are many types of `NA` depending on the data type, one for each atomic type (like `NA` for integer etc.). Missing values are contagious - any mathematical operation involving `NA` will result in NA. Any logical comparison involving `NA` will result in `NA` too (like `NA == NA`).
 
+---
+
+#### R Markdown
+
+R Markdown is a writing tool that allws us to write pain texts while the formating is kind of taken care by the system. Helps focussing on the content than on formatting - which is extremely important. Several cool features including adding math equations (latex). 
+
+R Markdown combines best features of programming elements:
+
+---
+
+![](Rmd.png)
+
+---
+
+Why write in R Markdown?
+
+* Formatting stays where it should
+
+* Lightning fast to type - no mouse required
+
+* Easy to read when marked up
+
+* Easy to write
+
+* More than anything **REPRODUCIBLE!!!**
+
+---
+
+##### R markdown demo (in class)
+
+---
+
+**Note**: Never ever change directories in R Markdown documents - just don't do it. You need to put all images inside the folder you are working on to include in the R Markdown document. Include an image of your choice in the submission.
+
+---
+
+It also renders the final report in different formats:
+
+---
+
+![](Rmd_formats.png)
+
+---
+
+One can also create interactive slide shows with shiny. 
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+1. Complete Homwork 02 as a R Markdown file, Knit to html and submit both the markdown and the html file. Make good comments for the codes you write. Make the codes visible in the document.
+2. How do you include images in R Markdown?
+
+<br>
+
+---
 
 #### Selected materials and references
 
