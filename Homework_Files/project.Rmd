@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-Reading and doing both constitute good project management. Final submission will be assessed based on your reading on data science as well as working towards your project. The first part will focus on your interest (and communicating) in doing data science and the second part will be aimed at identifying where you stand on the project, to help you meet the final delivarable.
+Reading and doing both constitute good project management. Final submission will be assessed based on your reading on data science as well as working towards your project. The first part will focus on your interest (and communicating) in doing data science and the second part will be aimed at identifying where you stand on the project, to help you meet the final delivarable. The third part is the final delivarable.
 
 ---
 
@@ -33,7 +33,13 @@ On one of the two days, Oct. 10 or Oct. 12, 2017, you will be given about 10 min
 
 ##### Part II: Mid-term project assessment
 
-You have to apply the explore and wrangle paradigm on the data set of your choice and submit the results. This will be your home work assignment # 04. The due date is Oct. 26 at 5pm. 
+You have to apply the explore and wrangle paradigm on the data set of your choice and submit the results. This will be your home work assignment # 04. The due date is **Oct. 26** at 5pm. 
+
+---
+
+##### Part III: Final deliverable 
+
+Make an html document with directed insights based on Explore (E), Wrangle (W), Model(M), Program (P) and Communicate (C) paradigm. You may use HANES/MIMIC3 datasets or any other datasets listed in the course [page](https://kannan-kasthuri.github.io/pda.html). Your analysis should contain each aspect of EWPMC paradigm. The more meticulous/thorough you are in your analysis, you'll have a better chance of a good grade. The due date is **Nov. 30** at 5pm. 
 
 ---
 
