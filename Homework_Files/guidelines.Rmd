@@ -23,6 +23,8 @@ The following are pre-requisites for submitting the homework.
 
 * Claim your repository in Github - just accept your assignment invitation.
 
+* Install git in your local  machine for your OS. Git can be obtained [here](https://git-scm.com/downloads)
+
 ---
 
 ##### README.txt
