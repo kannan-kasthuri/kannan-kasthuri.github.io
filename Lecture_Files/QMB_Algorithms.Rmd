@@ -181,11 +181,8 @@ Find the asymptotic behavior of the following functions:
 
 ---
 
-#### The complexity of insertion sort and selection sort
+#### The complexity of selection sort
 
-Given an array, selection sort and insertion sort are basic sorting techniques. We will analyze the complexity of these sorts.
-
-##### Selection sort
 
 The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
 
@@ -226,34 +223,29 @@ arr[] = 64 25 12 22 11
 06.  end for
 17.  print and return A
 ```
-
-
 <br>
 
+Note that as $i$ increases, the number of cells that needs to be accessed will decrease by 1. Thus, for the first iteration, we will have to access $n$ elements, the next time $n-1$ elements, etc. Although we do not know the actual complexity of the `for` loop (since we do not know how many times things will be swapped), we can estimate the worst case complexity:
+
+$$n + (n-1) + \dots + 1 = \frac{n(n+1)}{2} = O(n^2).$$
+
+---
+
+#### Elementary data structures
 
 
 ---
 
-#### Divide and Conquer 
-
-
----
-
-#### Dynamic Programming 
+#### Elementary graph algorithms 
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe>
 -->
 
 ---
 
-#### Greedy Algorithms
+#### NP-completeness 
 
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe> -->
-
----
-
-#### An Introduction to NP-completeness
-
 
 ---
 

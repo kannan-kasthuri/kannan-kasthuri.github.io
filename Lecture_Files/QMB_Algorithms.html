@@ -234,11 +234,8 @@ $(document).ready(function () {
 </ol>
 <hr />
 </div>
-<div id="the-complexity-of-insertion-sort-and-selection-sort" class="section level4">
-<h4>The complexity of insertion sort and selection sort</h4>
-<p>Given an array, selection sort and insertion sort are basic sorting techniques. We will analyze the complexity of these sorts.</p>
-<div id="selection-sort" class="section level5">
-<h5>Selection sort</h5>
+<div id="the-complexity-of-selection-sort" class="section level4">
+<h4>The complexity of selection sort</h4>
 <p>The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.</p>
 <ul>
 <li>The subarray which is already sorted.</li>
@@ -271,26 +268,23 @@ $(document).ready(function () {
 06.  end for
 17.  print and return A</code></pre>
 <p><br></p>
+<p>Note that as <span class="math inline">\(i\)</span> increases, the number of cells that needs to be accessed will decrease by 1. Thus, for the first iteration, we will have to access <span class="math inline">\(n\)</span> elements, the next time <span class="math inline">\(n-1\)</span> elements, etc. Although we do not know the actual complexity of the <code>for</code> loop (since we do not know how many times things will be swapped), we can estimate the worst case complexity:</p>
+<p><span class="math display">\[n + (n-1) + \dots + 1 = \frac{n(n+1)}{2} = O(n^2).\]</span></p>
 <hr />
 </div>
-</div>
-<div id="divide-and-conquer" class="section level4">
-<h4>Divide and Conquer</h4>
+<div id="elementary-data-structures" class="section level4">
+<h4>Elementary data structures</h4>
 <hr />
 </div>
-<div id="dynamic-programming" class="section level4">
-<h4>Dynamic Programming</h4>
+<div id="elementary-graph-algorithms" class="section level4">
+<h4>Elementary graph algorithms</h4>
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe>
 -->
 <hr />
 </div>
-<div id="greedy-algorithms" class="section level4">
-<h4>Greedy Algorithms</h4>
+<div id="np-completeness" class="section level4">
+<h4>NP-completeness</h4>
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe> -->
-<hr />
-</div>
-<div id="an-introduction-to-np-completeness" class="section level4">
-<h4>An Introduction to NP-completeness</h4>
 <hr />
 </div>
 <div id="references" class="section level4">
