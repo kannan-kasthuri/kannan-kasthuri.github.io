@@ -234,6 +234,13 @@ $$n + (n-1) + \dots + 1 = \frac{n(n+1)}{2} = O(n^2).$$
 #### Elementary data structures
 
 
+We need data to be organized to run algorithms efficiently on them. Mathematically (or logically), the models for such organization is called _abstract data types_. An example for an abstract data type is a *list* which we should be able to:
+
+* Store a given number of elements of _any_ data type
+* Read elements by position
+* Modify element at a position
+
+We need a concrete implementation of an abstract data type. For instance, arrays, are a concrete implimentation of lists.
 ---
 
 #### Elementary graph algorithms 
