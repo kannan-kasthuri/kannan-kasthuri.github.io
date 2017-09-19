@@ -19,7 +19,17 @@ As the last part of R fundamentals series, we will study elements of R programmi
 
 ---
 
+#### Recorded Stream
+
+---
+
+Unfortunately the stream was not captured, due to the display directing the output to the projector. Sorry for this :-(
+
+---
+
 #### Conditional statements and operators in R
+
+<br>
 
 R provides syntax to evaluate conditions. 
 
