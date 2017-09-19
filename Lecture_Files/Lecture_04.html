@@ -141,14 +141,16 @@ $(document).ready(function () {
 <pre><code>## [1] &quot;x is a negative number&quot;</code></pre>
 <p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Change x to 5 and re-run the above code. What does that print?</p>
 <p><br></p>
+<p><code>if...else</code> statements are evaluated thus:</p>
 <pre class="r"><code>  if (condition) {
     expression 1
   }
   else {
     expression 2
   }</code></pre>
-<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Evaluate the above code with the else statement printing “x is positive or zero”, when it is.</p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Do the previous classwork/homework with the else statement printing “x is positive or zero”, when it is.</p>
 <p><br></p>
+<p>We can also make <code>else if</code> statements as follows:</p>
 <pre class="r"><code>  if (condition) {
     expression 1
   }
@@ -158,24 +160,29 @@ $(document).ready(function () {
   else {
     expression 3
   }</code></pre>
+<p><br></p>
 <p>R provides logical operators:</p>
 <ul>
 <li>AND with symbol &amp;</li>
 <li>OR with symbol |</li>
 <li>NOT with symbol !</li>
 </ul>
+<p><br></p>
+<p>The <strong>AND</strong> truth table</p>
 <pre class="r"><code>  # AND truth table
   TRUE  &amp; TRUE   : TRUE
   TRUE  &amp; FALSE  : FALSE
   FALSE &amp; TRUE   : FALSE
   FALSE &amp; FALSE  : FALSE</code></pre>
 <p>Example: <code>x &lt;- 5</code> and <code>(x &gt;3) &amp; (x &lt;8)</code> will evaluate to <code>TRUE</code>.</p>
+<p>The <strong>OR</strong> truth table</p>
 <pre class="r"><code>  # OR truth table
   TRUE  | TRUE   : TRUE
   TRUE  | FALSE  : TRUE
   FALSE | TRUE   : TRUE
   FALSE | FALSE  : FALSE</code></pre>
 <p>Example: <code>x &lt;- 5</code> and <code>(x &gt;5) | (x &lt;8)</code> will evaluate to <code>FALSE</code>.</p>
+<p>The <strong>NOT</strong> truth table</p>
 <pre class="r"><code>  # NOT truth table
   !TRUE  : FALSE
   !FALSE : TRUE</code></pre>
@@ -245,7 +252,7 @@ $(document).ready(function () {
   add &lt;- function(x, y=1) {
     x+y
   }</code></pre>
-<p>If y is not given any value, it will take the default argument. There is no difference between the functions we define and R supplied functions. There are three components foe every function, the formal, the body and the environment.</p>
+<p>If y is not given any value, it will take the default argument. There is no difference between the functions we define and R supplied functions. There are three components for every function, the formal, the body and the environment.</p>
 <pre class="r"><code>  # The add function
   add &lt;- function(x, y=1) {
     x+y
@@ -389,7 +396,7 @@ $(document).ready(function () {
 <div id="r-markdown-demo-in-class" class="section level5">
 <h5>R markdown demo (in class)</h5>
 <hr />
-<p><strong>Note</strong>: Never ever change directories in R Markdown documents - just don’t do it. You need to put all images inside the folder you are working on to include in the R Markdown document. Include an image of your choice in the submission.</p>
+<p><strong>Note</strong>: Never ever change directories in R Markdown documents - just don’t do it. You need to put all images inside the folder you are working on to include in the R Markdown document.</p>
 <hr />
 <p>It also renders the final report in different formats:</p>
 <hr />
@@ -402,7 +409,7 @@ $(document).ready(function () {
 <p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>:</p>
 <ol style="list-style-type: decimal">
 <li>Complete Homwork 02 as a R Markdown file, Knit to html and submit both the markdown and the html file. Make good comments for the codes you write. Make the codes visible in the document.</li>
-<li>How do you include images in R Markdown?</li>
+<li>How do you include images in R Markdown? Include an image of your choice in the homework.</li>
 </ol>
 <p><br></p>
 <hr />
