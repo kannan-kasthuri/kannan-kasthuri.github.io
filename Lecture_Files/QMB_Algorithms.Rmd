@@ -241,6 +241,96 @@ We need data to be organized to run algorithms efficiently on them. Mathematical
 * Modify element at a position
 
 We need a concrete implementation of an abstract data type. For instance, arrays, are a concrete implimentation of lists.
+
+Atomic types: numbers, strings, booleans
+Composite types: arrays, records, lists etc.
+
+A simplest data type would be a node - containing a value and a reference to another node. Nodes are the bulding blocks for several data structures like linked lists, graphs and trees.
+
+A python implementation:
+
+---
+
+![](node.png)
+
+---
+
+##### Arrays and linked lists
+
+
+Array are fixed size seqence of elements, stored contigously whereas linked lists are variable-size sequence of elements which may be heterogenous.
+
+Linked lists are implemented like this:
+
+---
+
+![](lnklist.png)
+
+---
+
+An advantage of the link structure is that it is easy to add and remove elements. To insert an element, jusy create a node, adding value and reference, and pointing the previous node's reference to this node and pointing this node's reference to the node the previous node was pointing. This is possible because the nodes are not sequentially stored, unlike an array. Each node is created seperately and given a spot in memory where ever that may be. The logical sequence is given by the chain of references. As long as we keep track of where the head is located, we can traverse to any node in the list until we reach the tail, which just points to NULL.
+
+
+Linked lists are preferable over arrays when:
+
+a) you need constant-time insertions/deletions from the list (such as in real-time computing where time predictability is absolutely critical)
+
+b) you don't know how many items will be in the list. With arrays, you may need to re-declare and copy memory if the array grows too big
+
+c) you don't need random access to any elements
+
+d) you want to be able to insert items in the middle of the list (such as a priority queue)
+
+Arrays are preferable when:
+
+a) you need indexed/random access to elements
+
+b) you know the number of elements in the array ahead of time so that you can allocate the correct amount of memory for the array
+
+c) you need speed when iterating through all the elements in sequence. You can use pointer math on the array to access each element, whereas you need to lookup the node based on the pointer for each element in linked list, which may result in page faults which may result in performance hits.
+
+d) memory is a concern. Filled arrays take up less memory than linked lists. Each element in the array is just the data. Each linked list node requires the data as well as one (or more) pointers to the other elements in the linked list.
+
+Array Lists give you the benefits of arrays, but dynamically allocate resources for you so that you don't need to worry too much about list size and you can delete items at any index without any effort or re-shuffling elements around. Performance-wise, arraylists are slower than raw arrays.
+
+<br>
+
+##### Trees
+
+Trees are not linear data structures, like lists and arrays. More than one possible direction. Example, binary trees:
+
+---
+
+![](btree.png)
+
+---
+
+Tree traversals are not that straight forward. 
+
+Tree traversal: The process of _visiting_ each node in the tree exactly once in some order. And by visiting we mean, reading or processing data in a node. For example, printing the data in the node. Based on the order in which the nodes are visited, tree traversal algorithms can broadly be classified into two categories:
+
+* Breadth-first traversal or
+
+* Depth-first traversal
+
+They are general techniques to search a _graph_ (a data structure). Tree is only a special kind of graph.
+
+In breadth first search (BFS) we will visit all nodes of the same level before moving to the next level. In the above figure, $F$ is at level $0$, a root, $D$ and $J$ are level $1$, etc.
+
+$$\{F\}, \{D,J\}, \{B,E,G,K\}, \{A,C,I\}, \{H\} $$
+
+In BFS we visit all childern before visiting grand-childern. Whereas in depth-firt search (DFS), we will visit all nodes in the subtree of a child before moving to the next child. The relative order could be different (like one can visit the entire left-subtree, root and the right-subtree than staring with the root, right-subtree and left-subtree) but the core idea is visiting the child is visiting the complete subtree determined by the child. There are three popular approaches:
+
+$$ <root> <left-subtree> <right-subtree> : \text{Preorder traversal} $$
+$$ <left-subtree> <root> <right-subtree>: \text{Inorder traversal} $$
+$$ <left-subtree> <right-subtree> <root>: \text{Postoder traversal} $$
+
+Conventionally the left-subtree is always visited before the right-subtree. These traversals are easy to implement in recursion.
+
+$$\text{Preorder traversal}: \{F,D,B,A,C,E,J,G,I,H,K\} $$
+$$\text{Inorder traversal}: \{A,B,C,D,E,F,G,H,I,J,K\} $$
+$$\text{Postorder traversal}: \{A,C,B,E,D,J,H,I,G,K,J,F\} $$
+
 ---
 
 #### Elementary graph algorithms 
@@ -249,6 +339,10 @@ We need a concrete implementation of an abstract data type. For instance, arrays
 -->
 
 ---
+
+
+
+
 
 #### NP-completeness 
 
@@ -259,5 +353,7 @@ We need a concrete implementation of an abstract data type. For instance, arrays
 #### References
 
 [A Gentle Introduction to Algorithm Complexity Analysis](http://discrete.gr/complexity/) by Dionysis "dionyziz" Zindros
+
+[Stack exchange](https://stackoverflow.com/questions/393556/when-to-use-a-linked-list-over-an-array-array-list)
 
 ---
