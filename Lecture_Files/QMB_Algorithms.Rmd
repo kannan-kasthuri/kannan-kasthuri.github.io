@@ -258,11 +258,16 @@ A python implementation:
 ##### Linear data structures (arrays and linked lists)
 
 
-Arrays are fixed size seqence of elements, stored contigously whereas linked lists are variable-size sequence of elements which may be heterogenous.
+**Arrays** are fixed size seqence of elements, stored contigously. It is a container which can hold a fix number of items and these items should be of the same type. Most of the data structures make use of arrays to implement their algorithms. The computational complexity for writing to and accessing an array is $O(1)$. No matter the number of elements in the array, the calculation to find the element in the array is single multiplication and addition.
 
-Linked lists are implemented like this:
+`element_memory_location = start_memory_location + (size_of_element * index_in_array)`
+
+The computational complexity of inserting an element in the middle of an array is $O(N)$, where $N$ is the number of elements in the array. The elements in the array must all be shifted up one index after the insertion, or all the elements must be copied to a new array big enough to hold the inserted element.
+
+**Linked lists** are variable-size sequence of elements which may be heterogenous. Linked lists are typically implemented like this:
 
 ---
+
 
 ![](lnklist.png)
 
@@ -291,7 +296,7 @@ c) you need speed when iterating through all the elements in sequence. You can u
 
 d) memory is a concern. Filled arrays take up less memory than linked lists. Each element in the array is just the data. Each linked list node requires the data as well as one (or more) pointers to the other elements in the linked list.
 
-Array Lists give you the benefits of arrays, but dynamically allocate resources for you so that you don't need to worry too much about list size and you can delete items at any index without any effort or re-shuffling elements around. Performance-wise, arraylists are slower than raw arrays.
+List gives us the benefits of arrays, but dynamically allocate resources so that we don't need to worry too much about list size and you can delete items at any index without any effort or re-shuffling elements around. Performance-wise, linked lists are slower than raw arrays.
 
 Other special type of linked lists:
 
@@ -303,11 +308,16 @@ Other special type of linked lists:
 
 ##### Non-linear data structures (trees and graphs)
 
-Trees are not linear data structures, like lists and arrays. More than one possible direction. Example, binary trees:
+**Trees** are not linear data structures, like lists and arrays. More than one possible direction. Example, binary trees:
 
 ---
 
-![](btree.png)
+```{r fig.width=4, fig.height=4,echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("btree.png")
+ grid.raster(img)
+```
 
 ---
 
@@ -337,26 +347,91 @@ $$\text{Preorder traversal}: \{F,D,B,A,C,E,J,G,I,H,K\} $$
 $$\text{Inorder traversal}: \{A,B,C,D,E,F,G,H,I,J,K\} $$
 $$\text{Postorder traversal}: \{A,C,B,E,D,J,H,I,G,K,J,F\} $$
 
----
+An example of a tree data structure is a **heap**. Heap is a specialized tree-based data structure that satisfies the heap property: if P is a parent node of C, then the key (the value) of node P is greater than the key of node C. A heap can be classified further as either a "max heap" or a "min heap". In a max heap, the keys of parent nodes are always greater than or equal to those of the children and the highest key is in the root node. In a min heap, the keys of parent nodes are less than or equal to those of the children and the lowest key is in the root node. A min-heap example:
 
-Trees are non-linear but hierarchical structures whereas graphs are non-linear and non-hiearchical. There are several applications for graphs which are used to model a variety of systems. A graph is simply a collection of vertices and edges and if we apply the previous interpretation for a node, a graph is a collection of nodes. 
-
-If there are $N$ nodels, a tree will have $N-1$ edges, one edge for each parent-child relationship. All nodes should be reachable from the root and there should be one possible path from the root to the node. No such restrictions for a graph. A tree is a special type of graph. There are two types of graphs - _directed_ and _undirected_.
-
-#### Elementary graph algorithms 
-
-<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe>
--->
 
 ---
 
+![](min_heap_example.jpg)
+
+---
+
+**Graphs** are non-linear and non-hiearchical data structures (compare this with trees that are non-linear hierarchical). There are several applications for graphs which are used to model a variety of systems. A graph is simply a collection of vertices and edges and if we apply the previous interpretation for a node, a graph is a collection of nodes. 
+
+If there are $N$ nodels, a tree will have $N-1$ edges, one edge for each parent-child relationship. All nodes should be reachable from the root and there should be one possible path from the root to the node. No such restrictions for a graph. A tree is a special type of graph. There are two types of graphs - _directed_ and _undirected_. A special type of directed graph is weighted directed graph:
+
+---
+
+![](wpid.gif)
+
+---
+
+#### An elementary graph algorithm (Dijkstra's algorithm for shortest path)
+
+Weighted directed graphs are usually represented through adjacency matrices. Here is an example:
+
+---
+
+![](wdg_am.png)
+
+
+---
+
+A good demo of Dijkstra's algorithm:
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dS1Di2ZHl4k" frameborder="0" allowfullscreen></iframe> 
+
+---
+
+#### Who wants to be a millionaire?
 
 
 
+**The class P**: Problems _solvable_ in polynomial time. 
 
-#### NP-completeness 
+**The class NP**: Problems _verifiable_ in polynomial time, but may not be solvable in polynomial time. 
 
-<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/DFG-XuyPYUQ" frameborder="0" allowfullscreen></iframe> -->
+**The class NP-hard**: Class of decision problems which are at least as hard as the hardest problems in NP. More precisely, a problem H is NP-hard when **every** problem L in NP can be **reduced** in polynomial time to H. 
+
+
+What is reduction?
+
+A very simple example of a reduction is from multiplication to squaring. Suppose all we know how to do is to add, subtract, take squares, and divide by two. We can use this knowledge, combined with the following formula, to obtain the product of any two numbers:
+
+$$ a \times b = \frac{(a+b)^2-a^2-b^2}{2} $$
+
+
+
+Problems that are NP-hard do not have to be elements of NP; indeed, they may not even be decidable. Example: _The traveling salesman problem_: Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city? This is decidable though.
+
+**The class NP-Complete**: The class of problems that belongs to NP as well as NP-hard.
+
+
+Here is a **possible** venn diagram:
+
+---
+
+![](NPC_Venn.png)
+
+
+
+Note that since every problem in NP can be polynomially reduced to a problem in NP-Hard class, even if we polynomially solve **ONE** problem in NP-Complete class, we will solve all problems in NP in polynomial time, thus showing P=NP. In that case, we will have:
+
+---
+
+![](PENP.png)
+
+---
+
+Otherwise, the original Venn diagram doesn't quite change.
+
+Now, the million dollar question:
+
+---
+
+![](NPC.png)
 
 ---
 
