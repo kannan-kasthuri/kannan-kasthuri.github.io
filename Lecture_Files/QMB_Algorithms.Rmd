@@ -441,4 +441,8 @@ Now, the million dollar question:
 
 [Stack exchange](https://stackoverflow.com/questions/393556/when-to-use-a-linked-list-over-an-array-array-list)
 
+[Computational complexity theory](https://en.wikipedia.org/wiki/Computational_complexity_theory)
+
+[Dijkstra 's Algorithm for Shortest Route Path](https://www.youtube.com/watch?v=dS1Di2ZHl4k)
+
 ---
