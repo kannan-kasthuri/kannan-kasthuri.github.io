@@ -93,6 +93,9 @@ There are several good ones - just type 'git tutorial' in YouTube and find the o
 
 Working with RStudio, Git and Github - we will demo this in the class, but [here](http://happygitwithr.com/) is an excellent resource if you want to prepare ahead.
 
+
+**A note on git installation on windows**: If you are using a Windows laptop and your RStudio cannot link to your git account, please [download this git-bash] (https://git-for-windows.github.io/) and install it (with default settings). 
+
 ---
 
 #### Selected materials and references

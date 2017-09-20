@@ -23,7 +23,9 @@ The following are pre-requisites for submitting the homework.
 
 * Claim your repository in Github - just accept your assignment invitation.
 
-* Install git in your local  machine for your OS. Git can be obtained [here](https://git-scm.com/downloads)
+* Install git in your local  machine for your OS. Git can be obtained [here](https://git-scm.com/downloads).
+
+**A note on git installation on windows**: If you are using a Windows laptop and your RStudio cannot link to your git account, please [download this git-bash] (https://git-for-windows.github.io/) and install it (with default settings). 
 
 ---
 
