@@ -290,9 +290,9 @@ $(document).ready(function () {
 
 </div>
 <hr />
-<div id="arrays-and-linked-lists" class="section level5">
-<h5>Arrays and linked lists</h5>
-<p>Array are fixed size seqence of elements, stored contigously whereas linked lists are variable-size sequence of elements which may be heterogenous.</p>
+<div id="linear-data-structures-arrays-and-linked-lists" class="section level5">
+<h5>Linear data structures (arrays and linked lists)</h5>
+<p>Arrays are fixed size seqence of elements, stored contigously whereas linked lists are variable-size sequence of elements which may be heterogenous.</p>
 <p>Linked lists are implemented like this:</p>
 <hr />
 <div class="figure">
@@ -316,10 +316,13 @@ $(document).ready(function () {
 <li><p>memory is a concern. Filled arrays take up less memory than linked lists. Each element in the array is just the data. Each linked list node requires the data as well as one (or more) pointers to the other elements in the linked list.</p></li>
 </ol>
 <p>Array Lists give you the benefits of arrays, but dynamically allocate resources for you so that you don’t need to worry too much about list size and you can delete items at any index without any effort or re-shuffling elements around. Performance-wise, arraylists are slower than raw arrays.</p>
+<p>Other special type of linked lists:</p>
+<p><strong>Queue</strong>: A list with last-in-last-out procedure. For example, insertion happens through the tail and deletion happens from the head.</p>
+<p><strong>Stack</strong>: A list with last-in-first-out protocol. One can insert a node only through a head node and deletion happens only by removing the nodes upto that node. Eg. <em>Stack exchange</em></p>
 <p><br></p>
 </div>
-<div id="trees" class="section level5">
-<h5>Trees</h5>
+<div id="non-linear-data-structures-trees-and-graphs" class="section level5">
+<h5>Non-linear data structures (trees and graphs)</h5>
 <p>Trees are not linear data structures, like lists and arrays. More than one possible direction. Example, binary trees:</p>
 <hr />
 <div class="figure">
@@ -341,6 +344,8 @@ $(document).ready(function () {
 <p>Conventionally the left-subtree is always visited before the right-subtree. These traversals are easy to implement in recursion.</p>
 <p><span class="math display">\[\text{Preorder traversal}: \{F,D,B,A,C,E,J,G,I,H,K\} \]</span> <span class="math display">\[\text{Inorder traversal}: \{A,B,C,D,E,F,G,H,I,J,K\} \]</span> <span class="math display">\[\text{Postorder traversal}: \{A,C,B,E,D,J,H,I,G,K,J,F\} \]</span></p>
 <hr />
+<p>Trees are non-linear but hierarchical structures whereas graphs are non-linear and non-hiearchical. There are several applications for graphs which are used to model a variety of systems. A graph is simply a collection of vertices and edges and if we apply the previous interpretation for a node, a graph is a collection of nodes.</p>
+<p>If there are <span class="math inline">\(N\)</span> nodels, a tree will have <span class="math inline">\(N-1\)</span> edges, one edge for each parent-child relationship. All nodes should be reachable from the root and there should be one possible path from the root to the node. No such restrictions for a graph. A tree is a special type of graph. There are two types of graphs - <em>directed</em> and <em>undirected</em>.</p>
 </div>
 </div>
 <div id="elementary-graph-algorithms" class="section level4">

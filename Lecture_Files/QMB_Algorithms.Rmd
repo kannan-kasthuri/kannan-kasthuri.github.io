@@ -255,10 +255,10 @@ A python implementation:
 
 ---
 
-##### Arrays and linked lists
+##### Linear data structures (arrays and linked lists)
 
 
-Array are fixed size seqence of elements, stored contigously whereas linked lists are variable-size sequence of elements which may be heterogenous.
+Arrays are fixed size seqence of elements, stored contigously whereas linked lists are variable-size sequence of elements which may be heterogenous.
 
 Linked lists are implemented like this:
 
@@ -293,9 +293,15 @@ d) memory is a concern. Filled arrays take up less memory than linked lists. Eac
 
 Array Lists give you the benefits of arrays, but dynamically allocate resources for you so that you don't need to worry too much about list size and you can delete items at any index without any effort or re-shuffling elements around. Performance-wise, arraylists are slower than raw arrays.
 
+Other special type of linked lists:
+
+**Queue**: A list with last-in-last-out procedure. For example, insertion happens through the tail and deletion happens from the head.
+
+**Stack**: A list with last-in-first-out protocol. One can insert a node only through a head node and deletion happens only by removing the nodes upto that node. Eg. _Stack exchange_
+
 <br>
 
-##### Trees
+##### Non-linear data structures (trees and graphs)
 
 Trees are not linear data structures, like lists and arrays. More than one possible direction. Example, binary trees:
 
@@ -332,6 +338,10 @@ $$\text{Inorder traversal}: \{A,B,C,D,E,F,G,H,I,J,K\} $$
 $$\text{Postorder traversal}: \{A,C,B,E,D,J,H,I,G,K,J,F\} $$
 
 ---
+
+Trees are non-linear but hierarchical structures whereas graphs are non-linear and non-hiearchical. There are several applications for graphs which are used to model a variety of systems. A graph is simply a collection of vertices and edges and if we apply the previous interpretation for a node, a graph is a collection of nodes. 
+
+If there are $N$ nodels, a tree will have $N-1$ edges, one edge for each parent-child relationship. All nodes should be reachable from the root and there should be one possible path from the root to the node. No such restrictions for a graph. A tree is a special type of graph. There are two types of graphs - _directed_ and _undirected_.
 
 #### Elementary graph algorithms 
 
