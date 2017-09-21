@@ -1,0 +1,18 @@
+---
+# title: "Publications"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### How about beer with scientists?
+
+---
+
+![](beer_scientists.jpeg)
+
+---
