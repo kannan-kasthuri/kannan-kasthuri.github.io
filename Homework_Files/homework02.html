@@ -120,14 +120,50 @@ $(document).ready(function () {
 
 
 <hr />
-<div id="homework-01-due-sept.-272017-5pm" class="section level3">
-<h3>Homework 01 (due Sept. 27,2017, 5pm)</h3>
+<div id="homework-02-due-oct.-052017-5pm" class="section level3">
+<h3>Homework 02 (due Oct. 05,2017, 5pm)</h3>
 <hr />
 <p>General guidelines for homeworks and how to submit them is given <a href="https://kannan-kasthuri.github.io/Homework_Files/guidelines.html">here</a>.</p>
-<p>There are three parts for HW1: finish classwork/homework of Lectures 02 and 03 and push it through git (using the terminal or through RStudio). Please name your assignment as HW1_fistname_lastname. HW1 is due to Sept. 27, 5pm. If you have any questions about HW1, feel free to contact Yuhan, yuhan.hao at nyumc.org</p>
-<p>You may use Rscript to complete this assignment.</p>
-<p><strong>Note</strong>: You need to write a README.txt as given <a href="https://kannan-kasthuri.github.io/Homework_Files/guidelines.html">here</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Accept your assignment in your GitHub. A repository will be created for you automagically.</p></li>
+<li><p>There are two parts to this homework:</p></li>
+</ol>
+<div id="part-i" class="section level5">
+<h5>Part I</h5>
+<p>Finish classwork/homework sections of Lectures 04 (R fundamentals 03: Elements of prog., R Markdown) and Lecture 05 (Data science fundamentals 01: Visualize and explore) and push it through git (using the terminal or through RStudio).</p>
+</div>
+<div id="part-ii" class="section level5">
+<h5>Part II</h5>
+<p>The following code is an estimation of <span class="math inline">\(\pi\)</span> using Monte Carlo.</p>
+<pre class="r"><code>pi_calculation = function(iteration){
+  a0 = rep(0,iteration)
+  Nin = 0
+  for(j in 1:iteration){
+    x = runif(2,-5,5)
+    if(sqrt(x[1]^2 + x[2]^2) &lt;= 5){
+      Nin = Nin + 1
+    }
+    ratio = Nin / j
+    pi_c = ratio *4
+    a0[j] = pi_c
+  }
+  return(a0)
+}
+num = 100
+tmp = pi_calculation(num)
+start = 1
+plot(tmp[start:num], type = 'l',xlab= &quot;number of simulation&quot;, ylab='',main = expression(paste(&quot;Calculated vs True &quot;, pi)),ylim=c(2,4))
+lines(rep(pi, num)[start:num], col = 'red')</code></pre>
+<p>Now answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>What is the purpose of the <code>if</code> statement in the function?</li>
+<li>Why is pi_c equal to <code>ratio*4</code>?</li>
+<li>How can you get more accurate <span class="math inline">\(\pi\)</span> (write the code)?</li>
+</ol>
+<p><strong>Note</strong>: You need to write a README.txt and submit **both* .Rmd and html files as given <a href="https://kannan-kasthuri.github.io/Homework_Files/guidelines.html">here</a></p>
+<p>The due date is Oct. 05, 2017, 5pm. If you have any questions about this homework, feel free to contact Yuhan, yuhan.hao at nyumc.org</p>
 <hr />
+</div>
 <div id="report-how-you-did-it---we-really-care-for-you" class="section level5">
 <h5>Report how you did it? - we really care for you</h5>
 <p>Feel free to write how this exercise worked for you and other things you read (related to this course) in README.txt. The reposotories are private and can be accessed ony by the admins. And also, this can be removed later.</p>
