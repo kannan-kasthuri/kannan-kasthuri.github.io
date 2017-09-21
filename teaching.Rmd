@@ -1,0 +1,37 @@
+---
+# title: "Publications"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Teaching
+
+---
+
+Honestly, I have beeen quite happy to get to teaching after years of research in computational physics and genomics. I feel teaching should be a critical component of any active researcher. What is the fun when you acquire knowledge and don't transmit enthusiastically? 
+
+What amazes me is that several researchers and scientists I have encountered (especially in research institutions) don't want to teach. Part of the problem is how the academic system is structured. NIH doesn't award grants based on teaching records, and honestly we cannot do justice to both teaching and research. We have very limited time and teaching requires considrable effort at least in the initial stages. Let's not go into all those issues and if you wanna disuss these things, let's have a beer and talk. 
+
+Here are the teaching records.
+
+---
+
+#### Fall 2017
+
+---
+
+[Programming for Data Analysis](https://kannan-kasthuri.github.io/pda.html)
+
+[Methods in Quantitative Biology](https://kannan-kasthuri.github.io/qmb.html)
+
+---
+
+To know the content, scroll to the lectures section and follow the links. Happy reading!
+
+---
+
