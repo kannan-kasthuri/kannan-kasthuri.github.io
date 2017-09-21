@@ -15,6 +15,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+#### Recorded Stream
+
+---
+
+Unfortunately the audio was not captured, but the video was. I don't see why it would make any sense to put the video out without any audio, but I thought we shouldn't give any special privileges to people without hearing disabilities :-)
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SFUmLlWa4AQ" frameborder="0" allowfullscreen></iframe>
+
+---
+
 Data exploration is the art of looking at the data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again. The goal of data exploration is to generate many promising leads that we can later explore in more depth. Visualization is key for data exploration, but not sufficient. We need data transformation and exploratory data analysis which we will cover in this section. Modeling is important too but we will explore it later.
 
 <br>

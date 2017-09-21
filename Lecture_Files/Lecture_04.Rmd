@@ -23,7 +23,7 @@ As the last part of R fundamentals series, we will study elements of R programmi
 
 ---
 
-Unfortunately the stream was not captured, due to the display directing the output to the projector. Sorry for this :-(
+Unfortunately the stream was not captured, due to the display directing the output to the projector. Sorry for this :-( However, this will be fixed during the next iteration of this lecture.
 
 ---
 
