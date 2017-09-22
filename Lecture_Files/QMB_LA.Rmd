@@ -274,4 +274,137 @@ Some are simple to think about - like rotation for instance,
 
 ---
 
-How do we describe these transformations numerically? 
+How do we describe these transformations numerically? That is,
+
+
+$$  
+\begin{bmatrix}
+    x_{in} \\
+    y_{in} \\
+\end{bmatrix}  
+\Rightarrow 
+\text{???}
+\Rightarrow
+\begin{bmatrix}
+    x_{out} \\
+    y_{out} \\
+\end{bmatrix}
+$$
+
+It turns out we need to only find out where the unit vectors $\hat{i}$ and $\hat{j}$ land. Everything will follow from that. As an example:
+
+---
+
+![](ij_trans.png)
+
+---
+
+Thus for any arbitrary vectors $[x,y]^T$, we have:
+
+---
+
+![](xy_trans.png)
+
+---
+
+All this says is a two-dimensional linear transformation is described by just two sets of numbers. The two coordinates where $\hat{i}$ lands and two coordinates where $\hat{j}$ lands. It is elegent to package these two sets of numbers in a $2 \times 2$ grid of numbers, called a _matrix_ and often written like this: 
+
+
+$$ M= 
+\begin{bmatrix}
+    1 & 3 \\
+   -2 & 0 \\
+\end{bmatrix} 
+$$
+
+If you want to know where an arbitray point, say, 
+
+$$ P = 
+\begin{bmatrix}
+   x \\
+   y \\
+\end{bmatrix} 
+$$
+
+goes, just multiply the first number by where $\hat{i}$ lands and the second number by where $\hat{j}$ lands. That is,
+
+$$ P = 
+x\begin{bmatrix}
+   1 \\
+   -2 \\
+\end{bmatrix} + 
+y\begin{bmatrix}
+   3 \\
+   0 \\
+\end{bmatrix}
+$$
+Therefore, in general, we can think of a matrix vector multiplication,
+
+$$\begin{bmatrix}
+    a & b \\
+    c & d \\
+\end{bmatrix} 
+\begin{bmatrix}
+    x \\
+    y \\
+\end{bmatrix} = 
+x \begin{bmatrix}
+    a \\
+    c \\
+\end{bmatrix}+
+y \begin{bmatrix}
+    b \\
+    d \\
+\end{bmatrix} =
+\begin{bmatrix}
+    ax + by \\
+    cx + dy \\
+\end{bmatrix} 
+$$
+
+as just a transformation of points.
+
+---
+
+##### Some special type of transformations
+
+Rotation:
+
+![](rotation90.png)
+
+---
+
+Sheer ($\hat{i}$ remains the same, while $\hat{j}$ moves to $[1,1]^T$):
+
+---
+
+![](sheer.png)
+
+---
+
+If the columns are linearly dependent, that is if one column is a multiple of another, the whole line squishes:
+
+![](ldcol.png)
+
+---
+
+To sum up:
+
+* Linear transformations are a way to move around space such that grid lines remain parallel and evenly spaced. The origin goes to origin.
+
+* Delightfully, these transformations can be described only through a handful of numbers, the coordinates of where each basis vectors lands.
+
+* Matrices gives us a language to describe these transformations where columns represents those coordinates
+
+* And matrix vector multiplication shows what that transformation does to a given vector.
+
+* Everytime you see a matrix, you can interpret it as a certain transformation of space.
+
+* This is a very critical idea to understand linear algebra.
+
+---
+
+
+
+
+
