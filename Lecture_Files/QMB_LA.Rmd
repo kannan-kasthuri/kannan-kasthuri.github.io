@@ -404,7 +404,54 @@ To sum up:
 
 ---
 
+**Linear transformation (Technical Definition)**: A mapping $L$ from a vector space $V$ to another vector space $W$, is called a _linear transformation_, if for any two vectors $u,v \in V$ and a scalar $c$, we have,
+$$ L(u+cv) = L(u)+cL(v) $$
+
+---
+
+#### Matirx multiplication and compositions
+
+_It is my experience that proofs involving matrices can be shortened by 50% if one throws the matrices out_. - Emil Artin
+
+Often times we may want to describe what happens when we apply one transformation and then another. For example, a rotation plus shearing. Note that the resulting final transformation is also linear becuase evenly spaced and parallel grids will remain the same, the origin being fixed. Equvivalently, 
+
+---
+
+![](comp1.png)
+
+---
+
+The new transformation is commonly called the _composition_ of transformations. 
+
+---
+
+![](comp2.png)
+
+---
+
+The new matrix is supped to capture the over all effect of sheering and rotating.
+
+Let us compute the composition of two matrices $M_1$ and $M_2$.
+ 
+![](comp3.png)
+
+---
+
+![](comp4.png)
+
+---
+
+In general, we can see,
+
+---
+
+![](comp5.png)
 
 
+---
+
+Really it just represents applying one transformation after another. Note that it matters if we apply sheer or rotation first, and the other, next. In general, rotation & sheer $\neq$ sheer & rotation. That is why matrix multiplication is _non-commutative_. $M_1M_2 \neq M_2M_1$.
+
+Associativity, $M_1(M_2M_3) = (M_1M_2)M_3$, is trivial if we think about applying transformations sequentially. Notoriously painful to think in terms of matrices. 
 
 
