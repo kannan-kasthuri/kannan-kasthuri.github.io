@@ -454,4 +454,6 @@ Really it just represents applying one transformation after another. Note that i
 
 Associativity, $M_1(M_2M_3) = (M_1M_2)M_3$, is trivial if we think about applying transformations sequentially. Notoriously painful to think in terms of matrices. 
 
+Also, all these ideas apply to three and higher dimensions.
+
 
