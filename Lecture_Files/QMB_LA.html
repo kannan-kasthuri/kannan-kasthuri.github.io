@@ -568,8 +568,8 @@ y \begin{bmatrix}
 </div>
 <hr />
 </div>
-<div id="inverse-matrices-column-space-and-null-space" class="section level4">
-<h4>Inverse matrices, column space and null space</h4>
+<div id="inverse-matrices-rank-and-null-space" class="section level4">
+<h4>Inverse matrices, rank and null space</h4>
 <p><em>To ask the right question is harder than to answer it</em>. - Georg Cantor</p>
 <p>Several real world applications come in the form of linear equations. Even in the case of non-linear equations, they can be approximated by linear equations to a good degree. Linear algebra is very useful in solving such equations. Here is how we think about matrices:</p>
 <hr />
@@ -580,6 +580,27 @@ y \begin{bmatrix}
 <hr />
 <p>In general, the solution of this would depend on how <span class="math inline">\(A\)</span> behaves - whether it squishes all points to a line (or a point) or not. Thus, <span class="math inline">\(det(A)\)</span> would determine the solution(s). For every transformation <span class="math inline">\(A\)</span>, where <span class="math inline">\(det(A) \neq 0\)</span>, we can apply the inverse of the transformation. Thus, for instance, if we rotate by <span class="math inline">\(90^{\circ}\)</span> clockwise, we can rotate by <span class="math inline">\(-90^{\circ}\)</span> anti-clock wise. The result of such inverse transformation (if it exists) applied to a transformation should leave the vectors intact. That is, <span class="math inline">\([A^{-1}A]x=x\)</span>, for any vector <span class="math inline">\(x\)</span>.</p>
 <p>When <span class="math inline">\(det(A)=0\)</span>, the space is squished into smaller dimensions, there is no inverse. We cannot <em>unsquish</em> a line to make a plane. The same happens in three dimensions and there is a <em>name</em> for different types of zero determinant cases. The name is <em>rank</em> of a matrix.</p>
+<ul>
+<li><p>If the output of a transformation is a line, we say it has rank <span class="math inline">\(1\)</span></p></li>
+<li><p>In three dimensions, if the output is a plane, the rank is <span class="math inline">\(2\)</span></p></li>
+</ul>
+<p>The word rank means the number of dimensions in the output. The set of all outputs for a transformation is called the <em>column space</em> of a transformation. It is the span of the columns. If the span equals the full space we call the transformation has <em>full rank</em>.</p>
+<p><strong>Note</strong> The zero vector is always included in the column space since linear transformations must keep the origin fixed in place.</p>
+<p>For any non-full rank transformation there could be an entire range of vectors that gets squshed to orgin.</p>
+<ul>
+<li><p>In 2D, if a transformation squishes to a line, there is a bunch of vectors that gets squished to the origin.</p></li>
+<li><p>In 3D, if a transformation squishes to a plane, there is a bunch of vectors that gets squished to the origin.</p></li>
+<li><p>In 3D, if a transformation squishes to a line, there is entire plane that gets squished to the origin.</p></li>
+</ul>
+<p>The set of such vectors that gets squished to the origin, for any transformation, is called the <em>null space</em> or <em>kernel</em> of the transformation. In a sense, it a set of vectors that “becomes null”.</p>
+<hr />
+</div>
+<div id="references" class="section level4">
+<h4>References</h4>
+<p>Shamelessly copied from my favorite math explainer:</p>
+<p><a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" class="uri">https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab</a></p>
+<p>You should seriously watch his videos.</p>
+<hr />
 </div>
 </div>
 

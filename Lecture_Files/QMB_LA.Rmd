@@ -547,7 +547,7 @@ How do we compute determinants?
 
 ---
 
-#### Inverse matrices, column space and null space
+#### Inverse matrices, rank and null space
 
 _To ask the right question is harder than to answer it_. - Georg Cantor
 
@@ -563,4 +563,33 @@ In general, the solution of this would depend on how $A$ behaves - whether it sq
 
 When $det(A)=0$, the space is squished into smaller dimensions, there is no inverse. We cannot _unsquish_ a line to make a plane. The same happens in three dimensions and there is a _name_ for different types of zero determinant cases. The name is _rank_ of a matrix.
 
+* If the output of a transformation is a line, we say it has rank $1$
+
+* In three dimensions, if the output is a plane, the rank is $2$
+
+The word rank means the number of dimensions in the output. The set of all outputs for a transformation is called the _column space_ of a transformation. It is the span of the columns. If the span equals the full space we call the transformation has _full rank_.
+
+**Note** The zero vector is always included in the column space since linear transformations must keep the origin fixed in place. 
+
+For any non-full rank transformation there could be an entire range of vectors that gets squshed to orgin.
+
+* In 2D, if a transformation squishes to a line, there is a bunch of vectors that gets squished to the origin.
+
+* In 3D, if a transformation squishes to a plane, there is a bunch of vectors that gets squished to the origin.
+
+* In 3D, if a transformation squishes to a line, there is entire plane that gets squished to the origin.
+
+The set of such vectors that gets squished to the origin, for any transformation, is called the _null space_ or _kernel_ of the transformation. In a sense, it a set of vectors that "becomes null".
+
+---
+
+#### References
+
+Shamelessly copied from my favorite math explainer: 
+
+https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab
+
+You should seriously watch his videos.
+
+---
 
