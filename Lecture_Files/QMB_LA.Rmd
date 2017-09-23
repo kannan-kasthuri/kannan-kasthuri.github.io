@@ -502,4 +502,65 @@ The determinant of a 2D transformation is zero of it squshes all the plane into 
 
 This is a pretty important concept because it will allow us to determine if the transformation reduces our points into a smaller dimenstions.
 
-**Note**: Whatever we said about determinants is when determinant 
+**Note**: Whatever we said about determinants is when determinant is a positive quantity.
+
+What does a negative determinant even mean? It has to do with the idea of orientation. Any tranformation that flips the axes is said to invert the orientation of space.
+
+---
+
+![](det6.png)
+
+---
+
+After transformation if the axes direction are reversed:
+
+---
+
+![](det7.png)
+
+---
+
+the determinant of such transformations will be negative. The absolute value will still tell us by which factor the area is scaled. Another way to think about this is as follows:
+
+---
+
+![](det8.png)
+
+
+---
+
+The idea of determinants representing area extends to three dimensions. In this case we will have _parallelopiped_ instead of parallelogram's. A volume of zero means the entire parallelopiped gets squished into zero volume, meaning the vectors would either lie on a plane, or a line or become a single point. This means the columns of the matrix are linearly dependent (i.e, one is a multiple of the other).
+
+What does negative determinant mean in 3-dimensions? Right hand and left hand rule:
+
+---
+
+![](det9.png)
+
+---
+
+How do we compute determinants?
+
+---
+
+![](det10.png)
+
+---
+
+#### Inverse matrices, column space and null space
+
+_To ask the right question is harder than to answer it_. - Georg Cantor
+
+Several real world applications come in the form of linear equations. Even in the case of non-linear equations, they can be approximated by linear equations to a good degree. Linear algebra is very useful in solving such equations. Here is how we think about matrices:
+
+---
+
+![](mat_vec1.png)
+
+---
+
+In general, the solution of this would depend on how $A$ behaves - whether it squishes all points to a line (or a point) or not. Thus, $det(A)$ would determine the solution(s). For every transformation $A$, where $det(A) \neq 0$, we can apply the inverse of the transformation. Thus, for instance, if we rotate by $90^{\circ}$ clockwise, we can rotate by $-90^{\circ}$ anti-clock wise. The result of such inverse transformation (if it exists) applied to a transformation should leave the vectors intact. That is, $[A^{-1}A]x=x$, for any vector $x$.
+
+When $det(A)=0$, the space is squished into smaller dimensions, there is no inverse. We cannot _unsquish_ a line to make a plane. The same happens in three dimensions and there is a _name_ for different types of zero determinant cases. The name is _rank_ of a matrix.
+
+
