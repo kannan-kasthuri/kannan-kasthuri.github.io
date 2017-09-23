@@ -456,4 +456,50 @@ Associativity, $M_1(M_2M_3) = (M_1M_2)M_3$, is trivial if we think about applyin
 
 Also, all these ideas apply to three and higher dimensions.
 
+---
 
+#### Determinants
+
+_The purpose of computation is insight, not numbers_. - Richard Hamming
+
+Some transformations stretch the space while others squish it. It will be good to know how much does a trasformation stretches or squishes the space. Area is a good measure. For example consider the transformation,
+
+![](det1.png)
+
+---
+
+The new area is $3 \times 2 = 6$. Whereas for a sheer like this,
+
+![](det2.png)
+
+---
+
+the area remains fixed. Even though this sheer transformation seems to squish things around, the area remains the same, at least in the case of 1 unit square. In fact, if we know how one unit square changes, we can know how any area changes, because linear transformations leave grid lines parallel and evenly spaced. 
+
+This special scaling factor, the factor by which the linear transformation changes any area is called the _determinant_ of that transformation.
+
+---
+
+![](det3.png)
+
+---
+
+For example, the determinant of a transformation is $3$ if it increases the area after transformation, by $3$.
+
+---
+
+![](det4.png)
+
+---
+
+The determinant of a 2D transformation is zero of it squshes all the plane into a single line. 
+
+---
+
+![](det5.png)
+
+---
+
+This is a pretty important concept because it will allow us to determine if the transformation reduces our points into a smaller dimenstions.
+
+**Note**: Whatever we said about determinants is when determinant 
