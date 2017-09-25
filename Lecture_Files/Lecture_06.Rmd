@@ -45,7 +45,7 @@ We will see more about tibbles in the wrangle section but we will make a short n
 
 A tibble, or `tbl_df`, is a modern reimagining of the data frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces one to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced `print method()` which makes them easier to use with large datasets containing complex objects.
 
-To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on..
+To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
   # Load the tidyverse library
@@ -55,6 +55,114 @@ To convert a data frame to a tibble, we can use the function `as.tibble(df)` whe
   HANES_TIB
 ```
 
+
+Tranformation basics are six key `dplyr` library functions that will allow us to solve vast majority of data manipulation challenges:
+
+1. We can pick observations by their values using the function `filter()`.
+
+2. Reorder the rows applying `arrange()` operation to a data set.
+
+3. We can choose variables by their names using `select()`.
+
+4. Create new variables through `mutate()`.
+
+5. Find the summary using `summarise()` function.
+
+6. And the most important of all which is the `group_by()` operation which can be used with any of the above five.
+
+---
+
+#### The `filter()` function
+
+
+The filter function allows us to pick a subset of information (or rows) from our dataset.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Pick all the records of patients with age == 45 and HDL value of 50
+  filter(HANES, SPAGE == 45, HDL == 50)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Pick all the records of patients with age == 45 and HDL value of 50
+  filter(HANES, SPAGE == 45, HDL == 50)
+```
+
+**Note**: All `dplyr` functions write the result to a new data frame. If we want to store the data, we need to assign the result to a variable.
+
+We can also use comparison and logical operators. For instance,
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Pick all the records of patients who are between 45 and 46 and HDL value of 50
+  filter(HANES, SPAGE >= 45 & SPAGE <= 46, HDL == 50)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Pick all the records of patients who are between 45 and 46 and HDL value of 50
+  filter(HANES, SPAGE >= 45 & SPAGE <= 46, HDL == 50)
+```
+
+will list all the records for patients with age between $45$ and $46$ and who have the HDL value of $50$.
+
+**Note**: `filter()` only includes rows where the condition is TRUE; it excludes both FALSE **and** NA values. 
+
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+* Find all patients who
+
+1. Are females and in between ages $45$ and $60$
+2. Are in excellent or good health status
+3. Who have diabetes but not yet diagnosed
+4. Have total cholesterol between $150$ and $200$
+5. Have glucose levels greater than $75$
+6. Who had poor health status but with more than median HDL values
+7. High content of mercury (more than median) in their urine
+
+* How many patients have a missing UACR value in the HANES dataset? 
+
+---
+
+#### The `arrange()` function
+
+
+`arrange(`) works similar to filter function except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If we provide more than one column name, each additional column will be used to break ties in the values of preceding columns:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Arrange the data frame arranging GENDER and AGE with descending order of the variable UCREATININE
+  a <- arrange(HANES, GENDER, SPAGE, desc(UCREATININE))
+  atib <- as.tibble(a)
+  atib
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Arrange the data frame arranging GENDER and AGE with descending order of the variable UCREATININE
+  a <- arrange(HANES, GENDER, SPAGE, desc(UCREATININE))
+  atib <- as.tibble(a)
+  atib
+```
+
+**Note**: Missing values are always sorted at the end.
+
+To view the last few entries of the data frame/tibble, one can use the `tail()` function.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  tail(atib)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Show the last few entries
+  tail(atib)
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+1. Sort HANES to find patients with highest cholesterol. Do the same to find patients with least cholesterol.
+
+2. Sort HANES to find pateints with high A1C.
+
+---
 
 #### Selected materials and references
 

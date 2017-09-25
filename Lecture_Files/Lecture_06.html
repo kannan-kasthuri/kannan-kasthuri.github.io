@@ -173,7 +173,7 @@ $(document).ready(function () {
 ##   .. ..- attr(*, &quot;names&quot;)= chr [1:415] &quot;2&quot; &quot;15&quot; &quot;16&quot; &quot;24&quot; ...</code></pre>
 <p>We will see more about tibbles in the wrangle section but we will make a short note of it now.</p>
 <p>A tibble, or <code>tbl_df</code>, is a modern reimagining of the data frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces one to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced <code>print method()</code> which makes them easier to use with large datasets containing complex objects.</p>
-<p>To convert a data frame to a tibble, we can use the function <code>as.tibble(df)</code> where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on..</p>
+<p>To convert a data frame to a tibble, we can use the function <code>as.tibble(df)</code> where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on.</p>
 <pre class="r"><code>  # Load the tidyverse library
   library(tidyverse)
   # Convert HANES data frame into a tibble and observe it
@@ -197,6 +197,122 @@ $(document).ready(function () {
 ## #   MERCURYTOTALBLOOD &lt;dbl&gt;, HDL &lt;int&gt;, CHOLESTEROLTOTAL &lt;int&gt;,
 ## #   GLUCOSESI &lt;dbl&gt;, CREATININESI &lt;dbl&gt;, CREATININE &lt;dbl&gt;,
 ## #   TRIGLYCERIDE &lt;int&gt;, GLUCOSE &lt;int&gt;, COTININE &lt;dbl&gt;, LDLESTIMATE &lt;int&gt;</code></pre>
+<p>Tranformation basics are six key <code>dplyr</code> library functions that will allow us to solve vast majority of data manipulation challenges:</p>
+<ol style="list-style-type: decimal">
+<li><p>We can pick observations by their values using the function <code>filter()</code>.</p></li>
+<li><p>Reorder the rows applying <code>arrange()</code> operation to a data set.</p></li>
+<li><p>We can choose variables by their names using <code>select()</code>.</p></li>
+<li><p>Create new variables through <code>mutate()</code>.</p></li>
+<li><p>Find the summary using <code>summarise()</code> function.</p></li>
+<li><p>And the most important of all which is the <code>group_by()</code> operation which can be used with any of the above five.</p></li>
+</ol>
+<hr />
+<div id="the-filter-function" class="section level4">
+<h4>The <code>filter()</code> function</h4>
+<p>The filter function allows us to pick a subset of information (or rows) from our dataset.</p>
+<pre class="r"><code>  # Pick all the records of patients with age == 45 and HDL value of 50
+  filter(HANES, SPAGE == 45, HDL == 50)</code></pre>
+<pre><code>##       KEY GENDER SPAGE AGEGROUP HSQ_1 UCREATININE UALBUMIN UACR  MERCURYU
+## 1 329120A      M    45    40-59  Good          31        2    6 0.1822157
+## 2 329270B      F    45    40-59  Good         150        5    3 0.5092553
+##   DX_DBTS A1C CADMIUM   LEAD MERCURYTOTALBLOOD HDL CHOLESTEROLTOTAL
+## 1 NO DIAB 4.8  0.9012 3.9006            3.2254  50              192
+## 2    DIAB 6.8  0.1798 0.8202            0.8664  50              144
+##   GLUCOSESI CREATININESI CREATININE TRIGLYCERIDE GLUCOSE COTININE
+## 1      4.72           92       1.04          108      85   0.0757
+## 2      9.05           57       0.64          133     163   0.3407
+##   LDLESTIMATE
+## 1         120
+## 2          67</code></pre>
+<p><strong>Note</strong>: All <code>dplyr</code> functions write the result to a new data frame. If we want to store the data, we need to assign the result to a variable.</p>
+<p>We can also use comparison and logical operators. For instance,</p>
+<pre class="r"><code>  # Pick all the records of patients who are between 45 and 46 and HDL value of 50
+  filter(HANES, SPAGE &gt;= 45 &amp; SPAGE &lt;= 46, HDL == 50)</code></pre>
+<pre><code>##       KEY GENDER SPAGE AGEGROUP HSQ_1 UCREATININE UALBUMIN UACR  MERCURYU
+## 1 329120A      M    45    40-59  Good          31        2    6 0.1822157
+## 2 550110A      F    46    40-59  Good          54        3    6 0.3860837
+## 3 329270B      F    45    40-59  Good         150        5    3 0.5092553
+##   DX_DBTS A1C CADMIUM   LEAD MERCURYTOTALBLOOD HDL CHOLESTEROLTOTAL
+## 1 NO DIAB 4.8  0.9012 3.9006            3.2254  50              192
+## 2 NO DIAB 5.1  0.3584 0.9674            1.2028  50              188
+## 3    DIAB 6.8  0.1798 0.8202            0.8664  50              144
+##   GLUCOSESI CREATININESI CREATININE TRIGLYCERIDE GLUCOSE COTININE
+## 1      4.72           92       1.04          108      85   0.0757
+## 2      5.16           59       0.67           77      93   0.0350
+## 3      9.05           57       0.64          133     163   0.3407
+##   LDLESTIMATE
+## 1         120
+## 2         123
+## 3          67</code></pre>
+<p>will list all the records for patients with age between <span class="math inline">\(45\)</span> and <span class="math inline">\(46\)</span> and who have the HDL value of <span class="math inline">\(50\)</span>.</p>
+<p><strong>Note</strong>: <code>filter()</code> only includes rows where the condition is TRUE; it excludes both FALSE <strong>and</strong> NA values.</p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>:</p>
+<ul>
+<li>Find all patients who</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Are females and in between ages <span class="math inline">\(45\)</span> and <span class="math inline">\(60\)</span></li>
+<li>Are in excellent or good health status</li>
+<li>Who have diabetes but not yet diagnosed</li>
+<li>Have total cholesterol between <span class="math inline">\(150\)</span> and <span class="math inline">\(200\)</span></li>
+<li>Have glucose levels greater than <span class="math inline">\(75\)</span></li>
+<li>Who had poor health status but with more than median HDL values</li>
+<li>High content of mercury (more than median) in their urine</li>
+</ol>
+<ul>
+<li>How many patients have a missing UACR value in the HANES dataset?</li>
+</ul>
+<hr />
+</div>
+<div id="the-arrange-function" class="section level4">
+<h4>The <code>arrange()</code> function</h4>
+<p><code>arrange(</code>) works similar to filter function except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If we provide more than one column name, each additional column will be used to break ties in the values of preceding columns:</p>
+<pre class="r"><code>  # Arrange the data frame arranging GENDER and AGE with descending order of the variable UCREATININE
+  a &lt;- arrange(HANES, GENDER, SPAGE, desc(UCREATININE))
+  atib &lt;- as.tibble(a)
+  atib</code></pre>
+<pre><code>## # A tibble: 1,112 x 23
+##        KEY GENDER SPAGE AGEGROUP     HSQ_1 UCREATININE UALBUMIN
+##     &lt;fctr&gt; &lt;fctr&gt; &lt;int&gt;   &lt;fctr&gt;    &lt;fctr&gt;       &lt;int&gt;    &lt;dbl&gt;
+##  1 134310B      M    20    20-39 Excellent         612   26.000
+##  2 550030A      M    20    20-39 Very Good         217   12.000
+##  3 220620A      M    20    20-39 Very Good         198   15.000
+##  4 333190A      M    20    20-39      Good         153    5.000
+##  5 443500A      M    20    20-39 Very Good         148    1.000
+##  6 140330B      M    20    20-39 Very Good         132    3.000
+##  7 447750A      M    20    20-39 Excellent         131    3.000
+##  8 223980B      M    21    20-39 Excellent         269    1.000
+##  9 223930B      M    21    20-39 Very Good         205    0.707
+## 10 328780B      M    21    20-39 Very Good         144   25.000
+## # ... with 1,102 more rows, and 16 more variables: UACR &lt;dbl&gt;,
+## #   MERCURYU &lt;dbl&gt;, DX_DBTS &lt;fctr&gt;, A1C &lt;dbl&gt;, CADMIUM &lt;dbl&gt;, LEAD &lt;dbl&gt;,
+## #   MERCURYTOTALBLOOD &lt;dbl&gt;, HDL &lt;int&gt;, CHOLESTEROLTOTAL &lt;int&gt;,
+## #   GLUCOSESI &lt;dbl&gt;, CREATININESI &lt;dbl&gt;, CREATININE &lt;dbl&gt;,
+## #   TRIGLYCERIDE &lt;int&gt;, GLUCOSE &lt;int&gt;, COTININE &lt;dbl&gt;, LDLESTIMATE &lt;int&gt;</code></pre>
+<p><strong>Note</strong>: Missing values are always sorted at the end.</p>
+<p>To view the last few entries of the data frame/tibble, one can use the <code>tail()</code> function.</p>
+<pre class="r"><code>  tail(atib)</code></pre>
+<pre><code>## # A tibble: 6 x 23
+##       KEY GENDER SPAGE AGEGROUP  HSQ_1 UCREATININE UALBUMIN        UACR
+##    &lt;fctr&gt; &lt;fctr&gt; &lt;int&gt;   &lt;fctr&gt; &lt;fctr&gt;       &lt;int&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+## 1 332900A      F    88      60+   Fair         107   11.000 10.00000000
+## 2 224220A      F    88      60+   Fair          89    8.000  9.00000000
+## 3 446510A      F    88      60+   Fair          60    0.707  0.01178333
+## 4 138450B      F    89      60+   Good         181    7.000  3.87000000
+## 5 442720A      F    90      60+   Good         309   59.000 19.00000000
+## 6 140950A      F    92      60+   Good          73   15.000 20.00000000
+## # ... with 15 more variables: MERCURYU &lt;dbl&gt;, DX_DBTS &lt;fctr&gt;, A1C &lt;dbl&gt;,
+## #   CADMIUM &lt;dbl&gt;, LEAD &lt;dbl&gt;, MERCURYTOTALBLOOD &lt;dbl&gt;, HDL &lt;int&gt;,
+## #   CHOLESTEROLTOTAL &lt;int&gt;, GLUCOSESI &lt;dbl&gt;, CREATININESI &lt;dbl&gt;,
+## #   CREATININE &lt;dbl&gt;, TRIGLYCERIDE &lt;int&gt;, GLUCOSE &lt;int&gt;, COTININE &lt;dbl&gt;,
+## #   LDLESTIMATE &lt;int&gt;</code></pre>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Sort HANES to find patients with highest cholesterol. Do the same to find patients with least cholesterol.</p></li>
+<li><p>Sort HANES to find pateints with high A1C.</p></li>
+</ol>
+<hr />
+</div>
 <div id="selected-materials-and-references" class="section level4">
 <h4>Selected materials and references</h4>
 <p><a href="https://cran.r-project.org/doc/manuals/R-intro.pdf">R for Data Science - Data Transformation Part</a></p>
