@@ -11,6 +11,14 @@ output: html_document
 
 ---
 
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/16OMdpP_QdQ" frameborder="0" allowfullscreen></iframe>
+
+---
+
 This lecture is designed to give a bird's eye view of analysis of algorithms. The subject is extremely vast and it is usually a semester long course (typically a core course) in computer science departments. 
 
 #### Motivation
