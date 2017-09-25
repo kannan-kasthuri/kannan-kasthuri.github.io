@@ -360,36 +360,58 @@ The use of the function `na.rm()` inside summarise can be extremely useful as th
 **Without removing NA**
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Group by AGE and GENDER and find the mean of cholesterol for each group
+  # Group by AGE and GENDER and
   HANES_with_NA %>% 
   group_by(SPAGE,GENDER) %>% 
+  # summarize the mean of cholesterol for each group without removing NA
   summarise(mean = mean(CHOLESTEROLTOTAL))
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Group by AGE and GENDER and find the mean of cholesterol for each group
+ # Group by AGE and GENDER and
   HANES_with_NA %>% 
   group_by(SPAGE,GENDER) %>% 
+  # summarize the mean of cholesterol for each group without removing NA
   summarise(mean = mean(CHOLESTEROLTOTAL))
 ```
 
 **Removing NA**
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Group by AGE and GENDER and find the mean of cholesterol for each group
+  # Group by AGE and GENDER and 
   HANES_with_NA %>% 
   group_by(SPAGE,GENDER) %>% 
+  # summarize the mean of cholesterol for each group by removing NA
   summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Group by AGE and GENDER and find the mean of cholesterol for each group
+  # Group by AGE and GENDER and 
   HANES_with_NA %>% 
   group_by(SPAGE,GENDER) %>% 
+  # summarize the mean of cholesterol for each group by removing NA
   summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
 ```
 
+We can also filter through the missing values first -
 
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Filter the data and get no NA values 
+  HANES_with_NA %>% filter(!is.na(CHOLESTEROLTOTAL)) %>%
+  # group by AGE and GENDER 
+  group_by(SPAGE,GENDER) %>% 
+  # and find the mean of cholesterol for each group
+  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Filter the data and get no NA values 
+  HANES_with_NA %>% filter(!is.na(CHOLESTEROLTOTAL)) %>%
+  # group by AGE and GENDER
+  group_by(SPAGE,GENDER) %>% 
+  # and find the mean of cholesterol for each group
+  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
+```
 
 ---
 

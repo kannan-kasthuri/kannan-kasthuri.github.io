@@ -467,9 +467,10 @@ $(document).ready(function () {
   URL &lt;- paste(URL_text_1,URL_text_2, sep=&quot;&quot;)
   HANES_with_NA &lt;- read.csv(text=getURL(URL))</code></pre>
 <p><strong>Without removing NA</strong></p>
-<pre class="r"><code>  # Group by AGE and GENDER and find the mean of cholesterol for each group
+<pre class="r"><code>  # Group by AGE and GENDER and
   HANES_with_NA %&gt;% 
   group_by(SPAGE,GENDER) %&gt;% 
+  # summarize the mean of cholesterol for each group without removing NA
   summarise(mean = mean(CHOLESTEROLTOTAL))</code></pre>
 <pre><code>## # A tibble: 143 x 3
 ## # Groups:   SPAGE [?]
@@ -487,9 +488,10 @@ $(document).ready(function () {
 ## 10    24      2       NA
 ## # ... with 133 more rows</code></pre>
 <p><strong>Removing NA</strong></p>
-<pre class="r"><code>  # Group by AGE and GENDER and find the mean of cholesterol for each group
+<pre class="r"><code>  # Group by AGE and GENDER and 
   HANES_with_NA %&gt;% 
   group_by(SPAGE,GENDER) %&gt;% 
+  # summarize the mean of cholesterol for each group by removing NA
   summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))</code></pre>
 <pre><code>## # A tibble: 143 x 3
 ## # Groups:   SPAGE [?]
@@ -506,6 +508,28 @@ $(document).ready(function () {
 ##  9    24      1 169.4286
 ## 10    24      2 173.9500
 ## # ... with 133 more rows</code></pre>
+<p>We can also filter through the missing values first -</p>
+<pre class="r"><code>  # Filter the data and get no NA values 
+  HANES_with_NA %&gt;% filter(!is.na(CHOLESTEROLTOTAL)) %&gt;%
+  # group by AGE and GENDER 
+  group_by(SPAGE,GENDER) %&gt;% 
+  # and find the mean of cholesterol for each group
+  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))</code></pre>
+<pre><code>## # A tibble: 140 x 3
+## # Groups:   SPAGE [?]
+##    SPAGE GENDER     mean
+##    &lt;int&gt;  &lt;int&gt;    &lt;dbl&gt;
+##  1    20      1 165.1250
+##  2    20      2 157.3333
+##  3    21      1 151.8000
+##  4    21      2 154.2222
+##  5    22      1 153.4286
+##  6    22      2 167.2222
+##  7    23      1 165.9286
+##  8    23      2 169.7000
+##  9    24      1 169.4286
+## 10    24      2 173.9500
+## # ... with 130 more rows</code></pre>
 <hr />
 </div>
 </div>
