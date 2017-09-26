@@ -583,9 +583,44 @@ The set of such vectors that gets squished to the origin, for any transformation
 
 ---
 
+#### Non-square transformations and Eigenvalues/Eigenvectors
+
+_On this quiz, I asked you to find the determinant of a $2 \times 3$ matrix. Some of you, to my great ammusement, actually tried to do this_. 
+- via mathprofessorquotes.com (no name listed)
+
+We can think of transformations between dimensions:
+
+---
+
+![](2d3d1.png)
+
+---
+
+All we need is grid-lines should remain parallel and evenly spaced and origin should map to origin. We have the same interpretation of the coordinate transformation, namely, where $\hat{i}$ and $\hat{j}$ lands. 
+
+---
+
+![](2d3d2.png)
+
+---
+
+In the language of the last few slides, this matrix has a full rank since the number of dimensions of the column space is same as the number of dimensions of the input space, namely, $2$.
+
+**Quiz**: What does a $2x3$ matrix mean?
+
+##### Eigenvalues and Eigenvectors
+
+A much better presentation:
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PFDu9oVAE-g" frameborder="0" allowfullscreen></iframe>
+
+---
+
 #### References
 
-Shamelessly copied from my favorite math explainer: 
+Shamelessly reproduced from my favorite math explainer: 
 
 https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab
 
