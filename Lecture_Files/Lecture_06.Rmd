@@ -413,6 +413,161 @@ We can also filter through the missing values first -
   summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
 ```
 
+Whenever we do aggregations using `group_by()` it is good to include count information that will give the information on the distribution and extreme values.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by AGE, GENDER
+  cholesterol <- HANES %>% 
+  group_by(SPAGE,GENDER) %>%
+  # and summarise mean cholesterol
+  summarise(mean_cholesterol = mean(CHOLESTEROLTOTAL))
+
+  # We can then plot the count information
+  ggplot(data = cholesterol, mapping = aes(x = mean_cholesterol)) + 
+  geom_freqpoly(binwidth = 10)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Group by AGE, GENDER
+  cholesterol <- HANES %>% 
+  group_by(SPAGE,GENDER) %>%
+  # and summarise mean cholesterol
+  summarise(mg_cholesterol = mean(CHOLESTEROLTOTAL))
+
+  # We can then plot the count information
+  ggplot(data = cholesterol, mapping = aes(x = mg_cholesterol)) + 
+  geom_freqpoly(binwidth = 10)
+```
+
+This reveals that there are patients with extremely high cholesterol ($300$ or more). How does the cholesterol vary over the age group? We can get more insight if we draw a plot of the ratio HDL/LDL and cholesterol for each agegroup:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # For each AGEGROUP find the mean H_L ratio and cholesterol information
+  CHO_L_D <- HANES %>% 
+  group_by(AGEGROUP) %>% 
+  summarise(H_L = mean(HDL) / mean(LDLESTIMATE),
+            CHO = mean(CHOLESTEROLTOTAL))
+
+  # Plot this information 
+  CHO_L_D %>% 
+  ggplot(mapping = aes(x = H_L, y = CHO)) +
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # For each AGEGROUP find the mean H_L ratio and cholesterol information
+  CHO_L_D <- HANES %>% 
+  group_by(AGEGROUP) %>% 
+  summarise(H_L = mean(HDL) / mean(LDLESTIMATE),
+            CHO = mean(CHOLESTEROLTOTAL))
+  
+  # Plot this information 
+  CHO_L_D %>% 
+  ggplot(mapping = aes(x = H_L, y = CHO)) +
+  geom_point(mapping = aes(color=AGEGROUP)) + 
+  geom_smooth(se = FALSE)
+```
+
+This reveals the cholesterol peaks at the age group $40-59$ and remains almost stable, while the age group $20-39$ has the least cholesterol.
+
+There are several useful summary functions:
+
+**Example 1**: Finding the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL if GLUCOSE >100 for each age group.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- HANES %>% 
+    # For each AGEGROUP,
+    group_by(AGEGROUP) %>%
+    # find the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL when GLUCOSE content is > 100
+    summarise(count = n(),
+              H = mean(CHOLESTEROLTOTAL),
+              H_glu = mean(CHOLESTEROLTOTAL[GLUCOSE>100])) 
+  # And print it
+  DL
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  DL <- HANES %>% 
+    # For each AGEGROUP,
+    group_by(AGEGROUP) %>%
+    # find the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL when GLUCOSE content is > 100
+    summarise(count = n(),
+              H = mean(CHOLESTEROLTOTAL),
+              H_glu = mean(CHOLESTEROLTOTAL[GLUCOSE>100])) 
+  # and print it
+  DL
+```
+
+**Example 2**: Finding the standard deviation of CHOLESTEROLTOTAL by age group
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- HANES %>% 
+  # For each AGEGROUP,
+  group_by(AGEGROUP) %>% 
+  # sumamarise the standard deviation of CHOLESTEROLTOTAL and arrange in descending order
+  summarise(CHO_sd = sd(CHOLESTEROLTOTAL)) %>% 
+            arrange(desc(CHO_sd))
+  # and print it
+  DL
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  DL <- HANES %>% 
+  # For each AGEGROUP,
+  group_by(AGEGROUP) %>% 
+  # sumamarise the standard deviation of CHOLESTEROLTOTAL and arrange in descending order
+  summarise(CHO_sd = sd(CHOLESTEROLTOTAL)) %>% 
+            arrange(desc(CHO_sd))
+  # and print it
+  DL
+```
+
+**Example 3**: Finding largest and smallest CHOLESTEROLTOTAL for each diabetes diagnosis group.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- HANES %>% 
+  # For each DX_DBTS,
+  group_by(DX_DBTS) %>% 
+  # find the largest and smallest CHOLESTEROLTOTAL value
+  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
+  # and print it
+  DL
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  DL <- HANES %>% 
+  # For each DX_DBTS,
+  group_by(DX_DBTS) %>% 
+  # find the largest and smallest CHOLESTEROLTOTAL value
+  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
+  # and print it
+  DL
+```
+
+**Example 4**: Finding largest and smallest CHOLESTEROLTOTAL for each diabetes diagnosis group and by age group.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- HANES %>% 
+  # For each DX_DBTS and AGEGROUP,
+  group_by(DX_DBTS, AGEGROUP) %>% 
+  # find the largest and smallest CHOLESTEROLTOTAL value
+  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
+  # and print it
+  DL
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  DL <- HANES %>% 
+  # For each DX_DBTS and AGEGROUP
+  group_by(DX_DBTS, AGEGROUP) %>% 
+  # find the largest and smallest CHOLESTEROLTOTAL value
+  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
+  # and print it
+  DL
+```
+
+
 ---
 
 #### Selected materials and references
