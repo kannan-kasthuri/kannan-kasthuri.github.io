@@ -622,6 +622,69 @@ $(document).ready(function () {
 ## 7    NO DIAB    20-39          308           95
 ## 8    NO DIAB    40-59          335           98
 ## 9    NO DIAB      60+          313           97</code></pre>
+</div>
+<div id="grouped-transformations" class="section level5">
+<h5>Grouped transformations</h5>
+<p>Grouping variables is extremely useful when used with the <code>summarise()</code> function, but it can also be used with other operations such as <code>mutate()</code> and <code>filter()</code>.</p>
+<p><strong>Examples</strong>:</p>
+<p>Among the diabetes diagnostic within age groups, find the members (top 3 ranks) with high glucose levels.</p>
+<pre class="r"><code>  # Group by diabetes status and age group,
+   HANES %&gt;% group_by(DX_DBTS, AGEGROUP) %&gt;% 
+  # filter for the top 3 ranks
+   filter(rank(desc(GLUCOSE)) &lt; 3) %&gt;% 
+  # select only the relevant variables
+  select(DX_DBTS,AGEGROUP,GLUCOSE) %&gt;% 
+  # and arrange in descending order of glucose levels
+  arrange(desc(GLUCOSE))</code></pre>
+<pre><code>## # A tibble: 19 x 3
+## # Groups:   DX_DBTS, AGEGROUP [9]
+##       DX_DBTS AGEGROUP GLUCOSE
+##        &lt;fctr&gt;   &lt;fctr&gt;   &lt;int&gt;
+##  1       DIAB      60+     490
+##  2       DIAB    40-59     320
+##  3       DIAB    40-59     297
+##  4       DIAB      60+     281
+##  5 DIAB NO_DX    40-59     219
+##  6 DIAB NO_DX    40-59     214
+##  7 DIAB NO_DX    40-59     214
+##  8       DIAB    20-39     212
+##  9       DIAB    20-39     186
+## 10 DIAB NO_DX      60+     178
+## 11 DIAB NO_DX      60+     171
+## 12    NO DIAB    40-59     159
+## 13    NO DIAB    20-39     149
+## 14    NO DIAB      60+     147
+## 15 DIAB NO_DX    20-39     140
+## 16    NO DIAB      60+     136
+## 17    NO DIAB    40-59     125
+## 18    NO DIAB    20-39     120
+## 19 DIAB NO_DX    20-39      87</code></pre>
+<p>Find age group (not the AGEGROUP variable) greater than a threshold (say, <span class="math inline">\(30\)</span>) and standardise A1C to compute per group metric.</p>
+<pre class="r"><code>  # Group by SPAGE and filter groups that contain more than 30 individuals
+  AG_GT_30 &lt;- HANES %&gt;% group_by(SPAGE) %&gt;%
+                        filter(n() &gt; 30)
+
+  # Filter for all records with A1C variable &gt; 0 to avoid NaNs,
+  AG_GT_30 %&gt;% filter(A1C &gt; 0) %&gt;%
+  # standardise A1C dividing by the total sum of A1C in the group
+  mutate(standardised_A1C = A1C / sum(A1C)) %&gt;%
+  # and seelct only A1C and standardised A1C
+  select(A1C,standardised_A1C)</code></pre>
+<pre><code>## # A tibble: 226 x 3
+## # Groups:   SPAGE [7]
+##    SPAGE   A1C standardised_A1C
+##    &lt;int&gt; &lt;dbl&gt;            &lt;dbl&gt;
+##  1    29   5.0       0.03203075
+##  2    28   5.2       0.03121248
+##  3    27   4.8       0.03009404
+##  4    24   5.1       0.03240152
+##  5    30   4.3       0.02426637
+##  6    30   5.3       0.02990971
+##  7    28   4.7       0.02821128
+##  8    30   4.7       0.02652370
+##  9    23   4.9       0.02909739
+## 10    30   5.2       0.02934537
+## # ... with 216 more rows</code></pre>
 <hr />
 </div>
 </div>
