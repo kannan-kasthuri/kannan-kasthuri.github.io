@@ -9,6 +9,45 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+### Research
+
+---
+
+If you are quickly looking for my pulication record - please click [here](https://kannan-kasthuri.github.io/publications.html). 
+
+Research excites me as much as pedagogy. I have diverse academic interests - cancer biology, formal logic, physical theories, computing, mathematics to name a few. My contributions to science can be broadly classifed in the areas of computational physics and genomics. The following descriptions are in chronological order. 
+
+---
+
+#### Contributions in computational physics
+
+---
+
+I started with mathematics, moved into computer science, writing a thesis in multipole algorithms. [Fast Multipole Method](https://en.wikipedia.org/wiki/Fast_multipole_method) is one of the top $10$ algorithms of the $20$th century introduced by [Prof. Greengard](https://en.wikipedia.org/wiki/Leslie_Greengard) of the Courant institute at NYU. My work focussed on generalizing the algorithm for higher order potentials and forces.
+
+
+---
+
+1. **Kasthuri Kannan**, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. _Lecture Notes in Computer Science_. 3514, pp. 107-114, May 2005.
+
+    _Description_: Spherical harmonics are eigenfunctions of the Laplace-Beltrami operator in spherical coordinates. And hence they serve as orthogonal basis functions, which can be used to represent Coulomb-like potentials. We make use of this property to efficiently compute these potentials using ultraspherical (Gegenbauer) polynomials.
+
+2. **Kasthuri Kannan** and Vivek Sarin, A Treecode for Accurate Force Calculations. _Lecture Notes in Computer Science_. 3991, pp. 92-99, May 2006.
+
+    _Description_: Computing the forces in N-body simulations is of the order N^2. Treecodes present a fast approximation to such computations. However, accuracy in such computations are limited when using cartesian tensors. Spherical tensors provide greater accuracy for these simulations.
+
+3. **Kasthuri Kannan** and Vivek Sarin, A Treecode for Potentials of the Form $r^{-\lambda}$, _International Journal of Computer Mathematics_. 84, 1249-1260, Jan. 2007.
+
+    _Description_: This work presents a fast algorithm to compute potentials of the form r^{-lambda} that are used in molecular dynamics simulations. This is the exension of the first work above, where I describe the complete algorithm along with complexity analysis.
+
+---
+
+#### Contributions in biology/genomics
+
+---
+
+After my degree, I hardly had a chance to pursue research in the areas of my formal training as I moved into biology and genomics. What follows is the description of my biology/genomics research.
+
 ![](coming_soon.jpg)
 
 ---
