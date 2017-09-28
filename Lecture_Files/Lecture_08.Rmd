@@ -1,0 +1,118 @@
+---
+# title: "Lecture 03"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Data science fundamentals 04: Exploratory data analysis (Oct. 03, 2017)
+
+---
+
+This is the concluding part of EDA workshop. Import the data set and change data types to reflect their correct annotation (housekeeping).
+
+
+```{r eval=TRUE, message=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Rename the HSQ_1 factor for identification
+  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
+  # Rename the DX_DBTS as a factor
+  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
+  # Omit all NA from the data frame
+  HANES <- na.omit(HANES)
+  # Observe the structure
+  str(HANES)
+  # Load the tidyverse library
+  library(tidyverse)
+```
+
+
+#### Missing values
+
+It may be tempting to ignore unsual values, but it is best to replace unusual values by `NA`. This can be done by `ifelse()` function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Input HANSES
+  HANES_repl_unusual <- HANES %>% 
+  # Replace using ifelse
+  mutate(CREATININE = ifelse(CREATININE <= 0.42 & CREATININE > 0.375, NA, CREATININE))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Input HANSES
+  HANES_repl_unusual <- HANES %>% 
+  # Replace using ifelse
+  mutate(CREATININE = ifelse(CREATININE <= 0.42 & CREATININE > 0.375, NA, CREATININE))
+```
+
+`ifelse()` has three arguments. The first argument test should be a logical vector. The result will contain the value of the second argument, yes, when test is TRUE, and the value of the third argument, no, when it is false.
+
+Sometimes `NA` could just mean no other option which we may want to compare with the rest of the options. For example, the HANES data set was collected at different times. Some of them who did not have their A1C levels measured may have GLUCOSE levels measured. We may want to compare, say, GLUCOSE levels of people with no A1C information with the levels for the people with A1C information. 
+
+[Since we omited `NA` from HANES, we will re-import the data set]:
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+# Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/HANES.original.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES_with_NA <- read.csv(text=getURL(URL))
+```
+
+And here is the code to do this -
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # From the HANES_with_NA dataset
+  HANES_with_NA %>% 
+  # Find the glucose levels of people with no A1C through the
+  # logical operator/function is.na()
+  mutate(no_A1C = is.na(A1C),
+         glucose_level = GLUCOSE) %>% 
+  # Now plot the result for the logical categories
+  ggplot(mapping = aes(glucose_level)) + 
+    geom_freqpoly(mapping = aes(colour = no_A1C), binwidth = 1/4)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # From the HANES_with_NA dataset
+  HANES_with_NA %>% 
+  # Find the glucose levels of people with no A1C through the
+  # logical operator/function is.na()
+  mutate(no_A1C = is.na(A1C),
+         glucose_level = GLUCOSE) %>% 
+  # Now plot the result for the logical categories
+  ggplot(mapping = aes(glucose_level)) + 
+    geom_freqpoly(mapping = aes(colour = no_A1C), binwidth = 1/4)
+```
+
+We immediately infer that there are only a few such cases (to our delight)!
+
+---
+
+#### Selected materials and references
+
+[R for Data Science - Exploratory Data Analysis Part](http://r4ds.had.co.nz/exploratory-data-analysis.html#questions)
+
+---
