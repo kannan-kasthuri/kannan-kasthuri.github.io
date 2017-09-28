@@ -15,6 +15,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OuxxrKTg-lI" frameborder="0" allowfullscreen></iframe>
+
+---
+
 In this workshop we will do exploratory data analysis (EDA) with the HANES data set. Import the data set and change data types to reflect their correct annotation (housekeeping).
 
 
