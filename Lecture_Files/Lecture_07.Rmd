@@ -1,0 +1,233 @@
+---
+# title: "Lecture 03"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Data science fundamentals 03: Exploratory data analysis (Sept. 28, 2017)
+
+---
+
+In this workshop we will do exploratory data analysis (EDA) with the HANES data set. Import the data set and change data types to reflect their correct annotation (housekeeping).
+
+
+```{r eval=TRUE, message=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Rename the HSQ_1 factor for identification
+  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
+  # Rename the DX_DBTS as a factor
+  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
+  # Omit all NA from the data frame
+  HANES <- na.omit(HANES)
+  # Observe the structure
+  str(HANES)
+  # Load the tidyverse library
+  library(tidyverse)
+```
+
+EDA is informally a set of procedures where we try to obtain directed insights about the data. They may comprise of the following steps:
+
+1. Generate questions about the data.
+
+2. Search for answers by visualising, transforming, and modelling the data.
+
+3. Use the information to generate new questions.
+
+#### Visualizing variations
+
+It is natural for the same data to vary between measurements. There are several types of variations, including batch effects. Variations gives raise to distributions. There are ways to visualize distributions and they may depend on whether the distribution has categorical values or continuous. To examine the distribution of a categorical variable, we can use a `geom_bar()` function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Find the distribution of people with diabetes diagnostic status 
+  ggplot(data = HANES) +
+    geom_bar(mapping = aes(x = DX_DBTS))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+   # Find the distribution of people with diabetes diagnostic status
+  ggplot(data = HANES) +
+    geom_bar(mapping = aes(x = DX_DBTS))
+```
+
+Manually, these values can be found with the `count()` function.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Manually find the counts
+  HANES %>% count(DX_DBTS)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+   # Manually find the counts
+  HANES %>% count(DX_DBTS)
+```
+
+For continous variables (such as GLUCOSE, for example), we can use the histogram geom:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Find the distribution of the GLUCOSE levels in patients
+  ggplot(data = HANES) +
+    geom_histogram(mapping = aes(x = GLUCOSE))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+   # Find the distribution of the GLUCOSE levels in patients
+  ggplot(data = HANES) +
+    geom_histogram(mapping = aes(x = GLUCOSE)) 
+```
+
+Multiple histogram plots can be overlayed by the geom `freqpoly()`.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Find the distribution of the GLUCOSE levels in different age groups
+  ggplot(data = HANES, mapping = aes(x = GLUCOSE, colour = AGEGROUP)) +
+    geom_freqpoly()
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Find the distribution of the GLUCOSE levels in different age groups
+  ggplot(data = HANES, mapping = aes(x = GLUCOSE, colour = AGEGROUP)) +
+    geom_freqpoly() 
+```
+
+---
+
+#### Typical values
+
+In both bar charts and histograms, tall bars show the common values of a variable, and shorter bars show less-common values. Places that do not have bars reveal values that are not seen in this data. To turn this information into useful questions, we have to look for unexpected things:
+
+1. Which values are the most common? Why? Are they typical?
+
+2. Which values are rare? Why? Does that match your expectations?
+
+3. Can we see any unusual patterns? What might explain them?
+
+As an example, the histogram below suggests an interesting question:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Find the distribution of the HDL levels in different health status
+  ggplot(data = HANES, mapping = aes(x = HDL, colour = HSQ_1)) +
+    geom_freqpoly()
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Find the distribution of the HDL levels in different health status
+  ggplot(data = HANES, mapping = aes(x = HDL, colour = HSQ_1)) +
+    geom_freqpoly() 
+```
+
+Why poor health has lesser mean HDL?
+
+Consider the following histogram:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Find the distribution of log(UACR) for different age groups
+  ggplot(data = HANES, mapping = aes(x = log(UACR), colour = AGEGROUP)) +
+    geom_freqpoly()
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Find the distribution of log(UACR) for different age groups
+  ggplot(data = HANES, mapping = aes(x = log(UACR), colour = AGEGROUP)) +
+    geom_freqpoly() 
+```
+
+Bimodality suggests that subgroups exist in our data. To understand the subgroups, we need to ask:
+
+1. How are the observations within each cluster similar to each other, in terms of other variables?
+
+2. How are the observations in separate clusters different from each other, in terms of other variables?
+
+3. Do the clusters have biological significance?
+
+4. Why might the appearance of clusters be misleading?
+
+---
+
+#### Unusual values and outlier detection
+
+Outliers can be extremely difficult to spot. Sometimes outliers are data entry errors; other times outliers suggest important new science. When we have a lot of data, outliers are sometimes difficult to see in a histogram. For example, take the distribution of the CREATININE variable from our HANES dataset. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Find the distribution of the CREATININE levels in patients
+  ggplot(data = HANES) +
+    geom_histogram(mapping = aes(x = COTININE))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Find the distribution of the CREATININE levels in patients
+  ggplot(data = HANES) +
+    geom_histogram(mapping = aes(x = CREATININE))  
+```
+
+We can hardly spot any outlier. The only evidence of outliers is the unusually wide limits on the x-axis. However, zooming the x-axis by restricting the limits between 0 and 0.5 we see disconnected values suggesting the presense of outliers.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Find the distribution of the CREATININE levels in patients
+  # restricted to the limits 0 to 0.5
+  ggplot(data = HANES) +
+    geom_histogram(mapping = aes(x = COTININE)) + xlim(c(0,0.5)) 
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Find the distribution of the CREATININE levels in patients
+  # restricted to the limits 0 to 0.5
+  ggplot(data = HANES) +
+    geom_histogram(mapping = aes(x = CREATININE)) + xlim(c(0,0.5)) 
+```
+
+Once we have visually inspected the outliers, we can isolate them out by data transformation tools discussed in the previous lecture.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # From the HANES data set
+  unusual <- HANES %>% 
+  # filter people with CREATININE levels between 0.42 and 0.37
+  filter(CREATININE <= 0.42 & CREATININE > 0.375) %>% 
+  # select only the people id (key) and gender
+  select(CREATININE, KEY, GENDER) %>%
+  # and order CREATININE as a first variable
+  arrange(CREATININE)
+  # And display it as a tibble
+  as.tibble(unusual) 
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # From the HANES data set
+  unusual <- HANES %>% 
+  # filter people with CREATININE levels between 0.42 and 0.37
+  filter(CREATININE <= 0.42 & CREATININE > 0.375) %>% 
+  # select only the people id (key) and gender
+  select(CREATININE, KEY, GENDER) %>%
+  # and order CREATININE as a first variable
+  arrange(CREATININE)
+  # And display it as a tibble
+  as.tibble(unusual)  
+```
+
+We see that all of these people are females.
+
+---
+
+#### Selected materials and references
+
+[R for Data Science - Exploratory Data Analysis Part](http://r4ds.had.co.nz/exploratory-data-analysis.html#questions)
+
+---
