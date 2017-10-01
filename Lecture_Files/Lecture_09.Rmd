@@ -226,8 +226,75 @@ However, we need encodings for other languages and UTF-8 is the standard that ca
 
 We see that KOI8-R is an 8-bit character encoding, designed to cover Russian, which uses a Cyrillic alphabet.
 
+Parsing date and time is very important in health related data sets. For example, the MIMIC3 data has tons of data sets with time information. There are three main functions for parsing dates and times.
+
+* `parse_datetime()` expects an ISO8601 date-time. ISO8601 is an international standard in which the components of a date are organised from biggest to smallest: year, month, day, hour, minute, second.
+
+* `parse_date()` expects a four digit year, a - or /, the month, a - or /, then the day
+
+* `parse_time()` expects the hour, :, minutes, optionally : and seconds, and an optional am/pm specifier
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Parse datetime
+  parse_datetime("2010-10-01T2010")
+  # Parse date
+  parse_date("2010-10-01")
+  # Parse time
+  library(hms)
+  parse_time("01:10 am")
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Parse datetime
+  parse_datetime("2010-10-01T2010")
+  # Parse date
+  parse_date("2010-10-01")
+  # Parse time
+  library(hms)
+  parse_time("01:10 am")
+```
+
+If the deafults doesn't work, there are several options as follows:
+
+* Year: %Y (4 digits), %y (2 digits); 00-69 -> 2000-2069, 70-99 -> 1970-1999.
+
+* Month: %m (2 digits), %b (abbreviated name, like “Jan”), %B (full name, “January”).
+
+* Day: %d (2 digits), %e (optional leading space).
+
+* Time: %H 0-23 hour, %I 0-12, must be used with %p, %p AM/PM indicator, %M minutes, %S integer seconds, %OS real seconds, %Z Time zone (as name, e.g. America/Chicago). 
+
+* Non-digits: %. skips one non-digit character, %* skips any number of non-digits.
+
+As an example:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Parse date in month/day/year format
+  parse_date("01/02/15", "%m/%d/%y")
+  # Parse date in day/month/year format
+  parse_date("01/02/2015", "%d/%m/%Y")
+  # Parse date in year/month/date format
+  parse_date("01/02/15", "%y/%m/%d")
+  # We can even set the `locale` option to specify different built in languages for the date
+  parse_date("1 janvier 2015", "%d %B %Y", locale = locale("fr"))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Parse date in month/day/year format
+  parse_date("01/02/15", "%m/%d/%y")
+  # Parse date in day/month/year format
+  parse_date("01/02/2015", "%d/%m/%Y")
+  # Parse date in year/month/date format
+  parse_date("01/02/15", "%y/%m/%d")
+  # We can even set the `locale` option to specify different built in languages for the date
+  parse_date("1 janvier 2015", "%d %B %Y", locale = locale("fr"))
+```
 
 
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Read section 11.4 and 11.5 in the R for Data Science book.
+
+<br>
 
 
 ---
