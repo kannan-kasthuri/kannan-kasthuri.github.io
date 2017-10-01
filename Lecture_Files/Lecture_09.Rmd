@@ -72,6 +72,8 @@ To subset a variable name in a pipe, we have to use a special placeholder `.` wh
   as.tibble(HANES_A1C)
 ```
 
+---
+
 #### Reading files and parsing
 
 Comma Seperated Values (CSV) are the most common types of files. We can read a `.csv` file through the function `read_csv()`.
@@ -290,12 +292,342 @@ As an example:
   parse_date("1 janvier 2015", "%d %B %Y", locale = locale("fr"))
 ```
 
-
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: Read section 11.4 and 11.5 in the R for Data Science book.
 
+---
+
+#### Dealing with dates and times
+
+Dealing with dates and times can be a very tough job. For example, consider the MIMIC3 admissions table which has several time variables. 
+
+**Note**: MIMIC3 says "dates were shifted into the future by a random offset for each individual patient in a consistent manner to preserve intervals, resulting in stays which occur sometime between the years 2100 and 2200." so don't freak out looking at the dates.
+
+If we import the dataset as such, we will see that they import as a factor and the `parse_date()` function as such fails:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the admissions data set in MIMIC3 from GitHub; 
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/MIMIC3/admissions.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  MIMIC3_ADM <- read.csv(text=getURL(URL))
+  # Observe the structure
+  str(MIMIC3_ADM)
+  # Parse the admission time using `parse_date()` function
+  head(parse_date(MIMIC3_ADM$admittime, "%Y%m%d%e"))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the admissions data set in MIMIC3 from GitHub; 
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/MIMIC3/admissions.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  MIMIC3_ADM <- read.csv(text=getURL(URL))
+  # Observe the structure
+  str(MIMIC3_ADM)
+  # Parse the admission time using `parse_date()` function
+  head(parse_date(MIMIC3_ADM$admittime, "%Y%m%d%e"))
+```
+
+Another approach is to use the helpers provided by the library _lubridate_. They automatically work out the format once we specify the order of the component. To use them, we have to identify the order in which year, month, and day appear in our data, then arrange “y”, “m”, and “d” in the same order. That gives the name of the lubridate function that will parse our date. To use this, we need to load the lubridate library.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the lubridate library
+  library(lubridate)
+  # Since admission time has the format year/month/time, we pass ymd
+  MIMIC3_ADM$admittime <- ymd(MIMIC3_ADM$admittime)
+  # View the format
+  str(MIMIC3_ADM)
+  # Print the first few dates
+  head(MIMIC3_ADM$admittime)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the lubridate library
+  library(lubridate)
+  # Since admission time has the format year/month/time, we pass ymd
+  MIMIC3_ADM$admittime <- ymd(MIMIC3_ADM$admittime)
+  # View the format
+  str(MIMIC3_ADM)
+  # Print the first few dates
+  head(MIMIC3_ADM$admittime)
+```
+
+We also see the discharge time has both date and time formats so we can use `parse_datetime()` function to convert from the factor format.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the lubridate library
+  library(lubridate)
+  # Since discharge time has both date and time attributes we may parse using datetime function
+  MIMIC3_ADM$dischtime <- parse_datetime(MIMIC3_ADM$dischtime)
+  # View the format
+  str(MIMIC3_ADM)
+  # Print the first few dates and times
+  head(MIMIC3_ADM$dischtime)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the lubridate library
+  library(lubridate)
+  # Since discharge time has both date and time attributes we may parse using datetime function
+  MIMIC3_ADM$dischtime <- parse_datetime(MIMIC3_ADM$dischtime)
+  # View the format
+  str(MIMIC3_ADM)
+  # Print the first few dates and times
+  head(MIMIC3_ADM$dischtime)
+```
+
+Sometimes we may just want to work with the dates given the variable in date-time format. We can use `as_date()` function to extract just the date.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the lubridate library
+  library(lubridate)
+  # Since discharge time has both date and time attributes we use as_date() to extract the date
+  MIMIC3_ADM$dischtime <- as_date(MIMIC3_ADM$dischtime)
+  # We can then select only the variables of interest
+  MIMIC3_adm_dis <- select(MIMIC3_ADM,hadm_id, admittime,dischtime)
+  as.tibble(MIMIC3_adm_dis)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the lubridate library
+  library(lubridate)
+  # Since discharge time has both date and time attributes we use as_date() to extract the date
+  MIMIC3_ADM$dischtime <- as_date(MIMIC3_ADM$dischtime)
+  # We can then select only the variables of interest
+  MIMIC3_adm_dis <- select(MIMIC3_ADM,hadm_id, admittime,dischtime)
+  as.tibble(MIMIC3_adm_dis)
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Read section 16.3 Date-time components in the book R for Data Science.
+
 <br>
 
+##### Time spans
+
+Like we noted above MIMIC3 dates are shifted into the future, 2100-2200, by a random offset. To make sense, it might be worth to convert the dates to earlier dates, like 1900-2000. To do this, we may have to systematically convert the dates. We can make use of _time spans_. Time spans come in three important classes:
+
+* durations, which represent an exact number of seconds.
+
+* periods, which represent human units like weeks and months.
+
+* intervals, which represent a starting and ending point.
+
+In R, when we subtract two dates, we get a _difftime_ object:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the lubridate library
+  library(lubridate)
+  # Subtract discharge time minus admission time
+  MIMIC3_adm_dis <- MIMIC3_adm_dis %>% 
+    mutate(time_spent = ymd(MIMIC3_adm_dis$dischtime) - ymd(MIMIC3_adm_dis$admittime))
+  # And display as tibble
+  as.tibble(MIMIC3_adm_dis)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the lubridate library
+  library(lubridate)
+  # Subtract discharge time minus admission time
+  MIMIC3_adm_dis <- MIMIC3_adm_dis %>% 
+    mutate(time_spent = ymd(MIMIC3_adm_dis$dischtime) - ymd(MIMIC3_adm_dis$admittime))
+  # And display as tibble
+  as.tibble(MIMIC3_adm_dis)
+```
+
+While this may be useful to find features such as the distribution of the time spent by the patients in hospital:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # And plot the frequency distribution of the time spent by the patients
+  MIMIC3_adm_dis %>%
+  ggplot(aes(time_spent)) + 
+    geom_freqpoly(binwidth = 1)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # And plot the frequency distribution of the time spent by the patients
+  MIMIC3_adm_dis %>%
+  ggplot(aes(time_spent)) + 
+    geom_freqpoly(binwidth = 1)
+```
+
+time difference can be little painful to work with when we are interested in durations. The library lubridate provides an alternative which always uses seconds: the **duration**. We can convert our variable into duration by using the function `as.duration()`.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Convert the time spent as duration (in seconds)
+  MIMIC3_adm_dis <- MIMIC3_adm_dis %>%
+                    mutate(time_spent_in_seconds = as.duration(time_spent))
+  as.tibble(MIMIC3_adm_dis)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Convert the time spent as duration (in seconds)
+  MIMIC3_adm_dis <- MIMIC3_adm_dis %>%
+                    mutate(time_spent_in_seconds = as.duration(time_spent))
+  as.tibble(MIMIC3_adm_dis)
+```
+
+Durations come with a bunch of convenient constructors:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # List the duration of 15s
+  dseconds(15)
+  # List the duration in 10 minutes
+  dminutes(10)
+  # List the duration in 12 hrs and 24 hours
+  dhours(c(12, 24))
+  # List the duration from 0 to 5 days
+  ddays(0:5)
+  # List the duration in 3 weeks
+  dweeks(3)
+  # List the duration in a year
+  dyears(1)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # List the duration of 15s
+  dseconds(15)
+  # List the duration in 10 minutes
+  dminutes(10)
+  # List the duration in 12 hrs and 24 hours
+  dhours(c(12, 24))
+  # List the duration from 0 to 5 days
+  ddays(0:5)
+  # List the duration in 3 weeks
+  dweeks(3)
+  # List the duration in a year
+  dyears(1)
+```
+
+These constructors can help convert our years by a 200 year offset. Or alternatively we can use periods. **Periods** are time spans but don’t have a fixed length in seconds, instead they work with “human” times, like days and months. That allows them work in a more intuitive way. Like durations, periods can be created with a number of friendly constructor functions.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Make 15s
+  seconds(15)
+  # Make 10m
+  minutes(10)
+  # Make 12 hrs and 24 hrs
+  hours(c(12, 24))
+  # Make 7 days
+  days(7)
+  # Make 1-6 months
+  months(1:6)
+  # Make 3 weeks
+  weeks(3)
+  # Make 1 year
+  years(1)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Make 15s
+  seconds(15)
+  # Make 10m
+  minutes(10)
+  # Make 12 hrs and 24 hrs
+  hours(c(12, 24))
+  # Make 7 days
+  days(7)
+  # Make 1-6 months
+  months(1:6)
+  # Make 3 weeks
+  weeks(3)
+  # Make 1 year
+  years(1)
+```
+
+You can add and multiply periods and add them to dates. Thus we can subtract a 200 year time peroid from our admission and discharge times:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Makes times compatible with our times subtracting 200 years
+  MIMIC3_adm_dis <- MIMIC3_adm_dis %>%
+                    mutate(admission_time_minus_200 = ymd(admittime)-years(200),
+                    dischtime_time_minus_200 = ymd(dischtime)-years(200)) %>% 
+                    select(admission_time_minus_200,dischtime_time_minus_200, everything())
+  as.tibble(MIMIC3_adm_dis)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Makes times compatible with our times subtracting 200 years
+  MIMIC3_adm_dis <- MIMIC3_adm_dis %>%
+                    mutate(admission_time_minus_200 = ymd(admittime)-years(200),
+                    dischtime_time_minus_200 = ymd(dischtime)-years(200)) %>% 
+                    select(admission_time_minus_200,dischtime_time_minus_200, time_spent, everything())
+  as.tibble(MIMIC3_adm_dis)
+```
+
+We can then look at the frequency of discharge over the hundred year period 1900-now.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the above admissions and discharge data
+  MIMIC3_adm_dis %>% 
+  # And plot the frequency distribution of discharge   
+  ggplot(aes(dischtime_time_minus_200)) + 
+    geom_freqpoly(binwidth = 100)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the above admissions and discharge data
+  MIMIC3_adm_dis %>% 
+  # And plot the frequency distribution of discharge 
+  ggplot(aes(dischtime_time_minus_200)) + 
+    geom_freqpoly(binwidth = 100)
+```
+
+Or for a single year, say 1980, distributed over a month:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the above admissions and discharge data
+  MIMIC3_adm_dis %>% 
+  # and filter for the discharges in the year 1980
+  filter(dischtime_time_minus_200 >= ymd(19800101) & dischtime_time_minus_200 <= ymd(19801231)) %>%
+  # And plot the frequency distribution for 30 days
+  ggplot(aes(dischtime_time_minus_200)) + 
+    geom_freqpoly(binwidth = 30)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the above admissions and discharge data
+  MIMIC3_adm_dis %>% 
+  # and filter for the discharges in the year 1980
+  filter(dischtime_time_minus_200 >= ymd(19800101) & dischtime_time_minus_200 <= ymd(19801231)) %>%
+  # And plot the frequency distribution for 30 days
+  ggplot(aes(dischtime_time_minus_200)) + 
+    geom_freqpoly(binwidth = 30)
+```
+
+What should `years(1) / days(1)` return? Is it 365 or 366, since some years are leap years and periods are human interpretable values unlike duration? R will throw a warning if we try to perfom this operation.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Find years(1) / days(1)
+  years(1) / days(1)
+```
+
+```{r eval=TRUE, message=TRUE, warning=TRUE, echo=FALSE, results=TRUE}
+  # Find years(1) / days(1)
+  years(1) / days(1)
+```
+
+Thus we have to use an **interval**. An interval is a duration with a starting point: that makes it precise so you can determine exactly how long it is:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Find years(1) / days(1) by converting to interval
+  next_year <- today() + years(1)
+  (today() %--% next_year) / ddays(1)
+```
+
+```{r eval=TRUE, message=TRUE, warning=TRUE, echo=FALSE, results=TRUE}
+  # Find years(1) / days(1) by converting to interval
+  next_year <- today() + years(1)
+  (today() %--% next_year) / ddays(1)
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Read section 16.5 Date-time components in the book R for Data Science.
 
 ---
 
