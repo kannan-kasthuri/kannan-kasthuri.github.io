@@ -1,0 +1,239 @@
+---
+# title: "Lecture 03"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Data science fundamentals 05: Wrangle data (Oct. 05, 2017)
+
+---
+
+#### A note on tibbles
+
+We already saw tibbles and how to convert data frames into tibbles (using `as.tibble()`). Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen.  
+
+
+```{r eval=TRUE, message=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Rename the HSQ_1 factor for identification
+  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
+  # Rename the DX_DBTS as a factor
+  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
+  # Omit all NA from the data frame
+  HANES <- na.omit(HANES)
+  # Observe the structure
+  str(HANES)
+  # Load the tidyverse library
+  library(tidyverse)
+```
+
+
+To subset a variable name in a pipe, we have to use a special placeholder `.` when we use tibble.
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Convert HANES to tibble
+  HANES_tibble <- as.tibble(HANES) 
+  # Subset A1C variable from the tibble HANES
+  HANES_A1C <- HANES_tibble %>% .$A1C 
+  # You can set the print options for the 
+  # number of lines to be printed
+  options(tibble.print_min = 7)
+  as.tibble(HANES_A1C)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Convert HANES to tibble
+  HANES_tibble <- as.tibble(HANES) 
+  # Subset A1C variable from the tibble HANES
+  HANES_A1C <- HANES_tibble %>% .$A1C 
+  # You can set the print options for the 
+  # number of lines to be printed
+  options(tibble.print_min = 7)
+  as.tibble(HANES_A1C)
+```
+
+#### Reading files and parsing
+
+Comma Seperated Values (CSV) are the most common types of files. We can read a `.csv` file through the function `read_csv()`.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Read the HANES orginal csv file 
+  HANES_original <- read.csv("../Datasets/HANES/HANES.original.csv")
+  # and convert into tibble
+  as.tibble(HANES_original)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Read the HANES orginal csv file 
+  HANES_original <- read.csv("../Datasets/HANES/HANES.original.csv")
+  # and convert into tibble
+  as.tibble(HANES_original)
+```
+
+Parsing a vector can be done through the parsing function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Parse a logical vector
+  str(parse_logical(c("TRUE", "FALSE", "NA")))
+  # Parse an integer vector 
+  # Actually EDUCATION is a factor variable 
+  str(parse_integer(HANES_original$EDUCATION))
+  # Parse a date vector
+  str(parse_date(c("2010-01-01", "1979-10-14")))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Parse a logical vector
+  str(parse_logical(c("TRUE", "FALSE", "NA")))
+  # Parse an integer vector 
+  # Actually EDUCATION is a factor variable 
+  str(parse_integer(HANES_original$EDUCATION))
+  # Parse a date vector
+  str(parse_date(c("2010-01-01", "1979-10-14")))
+```
+
+We can specify which education categories should be treated as NA. For instance, if we wish to denote all high schoolers (category 2) as NA:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Replace EDUCATION variable with high schoolers as NA
+  as.tibble(parse_integer(HANES_original$EDUCATION, na = "2"))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Replace EDUCATION variable with high schoolers as NA
+  as.tibble(parse_integer(HANES_original$EDUCATION, na = "2"))
+```
+
+If parsing fails we will get a warning:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Parse EDUCATION as a logical when it is a number
+  parse_logical(HANES_original$EDUCATION)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE, results=FALSE}
+  # Parse EDUCATION as a logical when it is a number
+  parse_logical(HANES_original$EDUCATION)
+```
+
+which can be output into a tibble format using the `problems()` function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Parse EDUCATION as a logical when it is a number
+  x <- parse_logical(HANES_original$EDUCATION)
+  # and output the result as a nice tibble
+  problems(x)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Parse EDUCATION as a logical when it is a number
+  x <- parse_logical(HANES_original$EDUCATION)
+  # and output the result as a nice tibble
+  problems(x)
+```
+
+Parsing different number formats are important as it comes in various styles:
+
+1. People write numbers differently in different parts of the world. For example, some countries use . in between the integer and fractional parts of a real number, while others use ,.
+
+2. Numbers are often surrounded by other characters that provide some context, like “$1000” or “10%”.
+
+3. Numbers often contain “grouping” characters to make them easier to read, like “1,000,000”, and these grouping characters vary around the world.
+
+The first problem is solved by the argument `locale` in `parse_double()` function, the second using `parse_number()` function and the third by combination of `locale` and `parse_number()`.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Parse the number 1,23 where the decimal mark is written as a `,`
+  parse_double("1,63", locale = locale(decimal_mark = ","))
+  # Just parse the number for $120 and 60%
+  parse_number("$120")
+  parse_number("60%")
+  # Parse the grouping as used in Europe
+  parse_number("123'834'297", locale = locale(grouping_mark = "."))
+  # or as used in Switzerland
+  parse_number("123'834'297", locale = locale(grouping_mark = "'"))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Parse the number 1,23 where the decimal mark is written as a `,`
+  parse_double("1,63", locale = locale(decimal_mark = ","))
+  # Just parse the number for $120 and 60%
+  parse_number("$120")
+  parse_number("60%")
+  # Parse the grouping as used in Europe
+  parse_number("123'834'297", locale = locale(grouping_mark = "."))
+  # or as used in Switzerland
+  parse_number("123'834'297", locale = locale(grouping_mark = "'"))
+```
+
+All data sets are stored with encoding. Each hexadecimal number represents a byte of information: 48 is H, 61 is a, and so on. The mapping from hexadecimal number to character is called the encoding, and in the case of english the standard of encoding is ASCII. The function `charToRaw()` will list the encoding of characters in the ASCII format. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # The function charToRaw will list the encoding of charecters in ASCII format
+  charToRaw("This is a nice day")
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # The function charToRaw will list the encoding of charecters in ASCII format
+  charToRaw("This is a nice day")
+```
+
+However, we need encodings for other languages and UTF-8 is the standard that can encode just about every character used by humans today, as well as many extra symbols (like emoji!). We can parse such encodings (that will appear gibberish if we read it in the english system) through `parse_charecter()` function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Define other encoded strings
+  x1 <- "El Ni\xf1o was particularly bad this year"
+  x2 <- "\x82\xb1\x82\xf1\x82\xc9\x82\xbf\x82\xcd"
+  # Parse those strings
+  parse_character(x1, locale = locale(encoding = "Latin1"))
+  parse_character(x2, locale = locale(encoding = "Shift-JIS"))
+  # We can even guess the encodings, if they are not available
+  guess_encoding(charToRaw(x1))
+  guess_encoding(charToRaw(x2))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Define other encoded strings
+  x1 <- "El Ni\xf1o was particularly bad this year"
+  x2 <- "\x82\xb1\x82\xf1\x82\xc9\x82\xbf\x82\xcd"
+  # Parse those strings
+  parse_character(x1, locale = locale(encoding = "Latin1"))
+  parse_character(x2, locale = locale(encoding = "Shift-JIS"))
+  # We can even guess the encodings, if they are not available
+  guess_encoding(charToRaw(x1))
+  guess_encoding(charToRaw(x2))
+```
+
+We see that KOI8-R is an 8-bit character encoding, designed to cover Russian, which uses a Cyrillic alphabet.
+
+
+
+
+
+---
+
+#### Selected materials and references
+
+[R for Data Science - Wrangle Part](http://r4ds.had.co.nz/wrangle-intro.html)
+
+---
