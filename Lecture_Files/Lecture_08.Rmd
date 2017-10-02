@@ -256,6 +256,46 @@ If we have long variable names, `geom_boxplot()` will work better if you flip it
     geom_boxplot() + coord_flip()
 ```
 
+##### Variation between two categorical variables
+
+To visualise the covariation between categorical variables we can rely on the built-in `geom_count()` function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Plot two categorical variables AGEGROUP and diabetes status DX_DBTS
+  # using geom_count
+  ggplot(data = HANES) +
+    geom_count(mapping = aes(x = AGEGROUP, y = DX_DBTS))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Plot two categorical variables AGEGROUP and diabetes status DX_DBTS
+  # using geom_count
+  ggplot(data = HANES) +
+    geom_count(mapping = aes(x = AGEGROUP, y = DX_DBTS))
+```
+
+The size of each circle in the plot displays how many observations occurred at each combination of values. Covariation will appear as a strong correlation between specific x values and specific y values.
+
+We can make a more continious map using the `geom_tile()` function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Count the people in age group and health status
+  HANES %>% 
+  count(AGEGROUP, HSQ_1) %>%  
+  ggplot(mapping = aes(x = AGEGROUP, y = HSQ_1)) +
+  # and use the geom_tile to fill in the aesthetics
+    geom_tile(mapping = aes(fill = n))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Count the people in age group and health status
+  HANES %>% 
+  count(AGEGROUP, HSQ_1) %>%  
+  ggplot(mapping = aes(x = AGEGROUP, y = HSQ_1)) +
+  # and use the geom_tile to fill in the aesthetics
+    geom_tile(mapping = aes(fill = n))
+```
+
 ---
 
 #### Selected materials and references
