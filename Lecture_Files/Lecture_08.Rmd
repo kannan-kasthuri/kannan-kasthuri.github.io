@@ -111,6 +111,153 @@ We immediately infer that there are only a few such cases (to our delight)!
 
 ---
 
+#### Covariation
+
+Variation describes the behavior within a variable, covariation describes the behavior between variables. 
+
+Covariation is the tendency for the values of two or more variables to vary together in a related way. 
+
+The best way to spot covariation is to visualise the relationship between two or more variables. 
+
+First we will consider the variation between continous and categorical variables.
+
+##### Variation between continous and categorical variable
+
+One can plot the frequency distribution between continious and categorical variable. For example, in the HANES data set, let us plot the frequency distribution of mercury in urine (MERCURYU variable) for different age groups. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Plot the frequency distribution of mercury for different age groups
+  ggplot(data = HANES, mapping = aes(x = MERCURYU)) + 
+    geom_freqpoly(mapping = aes(colour = AGEGROUP), binwidth = 1)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Plot the frequency distribution of mercury for different age groups
+  ggplot(data = HANES, mapping = aes(x = MERCURYU)) + 
+    geom_freqpoly(mapping = aes(colour = AGEGROUP), binwidth = 1)
+```
+
+This plot that says people in age groups 20-39 is the largest group with average mercury in urine, followed by age group 40-59 and then by 60+, is misleading because the number of people in the group might differ. 
+
+This is the case as we can see:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Find the distribution of people in each age group
+  ggplot(HANES) + 
+    geom_bar(mapping = aes(x = AGEGROUP))
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Find the distribution of people in each age group
+  ggplot(HANES) + 
+    geom_bar(mapping = aes(x = AGEGROUP))
+```
+
+Number of people in 20-39 > # of people in 40-59 > # of people in 60+. 
+
+To make the comparison easier we need to swap what is displayed on the y-axis. 
+
+Instead of displaying count, we’ll display **density**, which is the count standardised so that the area under each frequency polygon is one.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Plot density instead of count for MERCURYU variable
+  ggplot(data = HANES, mapping = aes(x = MERCURYU, y = ..density..)) + 
+    geom_freqpoly(mapping = aes(colour = AGEGROUP), binwidth = 1)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Plot density instead of count for MERCURYU variable
+  ggplot(data = HANES, mapping = aes(x = MERCURYU, y = ..density..)) + 
+    geom_freqpoly(mapping = aes(colour = AGEGROUP), binwidth = 1)
+```
+
+We can right away see that all groups have equal number of people with average mercury-in-urine levels. In contrast, if we plot the density of blood hemoglobin (A1C) levels for these age groups, we see: 
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Plot density instead of count for A1C variable
+  ggplot(data = HANES, mapping = aes(x = A1C, y = ..density..)) + 
+    geom_freqpoly(mapping = aes(colour = AGEGROUP), binwidth = 1)
+```
+
+the group 20-39 has the smallest variation in blood hemoglobin levels.
+
+
+Another alternative to display the distribution of a continuous variable broken down by a categorical variable is the **boxplot**. A boxplot is a type of visual shorthand for a distribution of values that is popular among statisticians. Each boxplot consists of:
+
+* A box that stretches from the 25th percentile of the distribution to the 75th percentile, a distance known as the interquartile range (IQR). In the middle of the box is a line that displays the median, i.e. 50th percentile, of the distribution. These three lines give you a sense of the spread of the distribution and whether or not the distribution is symmetric about the median or skewed to one side.
+
+* Visual points that display observations that fall more than 1.5 times the IQR from either edge of the box. These outlying points are unusual so are plotted individually.
+
+* A line (or whisker) that extends from each end of the box and goes to the farthest non-outlier point in the distribution.
+
+---
+
+![](EDA-boxplot.png)
+
+---
+
+We can look at the variation between A1C and AGEGROUP through a box plot.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Make a box plot for A1C and AGEGROUP
+  ggplot(data = HANES, mapping = aes(x = AGEGROUP, y = A1C)) +
+    geom_boxplot()
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Make a box plot for A1C and AGEGROUP
+  ggplot(data = HANES, mapping = aes(x = AGEGROUP, y = A1C)) +
+    geom_boxplot()
+```
+
+Thus the box plot confirms our observation that the group 20-39 has the smallest variation in blood hemoglobin levels. AGEGROUP is an ordinal (meaning which can be ordered). Some categorical variables such as health status (HSQ_1) cannot be ordered and understanding the trend might be difficult. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Make a box plot for HDL and HSQ_1
+  ggplot(data = HANES, mapping = aes(x = HSQ_1, y = HDL)) +
+    geom_boxplot()
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Make a box plot for HDL and HSQ_1
+  ggplot(data = HANES, mapping = aes(x = HSQ_1, y = HDL)) +
+    geom_boxplot()
+```
+
+For such comparisons we can make use of `reorder` argument, say, based on median:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Make a box plot for HDL and HSQ_1 based on reordering by median values
+  ggplot(data = HANES, mapping = aes(x = reorder(HSQ_1, HDL, FUN = median), y = HDL)) +
+    geom_boxplot()
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Make a box plot for HDL and HSQ_1 based on reordering by median values
+  ggplot(data = HANES, mapping = aes(x = reorder(HSQ_1, HDL, FUN = median), y = HDL)) +
+    geom_boxplot()
+```
+
+Such reordering helps us to see that average HDL increases as the health status becomes better.
+
+If we have long variable names, `geom_boxplot()` will work better if you flip it 90°. You can do that with `coord_flip()`.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Make a box plot for HDL and HSQ_1 based on reordering by median values
+  # and flip coordinates
+  ggplot(data = HANES, mapping = aes(x = reorder(HSQ_1, HDL, FUN = median), y = HDL)) +
+    geom_boxplot() + coord_flip()
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Make a box plot for HDL and HSQ_1 based on reordering by median values
+  # and flip coordinates
+  ggplot(data = HANES, mapping = aes(x = reorder(HSQ_1, HDL, FUN = median), y = HDL)) +
+    geom_boxplot() + coord_flip()
+```
+
+---
+
 #### Selected materials and references
 
 [R for Data Science - Exploratory Data Analysis Part](http://r4ds.had.co.nz/exploratory-data-analysis.html#questions)
