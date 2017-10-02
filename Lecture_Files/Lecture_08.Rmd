@@ -119,11 +119,11 @@ Covariation is the tendency for the values of two or more variables to vary toge
 
 The best way to spot covariation is to visualise the relationship between two or more variables. 
 
-First we will consider the variation between continous and categorical variables.
+First we will consider the variation between continuous and categorical variables.
 
-##### Variation between continous and categorical variable
+##### Variation between continuous and categorical variable
 
-One can plot the frequency distribution between continious and categorical variable. For example, in the HANES data set, let us plot the frequency distribution of mercury in urine (MERCURYU variable) for different age groups. 
+One can plot the frequency distribution between continuous and categorical variable. For example, in the HANES data set, let us plot the frequency distribution of mercury in urine (MERCURYU variable) for different age groups. 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Plot the frequency distribution of mercury for different age groups
@@ -276,7 +276,7 @@ To visualise the covariation between categorical variables we can rely on the bu
 
 The size of each circle in the plot displays how many observations occurred at each combination of values. Covariation will appear as a strong correlation between specific x values and specific y values.
 
-We can make a more continious map using the `geom_tile()` function:
+We can make a more continuous map using the `geom_tile()` function:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Count the people in age group and health status
@@ -295,6 +295,194 @@ We can make a more continious map using the `geom_tile()` function:
   # and use the geom_tile to fill in the aesthetics
     geom_tile(mapping = aes(fill = n))
 ```
+
+##### Variation between two continuous variables
+
+Covariation between two continuous variables can be viewed using `geom_point()` function: 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Plot the variation between LDLESTIMATE and CHOLESTEROLTOTAL
+  ggplot(data = HANES) +
+    geom_point(mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Plot the variation between LDLESTIMATE and CHOLESTEROLTOTAL
+  ggplot(data = HANES) +
+    geom_point(mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL))
+```
+
+We see the near linear relationship of LDL and cholesterol levels in people. 
+
+Scatterplots become less useful as the size of the dataset grows, because points begin to overplot, and pile up into areas of uniform black (as above). One way to fix the problem is using the alpha aesthetic to add transparency.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Plot the variation between LDLESTIMATE and CHOLESTEROLTOTAL 
+  # adding alpha aesthetics
+  ggplot(data = HANES) +
+    geom_point(mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL), alpha = 1 / 5)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Plot the variation between LDLESTIMATE and CHOLESTEROLTOTAL 
+  # adding alpha aesthetics
+  ggplot(data = HANES) +
+    geom_point(mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL), alpha = 1 / 5)
+```
+
+But using transparency can be challenging for very large datasets. Another solution is to use bin. 
+
+`geom_bin2d()` and `geom_hex()` divide the coordinate plane into 2d bins and then use a fill color to display how many points fall into each bin. 
+
+`geom_bin2d()` creates rectangular bins. 
+
+`geom_hex()` creates hexagonal bins. 
+
+**Note**: We need to install hexbin package to use `geom_hex()`.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Plot the variation between LDLESTIMATE and CHOLESTEROLTOTAL 
+  # using geom_bin2d
+  ggplot(data = HANES) +
+    geom_bin2d(mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL))
+
+  # install.packages("hexbin")
+  # Plot the variation between LDLESTIMATE and CHOLESTEROLTOTAL 
+  # using geom_hex
+  ggplot(data = HANES) +
+    geom_hex(mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Plot the variation between LDLESTIMATE and CHOLESTEROLTOTAL 
+  # using geom_bin2d
+  ggplot(data = HANES) +
+    geom_bin2d(mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL))
+
+  # install.packages("hexbin")
+  # Plot the variation between LDLESTIMATE and CHOLESTEROLTOTAL 
+  # using geom_hex
+  ggplot(data = HANES) +
+    geom_hex(mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL))
+```
+
+Another option is to bin one continuous variable so it acts like a categorical variable. Then we can use one of the techniques for visualising the combination of a categorical and a continuous variable that we learned. 
+
+For example, we could bin LDLESTIMATE and then for each group, display a boxplot with variable width representing the number of points in the category. This can be accomplished by the argument `cut_width()` available as an aesthetic along with the `varwidth` argument available in the geom `geom_boxplot`. `cut_width(x, width)` divides x into bins of width `width` while `varwidth = TRUE` defines variable width for the box plot depending on the count of the points in the bin.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Bin LDLESTIMATE using cut_width argument and do a box plot like we 
+  # did between categorical and continuous variable allowing the size 
+  # of the box plot represent the number of points - varwidth argument
+  ggplot(data = HANES, mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL)) + 
+    geom_boxplot(mapping = aes(group = cut_width(LDLESTIMATE, 20)), varwidth = TRUE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Bin LDLESTIMATE using cut_width argument and do a box plot like we 
+  # did between categorical and continuous variable allowing the size 
+  # of the box plot represent the number of points - varwidth argument
+  ggplot(data = HANES, mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL)) + 
+    geom_boxplot(mapping = aes(group = cut_width(LDLESTIMATE, 20)), varwidth = TRUE)
+```
+
+Another approach would be to display the same number of points for each bin which can be defined by the argument `cut_number`.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Use the same number of points for LDLESTIMATE using cut_number argument 
+  # and do a box plot like we did between categorical and continuous variable 
+  ggplot(data = HANES, mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL)) + 
+    geom_boxplot(mapping = aes(group = cut_number(LDLESTIMATE, 20)))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Use the same number of points for LDLESTIMATE using cut_number argument 
+  # and do a box plot like we did between categorical and continuous variable 
+  ggplot(data = HANES, mapping = aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL)) + 
+    geom_boxplot(mapping = aes(group = cut_number(LDLESTIMATE, 20)))
+```
+
+---
+
+#### Patterns and models
+
+Relationships in data can be determined when we observe patterns. Systematic relationship between two variables will result in a pattern. The following are key questions to ask when we observe patterns:
+
+1. Could the pattern be due to random chance?
+
+2. If not how can we describe the relationship implied by the pattern?
+
+3. How strong is the relationship implied by the pattern?
+
+4. What other variables might affect the relationship?
+
+5. Does the relationship change if we look at individual subgroups of the data?
+
+For example, we already saw:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Make a ggplot out of log(A1C) and log(UACR) variables
+  ggplot(data = HANES) + 
+    geom_point(mapping = aes(x = log(A1C), y = log(UACR)))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Make a ggplot out of log(A1C) and log(UACR) variables
+  ggplot(data = HANES) + 
+    geom_point(mapping = aes(x = log(A1C), y = log(UACR)))
+```
+
+Patterns provide one of the most useful tools for data scientists because they reveal covariation. 
+
+If we think of variation as a phenomenon that creates uncertainty, covariation is a phenomenon that reduces it. 
+
+If two variables covary, we can use the values of one variable to make better predictions about the values of the second. 
+
+If the covariation is due to a causal relationship (a special case), then we can use the value of one variable to control the value of the second.
+
+Models are a tool for extracting patterns out of data which we will cover in more detail later.
+
+For example, in HANES, it’s hard to understand the relationship between health status (HSQ_1) and total cholesterol, because health status and LDL cholesterol, and LDL cholesterol and total cholesterol are tightly related. It’s possible to use a model to remove the very strong relationship between total cholesterol and LDL cholesterol so we can explore the subtleties that remain. The following code fits a model that predicts total cholesterol from LDL cholesterol and then computes the residuals (the difference between the predicted value and the actual value). The residuals give us a view of the total cholesterol of the patients, once the effect of LDL cholesterol has been removed.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Load the modelr library
+  library(modelr)
+  # Compute the model using the `lm` - linear regression function
+  mod <- lm(CHOLESTEROLTOTAL ~ LDLESTIMATE , data = HANES)
+  # add the residuals to the data and name it as resid
+  HANES_mod <- HANES %>% 
+    add_residuals(mod) %>% 
+      mutate(resid = resid)
+  # Plot the total cholesterol and residuals
+  ggplot(data = HANES_mod) + 
+    geom_point(mapping = aes(x = CHOLESTEROLTOTAL, y = resid))
+  # Boxplot the health status and residuals that gives the 
+  # effect of total cholesterol removing the effects of LDL
+  # and reorder by the median
+  ggplot(data = HANES_mod) + 
+    geom_boxplot(mapping = aes(x = reorder(HSQ_1, resid, FUN = median), y = resid))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Load the modelr library
+  library(modelr)
+  # Compute the model using the `lm` - linear regression function
+  mod <- lm(CHOLESTEROLTOTAL ~ LDLESTIMATE , data = HANES)
+  # add the residuals to the data and name it as resid
+  HANES_mod <- HANES %>% 
+    add_residuals(mod) %>% 
+      mutate(resid = resid)
+  # Plot the total cholesterol and residuals
+  ggplot(data = HANES_mod) + 
+    geom_point(mapping = aes(x = CHOLESTEROLTOTAL, y = resid))
+  # Boxplot the health status and residuals that gives the 
+  # effect of total cholesterol removing the effects of LDL
+  # and reorder by the median
+  ggplot(data = HANES_mod) + 
+    geom_boxplot(mapping = aes(x = reorder(HSQ_1, resid, FUN = median), y = resid))
+```
+
+This exercise shows people with "Good" and "Very Good" health have low total cholesterol compared to people with poor health.
 
 ---
 
