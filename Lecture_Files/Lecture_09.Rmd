@@ -732,6 +732,23 @@ We immediately see that patient no. 94 had two admissions in the hospital as eme
 
 By default `seperate()` would coerce into charector vectors even if we seperate numerical variables. To retain numerical type, we have to set `convert = TRUE` argument.
 
+`unite()` is the inverse of `separate()`:  it combines multiple columns into a single column. For example, in the above data set we can _unite_ hospital admission id `hadm_id` and the admission type `admission_type` to tie a reason why the patient got admitted. By default the unite will use underscore. This can be overridden by using a seperator argument. This is done as follows:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Unite hadm_id and admission_type
+  MIMIC3_ADM_LOC_UNITE <- MIMIC3_ADM %>% select(subject_id, hadm_id, admission_type) %>% 
+    unite(reason, hadm_id, admission_type, sep=":")
+  as.tibble(MIMIC3_ADM_LOC_UNITE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Unite hadm_id and admission_type
+  MIMIC3_ADM_LOC_UNITE <- MIMIC3_ADM %>% select(subject_id, hadm_id, admission_type) %>% 
+    unite(reason, hadm_id, admission_type, sep=":")
+  as.tibble(MIMIC3_ADM_LOC_UNITE)
+```
+
+
 ---
 
 #### Selected materials and references

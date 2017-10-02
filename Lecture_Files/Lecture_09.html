@@ -727,6 +727,22 @@ $(document).ready(function () {
 ## 7        PHYS REFERRAL NORMAL DELI
 ## # ... with 5,763 more rows</code></pre>
 <p>By default <code>seperate()</code> would coerce into charector vectors even if we seperate numerical variables. To retain numerical type, we have to set <code>convert = TRUE</code> argument.</p>
+<p><code>unite()</code> is the inverse of <code>separate()</code>: it combines multiple columns into a single column. For example, in the above data set we can <em>unite</em> hospital admission id <code>hadm_id</code> and the admission type <code>admission_type</code> to tie a reason why the patient got admitted. By default the unite will use underscore. This can be overridden by using a seperator argument. This is done as follows:</p>
+<pre class="r"><code>  # Unite hadm_id and admission_type
+  MIMIC3_ADM_LOC_UNITE &lt;- MIMIC3_ADM %&gt;% select(subject_id, hadm_id, admission_type) %&gt;% 
+    unite(reason, hadm_id, admission_type, sep=&quot;:&quot;)
+  as.tibble(MIMIC3_ADM_LOC_UNITE)</code></pre>
+<pre><code>## # A tibble: 5,770 x 2
+##   subject_id           reason
+## *      &lt;int&gt;            &lt;chr&gt;
+## 1         82   110641:NEWBORN
+## 2         83    158569:URGENT
+## 3         84  120969:ELECTIVE
+## 4         84 166401:EMERGENCY
+## 5         85 116630:EMERGENCY
+## 6         85 112077:EMERGENCY
+## 7         86  190243:ELECTIVE
+## # ... with 5,763 more rows</code></pre>
 <hr />
 </div>
 <div id="selected-materials-and-references" class="section level4">
