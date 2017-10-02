@@ -631,6 +631,109 @@ Thus we have to use an **interval**. An interval is a duration with a starting p
 
 ---
 
+#### Tidying data
+
+Same "kind of" data can be present in multiple columns that may denote a single variable. For example, consider MIMIC3 admissions table. There are two variables - `edregtime` and `edouttime` (emergency department registration time and emergency department out time, respectively) that represents one variable: `time stamp in emergency`, a larger class of variable. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Select subject_id, hadm_id, edregtime and edouttime variables
+  MIMIC3_ADM_tibble <- MIMIC3_ADM %>% select(subject_id,hadm_id,edregtime,edouttime) %>% na.omit()
+  as.tibble(MIMIC3_ADM_tibble)
+```
+
+```{r eval=TRUE, message=TRUE, warning=TRUE, echo=FALSE, results=TRUE}
+  # Select subject_id, hadm_id, edregtime and edouttime variables
+  MIMIC3_ADM_tibble <- MIMIC3_ADM %>% select(subject_id,hadm_id,edregtime,edouttime) %>% na.omit()
+  as.tibble(MIMIC3_ADM_tibble)
+```
+
+The purpose of the **gather** function is to tidy the data by aggregating such data present in multiple columns into a new pair of variables. To accomplish this, we need three parameters:
+
+* The set of columns that represent sub-classification/sub-variables. In this example, those are the columns `edregtime` and `edouttime`
+
+* The name of a single variable that represents a larger class. This is called a key, and here it is `time stamp in emergency`. Lets call this variable `EdTimeStamp`.
+
+* The values that are present in the cells corresponding to the sub-variables. Here it’s the time stamp when registering and when out of the emergency department. Lets call this variable `time`
+
+Once we have these parameters, we can _gather_ data:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Gather edregtime and edouttime, to form variable "EdTimeStamp" with
+  # value "time"
+  MIMIC3_ADM_gather <- MIMIC3_ADM_tibble %>% 
+    gather(`edregtime`, `edouttime`, key = "EdTimeStamp", value = "time")
+  as.tibble(MIMIC3_ADM_gather)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Gather edregtime and edouttime, to form variable "EdTimeStamp" with
+  # value "time"
+  MIMIC3_ADM_gather <- MIMIC3_ADM_tibble %>% 
+    gather(`edregtime`, `edouttime`, key = "EdTimeStamp", value = "time")
+  as.tibble(MIMIC3_ADM_gather)
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Find the number of times each patient was registered in emergency department.
+
+<br>
+
+**Spreading** is the opposite of gathering. We use it when an observation is scattered across multiple rows. For example, in the above data set, the patient denoted by `subject_id` can have several hospital admission id `hadm_id` depending on how many times they were admitted in the hospital.
+
+To spread this data, we first analyse the representation in similar way to `gather()`. This time, however, we only need two parameters:
+
+* The column that contains the key column. Here, it’s `subject_id`.
+
+* The column that contains multiple values for the key column, the values column. Here it’s `hadm_id`. 
+
+Once we have these two parameters we can _spread_ the data:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Spread each patient (subject_id) for the hospital admission id - hadm_id
+  MIMIC3_ADM_spread <- MIMIC3_ADM_tibble %>% head() %>%
+    spread(key = subject_id, value = hadm_id) %>% select(`edregtime`, `edouttime`, '94', everything())
+  as.tibble(MIMIC3_ADM_spread)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Spread each patient (subject_id) for the hospital admission id - hadm_id
+  MIMIC3_ADM_spread <- MIMIC3_ADM_tibble %>% head() %>%
+    spread(key = subject_id, value = hadm_id) %>% select(`edregtime`, `edouttime`, '94', everything())
+  as.tibble(MIMIC3_ADM_spread)
+```
+
+We immediately see that patient no. 94 had two admissions in the hospital as emergency visits.
+
+`separate()` pulls apart one column into multiple columns, by splitting wherever a separator character appears. For example, consider the `admissions_location` variable. Its made of 9 possible values:
+
+* EMERGENCY ROOM ADMIT
+* TRANSFER FROM HOSP/EXTRAM
+* TRANSFER FROM OTHER HEALT
+* CLINIC REFERRAL/PREMATURE
+* INFO NOT AVAILABLE 
+* TRANSFER FROM SKILLED NUR
+* TRSF WITHIN THIS FACILITY
+* HMO REFERRAL/SICK
+* PHYS REFERRAL/NORMAL DELI
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Separate admission_location information
+  MIMIC3_ADM_LOC_SEP <- MIMIC3_ADM %>% select(admission_location) %>% 
+    separate(admission_location, into = c("Info1", "Info2"), sep = "/", convert = FALSE)
+  as.tibble(MIMIC3_ADM_LOC_SEP)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Separate admission_location information
+  MIMIC3_ADM_LOC_SEP <- MIMIC3_ADM %>% select(admission_location) %>% 
+    separate(admission_location, into = c("Info1", "Info2"), sep = "/", convert = FALSE)
+  as.tibble(MIMIC3_ADM_LOC_SEP)
+```
+
+By default `seperate()` would coerce into charector vectors even if we seperate numerical variables. To retain numerical type, we have to set `convert = TRUE` argument.
+
+---
+
 #### Selected materials and references
 
 [R for Data Science - Wrangle Part](http://r4ds.had.co.nz/wrangle-intro.html)
