@@ -748,6 +748,111 @@ By default `seperate()` would coerce into charector vectors even if we seperate 
   as.tibble(MIMIC3_ADM_LOC_UNITE)
 ```
 
+---
+
+#### Missing values
+
+Missing values can be:
+
+1. Explicit and flagged with NA
+2. Implicit with values absent
+
+Consider this data:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Make a tibble reporting the data on people affected with influenza 
+  influenza <- tibble(
+    year   = c(2015, 2015, 2015, 2015, 2016, 2016, 2016),
+    qtr    = c(   1,    2,    3,    4,    2,    3,    4),
+    no_sick = c(800, 450, 377,   NA, 900, 1300, 1257)
+  )
+  influenza
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Make a tibble reporting the data on people affected with influenza 
+  influenza <- tibble(
+    year   = c(2015, 2015, 2015, 2015, 2016, 2016, 2016),
+    qtr    = c(   1,    2,    3,    4,    2,    3,    4),
+    no_sick = c(800, 450, 377,   NA, 900, 1300, 1257)
+  )
+  influenza
+```
+
+There are two missing values in this dataset:
+
+The no of sick people for the fourth quarter of 2015 is explicitly missing, because the cell where its value should be instead contains NA.
+
+The no of sick people for the first quarter of 2016 is implicitly missing, because it simply does not appear in the dataset.
+
+There are several ways we can deal with the missing values.
+
+1. We can make the implicit missing value explicit by putting years in the columns:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Spread the data to make implicit absense explicit 
+  influenza %>% 
+  spread(year, no_sick)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Spread the data to make implicit absense explicit 
+  influenza %>% 
+  spread(year, no_sick)
+```
+
+2. Explicit missing values may not be important in other representations of the data so we can set `na.rm = TRUE` in `gather()` to turn explicit missing values implicit:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Spread the data to make implicit absense explicit and
+  # gather with na.rm = TRUE to turn explicit missing values implicit
+  influenza %>% 
+  spread(year, no_sick) %>%
+  gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Spread the data to make implicit absense explicit and
+  # gather with na.rm = TRUE to turn explicit missing values implicit
+  influenza %>% 
+  spread(year, no_sick) %>%
+  gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
+```
+
+3. We can use `complete()` which takes a set of columns, and finds all unique combinations. It then ensures the original dataset contains all those values, filling in explicit NAs where necessary:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Complete the data by finding the combinations and replacing NA
+  influenza %>% 
+  complete(year, qtr) 
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Complete the data by finding the combinations and replacing NA
+  influenza %>% 
+  complete(year, qtr) 
+```
+
+4. Or we can use `fill()` which takes a set of columns where you want missing values to be replaced by the most recent non-missing value (sometimes called last observation carried forward).
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Fill NA with the most recent value found - 377 in this case
+  influenza %>% 
+  fill(no_sick) 
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Fill NA with the most recent value found - 377 in this case
+  influenza %>% 
+  fill(no_sick) 
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Read section 12.6 in the book. It contains a case study on World Health Organization Global Tuberculosis Report conducted in 2014.
+
+---
+
+
 
 ---
 
