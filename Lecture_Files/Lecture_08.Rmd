@@ -15,6 +15,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eBZvLiyK1-g" frameborder="0" allowfullscreen></iframe>
+
+---
+
 This is the concluding part of EDA workshop. Import the data set and change data types to reflect their correct annotation (housekeeping).
 
 
