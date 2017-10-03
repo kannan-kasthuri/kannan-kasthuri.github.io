@@ -847,10 +847,82 @@ There are several ways we can deal with the missing values.
   fill(no_sick) 
 ```
 
-<br>
-<span style="color:blue">**Classwork/Homework**</span>: Read section 12.6 in the book. It contains a case study on World Health Organization Global Tuberculosis Report conducted in 2014.
-
 ---
+
+#### Case study: TB data from WHO
+
+The following case study illustrates the typical process involved in tidying up real world data. The data comes from the 2014 World Health Organization Global Tuberculosis Report, which can be downloaded from [WHO TB Data](http://www.who.int/tb/country/data/download/en/). The data is a part of _tidyverse_ package, so you don't have to download it.
+
+Just querying the data results as follows:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Query WHO TB data
+  who
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Query WHO TB data
+  who
+```
+
+It contains redundant columns, odd variable codes, and many missing values.
+
+The variables - country, iso2, and iso3 redundantly specify the country.
+
+We don't know what the variables _new_sp_m014_, _new_ep_m014_, _new_ep_f014_ mean.
+
+Therefore, we look them up in the given [dictionary](https://extranet.who.int/tme/generateCSV.asp?ds=dictionary). 
+
+**Note**: This would save the .csv dictionary file into your computer. You need to open it, like using excel.
+
+`iso2` and `iso3` are ISO standard country/territory codes. Also the variables that start with `new` are new cases. In particular,
+
+1. The first three letters of each column denote whether the column contains new or old cases of TB. In this dataset, each column contains new cases.
+
+2. The next two letters describe the type of TB:
+
+    a. rel stands for cases of relapse
+  
+    b. ep stands for cases of extrapulmonary TB
+  
+    c. sn stands for cases of pulmonary TB that could not be diagnosed by a pulmonary smear (smear negative)
+  
+    d. sp stands for cases of pulmonary TB that could be diagnosed be a pulmonary smear (smear positive)
+  
+    e. The sixth letter gives the sex of TB patients. The dataset groups cases by males (m) and females (f).
+
+3. The remaining numbers gives the age group. The dataset groups cases into seven age groups:
+
+    a. 014 = 0 – 14 years old
+  
+    b. 1524 = 15 – 24 years old
+  
+    c. 2534 = 25 – 34 years old
+  
+    d. 3544 = 35 – 44 years old
+  
+    e. 4554 = 45 – 54 years old
+  
+    f. 5564 = 55 – 64 years old
+  
+    g. 65 = 65 or older
+
+
+This we need to separate them. But first since each of these variables contains count of new cases, a natural way to organize them would be to gather these variables. We can make a meta-variable "group" and "case-count" to reflect this gathering removing `NA`:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Gather "new_" variables, removing NA, grouping them up and counting cases
+  who_gathered <- who %>% 
+    gather(new_sp_m014:newrel_f65, key = "group", value = "case-count", na.rm = TRUE)
+  as.tibble(who_gathered)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Gather "new_" variables, removing NA, grouping them up and counting cases
+  who_gathered <- who %>% 
+    gather(new_sp_m014:newrel_f65, key = "group", value = "case-count", na.rm = TRUE)
+  as.tibble(who_gathered)
+```
 
 
 
