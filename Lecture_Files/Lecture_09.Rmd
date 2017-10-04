@@ -990,6 +990,183 @@ We can then drop the unwanted variables, such as `new`, `iso2`, `iso3` etc. Thus
 
 ---
 
+#### Relational data
+
+Usually data in the real world comes in different tables. Multiple tables of data are called relational data because it is the relations, not just the individual datasets, that are important. Combining data in multiple tables is an imporant part of the wrangling process. Usually these combinations are facilitated by _joins_. There are three families of joins that are designed to work with relational data:
+
+1. Mutating joins: these joins add new variables to one data frame based on the presence of data from the other data table.
+
+2. Filtering joins: these filter observations from one data frame based on whether or not they match an observation in the other table.
+
+3. Set operations: these operations treat observations as if they were set elements.
+
+A variable that connects two tables are called _keys_. There are several types of keys:
+
+1. A _primary key_ uniquely identifies an observation in its own table. 
+
+2. A _foreign key_ uniquely identifies an observation in another table.
+
+3. A _surrogate key_ uniquely identifies an observation in the absence of a primary key. They can be created, for instance using `mutate()` and `row_number()`.
+
+Once we identify if a variable is a key one way to verify is to use the `count()` function and look for entries where `n` is greater than one:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Verify if hadm_id is a primary key
+  MIMIC3_ADM %>% 
+    count(hadm_id) %>%
+    filter(n > 1)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Verify if hadm_id is a primary key
+  MIMIC3_ADM %>% 
+    count(hadm_id) %>%
+    filter(n > 1)
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Verify if subject_id is a primary key
+  is_subject_id_key <- MIMIC3_ADM %>% 
+                        count(subject_id) %>%
+                        filter(n > 1)
+  as.tibble(is_subject_id_key)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Verify if subject_id is a primary key
+  is_subject_id_key <- MIMIC3_ADM %>% 
+                        count(subject_id) %>%
+                        filter(n > 1)
+  as.tibble(is_subject_id_key)
+```
+
+To describe the joins, we will work with input events data set from MIMIC3. A meta level description of the table is given as:
+
+_Inputs and outputs are extremely useful when studying intensive care unit patients. Inputs are any fluids which have been administered to the patient: such as oral or tube feedings or intravenous solutions containing medications._
+
+A description of input events table is given [here](https://mimic.physionet.org/mimicdata/io/).
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the input events data set in MIMIC3 from GitHub; 
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/MIMIC3/inputevents_cv.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  MIMIC3_INE <- read.csv(text=getURL(URL))
+  # Observe the structure
+  as.tibble(MIMIC3_INE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the input events data set in MIMIC3 from GitHub; 
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/MIMIC3/inputevents_cv.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  MIMIC3_INE <- read.csv(text=getURL(URL))
+  # Observe the structure
+  as.tibble(MIMIC3_INE)
+```
+
+
+##### Inner join 
+
+Mutating inner join can be described by the following figure:
+
+---
+
+![](join-inner.png)
+
+---
+
+The following code computes the inner join of admissionas and input events cv table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Inner join of admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_inner_join <- MIMIC3_ADM %>% 
+                                inner_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_inner_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Inner join of admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_inner_join <- MIMIC3_ADM %>% 
+                                inner_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_inner_join)
+```
+
+##### Outer joins
+
+There are three types of outer joins:
+
+---
+
+![](join-outer.png)
+
+---
+
+Left join admissions and input events table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Left join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_left_join <- MIMIC3_ADM %>% 
+                                left_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_left_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Left join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_left_join <- MIMIC3_ADM %>% 
+                                left_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_left_join)
+```
+
+
+Right join admissions and input events table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Right join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_right_join <- MIMIC3_ADM %>% 
+                                right_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_right_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Right join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_right_join <- MIMIC3_ADM %>% 
+                                right_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_right_join)
+```
+
+Full join admissions and input events table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Full join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_full_join <- MIMIC3_ADM %>% 
+                                full_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_full_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Full join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_full_join <- MIMIC3_ADM %>% 
+                                full_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_full_join)
+```
+
+
+---
+
 #### Selected materials and references
 
 [R for Data Science - Wrangle Part](http://r4ds.had.co.nz/wrangle-intro.html)
