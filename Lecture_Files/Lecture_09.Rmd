@@ -1008,6 +1008,8 @@ A variable that connects two tables are called _keys_. There are several types o
 
 3. A _surrogate key_ uniquely identifies an observation in the absence of a primary key. They can be created, for instance using `mutate()` and `row_number()`.
 
+**Note**: A primary key can also be a foreign key.
+
 Once we identify if a variable is a key one way to verify is to use the `count()` function and look for entries where `n` is greater than one:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
@@ -1071,7 +1073,7 @@ A description of input events table is given [here](https://mimic.physionet.org/
 ```
 
 
-##### Inner join 
+##### Inner join (mutating joins)
 
 Mutating inner join can be described by the following figure:
 
@@ -1099,7 +1101,7 @@ The following code computes the inner join of admissionas and input events cv ta
   as.tibble(MIMIC_ADM_INE_inner_join)
 ```
 
-##### Outer joins
+##### Outer joins (mutating joins)
 
 There are three types of outer joins:
 
@@ -1167,6 +1169,19 @@ Full join admissions and input events table:
 
 **Note**: By default, `by = NULL`, which will use all common variables that appear in both tables as keys. This is called _natural join_. We can also us `by = c("a" = "b")`. This will match variable `a` in the first table to variable `b` in the second table.
 
+---
+
+##### Semi join (filtering joins)
+
+`semi_join(table1, table2, key = "k")` would keep all observations in table 1 that have a match in table 2 identified by the key "k". 
+
+---
+
+![](join-semi.png)
+
+---
+
+Thus, in our tables:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
   # Semi join admissions table and input events (cv) table using the key "hadm_id"
@@ -1184,8 +1199,53 @@ Full join admissions and input events table:
   as.tibble(MIMIC_ADM_INE_semi_join)
 ```
 
+this would result in keeping the observations in admissions that are present in input cv. This is particularly useful if we have a result in one table that we want to analyze related data in the other table. 
+
+The opposite of `semi_join()` is the `anti-join(table1, table2, key = "k")`, where we would retain only the observations in table 1 that **does not** have a match in table 2, identified by the key "k".
+
+---
+
+![](join-anti.png)
+
+---
+
+In our data tables, this would pull out all the entries in admissions table where hospital admissions id (`hadm_id`) is not present in the input events (cv) table. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Anti join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_anti_join <- MIMIC3_ADM %>% 
+                                anti_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_anti_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Anti join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_anti_join <- MIMIC3_ADM %>% 
+                                anti_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_anti_join)
+```
 
 
+Anti-joins are useful for diagnosing join mismatches. In the above example, we might be interested to know how many patients don’t have input event information.
+
+---
+
+#### Joining tips
+
+1. Start by identifying the variables that form the primary key in each table. This is usually done by understanding the data set and not empirically by looking for a combination of variables that give a unique identifier. If we just look for variables without thinking about what they mean, we might find a combination that’s unique to our data but the relationship might not be true in general.
+
+2. Having said the above, it is also dependent on the question of interest. In all of our examples above, we used hospital admissions id (`hadm_id`) as our key. This may fetch the statistics and analysis based on the admissions statistics, but not based on patients (or `subject_id`). So if we want to derive patient statistics, we may want to combine, say, `subject_id` with `hadm_id` and derive a primary key. Therefore, combination may sometimes work and can capture statistics of interest.
+
+3. Check that none of the variables in the primary key are missing. If a value is missing then it can’t identify an observation!
+
+4. Check if the foreign keys match primary keys in another table. The best way to do this is with an `anti_join()`. It’s common for keys not to match because of data entry errors. Fixing these is often a lot of work.
+
+5. If we have missing keys, we’ll need to be thoughtful about the use of inner vs. outer joins, by carefully considering whether or not we want to drop rows that don’t have a match.
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Read and work on sections 14 and 15 (Strings and Factors) in the book R for Data Science.
 
 ---
 
