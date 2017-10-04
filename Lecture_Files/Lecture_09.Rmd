@@ -792,13 +792,13 @@ There are several ways we can deal with the missing values.
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Spread the data to make implicit absense explicit 
   influenza %>% 
-  spread(year, no_sick)
+    spread(year, no_sick)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Spread the data to make implicit absense explicit 
   influenza %>% 
-  spread(year, no_sick)
+    spread(year, no_sick)
 ```
 
 2. Explicit missing values may not be important in other representations of the data so we can set `na.rm = TRUE` in `gather()` to turn explicit missing values implicit:
@@ -807,16 +807,16 @@ There are several ways we can deal with the missing values.
   # Spread the data to make implicit absense explicit and
   # gather with na.rm = TRUE to turn explicit missing values implicit
   influenza %>% 
-  spread(year, no_sick) %>%
-  gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
+    spread(year, no_sick) %>%
+    gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Spread the data to make implicit absense explicit and
   # gather with na.rm = TRUE to turn explicit missing values implicit
   influenza %>% 
-  spread(year, no_sick) %>%
-  gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
+    spread(year, no_sick) %>%
+    gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
 ```
 
 3. We can use `complete()` which takes a set of columns, and finds all unique combinations. It then ensures the original dataset contains all those values, filling in explicit NAs where necessary:
@@ -824,13 +824,13 @@ There are several ways we can deal with the missing values.
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Complete the data by finding the combinations and replacing NA
   influenza %>% 
-  complete(year, qtr) 
+    complete(year, qtr) 
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Complete the data by finding the combinations and replacing NA
   influenza %>% 
-  complete(year, qtr) 
+    complete(year, qtr) 
 ```
 
 4. Or we can use `fill()` which takes a set of columns where you want missing values to be replaced by the most recent non-missing value (sometimes called last observation carried forward).
@@ -838,13 +838,13 @@ There are several ways we can deal with the missing values.
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Fill NA with the most recent value found - 377 in this case
   influenza %>% 
-  fill(no_sick) 
+    fill(no_sick) 
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Fill NA with the most recent value found - 377 in this case
   influenza %>% 
-  fill(no_sick) 
+    fill(no_sick) 
 ```
 
 ---
@@ -908,7 +908,7 @@ Therefore, we look them up in the given [dictionary](https://extranet.who.int/tm
     g. 65 = 65 or older
 
 
-This we need to separate them. But first since each of these variables contains count of new cases, a natural way to organize them would be to gather these variables. We can make a meta-variable "group" and "case-count" to reflect this gathering removing `NA`:
+Thus we need to separate them. But first since each of these variables contains count of new cases, a natural way to organize them would be to gather these variables. We can make a meta-variable "group" and "case-count" to reflect this gathering removing missing values `NA`:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Gather "new_" variables, removing NA, grouping them up and counting cases
@@ -924,7 +924,69 @@ This we need to separate them. But first since each of these variables contains 
   as.tibble(who_gathered)
 ```
 
+Also observe that for `rel` we don't have underscore, whereas for `ep` we have underscore after `new`. Thus, we need to fix these to get consistent variables:
 
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Replace newrel by new_rel
+  who_rel_replaced <- who_gathered %>% 
+    mutate(group = stringr::str_replace(group, "newrel", "new_rel"))
+  as.tibble(who_rel_replaced)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Replace newrel by new_rel
+  who_rel_replaced <- who_gathered %>% 
+    mutate(group = stringr::str_replace(group, "newrel", "new_rel"))
+  as.tibble(who_rel_replaced)
+```
+
+We can now seperate the variables to reflect the type of TB, gender and the age group. First we seperate by underscore:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # First we seperate by underscore
+  who_seperated_by_underscore <- who_rel_replaced %>% 
+    separate(group, c("new", "type", "sexage"), sep = "_")
+  as.tibble(who_seperated_by_underscore)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # First we seperate by underscore
+  who_seperated_by_underscore <- who_rel_replaced %>% 
+    separate(group, c("new", "type", "sexage"), sep = "_")
+  as.tibble(who_seperated_by_underscore)
+```
+
+And then by the gender and age group which are linked together, so we can use `sep = 1` argument:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Then we seperate by gender and age using "sep = 1"
+  who_seperated_by_gender_age <- who_seperated_by_underscore %>% 
+    separate(sexage, c("sex", "age"), sep = 1)
+  as.tibble(who_seperated_by_gender_age)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Then we seperate by gender and age using "sep = 1"
+  who_seperated_by_gender_age <- who_seperated_by_underscore %>% 
+    separate(sexage, c("sex", "age"), sep = 1)
+  as.tibble(who_seperated_by_gender_age)
+```
+
+We can then drop the unwanted variables, such as `new`, `iso2`, `iso3` etc. Thus, our data will be tidy after this:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Drop "new" and "iso" variables and tidy the data
+  tidy_who <- who_seperated_by_gender_age %>% 
+    select(-new, -iso2, -iso3)
+  as.tibble(tidy_who)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Drop "new" and "iso" variables and tidy the data
+  tidy_who <- who_seperated_by_gender_age %>% 
+    select(-new, -iso2, -iso3)
+  as.tibble(tidy_who)
+```
 
 ---
 
