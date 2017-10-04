@@ -1165,6 +1165,28 @@ Full join admissions and input events table:
 ```
 
 
+**Note**: By default, `by = NULL`, which will use all common variables that appear in both tables as keys. This is called _natural join_. We can also us `by = c("a" = "b")`. This will match variable `a` in the first table to variable `b` in the second table.
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Semi join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_semi_join <- MIMIC3_ADM %>% 
+                                semi_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_semi_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Semi join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_semi_join <- MIMIC3_ADM %>% 
+                                semi_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_semi_join)
+```
+
+
+
+
 ---
 
 #### Selected materials and references
