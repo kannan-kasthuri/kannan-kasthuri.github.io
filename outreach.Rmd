@@ -21,7 +21,7 @@ text-align: justify}
 
 ---
 
-<center> <h1>Beer With A Scientist Sundays</h1> </center>
+<center> <h3>Beer With A Scientist Sundays</h3> </center>
 
 ---
 
