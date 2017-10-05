@@ -15,6 +15,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hURqkxNGjYU" frameborder="0" allowfullscreen></iframe>
+
+---
+
 #### A note on tibbles
 
 We already saw tibbles and how to convert data frames into tibbles (using `as.tibble()`). Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen.  
