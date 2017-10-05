@@ -7,17 +7,22 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<style>
+body {
+text-align: justify}
+</style>
+
 ---
 
 ### Teaching
 
 ---
 
-Honestly, I have beeen quite happy to get to teaching after years of research in computational physics and genomics. Please see my [research page](research.html) to get an idea of my contributions to science. I feel teaching should be a critical component of any active researcher. There are several ways to transmit the knowledge we have acquired - writing research articles addressed to enlightned science communities, writing review articles in journals etc. But teaching facilitates direct human-human interaction, which by its very design conveys lot more information than only through other mediums. In any case, what is the fun when we acquire knowledge and don't transmit enthusiastically to deserving students? 
+<img style="float: left;" src="teaching.jpg" alt="teaching" hspace="10"> Honestly, I have beeen quite happy to teach while actively engaging in research in genomics. I feel teaching should be a critical component of any active researcher. There are several ways to transmit the knowledge we have acquired - writing research articles addressed to enlightned science communities, writing review articles in journals, maintaining a blog etc. But teaching facilitates direct human-human interaction, which by its very design conveys lot more information compared to other mediums. In any case, what is the fun when we acquire knowledge but don't transmit enthusiastically to students? 
 
-What amazes me is that several researchers and scientists I have encountered (especially in research institutions) find teaching cumbersome. Part of the problem is how the academic system is structured. NIH doesn't award grants based on teaching records, and honestly we cannot do justice to both teaching and research. We have very limited time and teaching requires considrable effort at least in the initial stages. Let's not go into all those issues and if you wanna disuss these things, let's have a [beer and talk](outreach.html). 
+Several researchers and scientists I have encountered (especially in research institutions) find teaching cumbersome. Part of the problem is how the academic system is structured. NIH doesn't award grants based on teaching records. We have very limited time and teaching requires considrable effort at least in the initial stages. Let's not go into all those issues and if you wanna disuss these things, let's have a [beer and talk](outreach.html). 
 
-Here are my teaching records.
+Here are my teaching records. To know the content, scroll to the lectures section and follow the links. Happy reading!
 
 ---
 
@@ -30,8 +35,3 @@ Here are my teaching records.
 [Methods in Quantitative Biology](https://kannan-kasthuri.github.io/qmb.html)
 
 ---
-
-To know the content, scroll to the lectures section and follow the links. Happy reading!
-
----
-
