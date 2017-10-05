@@ -7,24 +7,45 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<style>
+body {
+text-align: justify}
+</style>
+
 ---
 
-### Research Summary
+### Research
 
 ---
 
 If you are quickly looking for my pulication record - please click [here](https://kannan-kasthuri.github.io/publications.html). 
 
-Research excites me as much as pedagogy. I have diverse academic interests - cancer biology, formal logic, physical theories, computing, mathematics to name a few. My contributions in science can be broadly classifed in the areas of computational physics and genomics. 
+Research excites me as much as teaching. I have diverse academic interests - cancer biology, formal logic, physical theories, computing and mathematics. My contributions in science can be broadly classifed in the areas of genomics and numerical algorithms (with applications to computational physics).
 
 ---
 
-#### Contributions in computational physics
+#### Genomics
 
 ---
 
-I started with mathematics, moved into computer science, writing a thesis in multipole algorithms. [Fast Multipole Method](https://en.wikipedia.org/wiki/Fast_multipole_method) is one of the top 10 algorithms of the 20th century introduced by [Prof. Greengard](https://en.wikipedia.org/wiki/Leslie_Greengard) of the Courant institute at NYU. My work focussed on generalizing the algorithm for higher order potentials and forces.
+<img style="float: left;" src="genomics.jpg" alt="genomics" hspace="10"> As a genomics scientist, my work focuses on developing and implementing bioinformatics algorithms as well as analyzing and interpreting biological data sets facilitating researcher’s experiments and hypothesis. I have extensive research experience analyzing and interpreting data from genomics/epigenetics experiments and have made vital contributions to several studies, especially in cancer genomics. One of my landmark discoveries, after I joined NYU is in pediatric brain cancer known as Pineoblastoma. I discovered significant number of copy number variations in a gene called PDE4DIP that holds an ancestral protein domain DUF1220 which is responsible for brain growth and function. 
 
+Another study of mine reveals key signaling pathways and genes responsible for Sudden Unexpected Death in Epilepsy (also known as SUDEP). Currently as an investigator at Genome Technology Center (GTC) in NYU, my research experience has widened to encompass cancer epigenetics and I have developed algorithms to analyze ATAC-seq and ChIP-seq data. These pipleines are being extensively applied in several studies as I continue to collaborate with physician-scientists interpreting the results of the analysis.
+
+<img style="float: right;" src="astro.png" alt="astro" hspace="10"> My tenure at Memorial Sloan-Kettering Cancer Center (between 2011-2013), shaped me to perform critical roles in several genomics studies. My expertise in cancer genomics has been primarily focussed on brain tumors. One of my contributions (published in _Oncotarget_) in low-grade brain cancer called astrocytoma, identifies mutations in a gene called ATRX in 70% of the patients. In another study I helped in identifying three distinct gene expression groups of patients who contract astrocytoma, two of which harbors IDH mutations. 
+
+
+Also, I was instrumental in identifying two melanoma patient subgroups who were treated with immunotherapy and this finding was published in _New England Journal of Medicine_. Further, my work on Adenoid Cystic Carcinoma in _Nature Genetics_ identifies clinically significant mutations and pathways through robust mutation calling and pathway analysis algorithms.
+
+Further, I have developed a keen interest on tumor evolution and population genetics. My recent publication in _Letters in Biomathematics_, establishes a formula for inferring selection in tumors by making use of an advanced mathematical result called the _Inverse Function Theorem_. 
+
+---
+
+#### Numerical algorithms
+
+---
+
+I started with mathematics, moved into computer science, writing a dissertation in multipole algorithms. [Fast Multipole Method](https://en.wikipedia.org/wiki/Fast_multipole_method) is one of the top 10 algorithms of the 20th century introduced by [Prof. Greengard](https://en.wikipedia.org/wiki/Leslie_Greengard) of the Courant institute at NYU. My work focussed on generalizing the algorithm for higher order potentials/forces and when the particles are in motion. This has applications in molecular dynamics simulations.
 
 ---
 
@@ -34,24 +55,10 @@ I started with mathematics, moved into computer science, writing a thesis in mul
 
 2. **Kasthuri Kannan** and Vivek Sarin, A Treecode for Accurate Force Calculations. _Lecture Notes in Computer Science_. 3991, pp. 92-99, May 2006.
 
-    _Description_: Computing the forces in N-body simulations is of the order N^2. Treecodes present a fast approximation to such computations. However, accuracy in such computations are limited when using cartesian tensors. Spherical tensors provide greater accuracy for these simulations.
+    _Description_: Computing the forces in N-body simulations is of the order $O(N^2)$. Treecodes present a fast approximation to such computations. However, accuracy in such computations are limited when using cartesian tensors. Spherical tensors provide greater accuracy for these simulations.
 
 3. **Kasthuri Kannan** and Vivek Sarin, A Treecode for Potentials of the Form $r^{-\lambda}$, _International Journal of Computer Mathematics_. 84, 1249-1260, Jan. 2007.
 
-    _Description_: This work presents a fast algorithm to compute potentials of the form r^{-lambda} that are used in molecular dynamics simulations. This is the exension of the first work above, where I describe the complete algorithm along with complexity analysis.
-
----
-
-#### Contributions in biology/genomics
-
----
-
-As a genomics scientist, my work focuses on developing and implementing bioinformatics algorithms as well as analyzing and interpreting biological data sets facilitating researcher’s experiments and hypothesis. I have extensive research experience analyzing and interpreting data from genomics/epigenetics experiments and have made vital contributions to several studies, especially in cancer genomics. One of my landmark discoveries, after I joined NYU is in pediatric brain cancer known as Pineoblastoma. I discovered significant number of copy number variations in a gene called PDE4DIP that holds an ancestral protein domain DUF1220 which is responsible for brain growth and function (revisions favorably received from _Nature Communications_). 
-
-Another study of mine reveals key signaling pathways and genes responsible for Sudden Unexpected Death in Epilepsy (also known as SUDEP). Currently as an investigator at Genome Technology Center (GTC) in NYU, my research experience has broadned to encompass cancer epigenetics and I have developed algorithms to analyze ATAC-seq and ChIP-seq data. These pipleines are being extensively applied in several studies as I continue to collaborate with physician-scientists interpreting the results of the analysis.
-
-My tenure at Memorial Sloan-Kettering Cancer Center (between 2011-2013), shaped me to perform critical roles in several genomics studies. My expertise in cancer genomics has been primarily focussed on brain tumors. One of my contributions (published in _Oncotarget_) in low-grade brain cancer called astrocytoma, identifies mutations in a gene called ATRX in 70% of the patients. In another study I helped in identifying three distinct gene expression groups of patients who contract astrocytoma, two of which harbors IDH mutations. Also, I was instrumental in identifying two melanoma patient subgroups who were treated with immunotherapy and this finding was published in _New England Journal of Medicine_. Further, my work on Adenoid Cystic Carcinoma in _Nature Genetics_ identifies clinically significant mutations and pathways through robust mutation calling and pathway analysis algorithms.
-
-Further, I have developed a keen interest on tumor evolution and population genetics. My recent publication in _Letters in Biomathematics_, establishes a formula for inferring selection in tumors by making use of an advanced mathematical result called the Inverse Function Theorem. My long-term goal is to become a leader in genomics applying insights about evolutionary processes to the fields of cancer genetics and epigenetics at the same time collaboratively working with physician-scientists and computational biologists, on their hypothesis and interests.
+    _Description_: This work presents a fast algorithm to compute potentials of the form $r^{-\lambda}$ that are used in molecular dynamics simulations. This is the exension of the first work above, where I describe the complete algorithm along with complexity analysis.
 
 ---
