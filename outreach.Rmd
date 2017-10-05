@@ -7,12 +7,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<style>
+body {
+text-align: justify}
+</style>
+
 ---
 
-### How about beer with scientists?
+<div style="text-align:center" markdown="1">
+
+![](BWASS.jpeg "Beer With A Scientist Sundays")
+</div>
 
 ---
 
-![](beer_scientists.jpeg)
+<center> <h1>Beer With A Scientist Sundays</h1> </center>
+
+---
+
+
 
 ---
