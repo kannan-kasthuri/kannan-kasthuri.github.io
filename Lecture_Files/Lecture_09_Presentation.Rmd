@@ -32,7 +32,9 @@ p { text-align: left; }
 
 #### A note on tibbles
 
-We already saw tibbles and how to convert data frames into tibbles (using `as.tibble()`). Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen.  
+We already saw tibbles and how to convert data frames into tibbles (using `as.tibble()`). 
+
+Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen.  
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Load the package RCurl
@@ -62,7 +64,7 @@ We already saw tibbles and how to convert data frames into tibbles (using `as.ti
 
 ##
 
-```{r eval=TRUE, message=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, na.rm=FALSE}
   # Load the package RCurl
   library(RCurl)
   # Import the HANES data set from GitHub; break the string into two for readability
@@ -206,8 +208,6 @@ which can be output into a tibble format using the `problems()` function:
   problems(x)
 ```
 
-##
-  
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Parse EDUCATION as a logical when it is a number
   x <- parse_logical(HANES_original$EDUCATION)
@@ -225,6 +225,8 @@ Parsing different number formats are important as it comes in various styles:
 
 3. Numbers often contain “grouping” characters to make them easier to read, like “1,000,000”, and these grouping characters vary around the world.
 
+##
+
 The first problem is solved by the argument `locale` in `parse_double()` function, the second using `parse_number()` function and the third by combination of `locale` and `parse_number()`.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
@@ -234,12 +236,10 @@ The first problem is solved by the argument `locale` in `parse_double()` functio
   parse_number("$120")
   parse_number("60%")
   # Parse the grouping as used in Europe
-  parse_number("123'834'297", locale = locale(grouping_mark = "."))
+  parse_number("123.834.297", locale = locale(grouping_mark = "."))
   # or as used in Switzerland
   parse_number("123'834'297", locale = locale(grouping_mark = "'"))
 ```
-
-##
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Parse the number 1,23 where the decimal mark is written as a `,`
@@ -248,7 +248,7 @@ The first problem is solved by the argument `locale` in `parse_double()` functio
   parse_number("$120")
   parse_number("60%")
   # Parse the grouping as used in Europe
-  parse_number("123'834'297", locale = locale(grouping_mark = "."))
+  parse_number("123.834.297", locale = locale(grouping_mark = "."))
   # or as used in Switzerland
   parse_number("123'834'297", locale = locale(grouping_mark = "'"))
 ```
@@ -307,7 +307,11 @@ We can parse such encodings (that will appear gibberish if we read it in the eng
 
 We see that KOI8-R is an 8-bit character encoding, designed to cover Russian, which uses a Cyrillic alphabet.
 
-Parsing date and time is very important in health related data sets. For example, the MIMIC3 data has tons of data sets with time information. There are three main functions for parsing dates and times.
+Parsing date and time is very important in health related data sets. For example, the MIMIC3 data has tons of data sets with time information. 
+
+There are three main functions for parsing dates and times.
+
+##
 
 * `parse_datetime()` expects an ISO8601 date-time. ISO8601 is an international standard in which the components of a date are organised from biggest to smallest: year, month, day, hour, minute, second.
 
@@ -381,7 +385,7 @@ As an example:
 ##
 
 <br>
-<span style="color:blue">**Classwork/Homework**</span>: Read section 11.4 and 11.5 in the R for Data Science book.
+<span style="color:blue">**Classwork/Homework**</span>: Read section 11.4 and 11.5 (Parsing a file and Writing to a file sections ) in R for Data Science book.
 
 ---
 
@@ -392,6 +396,8 @@ Dealing with dates and times can be a very tough job. For example, consider the 
 **Note**: MIMIC3 says "dates were shifted into the future by a random offset for each individual patient in a consistent manner to preserve intervals, resulting in stays which occur sometime between the years 2100 and 2200." so don't freak out looking at the dates.
 
 If we import the dataset as such, we will see that they import as a factor and the `parse_date()` function as such fails:
+
+##
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Load the package RCurl
@@ -434,6 +440,8 @@ To use them, we have to identify the order in which year, month, and day appear 
 That gives the name of the lubridate function that will parse our date. 
 
 To use this, we need to load the lubridate library.
+
+##
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Load the lubridate library
@@ -522,13 +530,23 @@ Sometimes we may just want to work with the dates given the variable in date-tim
 
 ##### Time spans
 
-Like we noted above MIMIC3 dates are shifted into the future, 2100-2200, by a random offset. To make sense, it might be worth to convert the dates to earlier dates, like 1900-2000. To do this, we may have to systematically convert the dates. We can make use of _time spans_. Time spans come in three important classes:
+Like we noted above MIMIC3 dates are shifted into the future, 2100-2200, by a random offset. 
+
+To make sense, it might be worth to convert the dates to earlier dates, like 1900-2000. To do this, we may have to systematically convert the dates. 
+
+We can make use of _time spans_. 
+
+##
+
+Time spans come in three important classes:
 
 * durations, which represent an exact number of seconds.
 
 * periods, which represent human units like weeks and months.
 
 * intervals, which represent a starting and ending point.
+
+##
 
 In R, when we subtract two dates, we get a _difftime_ object:
 
@@ -565,6 +583,8 @@ While this may be useful to find features such as the distribution of the time s
     geom_freqpoly(binwidth = 1)
 ```
 
+##
+
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # And plot the frequency distribution of the time spent by the patients
   MIMIC3_adm_dis %>%
@@ -572,9 +592,11 @@ While this may be useful to find features such as the distribution of the time s
     geom_freqpoly(binwidth = 1)
 ```
 
-time difference can be little painful to work with when we are interested in durations. The library lubridate provides an alternative which always uses seconds: the **duration**. 
-
 ##
+
+time difference can be little painful to work with when we are interested in durations. 
+
+The library lubridate provides an alternative which always uses seconds: the **duration**. 
 
 We can convert our variable into duration by using the function `as.duration()`.
 
@@ -747,7 +769,11 @@ Or for a single year, say 1980, distributed over a month:
 
 ##
 
-What should `years(1) / days(1)` return? Is it 365 or 366, since some years are leap years and periods are human interpretable values unlike duration? R will throw a warning if we try to perfom this operation.
+What should `years(1) / days(1)` return? 
+
+Is it 365 or 366, since some years are leap years and periods are human interpretable values unlike duration? 
+
+R will throw a warning if we try to perfom this operation.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Find years(1) / days(1)
@@ -761,7 +787,9 @@ What should `years(1) / days(1)` return? Is it 365 or 366, since some years are 
 
 ##
 
-Thus we have to use an **interval**. An interval is a duration with a starting point: that makes it precise so you can determine exactly how long it is:
+Thus we have to use an **interval**. 
+
+An interval is a duration with a starting point: that makes it precise so you can determine exactly how long it is:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Find years(1) / days(1) by converting to interval
@@ -769,15 +797,11 @@ Thus we have to use an **interval**. An interval is a duration with a starting p
   (today() %--% next_year) / ddays(1)
 ```
 
-##
-
 ```{r eval=TRUE, message=TRUE, warning=TRUE, echo=FALSE, results=TRUE}
   # Find years(1) / days(1) by converting to interval
   next_year <- today() + years(1)
   (today() %--% next_year) / ddays(1)
 ```
-
-##
 
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: Read section 16.5 Date-time components in the book R for Data Science.
@@ -786,13 +810,17 @@ Thus we have to use an **interval**. An interval is a duration with a starting p
 
 #### Tidying data
 
-Same "kind of" data can be present in multiple columns that may denote a single variable. For example, consider MIMIC3 admissions table. There are two variables - `edregtime` and `edouttime` (emergency department registration time and emergency department out time, respectively) that represents one variable: `time stamp in emergency`, a larger class of variable. 
+Same "kind of" data can be present in multiple columns that may denote a single variable. 
+
+For example, consider MIMIC3 admissions table. There are two variables - `edregtime` and `edouttime` (emergency department registration time and emergency department out time, respectively) that represents one variable: `time stamp in emergency`, a larger class of variable. 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Select subject_id, hadm_id, edregtime and edouttime variables
   MIMIC3_ADM_tibble <- MIMIC3_ADM %>% select(subject_id,hadm_id,edregtime,edouttime) %>% na.omit()
   as.tibble(MIMIC3_ADM_tibble)
 ```
+
+##
 
 ```{r eval=TRUE, message=TRUE, warning=TRUE, echo=FALSE, results=TRUE}
   # Select subject_id, hadm_id, edregtime and edouttime variables
@@ -809,6 +837,8 @@ The purpose of the **gather** function is to tidy the data by aggregating such d
 * The name of a single variable that represents a larger class. This is called a key, and here it is `time stamp in emergency`. Lets call this variable `EdTimeStamp`.
 
 * The values that are present in the cells corresponding to the sub-variables. Here it’s the time stamp when registering and when out of the emergency department. Lets call this variable `time`
+
+##
 
 Once we have these parameters, we can _gather_ data:
 
@@ -837,13 +867,21 @@ Once we have these parameters, we can _gather_ data:
 
 ##
 
-**Spreading** is the opposite of gathering. We use it when an observation is scattered across multiple rows. For example, in the above data set, the patient denoted by `subject_id` can have several hospital admission id `hadm_id` depending on how many times they were admitted in the hospital.
+**Spreading** is the opposite of gathering. 
+
+We use it when an observation is scattered across multiple rows. 
+
+For example, in the above data set, the patient denoted by `subject_id` can have several hospital admission id `hadm_id` depending on how many times they were admitted in the hospital.
+
+##
 
 To spread this data, we first analyse the representation in similar way to `gather()`. This time, however, we only need two parameters:
 
 * The column that contains the key column. Here, it’s `subject_id`.
 
 * The column that contains multiple values for the key column, the values column. Here it’s `hadm_id`. 
+
+##
 
 Once we have these two parameters we can _spread_ the data:
 
@@ -861,11 +899,13 @@ Once we have these two parameters we can _spread_ the data:
   as.tibble(MIMIC3_ADM_spread)
 ```
 
-##
-
 We immediately see that patient no. 94 had two admissions in the hospital as emergency visits.
 
-`separate()` pulls apart one column into multiple columns, by splitting wherever a separator character appears. For example, consider the `admissions_location` variable. Its made of 9 possible values:
+##
+
+`separate()` pulls apart one column into multiple columns, by splitting wherever a separator character appears. 
+
+For example, consider the `admissions_location` variable. Its made of 9 possible values:
 
 * EMERGENCY ROOM ADMIT
 * TRANSFER FROM HOSP/EXTRAM
@@ -877,14 +917,14 @@ We immediately see that patient no. 94 had two admissions in the hospital as eme
 * HMO REFERRAL/SICK
 * PHYS REFERRAL/NORMAL DELI
 
+##
+
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Separate admission_location information
   MIMIC3_ADM_LOC_SEP <- MIMIC3_ADM %>% select(admission_location) %>% 
     separate(admission_location, into = c("Info1", "Info2"), sep = "/", convert = FALSE)
   as.tibble(MIMIC3_ADM_LOC_SEP)
 ```
-
-##
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Separate admission_location information
@@ -901,6 +941,8 @@ By default `seperate()` would coerce into charector vectors even if we seperate 
 
 For example, in the above data set we can _unite_ hospital admission id `hadm_id` and the admission type `admission_type` to tie a reason why the patient got admitted. By default the unite will use underscore. 
 
+##
+
 This can be overridden by using a seperator argument. This is done as follows:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
@@ -909,8 +951,6 @@ This can be overridden by using a seperator argument. This is done as follows:
     unite(reason, hadm_id, admission_type, sep=":")
   as.tibble(MIMIC3_ADM_LOC_UNITE)
 ```
-
-##
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Unite hadm_id and admission_type
@@ -927,6 +967,8 @@ Missing values can be:
 
 1. Explicit and flagged with NA
 2. Implicit with values absent
+
+##
 
 Consider this data:
 
@@ -967,13 +1009,13 @@ There are several ways we can deal with the missing values.
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Spread the data to make implicit absense explicit 
   influenza %>% 
-  spread(year, no_sick)
+    spread(year, no_sick)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Spread the data to make implicit absense explicit 
   influenza %>% 
-  spread(year, no_sick)
+    spread(year, no_sick)
 ```
 
 ##
@@ -984,16 +1026,16 @@ There are several ways we can deal with the missing values.
   # Spread the data to make implicit absense explicit and
   # gather with na.rm = TRUE to turn explicit missing values implicit
   influenza %>% 
-  spread(year, no_sick) %>%
-  gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
+    spread(year, no_sick) %>%
+    gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Spread the data to make implicit absense explicit and
   # gather with na.rm = TRUE to turn explicit missing values implicit
   influenza %>% 
-  spread(year, no_sick) %>%
-  gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
+    spread(year, no_sick) %>%
+    gather(year, no_sick, `2015`:`2016`, na.rm = TRUE)
 ```
 
 ##
@@ -1003,13 +1045,13 @@ There are several ways we can deal with the missing values.
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Complete the data by finding the combinations and replacing NA
   influenza %>% 
-  complete(year, qtr) 
+    complete(year, qtr) 
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Complete the data by finding the combinations and replacing NA
   influenza %>% 
-  complete(year, qtr) 
+    complete(year, qtr) 
 ```
 
 ##
@@ -1019,21 +1061,490 @@ There are several ways we can deal with the missing values.
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Fill NA with the most recent value found - 377 in this case
   influenza %>% 
-  fill(no_sick) 
+    fill(no_sick) 
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
   # Fill NA with the most recent value found - 377 in this case
   influenza %>% 
-  fill(no_sick) 
+    fill(no_sick) 
 ```
-
-<br>
-<span style="color:blue">**Classwork/Homework**</span>: Read section 12.6 in the book. It contains a case study on World Health Organization Global Tuberculosis Report conducted in 2014.
 
 ---
 
+#### Case study: TB data from WHO
 
+The following case study illustrates the typical process involved in tidying up real world data. 
+
+The data comes from the 2014 World Health Organization Global Tuberculosis Report, which can be downloaded from [WHO TB Data](http://www.who.int/tb/country/data/download/en/). 
+
+The data is a part of _tidyverse_ package, so you don't have to download it.
+
+##
+
+Just querying the data results as follows:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Query WHO TB data
+  who
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Query WHO TB data
+  who
+```
+
+##
+
+It contains redundant columns, odd variable codes, and many missing values.
+
+The variables - country, iso2, and iso3 redundantly specify the country.
+
+We don't know what the variables _new_sp_m014_, _new_ep_m014_, _new_ep_f014_ mean.
+
+Therefore, we look them up in the given [dictionary](https://extranet.who.int/tme/generateCSV.asp?ds=dictionary). 
+
+**Note**: This would save the .csv dictionary file into your computer. You need to open it, like using excel.
+
+`iso2` and `iso3` are ISO standard country/territory codes. Also the variables that start with `new` are new cases. 
+
+##
+
+In particular,
+
+1. The first three letters of each column denote whether the column contains new or old cases of TB. In this dataset, each column contains new cases.
+
+##
+
+2. The next two letters describe the type of TB:
+
+    a. rel stands for cases of relapse
+  
+    b. ep stands for cases of extrapulmonary TB
+  
+    c. sn stands for cases of pulmonary TB that could not be diagnosed by a pulmonary smear (smear negative)
+  
+    d. sp stands for cases of pulmonary TB that could be diagnosed be a pulmonary smear (smear positive)
+  
+    e. The sixth letter gives the sex of TB patients. The dataset groups cases by males (m) and females (f).
+    
+##
+
+3. The remaining numbers gives the age group. The dataset groups cases into seven age groups:
+
+    a. 014 = 0 – 14 years old
+  
+    b. 1524 = 15 – 24 years old
+  
+    c. 2534 = 25 – 34 years old
+  
+    d. 3544 = 35 – 44 years old
+  
+    e. 4554 = 45 – 54 years old
+  
+    f. 5564 = 55 – 64 years old
+  
+    g. 65 = 65 or older
+
+##
+
+Thus we need to separate them. But first since each of these variables contains count of new cases, a natural way to organize them would be to gather these variables. 
+
+We can make a meta-variable "group" and "case-count" to reflect this gathering removing missing values `NA`:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Gather "new_" variables, removing NA, grouping them up and counting cases
+  who_gathered <- who %>% 
+    gather(new_sp_m014:newrel_f65, key = "group", value = "case-count", na.rm = TRUE)
+  as.tibble(who_gathered)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Gather "new_" variables, removing NA, grouping them up and counting cases
+  who_gathered <- who %>% 
+    gather(new_sp_m014:newrel_f65, key = "group", value = "case-count", na.rm = TRUE)
+  as.tibble(who_gathered)
+```
+
+##
+
+Also observe that for `rel` we don't have underscore, whereas for `ep` we have underscore after `new`. Thus, we need to fix these to get consistent variables:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Replace newrel by new_rel
+  who_rel_replaced <- who_gathered %>% 
+    mutate(group = stringr::str_replace(group, "newrel", "new_rel"))
+  as.tibble(who_rel_replaced)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Replace newrel by new_rel
+  who_rel_replaced <- who_gathered %>% 
+    mutate(group = stringr::str_replace(group, "newrel", "new_rel"))
+  as.tibble(who_rel_replaced)
+```
+
+##
+
+We can now seperate the variables to reflect the type of TB, gender and the age group. First we seperate by underscore:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # First we seperate by underscore
+  who_seperated_by_underscore <- who_rel_replaced %>% 
+    separate(group, c("new", "type", "sexage"), sep = "_")
+  as.tibble(who_seperated_by_underscore)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # First we seperate by underscore
+  who_seperated_by_underscore <- who_rel_replaced %>% 
+    separate(group, c("new", "type", "sexage"), sep = "_")
+  as.tibble(who_seperated_by_underscore)
+```
+
+##
+
+And then by the gender and age group which are linked together, so we can use `sep = 1` argument:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Then we seperate by gender and age using "sep = 1"
+  who_seperated_by_gender_age <- who_seperated_by_underscore %>% 
+    separate(sexage, c("sex", "age"), sep = 1)
+  as.tibble(who_seperated_by_gender_age)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Then we seperate by gender and age using "sep = 1"
+  who_seperated_by_gender_age <- who_seperated_by_underscore %>% 
+    separate(sexage, c("sex", "age"), sep = 1)
+  as.tibble(who_seperated_by_gender_age)
+```
+
+##
+
+We can then drop the unwanted variables, such as `new`, `iso2`, `iso3` etc. Thus, our data will be tidy after this:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Drop "new" and "iso" variables and tidy the data
+  tidy_who <- who_seperated_by_gender_age %>% 
+    select(-new, -iso2, -iso3)
+  as.tibble(tidy_who)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Drop "new" and "iso" variables and tidy the data
+  tidy_who <- who_seperated_by_gender_age %>% 
+    select(-new, -iso2, -iso3)
+  as.tibble(tidy_who)
+```
+
+---
+
+#### Relational data
+
+Usually data in the real world comes in different tables. 
+
+Multiple tables of data are called relational data because it is the relations, not just the individual datasets, that are important. 
+
+Combining data in multiple tables is an imporant part of the wrangling process. Usually these combinations are facilitated by _joins_. 
+
+##
+
+There are three families of joins that are designed to work with relational data:
+
+1. Mutating joins: these joins add new variables to one data frame based on the presence of data from the other data table.
+
+2. Filtering joins: these filter observations from one data frame based on whether or not they match an observation in the other table.
+
+3. Set operations: these operations treat observations as if they were set elements.
+
+##
+
+A variable that connects two tables are called _keys_. There are several types of keys:
+
+1. A _primary key_ uniquely identifies an observation in its own table. 
+
+2. A _foreign key_ uniquely identifies an observation in another table.
+
+3. A _surrogate key_ uniquely identifies an observation in the absence of a primary key. They can be created, for instance using `mutate()` and `row_number()`.
+
+**Note**: A primary key can also be a foreign key.
+
+##
+
+Once we identify if a variable is a key one way to verify is to use the `count()` function and look for entries where `n` is greater than one:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Verify if hadm_id is a primary key
+  MIMIC3_ADM %>% 
+    count(hadm_id) %>%
+    filter(n > 1)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Verify if hadm_id is a primary key
+  MIMIC3_ADM %>% 
+    count(hadm_id) %>%
+    filter(n > 1)
+```
+
+##
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Verify if subject_id is a primary key
+  is_subject_id_key <- MIMIC3_ADM %>% 
+                        count(subject_id) %>%
+                        filter(n > 1)
+  as.tibble(is_subject_id_key)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Verify if subject_id is a primary key
+  is_subject_id_key <- MIMIC3_ADM %>% 
+                        count(subject_id) %>%
+                        filter(n > 1)
+  as.tibble(is_subject_id_key)
+```
+
+##
+
+To describe the joins, we will work with input events data set from MIMIC3. A meta level description of the table is given as:
+
+_Inputs and outputs are extremely useful when studying intensive care unit patients. Inputs are any fluids which have been administered to the patient: such as oral or tube feedings or intravenous solutions containing medications._
+
+A description of input events table is given [here](https://mimic.physionet.org/mimicdata/io/).
+
+##
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the input events data set in MIMIC3 from GitHub; 
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/MIMIC3/inputevents_cv.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  MIMIC3_INE <- read.csv(text=getURL(URL))
+  # Observe the structure
+  as.tibble(MIMIC3_INE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the input events data set in MIMIC3 from GitHub; 
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/MIMIC3/inputevents_cv.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  MIMIC3_INE <- read.csv(text=getURL(URL))
+  # Observe the structure
+  as.tibble(MIMIC3_INE)
+```
+
+##
+
+##### Inner join (mutating joins)
+
+Mutating inner join can be described by the following figure:
+
+![](join-inner.png)
+
+---
+
+The following code computes the inner join of admissionas and input events cv table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Inner join of admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_inner_join <- MIMIC3_ADM %>% 
+                                inner_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_inner_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Inner join of admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_inner_join <- MIMIC3_ADM %>% 
+                                inner_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_inner_join)
+```
+
+##
+
+##### Outer joins (mutating joins)
+
+There are three types of outer joins:
+
+![](join-outer.png)
+
+---
+
+Left join admissions and input events table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Left join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_left_join <- MIMIC3_ADM %>% 
+                                left_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_left_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Left join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_left_join <- MIMIC3_ADM %>% 
+                                left_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_left_join)
+```
+
+##
+
+Right join admissions and input events table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Right join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_right_join <- MIMIC3_ADM %>% 
+                                right_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_right_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Right join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_right_join <- MIMIC3_ADM %>% 
+                                right_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_right_join)
+```
+
+##
+
+Full join admissions and input events table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Full join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_full_join <- MIMIC3_ADM %>% 
+                                full_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_full_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Full join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_full_join <- MIMIC3_ADM %>% 
+                                full_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_full_join)
+```
+
+##
+
+**Note**: By default, `by = NULL`, which will use all common variables that appear in both tables as keys. This is called _natural join_. We can also us `by = c("a" = "b")`. This will match variable `a` in the first table to variable `b` in the second table.
+
+---
+
+##### Semi join (filtering joins)
+
+`semi_join(table1, table2, key = "k")` would keep all observations in table 1 that have a match in table 2 identified by the key "k". 
+
+![](join-semi.png)
+
+---
+
+Thus, in our tables:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Semi join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_semi_join <- MIMIC3_ADM %>% 
+                                semi_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_semi_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Semi join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_semi_join <- MIMIC3_ADM %>% 
+                                semi_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_semi_join)
+```
+
+##
+
+this would result in keeping the observations in admissions that are present in input cv. 
+
+This is particularly useful if we have a result in one table that we want to analyze related data in the other table. 
+
+##
+
+The opposite of `semi_join()` is the `anti-join(table1, table2, key = "k")`, where we would retain only the observations in table 1 that **does not** have a match in table 2, identified by the key "k".
+
+![](join-anti.png)
+
+---
+
+In our data tables, this would pull out all the entries in admissions table where hospital admissions id (`hadm_id`) is not present in the input events (cv) table. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, results=FALSE}
+  # Anti join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_anti_join <- MIMIC3_ADM %>% 
+                                anti_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_anti_join)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE, results=TRUE}
+  # Anti join admissions table and input events (cv) table using the key "hadm_id"
+  MIMIC_ADM_INE_anti_join <- MIMIC3_ADM %>% 
+                                anti_join(MIMIC3_INE, by = "hadm_id")
+                        
+  as.tibble(MIMIC_ADM_INE_anti_join)
+```
+
+
+Anti-joins are useful for diagnosing join mismatches. In the above example, we might be interested to know how many patients don’t have input event information.
+
+---
+
+#### Joining tips
+
+1. Start by identifying the variables that form the primary key in each table. 
+
+This is usually done by understanding the data set and not empirically by looking for a combination of variables that give a unique identifier. 
+
+If we just look for variables without thinking about what they mean, we might find a combination that’s unique to our data but the relationship might not be true in general.
+
+##
+
+2. Having said the above, it is also dependent on the question of interest. 
+
+In all of our examples above, we used hospital admissions id (`hadm_id`) as our key. 
+
+This may fetch the statistics and analysis based on the admissions statistics, but not based on patients (or `subject_id`). 
+
+So if we want to derive patient statistics, we may want to combine, say, `subject_id` with `hadm_id` and derive a primary key. 
+
+Therefore, combination may sometimes work and can capture statistics of interest.
+
+##
+
+3. Check that none of the variables in the primary key are missing. 
+
+If a value is missing then it can’t identify an observation!
+
+4. Check if the foreign keys match primary keys in another table. 
+
+The best way to do this is with an `anti_join()`. 
+
+It’s common for keys not to match because of data entry errors. 
+
+Fixing these is often a lot of work.
+
+##
+
+5. If we have missing keys, we’ll need to be thoughtful about the use of inner vs. outer joins, by carefully considering whether or not we want to drop rows that don’t have a match.
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Read and work on sections 14 and 15 (Strings and Factors) in the book R for Data Science.
 
 ---
 
