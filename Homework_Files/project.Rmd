@@ -31,13 +31,13 @@ On one of the two days, Oct. 10 or Oct. 12, 2017, you will be given about 10 min
 
 ---
 
-##### Part II: Mid-term project assessment
+##### Part II: Mid-term project assessment (due Oct. 26, 5pm)
 
-You have to apply the explore and wrangle paradigm on the data set of your choice and submit the results. This will be your home work assignment # 04. The due date is **Oct. 26** at 5pm. 
+You have to apply explore and wrangle paradigm on the data set of your choice and submit the results. Your analysis should reflect all aspects of exploration and wrangling. That is, all sorts of analysis explained in Data science fundamentals lectures 1 through 5. This will be your home work assignment # 04. The due date is **Oct. 26** at 5pm. 
 
 ---
 
-##### Part III: Final deliverable 
+##### Part III: Final deliverable (due Nov. 30, 5pm)
 
 Make an html document with directed insights based on Explore (E), Wrangle (W), Model(M), Program (P) and Communicate (C) paradigm. You may use HANES/MIMIC3 datasets or any other datasets listed in the course [page](https://kannan-kasthuri.github.io/pda.html). Your analysis should contain each aspect of EWPMC paradigm. The more meticulous/thorough you are in your analysis, you'll have a better chance of a good grade. The due date is **Nov. 30** at 5pm. 
 
