@@ -37,7 +37,7 @@ Research excites me as much as teaching. I have diverse academic interests - can
 
 <figure style="float:left;">
   <img alt="Subgroups in astrocytoma" src="ATRX.png" hspace="10" />
-  <figcaption> Naerly 3/4 astrocytoma patients have mutations in ATRX </figcaption>
+  <figcaption> Nearly 3/4 of astrocytoma patients have mutations in ATRX </figcaption>
 </figure>
 
 
