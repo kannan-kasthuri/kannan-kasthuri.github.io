@@ -22,7 +22,7 @@ text-align: justify}
 
 Several researchers and scientists I have encountered (especially in research institutions) find teaching cumbersome. Part of the problem is how the academic system is structured. NIH doesn't award grants based on teaching records. We have very limited time and teaching requires considrable effort at least in the initial stages. Let's not go into all those issues and if you want to disuss these things, let's have a [beer and talk](outreach.html). 
 
-I am director of two biomedical informatics courses. To know the content, click on the pages and follow the links. Happy reading!
+I am a director of two biomedical informatics courses. To know the content, click on the pages and follow the links. Happy reading!
 
 ---
 
