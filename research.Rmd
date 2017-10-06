@@ -19,7 +19,7 @@ figure figcaption {
 
 ---
 
-### Research Summary
+### Research 
 
 ---
 
