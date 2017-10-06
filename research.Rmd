@@ -8,13 +8,18 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <style>
+
 body {
-text-align: justify}
+text-align: justify;}
+
+figure figcaption {
+    text-align: center;}
 </style>
+
 
 ---
 
-### Research
+### Research Summary
 
 ---
 
@@ -28,7 +33,15 @@ Research excites me as much as teaching. I have diverse academic interests - can
 
 ---
 
-<img style="float: left;" src="genomics.jpg" alt="genomics" hspace="10"> As a genomics scientist, my work focuses on developing and implementing bioinformatics algorithms as well as analyzing and interpreting biological data sets facilitating researcher’s experiments and hypothesis. I have extensive research experience analyzing and interpreting data from genomics/epigenetics experiments and have made vital contributions to several studies, especially in cancer genomics. One of my landmark discoveries, after I joined NYU is in pediatric brain cancer known as Pineoblastoma. I discovered significant number of copy number variations in a gene called PDE4DIP that holds an ancestral protein domain DUF1220 which is responsible for brain growth and function. 
+<!-- <img style="float: left;" src="ATRX.png" alt="genomics" hspace="10"> -->
+
+<figure style="float:left;">
+  <img alt="Subgroups in astrocytoma" src="ATRX.png" hspace="10" />
+  <figcaption> Naerly 3/4 astrocytoma patients have mutations in ATRX </figcaption>
+</figure>
+
+
+As a genomics scientist, my work focuses on developing and implementing bioinformatics algorithms as well as analyzing and interpreting biological data sets facilitating researcher’s experiments and hypothesis. I have extensive research experience analyzing and interpreting data from genomics/epigenetics experiments and have made vital contributions to several studies, especially in cancer genomics. One of my landmark discoveries, after I joined NYU is in pediatric brain cancer known as Pineoblastoma. I discovered significant number of copy number variations in a gene called PDE4DIP that holds an ancestral protein domain DUF1220 which is responsible for brain growth and function. 
 
 Another study of mine reveals key signaling pathways and genes responsible for Sudden Unexpected Death in Epilepsy (also known as SUDEP). Currently as an investigator at Genome Technology Center (GTC) in NYU, my research experience has widened to encompass cancer epigenetics and I have developed algorithms to analyze ATAC-seq and ChIP-seq data. These pipleines are being extensively applied in several studies as I continue to collaborate with physician-scientists interpreting the results of the analysis.
 
@@ -37,7 +50,7 @@ Another study of mine reveals key signaling pathways and genes responsible for S
   <figcaption> Subgroups in astrocytoma </figcaption>
 </figure>
 
-My tenure at Memorial Sloan-Kettering Cancer Center (between 2011-2013), shaped me to perform critical roles in several genomics studies. My expertise in cancer genomics has been primarily focussed on brain tumors. One of my contributions (published in _Oncotarget_) in low-grade brain cancer called astrocytoma, identifies mutations in a gene called ATRX in 70% of the patients. In another study I helped in identifying three distinct gene expression groups of patients who contract astrocytoma, two of which harbors IDH mutations. 
+My tenure at Memorial Sloan-Kettering Cancer Center (between 2011-2013), shaped me to perform critical roles in several genomics studies. My expertise in cancer genomics has been primarily focussed on brain tumors. One of my contributions (published in _Oncotarget_) in low-grade brain cancer called astrocytoma, identifies mutations in a gene called ATRX in 70% of the patients. This gene plays a critical role in lengthening of telomere, an important mechanism for tumor growth. In another study I helped in identifying three distinct gene expression groups of patients who contract astrocytoma, two of which harbors mutations in the gene called _Isocitrate dehydrogenase 1_ (_IDH1_), which is responsible for glucose metabolism . 
 
 
 Also, I was instrumental in identifying two melanoma patient subgroups who were treated with immunotherapy and this finding was published in _New England Journal of Medicine_. Further, my work on Adenoid Cystic Carcinoma in _Nature Genetics_ identifies clinically significant mutations and pathways through robust mutation calling and pathway analysis algorithms.
