@@ -18,11 +18,11 @@ text-align: justify}
 
 ---
 
-<img style="float: left;" src="teaching.jpg" alt="teaching" hspace="10"> Honestly, I have beeen quite happy to teach while actively engaging in research in genomics. I feel teaching should be a critical component of any active researcher. There are several ways to transmit the knowledge we have acquired - writing research articles addressed to enlightned science community, writing review articles in journals, maintaining a blog etc. But teaching facilitates direct human-human interaction, which by its very design conveys lot more information compared to other mediums. In any case, what is the fun when we acquire knowledge but don't transmit enthusiastically to students? 
+<img style="float: left;" src="teaching.jpg" alt="teaching" hspace="10"> I have beeen quite happy to teach while actively being engaged in research, working on genomics. I feel teaching should be a critical component of any active researcher. There are several ways to transmit the knowledge we have acquired - writing research articles addressed to enlightned science community, writing review articles in journals, maintaining a blog etc. But teaching facilitates direct human-human interaction, which by its very design conveys lot more information compared to other mediums. In any case, what is the fun when we acquire knowledge but don't transmit enthusiastically to students? 
 
 Several researchers and scientists I have encountered (especially in research institutions) find teaching cumbersome. Part of the problem is how the academic system is structured. NIH doesn't award grants based on teaching records. We have very limited time and teaching requires considrable effort at least in the initial stages. Let's not go into all those issues and if you want to disuss these things, let's have a [beer and talk](outreach.html). 
 
-I am director of two biomedical informatics courses. To know the content, scroll to the lectures section and follow the links. Happy reading!
+I am director of two biomedical informatics courses. To know the content, click on the pages and follow the links. Happy reading!
 
 ---
 
@@ -32,7 +32,7 @@ I am director of two biomedical informatics courses. To know the content, scroll
 
 [Programming for Data Analysis](https://kannan-kasthuri.github.io/pda.html)
 
-This course is designed to empower students to learn the R programming language to conduct data science in biomedical informatics. It covers a wide range of topics, including, handing and querying databases, exploratory/confirmatory analysis and visualization in R, based on the book R for Data Science. A unique highlight of this course is that all most all examples are constructed using medical and population health data sets than the ones given in the text. 
+This course is designed to empower students to learn the R programming language to conduct data science in biomedical informatics. It covers a wide range of topics, including, handing and querying databases, exploratory/confirmatory analysis and visualization in R, based on the book R for Data Science. An highlight of this course is that all most all examples are constructed using medical and population health data sets than the ones used in the text. 
 
 [Methods in Quantitative Biology](https://kannan-kasthuri.github.io/qmb.html)
 
