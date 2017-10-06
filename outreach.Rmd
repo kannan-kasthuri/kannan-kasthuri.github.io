@@ -25,6 +25,30 @@ text-align: justify}
 
 ---
 
+New York City is home to some of the brightest minds, universities, and research centers in the world, having 127 Nobel laureates with roots at local institutions$^1$. The city has 15 nationally leading academic medical research institutions performing cutting-edge medicine and science. Courant Institute of Mathematical Sciences is ranked number one in applied mathematics across the entire country$^{2}$. Memorial Sloan-Kettering Cancer Center is the top cancer research institution in the world. Where are these scientists and how much do we know about the science happening in the city? 
 
+For many scientists, the requirement to do outreach is tough not only because of strong academic tendency towards introversion, but becuase there is a fundamental disconnect: public often learns best through stories and scientists through facts. Converting stories into facts doesn't come naturally to us, as hardcore scientists we are. How about converting facts into stories? Great! now, how do we do that?
+
+We at NYU thought long and hard at this problem (in a bar actually) and had our stroke of enlightment delivered through a great beer - _how about making a scientist tipsy with beer until they tells us stories on the facts they are working on?_ This is the idea behind Beer With A Scientist on Sundays.
+
+---
+
+##### Okay, enough of your idea! I like it. Tell me the details
+
+---
+
+_When_ : **First Sunday** of each month between 7pm-9pm 
+
+_Where_: Alphabet City Beer Co. located at 96 Avenue C, New York, NY 10009.
+
+
+
+---
+
+#### References
+
+1. [Education in New York City](https://en.wikipedia.org/wiki/Education_in_New_York_City)
+
+2. [Courant Institute of Mathematical Sciences](https://en.wikipedia.org/wiki/Courant_Institute_of_Mathematical_Sciences)
 
 ---
