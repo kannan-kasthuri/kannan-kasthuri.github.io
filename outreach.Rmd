@@ -35,7 +35,7 @@ We at NYU thought long and hard at this problem (in a bar actually) and had our 
 
 <span style="color:blue"> _How about making a scientist tipsy with beer until they tells us stories on the facts they are working on?_ </span>
 
-This is the idea behind Beer With A Scientist Sundays.
+After all if it works for us, it should work for everyone. This is the idea behind Beer With A Scientist Sundays.
 
 ---
 
@@ -93,8 +93,8 @@ Jane Cullis is a postdoctoral fellow in the laboratory of Dr. Dafna Bar-Sagi in 
 ---
 
 <figure style="float:right;">
-  <img alt="Kanna have another beer" src="Kasthuri.jpeg" hspace="10" />
-  <figcaption> Kanna have another beer </figcaption>
+  <img alt="Kanna, have another beer" src="Kasthuri.jpeg" hspace="10" />
+  <figcaption> Kanna, have another beer </figcaption>
 </figure>
 
 Kasthuri Kannan, when not drinking beer, is an Assistant Professor of Pathology at NYU. He joined NYU from Memorial Sloan-Kettering Cancer Center (MSKCC) in December 2013. He is trained in mathematics and computer science, obtaining his PhD at Texas A&M University and postdoctoral training at Penn State University and MSKCC, where he contributed to cancer genomics efforts, including sequencing and expression analysis. Dr. Kannan is affiliated with the Genome Technology Center where he collaborates with Dr. Heguy in genomics and computational biology. He is interested in evolutionary biology and data-driven genomic analysis that leads to verifiable and useful hypotheses. His contributions to genomics include a comprehensive report of molecular alterations in adenoid cystic carcinoma (a salivary glad tumor) and high-frequency ATRX mutations in astrocytoma (a low grade brain tumor). He is actively co-advising and collaborating with several scientists and physician-scientists, translating research findings to clinical care, and is passionate about teaching and science communication.
