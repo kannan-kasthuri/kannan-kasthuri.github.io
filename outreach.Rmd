@@ -33,7 +33,7 @@ For many scientists, the requirement to do outreach is tough - not only because 
 
 We at NYU thought long and hard at this problem (in a bar actually) and had our stroke of enlightment delivered through a great beer - 
 
-<span style="color:blue"> _How about making a scientist tipsy with beer until they tells us stories on the facts they are working on ?_ </span>
+<span style="color:blue"> _How about making a scientist tipsy with beer until they tells us stories on the facts they are working on?_ </span>
 
 This is the idea behind Beer With A Scientist Sundays.
 
@@ -43,15 +43,15 @@ This is the idea behind Beer With A Scientist Sundays.
 
 ---
 
-<span style="color:blue"> When  ? </span> 
+<span style="color:blue"> When? </span> 
 
 **First Sunday** of each month between 7 pm-9 pm 
 
-<span style="color:blue"> Where ? </span> 
+<span style="color:blue"> Where? </span> 
 
 Alphabet City Beer Co. @ 96 Avenue C, New York, NY 10009.
 
-<span style="color:blue"> Who are these scientists and what's the plan ?</span> 
+<span style="color:blue"> Who are these scientists and what's the plan?</span> 
 
 We plan to invite top-notch scientists from a diversity of fields to give a talk at the bar on any subject they choose. After the talk a question-answer session is planned. Thereafter, the audience are welcome to mingle with the scientist to get to know them and their work better. We aim to achieve a linear relationship between the number of beers consumed and fascinating information learned!
 
@@ -64,11 +64,40 @@ Depending on the availability, a debate between scientists are also on the works
 ---
 
 <figure style="float:left;">
-  <img alt="Jane deCider" src="Jane.jpeg" width="150" height="250" hspace="10" />
+  <img alt="Jane deCider" src="Jane.jpeg" hspace="10" />
   <figcaption> Jane deCider </figcaption>
 </figure>
 
+<br>
+
 Jane Cullis is a postdoctoral fellow in the laboratory of Dr. Dafna Bar-Sagi in the Biochemistry and Molecular Pharmacology department at NYU. She has a BSc in Biochemistry from McGill University and PhD in Medical Biophysics from the University of Toronto. Jane’s research focuses on lipid metabolism in pancreatic cancer, with specific interest on how altered lipid utilization by tumor cells affects immune cells in the tumor microenvironment. When she isn’t at the lab, Jane enjoys getting biophysical over beers and metaphysical over martinis. Jane is known for thinking up her experimental designs over such bar banter or during her long meditative runs down the East river. If she wasn’t a scientist, she’d be a punmaster and a fisherman. 
+
+---
+
+<figure style="float:right;">
+  <img alt="Beermily" src="Emily.jpeg" hspace="10" />
+  <figcaption> Beermily </figcaption>
+</figure>
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+---
+
+<figure style="float:left;">
+  <img alt="Brewski Janssens" src="Bryce.png" hspace="10" />
+  <figcaption> Brewski Janssens </figcaption>
+</figure>
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+---
+
+<figure style="float:right;">
+  <img alt="Kanna have another beer" src="Kasthuri.jpeg" hspace="10" />
+  <figcaption> Kanna have another beer </figcaption>
+</figure>
+
+Kasthuri Kannan, when not drinking beer, is an Assistant Professor of Pathology at NYU. He joined NYU from Memorial Sloan-Kettering Cancer Center (MSKCC) in December 2013. He is trained in mathematics and computer science, obtaining his PhD at Texas A&M University and postdoctoral training at Penn State University and MSKCC, where he contributed to cancer genomics efforts, including sequencing and expression analysis. Dr. Kannan is affiliated with the Genome Technology Center where he collaborates with Dr. Heguy in genomics and computational biology. He is interested in evolutionary biology and data-driven genomic analysis that leads to verifiable and useful hypotheses. His contributions to genomics include a comprehensive report of molecular alterations in adenoid cystic carcinoma (a salivary glad tumor) and high-frequency ATRX mutations in astrocytoma (a low grade brain tumor). He is actively co-advising and collaborating with several scientists and physician-scientists, translating research findings to clinical care, and is passionate about teaching and science communication.
 
 ---
 
