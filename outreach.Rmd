@@ -27,9 +27,9 @@ figure figcaption {
 
 ---
 
-New York City is home to some of the brightest minds, universities, and research centers in the world, having 127 Nobel laureates with roots at local institutions$^1$. The city has 15 nationally leading academic medical research institutions performing cutting-edge medicine and science. Courant Institute of Mathematical Sciences is ranked number one in applied mathematics across the entire country$^{2}$. Memorial Sloan-Kettering Cancer Center is one among the top cancer research institute in the world. Where are these scientists and how much do we know about the science happening in the city? 
+New York City is home to some of the brightest minds, universities, and research centers in the world, having 127 Nobel laureates with roots at local institutions$^1$. The city has 15 nationally leading academic medical research institutions performing cutting-edge medicine and science. Courant Institute of Mathematical Sciences is ranked number one in applied mathematics across the entire country$^{2}$. Memorial Sloan-Kettering Cancer Center is one among the top cancer research institute in the world$^{3}$. Where are these scientists and how much do we know about the science happening in the city? 
 
-For many scientists, the requirement to do outreach is tough - not only because of strong academic tendency towards introversion, but becuase there is a fundamental disconnect: public often learns best through stories and scientists through facts. Converting stories into facts doesn't come naturally to us, as hardcore scientists we are. How about converting facts into stories? Great! Now, how do we do that?
+For many scientists, the requirement to do outreach is tough - not only because of strong academic tendency towards introversion, but because there is a fundamental disconnect: public often learns best through stories and scientists through facts. Converting stories into facts doesn't come naturally to us, as hardcore scientists we are. How about converting facts into stories? Great! Now, how do we do that?
 
 We at NYU thought long and hard at this problem (in a bar actually) and had our stroke of enlightment delivered through a great beer - 
 
@@ -106,5 +106,7 @@ Kasthuri Kannan, when not drinking beer, is an Assistant Professor of Pathology 
 1. [Education in New York City](https://en.wikipedia.org/wiki/Education_in_New_York_City)
 
 2. [Courant Institute of Mathematical Sciences](https://en.wikipedia.org/wiki/Courant_Institute_of_Mathematical_Sciences)
+
+3. [Memorial Sloan-Kettering Cancer Center Ranking](https://health.usnews.com/best-hospitals/area/ny/memorial-sloan-kettering-cancer-center-6213060)
 
 ---
