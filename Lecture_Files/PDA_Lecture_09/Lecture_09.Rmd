@@ -88,14 +88,22 @@ Comma Seperated Values (CSV) are the most common types of files. We can read a `
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Read the HANES orginal csv file 
-  HANES_original <- read.csv("../Datasets/HANES/HANES.original.csv")
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/HANES.original.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES_original <- read.csv(URL)
   # and convert into tibble
   as.tibble(HANES_original)
 ```
   
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
   # Read the HANES orginal csv file 
-  HANES_original <- read.csv("../Datasets/HANES/HANES.original.csv")
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/HANES.original.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES_original <- read.csv(URL)
   # and convert into tibble
   as.tibble(HANES_original)
 ```
