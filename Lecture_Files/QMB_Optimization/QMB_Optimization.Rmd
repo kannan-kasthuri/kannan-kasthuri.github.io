@@ -9,3 +9,41 @@ output: html_document
 
 ---
 
+Optimization is a graduate level course for a semester or two, typically in engineering and mathematics departments. Here we will be giving an overview of the subject, in particular on how the concepts fit into other areas such as machine learning, image processing etc.
+
+We will see the following:
+
+1. What optimization is used for?
+
+2. Different optimization concepts.
+
+3. Commonly used terminologies.
+
+4. Basic pointer on how to perform optimization with programming languages such as R and Matlab.
+
+based on an overview of the following concepts:
+
+a. Likelihood and maximum likelihood estimates
+b. Cost functions
+c. Gradient descent and minimas
+d. Convex/Non-convex and differentiable functions
+e. Stochastic gradient descent
+f. Regularization, sparse coding and momentum methods
+
+---
+
+**Theorem**: For a convex function defined on a convex set, any local minimum is also a global minimum.
+
+_Proof_: Let $f:C \rightarrow \mathbb{R}$, be a convex function, on a convex set $C$. Suppose that $x$ is a local minimum of $f$ but not a global one. This means $\exists y \in C$ such that $f(y) < f(x)$. By definition of convexity for any $\alpha \in [0,1]$, we have,
+
+$$ f(x+\alpha (y-x)) < f(x) + \alpha [f(y) - f(x)] \\
+ < f(x) 
+$$
+since $f(y) < f(x)$. Hence, for any small ball $B(x;\epsilon)$ around $x$, there exists $z$ such that $f(z) < f(x)$. Therefore, $x$ is not a local minimum - a contradiction. QED.
+
+
+---
+
+#### References
+
+1. An excellent tutorial here: [Introduction to Optimization](https://www.youtube.com/watch?v=PoTpmjvHxlg)
