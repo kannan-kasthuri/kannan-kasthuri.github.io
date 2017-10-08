@@ -23,7 +23,7 @@ figure figcaption {
 
 ---
 
-If you are quickly looking for my pulication record - please click [here](https://kannan-kasthuri.github.io/publications.html). 
+If you are quickly looking for my pulication record - please click [here](https://kannan-kasthuri.github.io/Publications/publications.html). 
 
 Research excites me as much as teaching. I have diverse academic interests - cancer biology, formal logic, physical theories, computing and mathematics. My contributions in science can be broadly classifed in the areas of genomics and numerical algorithms (with applications to computational physics).
 
