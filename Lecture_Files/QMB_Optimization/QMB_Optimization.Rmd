@@ -1,0 +1,11 @@
+---
+# title: "Lecture 02"
+# author: "Kasthuri Kannan"
+output: html_document
+
+---
+
+### An Introduction to Optimization (Oct. 23, 2017)
+
+---
+
