@@ -33,7 +33,7 @@ For many scientists, the requirement to do outreach is tough - not only because 
 
 We, scientists at NYU thought long and hard at this problem (in a bar actually) and had our stroke of enlightment delivered through a great beer - 
 
-<span style="color:red"> _How about making a scientist tipsy with beer until they tells us stories on the facts they like?_ </span>
+<span style="color:purple"> _**How about making a scientist tipsy with beer until they tells us stories on the facts they like?**_ </span>
 
 After all if it works for us, it should work for everyone. This is the idea behind Beer With A Scientist Sundays.
 
@@ -47,9 +47,9 @@ We plan to invite top-notch scientists from a diversity of fields to give a talk
 
 Depending on the availability, a debate between scientists are also on the works.
 
-<span style="color:red"> When and Where? </span> 
+<span style="color:purple"> When and Where? </span> 
 
-**First Sunday** of each month between 7 pm-9 pm @ Alphabet City Beer Co. located at 96 Avenue C, New York, NY 10009.
+<span style="color:blue"> **First Sunday** </span> of each month between 7 pm-9 pm @ Alphabet City Beer Co. located at 96 Avenue C, New York, NY 10009.
 
 ---
 
