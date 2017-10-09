@@ -140,12 +140,22 @@ $(document).ready(function () {
 <li>Regularization, sparse coding and momentum methods</li>
 </ol>
 <hr />
+<div id="likelihood-and-maximum-likelihood-estimates" class="section level4">
+<h4>Likelihood and maximum likelihood estimates</h4>
+<hr />
+<p>Likelihood is the probablity of observing the data given a model. In the univariate case, let us say that we have a set of data <span class="math inline">\(X = \{x_1,x_2,\dots,x_n\}\)</span> and model with parameter <span class="math inline">\(\theta\)</span>, then the likelihood is defined as,</p>
+<p><span class="math display">\[ L(\theta \mid X) = P(X \mid \theta)\]</span></p>
+<p>If our observations are independent and identically distributed, then we can treat this as product of probabilities of observing each individual data point. That is,</p>
+<p><span class="math display">\[ L(\theta \mid X) = \prod_{i=1}^{n} P(x_{i} \mid \theta)\]</span></p>
+<p>This may seem really abstract and so we can look at concrete example.</p>
+<hr />
 <p><strong>Theorem</strong>: For a convex function defined on a convex set, any local minimum is also a global minimum.</p>
 <p><em>Proof</em>: Let <span class="math inline">\(f:C \rightarrow \mathbb{R}\)</span>, be a convex function, on a convex set <span class="math inline">\(C\)</span>. Suppose that <span class="math inline">\(x\)</span> is a local minimum of <span class="math inline">\(f\)</span> but not a global one. This means <span class="math inline">\(\exists y \in C\)</span> such that <span class="math inline">\(f(y) &lt; f(x)\)</span>. By definition of convexity for any <span class="math inline">\(\alpha \in [0,1]\)</span>, we have,</p>
 <p><span class="math display">\[ f(x+\alpha (y-x)) &lt; f(x) + \alpha [f(y) - f(x)] \\
  &lt; f(x) 
 \]</span> since <span class="math inline">\(f(y) &lt; f(x)\)</span>. Hence, for any small ball <span class="math inline">\(B(x;\epsilon)\)</span> around <span class="math inline">\(x\)</span>, there exists <span class="math inline">\(z\)</span> such that <span class="math inline">\(f(z) &lt; f(x)\)</span>. Therefore, <span class="math inline">\(x\)</span> is not a local minimum - a contradiction. QED.</p>
 <hr />
+</div>
 <div id="references" class="section level4">
 <h4>References</h4>
 <ol style="list-style-type: decimal">

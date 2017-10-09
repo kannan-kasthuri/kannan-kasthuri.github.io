@@ -32,6 +32,22 @@ f. Regularization, sparse coding and momentum methods
 
 ---
 
+#### Likelihood and maximum likelihood estimates
+
+---
+
+Likelihood is the probablity of observing the data given a model. In the univariate case, let us say that we have a set of data $X = \{x_1,x_2,\dots,x_n\}$ and model with parameter $\theta$, then the likelihood is defined as,
+
+$$ L(\theta \mid X) = P(X \mid \theta)$$
+
+If our observations are independent and identically distributed, then we can treat this as product of probabilities of observing each individual data point. That is,
+
+$$ L(\theta \mid X) = \prod_{i=1}^{n} P(x_{i} \mid \theta)$$
+
+This may seem really abstract and so we can look at concrete example.
+
+---
+
 **Theorem**: For a convex function defined on a convex set, any local minimum is also a global minimum.
 
 _Proof_: Let $f:C \rightarrow \mathbb{R}$, be a convex function, on a convex set $C$. Suppose that $x$ is a local minimum of $f$ but not a global one. This means $\exists y \in C$ such that $f(y) < f(x)$. By definition of convexity for any $\alpha \in [0,1]$, we have,
