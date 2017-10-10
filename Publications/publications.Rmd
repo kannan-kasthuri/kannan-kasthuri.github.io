@@ -9,6 +9,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+### Publications 
+
+---
+
 ##### Journal articles (coloured texts are equal contributions)
 
 Check out my preprints [here](http://library.med.nyu.edu/api/publications/?person=kannak01&sort=display_rank&in-biosketch=yes)

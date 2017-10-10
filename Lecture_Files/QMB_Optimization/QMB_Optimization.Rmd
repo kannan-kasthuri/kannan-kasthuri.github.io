@@ -103,6 +103,23 @@ Let us work with the HANES data set.
   library(tidyverse)
 ```
 
+Suppose we draw twenty people randomly and identify their gender:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Randomly sample 20 people and identify their gender
+  random_gender <- sample(HANES$GENDER, 20, replace = FALSE)
+  random_gender
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Randomly sample 20 people and identify their gender
+  random_gender <- sample(HANES$GENDER, 20, replace = FALSE)
+  random_gender
+```
+
+The first thing we can do is assume that we know the proportion of males and females in the population, and ask ourselves how likely it would have been to draw this sequence if we were right about the proportion. We will call the proportion of females $\theta$ in this case.
+---
+
 **Theorem**: For a convex function defined on a convex set, any local minimum is also a global minimum.
 
 _Proof_: Let $f:C \rightarrow \mathbb{R}$, be a convex function, on a convex set $C$. Suppose that $x$ is a local minimum of $f$ but not a global one. This means $\exists y \in C$ such that $f(y) < f(x)$. By definition of convexity for any $\alpha \in [0,1]$, we have,
@@ -111,7 +128,6 @@ $$ f(x+\alpha (y-x)) < f(x) + \alpha [f(y) - f(x)] \\
  < f(x) 
 $$
 since $f(y) < f(x)$. Hence, for any small ball $B(x;\epsilon)$ around $x$, there exists $z$ such that $f(z) < f(x)$. Therefore, $x$ is not a local minimum - a contradiction. QED.
-
 
 ---
 
