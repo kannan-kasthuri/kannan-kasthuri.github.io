@@ -36,13 +36,13 @@ f. Regularization, sparse coding and momentum methods
 
 ---
 
-Likelihood is the probablity of observing the data given a model. In the univariate case, let us say that we have a set of data $X = \{x_1,x_2,\dots,x_n\}$ and model with parameter $\theta$, then the likelihood is defined as,
+Likelihood is the probablity of observing the data given a model. In the univariate case, let us say that we have a set of data $X = \{x_1,x_2,\dots,x_n\}$ and model with parameter $\gamma$, then the likelihood is defined as,
 
-$$ L(\theta \mid X) = P(X \mid \theta)$$
+$$ L(\gamma \mid X) = P(X \mid \gamma)$$
 
 If our observations are independent and identically distributed, then we can treat this as product of probabilities of observing each individual data point. That is,
 
-$$ L(\theta \mid X) = \prod_{i=1}^{n} P(x_{i} \mid \theta)$$
+$$ L(\gamma \mid X) = \prod_{i=1}^{n} P(x_{i} \mid \gamma)$$
 
 This may seem really abstract and so we can look at concrete example.
 
@@ -117,7 +117,104 @@ Suppose we draw twenty people randomly and identify their gender:
   random_gender
 ```
 
-The first thing we can do is assume that we know the proportion of males and females in the population, and ask ourselves how likely it would have been to draw this sequence if we were right about the proportion. We will call the proportion of females $\theta$ in this case.
+The first thing we can do is assume that we know the proportion of males and females in the population, and ask ourselves how likely it would have been to draw this sequence if we were right about the proportion. We will call the proportion of females $\gamma$ in this case.
+
+Since there are only two categories, male and the female and each person in sampled independently the distribution being identical, we can calculate the probability of getting that sequence as the product of the probabilities of sampling each individual:
+
+$$
+L(\gamma \mid X) = \prod_{i=1}^{20}
+\begin{cases}
+    \gamma,      & \text{if } x_{i} = F \\
+    1-\gamma,    & \text{if } x_{i} = M
+\end{cases}
+$$
+Now we can use the above equation to calculate the probability of getting the specific sequence if the gender were equally distributed:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Assign probablities to the above seqence assuming men and women are equally distributed
+  # in the general population
+  probabilities = ifelse(random_gender == "F", 0.5, 1-0.5)
+  # Likelihood is the product  of the probablities when samples are IID 
+  likelihood = prod(probabilities)
+  # Report the probability
+  cat('Probability of observation when men and women are equally distributed:',likelihood)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Assign probablities to the above seqence assuming men and women are equally distributed
+  # in the general population
+  probabilities = ifelse(random_gender == "F", 0.5, 1-0.5)
+  # Likelihood is the product  of the probablities when samples are IID 
+  likelihood = prod(probabilities)
+  # Report the probability
+  cat('Probability of observation when men and women are equally distributed:',likelihood)
+```
+
+If men are over-represented in the population, say, by 80%, then:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Assign probablities to the above seqence assuming men represent 80% of
+  # the general population
+  probabilities = ifelse(random_gender == "F", 0.2, 1-0.2)
+  # Likelihood is the product  of the probablities when samples are IID 
+  likelihood = prod(probabilities)
+  # Report the probability
+  cat('Probability of observation when men are represented 80%:',likelihood)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Assign probablities to the above seqence assuming men represent 80% of
+  # the general population
+  probabilities = ifelse(random_gender == "F", 0.2, 1-0.2)
+  # Likelihood is the product  of the probablities when samples are IID 
+  likelihood = prod(probabilities)
+  # Report the probability
+  cat('Probability of observation when men are represented 80%:',likelihood)
+```
+
+Thus we can easily generalize this as a function of $\gamma$, and graph the likelihood as a function of any value of the proportion of females ranging from 0 to 1:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Make a function that returns likelihoods based on the above sequence
+  # and the gamma parameter
+  likelihood = function(gamma, data = random_gender) {
+    # Calculate the probabilities
+    probabilities = ifelse(random_gender == "F", gamma, 1-gamma)
+    # Calculate the product of probabilities, aka, likelihoods
+    likelihood = prod(probabilities)
+    # Return the likelihood
+    return(likelihood)
+  }
+  # Make a vector of gammas
+  gammas = seq(0.01, 0.99, by=0.01)
+  # Compute likelihood through the function 
+  likelihoods = sapply(gammas, likelihood)
+  # Plot gammas vs. likelihoods
+  ggplot(mapping = aes(x = gammas, y = likelihoods)) + geom_line(se=FALSE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Make a function that returns likelihoods based on the above sequence
+  # and the gamma parameter
+  likelihood = function(gamma, data = random_gender) {
+    # Calculate the probabilities
+    probabilities = ifelse(random_gender == "F", gamma, 1-gamma)
+    # Calculate the product of probabilities, aka, likelihoods
+    likelihood = prod(probabilities)
+    # Return the likelihood
+    return(likelihood)
+  }
+  # Make a vector of gammas
+  gammas = seq(0.01, 0.99, by=0.01)
+  # Compute likelihood through the function 
+  likelihoods = sapply(gammas, likelihood)
+  # Plot gammas vs. likelihoods
+  ggplot(mapping = aes(x = gammas, y = likelihoods)) + geom_line(se=FALSE)
+```
+
+
+
+
 ---
 
 **Theorem**: For a convex function defined on a convex set, any local minimum is also a global minimum.
