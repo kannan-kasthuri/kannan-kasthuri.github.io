@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <div style="text-align:center" markdown="1">
 
-![](WWDS.png)
+![](coming_soon.jpg)
 
 </div>
 
