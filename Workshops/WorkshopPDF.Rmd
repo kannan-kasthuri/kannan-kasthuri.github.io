@@ -1,0 +1,13 @@
+---
+output: 
+  pdf_document:
+    fig_caption: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+<img src="WWDS10.png" title="Box Plot" alt="Box Plot" style="display: block; margin: auto;" />
+
