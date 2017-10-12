@@ -1,13 +1,17 @@
 ---
 output: 
-  pdf_document:
-    fig_caption: false
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<div style="text-align:center" markdown="1">
 
-<img src="WWDS10.png" title="Box Plot" alt="Box Plot" style="display: block; margin: auto;" />
+![](WWDS10.png)
+
+</div>
+
+---
 
