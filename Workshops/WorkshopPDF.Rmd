@@ -7,11 +7,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+---
+
 <div style="text-align:center" markdown="1">
 
-![](WWDS10.png)
+![](WW.png)
 
 </div>
 
 ---
+
 
