@@ -76,7 +76,7 @@ Emily Vucic is a postdoctoral fellow in Dafna Bar-Sagi’s lab at NYU in the Dep
 ---
 
 <figure style="float:left;">
-  <img alt="Brewski Janssens" src="Bryce.png"  height = 120; width = 100; hspace="20" />
+  <img alt="Brewski Janssens" src="Bryce.pdf"  height = 120; width = 100; hspace="20" />
   <figcaption> Brewski Janssens </figcaption>
 </figure>
 
