@@ -1,6 +1,5 @@
 ---
 output:
-  word_document: default
   html_document: default
 ---
 
@@ -31,7 +30,7 @@ figure figcaption {
 
 #### About the workshop
 
-Winter workshop in data science is a five-day (intensive) data science program, where a team of professionals from the industry learn fundamentals of data science. The workshop is designed to demystify data science and to empower professionals perform data analytics using the R programming language. We will study and practice a wide range of topics, including R fundamentals, visualization, data manipulation and modeling. 
+Winter workshop in data science is a five-day (intensive) data science program, where a team of professionals from the industry learns fundamentals of data science. The workshop is designed to demystify data science and to empower professionals perform data analytics using the R programming language. We will study and practice a wide range of topics, including R fundamentals, visualization, data manipulation and modeling. 
 
 #### Expectations
 
