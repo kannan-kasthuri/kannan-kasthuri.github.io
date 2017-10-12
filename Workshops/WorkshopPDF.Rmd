@@ -7,6 +7,15 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<style>
+
+body {
+text-align: justify;}
+
+figure figcaption {
+    text-align: center;}
+</style>
+
 ---
 
 <div style="text-align:center" markdown="1">
@@ -17,4 +26,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
+<center> _Without data you are just another person with an opinion_ <br> - W. Edwards Deming </center>
 
+#### About the workshop
+
+Winter workshop in data science is a five-day (intensive) data science program, where a team of professionals from the industry learn fundementals of data science. The workshop is designed to demystify data science and empower working professionals perform data analytics using the R programming language. We will study and practice a wide range of topics, including R fundamentals, visualization, data manipulation and modeling. There will be both hands-on sessions and lectures, and the trainees are encouraged (but not required) to bring their own data sets. The workshop **does not** have any pre-requisites.
+
+#### Expectations
+
+
+#### Agenda
+
+
+#### Where to apply and cost
+
+
+#### About the organizer
