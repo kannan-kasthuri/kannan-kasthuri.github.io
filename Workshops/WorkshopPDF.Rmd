@@ -56,4 +56,12 @@ Fill out an application [here]() by November 30, 2017 at 11:59 pm. Due to volume
 
 ---
 
-#### About the organizer
+#### About the mentor
+
+<figure style="float:left;">
+  <img alt="KK" src="photo.jpg" height = 125; width = 125; hspace="10" />
+</figure>
+
+Dr. Kasthuri Kannan, PhD, is an Assistant Professor of Pathology at New York University (NYU). He has more than 10 years of experience in data science and analytics. He started his data science career in 2006 in a company where he contributed to data mining projects and obtained directed insights in aircraft movement operations at the Tinker Air Force base. He proposed efficient strategies for aircraft logistics through analysis of aircraft movement data using machine learning algorithms. He is trained in mathematics and computer science with postdoctoral training at Memorial Sloan-Kettering Cancer Center (one of the top cancer research institutes in the world), where his data science skills were extensively applied to genomics resulting in top-notch publications. He is actively advising and collaborating with several scientists and physician-scientists, translating data science findings to clinical care, and is passionate about teaching and science communication. Currently, he is directing and teaching a course in data science and biomedical informatics at NYU, a required course for masters students in biomedical informatics. The course content can be viewed at: https://kannan-kasthuri.github.io/pda.html and Dr. Kannan's webpage can be accessed here: https://kannan-kasthuri.github.io
+
+---
