@@ -45,6 +45,38 @@ Make an html document with directed insights based on Explore (E), Wrangle (W), 
 
 ---
 
+#### Project Grading Rubric (20% each)
+
+---
+
+You need to document and demonstrate all aspects of data science foundations discussed in the class.
+
+1) Correctly apply tools and techniques of data preparation and wrangling 
+
+    a. Missing data handling, joining, or other transformations, removing outliers etc.
+    
+    b. Gathering, spreading data (if needed)
+
+2) Use Exploratory Data Analysis and `dplyr` transformation methods to identify structure and correlations in the data
+
+3) Formulate questions and possible ways of analysis and visualization
+
+    a. Identify appropriate visualization methods for analysis of your data set 
+    
+    b. Choose the right geoms for the questions at hand  
+  
+4) Correctly interpret results of analysis (clinical/biological significance)
+
+    a. Demonstrate domain specific knowledge of clinical data
+    
+    b. Propose an hypothesis based on visualization and results
+
+    a. Compare the usefulness of the obtained results/conclusions
+
+5) Formulate appropriate plans for validation, further analysis, or to collect additional data needed. 
+
+---
+
 ##### References
 
 1. http://vita.had.co.nz/papers/layered-grammar.html
