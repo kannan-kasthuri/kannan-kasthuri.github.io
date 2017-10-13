@@ -71,7 +71,7 @@ You need to document and demonstrate all aspects of data science foundations dis
     
     b. Propose an hypothesis based on visualization and results
 
-    a. Compare the usefulness of the obtained results/conclusions
+    c. Compare the usefulness of the obtained results/conclusions
 
 5) Formulate appropriate plans for validation, further analysis, or to collect additional data needed. 
 
