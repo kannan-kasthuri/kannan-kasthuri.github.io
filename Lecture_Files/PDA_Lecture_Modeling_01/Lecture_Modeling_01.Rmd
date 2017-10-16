@@ -48,7 +48,7 @@ We will first study basic ideas in statistical inference using our HANES data se
 
 ##### Central limit theorem
 
-If $X$ and $Y$ are normally distrbuted random variables, with mean $\mu_{X}$ and $\mu_Y}$ respectively, $\bar{Y}-\bar{X}$
+If $X$ and $Y$ are normally distrbuted random variables, with mean $\mu_{X}$ and $\mu_{Y}$, respectively, $\bar{Y}-\bar{X}$
 
 ---
 
