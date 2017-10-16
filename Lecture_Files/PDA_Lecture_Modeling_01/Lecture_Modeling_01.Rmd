@@ -9,13 +9,18 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<style>
+body {
+text-align: justify}
+</style>
+
 ---
 
 ### Modeling fundamentals 01: Basic inference and linear modeling (Oct. 31, 2017)
 
 ---
 
-#### Central limit theorem and t-Test
+#### Z-test and t-Test
 
 We will first study basic ideas in statistical inference using our HANES data set.
 
@@ -46,9 +51,104 @@ We will first study basic ideas in statistical inference using our HANES data se
   library(tidyverse)
 ```
 
-##### Central limit theorem
+Also, we need a package "rafalib" for these materials. So, lets go ahead and install that package, and load the library.
 
-If $X$ and $Y$ are normally distrbuted random variables, with mean $\mu_{X}$ and $\mu_{Y}$, respectively, $\bar{Y}-\bar{X}$
+```{r eval=FALSE, message=FALSE, warning=TRUE, echo=TRUE}
+  # Install rafaliab library
+  install.packages("rafalib")
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=TRUE}
+  # Load rafalib library
+  library(rafalib)
+```
+
+
+##### Z-test
+
+According to central limit theorem, if $X$ and $Y$ are independent and identically distributed random variables that represents a population, with mean $\mu_{X}$ and $\mu_{Y}$, and standard deviation, $\sigma_{X}$ and $\sigma_{Y}$, respectively, then the ratio,
+
+$$
+R = \frac{\mu_{Y}-\mu_{X}}{\sqrt{\frac{\sigma_X^2}{N} + \frac{\sigma_Y^2}{N}}}
+$$
+approaches normal distribution centered at $0$ and standard deviation $1$ as $N$ becomes large. In general, we will not know this mean and standard deviation for the population but only for a random sample from the general population. In case $X$ and $Y$ are normally distributed, the approximation to the mean $\mu_{X}$ and $\mu_{Y}$ given by $\hat{X}$ and $\hat{Y}$ are also normally distributed, and so are their difference. Therefore, the ratio $\hat{R}$, described by,
+
+$$
+\hat{R} = \frac{\hat{Y}-\hat{X}}{\sqrt{\frac{\sigma_X^2}{N} + \frac{\sigma_Y^2}{N}}}
+$$
+
+can be used to compute p-values simply because we know the proportion of the distribution under any value. For example, only 7% of these values are larger than 1.8 (in absolute value)
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  pnorm(-1.8) + (1 - pnorm(1.8))
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  pnorm(-1.8) + (1 - pnorm(1.8))
+```
+
+Thus, if we know:
+
+1. the population is normally distributed,
+2. the standard deviation of the population and 
+3. the sample size is large,
+
+we can use this approximation. This is known as $Z$-test.
+
+Most of the times, these conditions are hardly met. For the first condition that the population being normally distributed, although in practice we may not know the population distribution, we can see how close the sample distribution is close to normal distribution by plotting _qq-plots_ in order to confirm that the distributions are relatively close to being normally distributed.
+
+We will work with the blood hemoglobin variable, A1C. We will consider people without diabetes as control group, that represents the **sample random variable** $Y$ and people with diabetes as disease group - that represents the **sample random variable** $X$. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Extract only the A1C variable for the control group 
+  control <- filter(HANES, DX_DBTS == "NO DIAB") %>% select(A1C)
+  # and the disease group
+  disease <- filter(HANES, DX_DBTS == "DIAB") %>% select(A1C)
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Extract only the A1C variable for the control group 
+  control <- filter(HANES, DX_DBTS == "NO DIAB") %>% select(A1C)
+  # and the disease group
+  disease <- filter(HANES, DX_DBTS == "DIAB") %>% select(A1C)
+```
+
+We can now make a qqplot for the control variable
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Make a qqplot for the control variable
+  p <- ggplot(control, aes(sample = A1C))
+  p + stat_qq() 
+```
+
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Make a qqplot for the control variable
+  p <- ggplot(control, aes(sample = A1C))
+  p + stat_qq() 
+```
+
+Similarly we can make a qqplot for the disease variable
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Make a qqplot for the control variable
+  p <- ggplot(disease, aes(sample = A1C))
+  p + stat_qq() + 
+```
+
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Make a qqplot for the control variable
+  p <- ggplot(disease, aes(sample = A1C))
+  p + stat_qq() 
+```
+
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  qqnorm(unlist(control))
+  qqline(unlist(control))
+```
+
 
 ---
 
