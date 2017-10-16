@@ -1,0 +1,56 @@
+---
+# title: "Lecture 03"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Modeling fundamentals 01: Basic inference and linear modeling (Oct. 31, 2017)
+
+---
+
+#### Central limit theorem and t-Test
+
+We will first study basic ideas in statistical inference using our HANES data set.
+
+
+```{r eval=TRUE, message=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Rename the HSQ_1 factor for identification
+  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
+  # Rename the DX_DBTS as a factor
+  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
+  # Omit all NA from the data frame
+  HANES <- na.omit(HANES)
+  # Observe the structure
+  str(HANES)
+  # Load the tidyverse library
+  library(tidyverse)
+```
+
+
+---
+
+#### Selected materials and references
+
+[R for Data Science - Wrangle Part](http://r4ds.had.co.nz/wrangle-intro.html)
+
+---
