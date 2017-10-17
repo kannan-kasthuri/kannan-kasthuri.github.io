@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Homework 03 (due Oct. 17, 2017, 5pm)
+### Homework 03 (due Oct. 18, 2017, 12am)
 
 ---
 
@@ -23,7 +23,7 @@ The assignment requires you to find the dataset of your choice and apply the pri
 
 **Note**: You need to write a README.txt and submit **both* .Rmd and html files as given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html) 
 
-The due date is Oct. 17, 2017, 5pm. If you have any questions about this homework, feel free to contact Yuhan, yuhan.hao at nyumc.org
+The due date is Oct. 18, 2017, 12am. If you have any questions about this homework, feel free to contact Yuhan, yuhan.hao at nyumc.org
 
 ---
 
