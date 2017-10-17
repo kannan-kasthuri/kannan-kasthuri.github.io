@@ -20,7 +20,7 @@ text-align: justify}
 
 ---
 
-#### Z-test and t-Test
+#### Basic inference
 
 We will first study basic ideas in statistical inference using our HANES data set.
 
@@ -64,14 +64,14 @@ Also, we need a package "rafalib" for these materials. So, lets go ahead and ins
 ```
 
 
-##### Z-test
+##### Z-Test
 
-According to central limit theorem, if $X$ and $Y$ are independent and identically distributed random variables that represents a population, with mean $\mu_{X}$ and $\mu_{Y}$, and standard deviation, $\sigma_{X}$ and $\sigma_{Y}$, respectively, then the ratio,
+According to central limit theorem, if $V$ and $Z$ are independent and identically distributed random variables that represents a population, with mean $\mu_{V}$ and $\mu_{Z}$, and standard deviation, $\sigma_{V}$ and $\sigma_{Z}$, respectively, then the ratio,
 
 $$
-R = \frac{\mu_{Y}-\mu_{X}}{\sqrt{\frac{\sigma_X^2}{N} + \frac{\sigma_Y^2}{N}}}
+R = \frac{\mu_{Z}-\mu_{V}}{\sqrt{\frac{\sigma_Z^2}{N} + \frac{\sigma_V^2}{N}}}
 $$
-approaches normal distribution centered at $0$ and standard deviation $1$ as $N$ becomes large. In general, we will not know this mean and standard deviation for the population but only for a random sample from the general population. In case $X$ and $Y$ are normally distributed, the approximation to the mean $\mu_{X}$ and $\mu_{Y}$ given by $\hat{X}$ and $\hat{Y}$ are also normally distributed, and so are their difference. Therefore, the ratio $\hat{R}$, described by,
+approaches normal distribution centered at $0$ and standard deviation $1$ as $N$ becomes large. In general, we will not know this mean and standard deviation for the population but only for a random sample $X$ and $Y$ from the general population. In case $V$ and $Z$ are normally distributed, the approximation to the mean $\mu_{V}$ and $\mu_{Z}$ given by $\hat{X}$ and $\hat{Y}$ are also normally distributed, and so are their difference. Therefore, the ratio $\hat{R}$, described by,
 
 $$
 \hat{R} = \frac{\hat{Y}-\hat{X}}{\sqrt{\frac{\sigma_X^2}{N} + \frac{\sigma_Y^2}{N}}}
@@ -97,7 +97,7 @@ we can use this approximation. This is known as $Z$-test.
 
 Most of the times, these conditions are hardly met. For the first condition that the population being normally distributed, although in practice we may not know the population distribution, we can see how close the sample distribution is close to normal distribution by plotting _qq-plots_ in order to confirm that the distributions are relatively close to being normally distributed.
 
-We will work with the blood hemoglobin variable, A1C. We will consider people without diabetes as control group, that represents the **sample random variable** $Y$ and people with diabetes as disease group - that represents the **sample random variable** $X$. 
+We will work with the blood hemoglobin variable, A1C. We will consider people without diabetes as control group, that represents the (sample) random variable $Y$ and people with diabetes as disease group - that represents the (sample) random variable $X$. 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Extract only the A1C variable for the control group 
@@ -146,7 +146,7 @@ We can now make a qqplot for the control variable
         labs(title = "QQ Plot for Control Variable")
 ```
 
-Similarly we can make a qqplot for the disease variable
+Similarly we can make a qqplot for the disease variable.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Find the 1st and 3rd quartiles
@@ -179,13 +179,53 @@ Similarly we can make a qqplot for the disease variable
         labs(title = "QQ Plot for Disease Variable")
 ```
 
+We note that the control variable is more normal-like than the disease variable. Thus, a $Z$-test may not be appropriate. Even if the disease variable is normally distributed, a major disadvantage of a $Z$-test is that it requires the standard deviation of the population which we will not know in reality.
 
+##### t-Test
 
+Even if we don't know the population standard deviations, we can estimate from the sample standard deviations:
+
+$$ s_X^2 = \frac{1}{N-1} \sum_{i=1}^N (x_i - \hat{X})^2 \mbox{ and } s_Y^2 = \frac{1}{N-1} \sum_{i=1}^N (y_i - \hat{Y})^2 $$
+
+to calculate the distribution of:
+
+$$ t = \sqrt{N} \frac{\hat{Y}-\hat{X}}{\sqrt{s_{X}^{2}+s_{Y}^{2}}} $$
+which is _approximately_ normal. This is called the $t$-statistic and the distribution is called _Student's t-distribution_. 
+
+Although the disease variable in our case is not really normally distributed, _had it been_ normally distributed, we can apply the t-test to find the p-value:
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=TRUE}
+  # Apply t-test to disease vs. control population
+  t.test(disease,control)
+```
+
+##### Confidence intervals
+
+p-values are everywhere in life sciences.But it is not good to report only p-values for the simple reason that statistical significance doesn't mean causality or scientific significance. A better alternative is to report confidence interval. Confidence intervals include information about the uncertainty associated with this estimate. 
+
+A 95% confidence interval (we can use percentages other than 95%) is a random interval with a 95% probability of falling on the parameter we are estimating. To construct it, we note that the central limit theorem tells us that $\sqrt{N} (\bar{X}-\mu_X) / s_X$ follows a normal distribution with mean 0 and standard deviation 1. This implies that the probability of this event:
+
+$$ -2 \leq \sqrt{N} (\bar{X}-\mu_X)/s_X \leq 2 $$
+
+is about 95% because:
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=TRUE}
+  # Calculate the probability of the above variable
+  pnorm(2) - pnorm(-2)
+```
+
+Now doing some algebra on the above inequality we see that:
+
+$$ \bar{X}-2 s_X/\sqrt{N} \leq \mu_X \leq \bar{X}+2s_X/\sqrt{N} $$
+
+the chance of mean falling into the interval has a probability of 95%. Thus, we can compute:
 
 ---
 
 #### Selected materials and references
 
-[R for Data Science - Wrangle Part](http://r4ds.had.co.nz/wrangle-intro.html)
+[R for Data Science - Introduction to Modeling](http://r4ds.had.co.nz/model-basics.html)
+
+[PH525x series Biomedical Data Science](http://genomicsclass.github.io/book/)
 
 ---
