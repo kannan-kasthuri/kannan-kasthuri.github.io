@@ -116,38 +116,70 @@ We will work with the blood hemoglobin variable, A1C. We will consider people wi
 We can now make a qqplot for the control variable
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
-  # Make a qqplot for the control variable
-  p <- ggplot(control, aes(sample = A1C))
-  p + stat_qq() 
+  # Find the 1st and 3rd quartiles
+  y <- quantile(unlist(control), c(0.25, 0.75))
+  # Find the matching normal values on the x-axis
+  x <- qnorm( c(0.25, 0.75))
+  # Compute the line slope
+  slope <- diff(y) / diff(x) 
+  # Compute the line intercept
+  int <- y[1] - slope * x[1]
+  # Generate normal q-q plot
+  ggplot() + aes(sample=unlist(control)) + stat_qq(distribution=qnorm) + 
+        geom_abline(intercept=int, slope=slope) + ylab("Sample") +
+        labs(title = "QQ Plot for Control Variable")
 ```
 
 
 ```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
-  # Make a qqplot for the control variable
-  p <- ggplot(control, aes(sample = A1C))
-  p + stat_qq() 
+  # Find the 1st and 3rd quartiles
+  y <- quantile(unlist(control), c(0.25, 0.75))
+  # Find the matching normal values on the x-axis
+  x <- qnorm( c(0.25, 0.75))
+  # Compute the line slope
+  slope <- diff(y) / diff(x) 
+  # Compute the line intercept
+  int <- y[1] - slope * x[1]
+  # Generate normal q-q plot
+  ggplot() + aes(sample=unlist(control)) + stat_qq(distribution=qnorm) + 
+        geom_abline(intercept=int, slope=slope) + ylab("Sample") +
+        labs(title = "QQ Plot for Control Variable")
 ```
 
 Similarly we can make a qqplot for the disease variable
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
-  # Make a qqplot for the control variable
-  p <- ggplot(disease, aes(sample = A1C))
-  p + stat_qq() + 
+  # Find the 1st and 3rd quartiles
+  y <- quantile(unlist(disease), c(0.25, 0.75))
+  # Find the matching normal values on the x-axis
+  x <- qnorm( c(0.25, 0.75))
+  # Compute the line slope
+  slope <- diff(y) / diff(x) 
+  # Compute the line intercept
+  int <- y[1] - slope * x[1]
+  # Generate normal q-q plot
+  ggplot() + aes(sample=unlist(disease)) + stat_qq(distribution=qnorm) + 
+        geom_abline(intercept=int, slope=slope) + ylab("Sample") +
+        labs(title = "QQ Plot for Disease Variable")
 ```
 
 
 ```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
-  # Make a qqplot for the control variable
-  p <- ggplot(disease, aes(sample = A1C))
-  p + stat_qq() 
+  # Find the 1st and 3rd quartiles
+  y <- quantile(unlist(disease), c(0.25, 0.75))
+  # Find the matching normal values on the x-axis
+  x <- qnorm( c(0.25, 0.75))
+  # Compute the line slope
+  slope <- diff(y) / diff(x) 
+  # Compute the line intercept
+  int <- y[1] - slope * x[1]
+  # Generate normal q-q plot
+  ggplot() + aes(sample=unlist(disease)) + stat_qq(distribution=qnorm) + 
+        geom_abline(intercept=int, slope=slope) + ylab("Sample") +
+        labs(title = "QQ Plot for Disease Variable")
 ```
 
 
-```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
-  qqnorm(unlist(control))
-  qqline(unlist(control))
-```
 
 
 ---
