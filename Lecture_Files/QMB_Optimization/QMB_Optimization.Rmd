@@ -5,6 +5,11 @@ output: html_document
 
 ---
 
+<style>
+body {
+text-align: justify}
+</style>
+
 ### An Introduction to Optimization (Oct. 23, 2017)
 
 ---
@@ -19,7 +24,7 @@ We will see the following:
 
 3. Commonly used terminologies.
 
-4. Basic pointer on how to perform optimization with programming languages such as R and Matlab.
+4. Basic pointer on how to perform optimization with programming languages such as R.
 
 based on an overview of the following concepts:
 
@@ -212,8 +217,37 @@ Thus we can easily generalize this as a function of $\gamma$, and graph the like
   ggplot(mapping = aes(x = gammas, y = likelihoods)) + geom_line(se=FALSE)
 ```
 
+Likelihood is not a probability function. Also, given this function it can be used to identify the parameters (proportions or means) of the underlying population that is likely to maximize the chance of observing our data. This is the maximum likelihood estimate. Thus, maximum likelihood estimate is the value of the parameters of a given model that maximizes the likelihood function for the data. Mathematically,
 
+$$
+\gamma_{MLE} = \max_{\gamma}[L(\gamma \mid X)]
+$$
+In our example, it is the the ratio $\frac{\text{# of women}}{20}$, since it is the so many number of women we saw when we randomly sampled 20 people.
 
+Determining maximum likelihood can become difficult as the complexity of the models increase. That is why we need optimization techniques and what are known as _cost functions_.
+
+---
+
+##### Cost functions
+
+Cost functions are functions that maps a set of events into a number that represents the _cost_ of that event occurring. Mathematically it is defined as the negative log of likelihood.
+
+$$
+C(\gamma,X)=−\log[L(\gamma \mid X)]
+$$
+But why?
+
+Lets watch this video for a good explanation:
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R4OlXb9aTvQ" frameborder="0" allowfullscreen></iframe>
+
+---
+
+There are other cost functions in areas such as motion planning and traveling salesman where different types of optimization techniques are used. For this tutorial we will use this cost function.
+
+With this cost function as a negative log likelihood we can reformulate the cost of the given parameterization of the population and plot it:
 
 ---
 
