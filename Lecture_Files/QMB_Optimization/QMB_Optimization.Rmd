@@ -108,17 +108,17 @@ Let us work with the HANES data set.
   library(tidyverse)
 ```
 
-Suppose we draw twenty people randomly and identify their gender:
+Suppose we draw two hundred people randomly and identify their gender:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Randomly sample 20 people and identify their gender
-  random_gender <- sample(HANES$GENDER, 20, replace = FALSE)
+  # Randomly sample 200 people and identify their gender
+  random_gender <- sample(HANES$GENDER, 200, replace = FALSE)
   random_gender
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Randomly sample 20 people and identify their gender
-  random_gender <- sample(HANES$GENDER, 20, replace = FALSE)
+  # Randomly sample 200 people and identify their gender
+  random_gender <- sample(HANES$GENDER, 200, replace = FALSE)
   random_gender
 ```
 
@@ -182,7 +182,7 @@ Thus we can easily generalize this as a function of $\gamma$, and graph the like
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Make a function that returns likelihoods based on the above sequence
   # and the gamma parameter
-  likelihood = function(gamma, data = random_gender) {
+  likelihoodMF = function(gamma, data = random_gender) {
     # Calculate the probabilities
     probabilities = ifelse(random_gender == "F", gamma, 1-gamma)
     # Calculate the product of probabilities, aka, likelihoods
@@ -193,7 +193,7 @@ Thus we can easily generalize this as a function of $\gamma$, and graph the like
   # Make a vector of gammas
   gammas = seq(0.01, 0.99, by=0.01)
   # Compute likelihood through the function 
-  likelihoods = sapply(gammas, likelihood)
+  likelihoods = sapply(gammas, likelihoodMF)
   # Plot gammas vs. likelihoods
   ggplot(mapping = aes(x = gammas, y = likelihoods)) + geom_line(se=FALSE)
 ```
@@ -201,7 +201,7 @@ Thus we can easily generalize this as a function of $\gamma$, and graph the like
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
   # Make a function that returns likelihoods based on the above sequence
   # and the gamma parameter
-  likelihood = function(gamma, data = random_gender) {
+  likelihoodMF = function(gamma, data = random_gender) {
     # Calculate the probabilities
     probabilities = ifelse(random_gender == "F", gamma, 1-gamma)
     # Calculate the product of probabilities, aka, likelihoods
@@ -212,17 +212,100 @@ Thus we can easily generalize this as a function of $\gamma$, and graph the like
   # Make a vector of gammas
   gammas = seq(0.01, 0.99, by=0.01)
   # Compute likelihood through the function 
-  likelihoods = sapply(gammas, likelihood)
+  likelihoods = sapply(gammas, likelihoodMF)
   # Plot gammas vs. likelihoods
   ggplot(mapping = aes(x = gammas, y = likelihoods)) + geom_line(se=FALSE)
 ```
+
+The same idea can be used to estimate the proportion of people with diabetes, instead of males and females:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Select only people with diabetes and no diabetes
+  HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
+  # Randomly sample 200 people and identify their diabetes status
+  HANES_DIAB_sampled_200 <- sample_n(HANES_DIAB,200) 
+  # Make a function that returns likelihoods based on the above sequence
+  # and the gamma parameter
+  likelihoodDB = function(gamma, data = HANES_DIAB_sampled_200) {
+  # Calculate the probabilities
+  probabilities = ifelse(HANES_DIAB_sampled_200 == "DIAB", gamma, 1-gamma)
+  # Calculate the product of probabilities, aka, likelihoods
+  likelihood = prod(probabilities)
+  # Return the likelihood
+  return(likelihood)
+  }
+  # Make a vector of gammas
+  gammas = seq(0.01, 0.99, by=0.01)
+  # Compute likelihood through the function 
+  likelihoods = sapply(gammas, likelihoodDB)
+  # Plot gammas vs. likelihoods
+  ggplot(mapping = aes(x = gammas, y = likelihoods)) + geom_line(se=FALSE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Select only people with diabetes and no diabetes
+  HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
+  # Randomly sample 200 people and identify their diabetes status
+  HANES_DIAB_sampled_200 <- sample_n(HANES_DIAB,200) 
+  # Make a function that returns likelihoods based on the above sequence
+  # and the gamma parameter
+  likelihoodDB = function(gamma, data = HANES_DIAB_sampled_200) {
+  # Calculate the probabilities
+  probabilities = ifelse(HANES_DIAB_sampled_200 == "DIAB", gamma, 1-gamma)
+  # Calculate the product of probabilities, aka, likelihoods
+  likelihood = prod(probabilities)
+  # Return the likelihood
+  return(likelihood)
+  }
+  # Make a vector of gammas
+  gammas = seq(0.01, 0.99, by=0.01)
+  # Compute likelihood through the function 
+  likelihoods = sapply(gammas, likelihoodDB)
+  # Plot gammas vs. likelihoods
+  ggplot(mapping = aes(x = gammas, y = likelihoods)) + geom_line(se=FALSE)
+```
+
 
 Likelihood is not a probability function. Also, given this function it can be used to identify the parameters (proportions or means) of the underlying population that is likely to maximize the chance of observing our data. This is the maximum likelihood estimate. Thus, maximum likelihood estimate is the value of the parameters of a given model that maximizes the likelihood function for the data. Mathematically,
 
 $$
 \gamma_{MLE} = \max_{\gamma}[L(\gamma \mid X)]
 $$
-In our example, it is the the ratio $\frac{\text{# of women}}{20}$, since it is the so many number of women we saw when we randomly sampled 20 people.
+
+The following code in R evaluates maximum likelihood parameter for the male/female distribution:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Compute maximum likelihood parameter for male/female distribution
+  mle.resultsMF <- optimize(function(gammas) {likelihoodMF(gammas,likelihoodMF)},
+                        interval = c(0, 1), maximum = TRUE)
+  mle.resultsMF
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Compute maximum likelihood parameter for male/female distribution
+  mle.resultsMF <- optimize(function(gammas) {likelihoodMF(gammas,likelihoodMF)},
+                        interval = c(0, 1), maximum = TRUE)
+  mle.resultsMF
+```
+
+Similarly the following code in R evaluates maximum likelihood parameter for the diabetes distribution:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Compute maximum likelihood parameter for the diabetes distribution
+  mle.resultsDB <- optimize(function(gammas) {likelihoodDB(gammas,likelihoodDB)},
+                        interval = c(0, 1), maximum = TRUE)
+  mle.resultsDB
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Compute maximum likelihood parameter for the diabetes distribution
+  mle.resultsDB <- optimize(function(gammas) {likelihoodDB(gammas,likelihoodDB)},
+                        interval = c(0, 1), maximum = TRUE)
+  mle.resultsDB
+```
+
+In our example of males and females, the maximum happens at `r round(mle.resultsMF$maximum,2)`, suggesting there are `r round(mle.resultsMF$maximum,2)*100`% of females in the population. This is unlike the diabetes observation where the maximum happens at `r round(mle.resultsDB$maximum,2)` (which is `r round(mle.resultsDB$maximum,2)*100`%). This is not far from the official estimate of about 9.3%. Thus, maximum likelihood can be extremely useful to determine the parameters of the underlying distribution.
+
 
 Determining maximum likelihood can become difficult as the complexity of the models increase. That is why we need optimization techniques and what are known as _cost functions_.
 
@@ -251,12 +334,6 @@ With this cost function as a negative log likelihood we can reformulate the cost
 
 ---
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Select only people with diabetes and no diabetes
-  HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
-  # Randomly sample 200 people and identify their diabetes status
-  sample_n(HANES_DIAB,200) %>% group_by(DX_DBTS) %>% count() %>% mutate(mean = n/200)
-```
 
 
 ---
