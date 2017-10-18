@@ -330,11 +330,93 @@ Lets watch this video for a good explanation:
 
 There are other cost functions in areas such as motion planning and traveling salesman where different types of optimization techniques are used. For this tutorial we will use this cost function.
 
-With this cost function as a negative log likelihood we can reformulate the cost of the given parameterization of the population and plot it:
+With this cost function as a negative log likelihood we can reformulate the cost of the given parameterization of the population and plot it. In the case of male/female observations here is the cost:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Compute the -log of the likelihood function
+  MF.cost = function(gamma, data = random_gender) {
+    return(-log(likelihoodMF(gamma, data)))
+  }
+  # Find the costs
+  costs = sapply(gammas, MF.cost)
+  # Plot the costs
+  qplot(x = gammas, y = costs, geom = 'line', xlab = expression(gamma), ylab = "Male/Female Cost")
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Compute the -log of the likelihood function
+  MF.cost = function(gamma, data = random_gender) {
+    return(-log(likelihoodMF(gamma, data)))
+  }
+  # Find the costs
+  costs = sapply(gammas, MF.cost)
+  # Plot the costs
+  qplot(x = gammas, y = costs, geom = 'line', xlab = expression(gamma), ylab = "Male/Female Cost")
+```
+
+For the diabetes population, we have:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+   # Compute the -log of the likelihood function
+  DB.cost = function(gamma, data = HANES_DIAB_sampled_200) {
+    return(-log(likelihoodDB(gamma, data)))
+  }
+  # Find the costs
+  costs = sapply(gammas, DB.cost)
+  # Plot the costs
+  qplot(x = gammas, y = costs, geom = 'line', xlab = expression(gamma), ylab = "Diabetes Pop. Cost")
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Compute the -log of the likelihood function
+  DB.cost = function(gamma, data = HANES_DIAB_sampled_200) {
+    return(-log(likelihoodDB(gamma, data)))
+  }
+  # Find the costs
+  costs = sapply(gammas, DB.cost)
+  # Plot the costs
+  qplot(x = gammas, y = costs, geom = 'line', xlab = expression(gamma), ylab = "Diabetes Pop. Cost")
+```
+
+We note that the maximum of likelihood function is the minimum of the cost function because log likelihood is an increasing function of the likelihood and so negative log function will decrease as the likelihood function increases. Now once we have this cost function we can study optimization techniques to find its minimum.
 
 ---
 
+#### Grid search
 
+This is the simplest of the optimization technique. In this approach we break the interval of $\gamma$ and evaluate the cost at every break point. We then pick the value of $\gamma$ that gives the minimum cost. It is called _grid search_ because it can be visualized by placing a grid over the cost function and evaluating that at each point of the grid:
+
+---
+
+![](grid_search.png)
+
+---
+
+This can be implemented for the diabetes example as follows:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Make a grid of potential gammas
+  potential.gammas = seq(.001, .999, by=.001)
+  # Calculate the cost of the DB cost function at each gamma
+  calc.costs = sapply(potential.gammas, DB.cost)
+  # Find the minimum costs
+  idx.gamma = which(calc.costs == min(calc.costs))
+  # Output the results
+  writeLines(paste("Grid search value:", potential.gammas[idx.gamma], sep=' '))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Make a grid of potential gammas
+  potential.gammas = seq(.001, .999, by=.001)
+  # Calculate the cost of the DB cost function at each gamma
+  calc.costs = sapply(potential.gammas, DB.cost)
+  # Find the minimum costs
+  idx.gamma = which(calc.costs == min(calc.costs))
+  # Output the results
+  writeLines(paste("Grid search value:", potential.gammas[idx.gamma], sep=' '))
+```
+
+We see the result is extremely accurate although the precision of this value is limited by how fine our grid is. Why is this approach bad? Although this is a good method for one parameter and low precision requirements, the computational complexity is enormous when we have multi-parameters. Here we had $1000$ values for a precision upto two degrees. If we had one more parameter, we need to construct $1000 \times 1000$ grid and for 3 parameters, the grid becomes intractable, a whopping $1000 \times 1000 \times 1000$ computations, that too for a small precision.
 
 ---
 
