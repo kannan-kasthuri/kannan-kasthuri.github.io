@@ -252,10 +252,10 @@ With this cost function as a negative log likelihood we can reformulate the cost
 ---
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Select only people with diabetes and no diabetes
   HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
-  # Randomly sample 20 people and identify their gender
-  random_diab_status <- sample(unlist(HANES_DIAB), 100, replace = FALSE)
-  gather(random_diab_status)
+  # Randomly sample 200 people and identify their diabetes status
+  sample_n(HANES_DIAB,200) %>% group_by(DX_DBTS) %>% count() %>% mutate(mean = n/200)
 ```
 
 
