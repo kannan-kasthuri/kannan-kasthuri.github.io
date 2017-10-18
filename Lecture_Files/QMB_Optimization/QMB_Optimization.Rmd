@@ -251,6 +251,16 @@ With this cost function as a negative log likelihood we can reformulate the cost
 
 ---
 
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
+  # Randomly sample 20 people and identify their gender
+  random_diab_status <- sample(unlist(HANES_DIAB), 100, replace = FALSE)
+  gather(random_diab_status)
+```
+
+
+---
+
 **Theorem**: For a convex function defined on a convex set, any local minimum is also a global minimum.
 
 _Proof_: Let $f:C \rightarrow \mathbb{R}$, be a convex function, on a convex set $C$. Suppose that $x$ is a local minimum of $f$ but not a global one. This means $\exists y \in C$ such that $f(y) < f(x)$. By definition of convexity for any $\alpha \in [0,1]$, we have,
