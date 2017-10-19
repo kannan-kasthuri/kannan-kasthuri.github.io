@@ -462,6 +462,49 @@ where `DIAB_count` was determined to be `r DIAB_count`.
 
 We can then run the gradient descent. Here we fix the initial parameters: starting value $\gamma_{0} = 0.95$, $\theta=0.0001$ and the threshold $τ=0.000001$.
 
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Initial conditions/parameters
+  gamma = 0.95
+  theta = 0.0001
+  tau = 0.000001
+  
+  # Compute the gradient
+  DB.gradient = function(gamma) {
+    return(((200-DIAB_count)/(1-gamma)) - (DIAB_count/gamma))
+  }
+  
+  # Compute the cost
+  prior.cost = DB.cost(gamma)
+
+  # plot.gammas or plot.costs are for graphing purposes
+  plot.gammas = gamma
+  plot.costs = prior.cost
+  
+  running = TRUE
+  while(running) {
+    # Compute gradient
+    grad = DB.gradient(gamma)
+    # Compute the next gamma
+    gamma = gamma - theta * grad
+    # Compute the new costs
+    new.cost = DB.cost(gamma)
+    # For plotting purposes
+    plot.gammas = c(plot.gammas, gamma)
+    plot.costs = c(plot.costs, new.cost)
+    # See if the sequence converges upto a a certain precision
+    if(abs(new.cost - prior.cost) < tau) {
+      # If so stop the iteration
+      running = FALSE
+   } else {
+      # Else update the cost function to new cost
+      prior.cost = new.cost
+    }
+  }
+  # This is our solution
+  writeLines(paste("Gradient descent value:",gamma,sep=' '))
+```
+
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
   # Initial conditions/parameters
@@ -483,22 +526,148 @@ We can then run the gradient descent. Here we fix the initial parameters: starti
   
   running = TRUE
   while(running) {
+    # Compute gradient
     grad = DB.gradient(gamma)
+    # Compute the next gamma
     gamma = gamma - theta * grad
+    # Compute the new costs
     new.cost = DB.cost(gamma)
+    # For plotting purposes
     plot.gammas = c(plot.gammas, gamma)
     plot.costs = c(plot.costs, new.cost)
+    # See if the sequence converges upto a a certain precision
     if(abs(new.cost - prior.cost) < tau) {
+      # If so stop the iteration
       running = FALSE
    } else {
+      # Else update the cost function to new cost
       prior.cost = new.cost
     }
   }
   # This is our solution
-  writeLines(paste("Gradient descent value:",gamma,sep=' '))
+  writeLines(paste("Gradient descent value:", gamma, sep=' '))
 ```
 
+We can now see the convergence:
 
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Make a vector of gammas
+  all.gammas = seq(.01,.99,by=.01)
+  # Find the costs for all gammas
+  all.costs = sapply(all.gammas,DB.cost)
+  # Make a data frame from the gammas and the costs computed above
+  plot.df = data.frame(gammas=plot.gammas,cost=plot.costs)
+  # Plot the cost function and add only the converging points
+  qplot(x=all.gammas, y=all.costs, geom='line', xlab=expression(gamma), ylab="Cost") +
+    geom_point(data=plot.df, aes(x=gammas,y=cost),color='blue')
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Make a vector of gammas
+  all.gammas = seq(.01,.99,by=.01)
+  # Find the costs for all gammas
+  all.costs = sapply(all.gammas,DB.cost)
+  # Make a data frame from the gammas and the costs computed above
+  plot.df = data.frame(gammas=plot.gammas,cost=plot.costs)
+  # Plot the cost function and add only the converging points
+  qplot(x=all.gammas, y=all.costs, geom='line', xlab=expression(gamma), ylab="Cost") +
+    geom_point(data=plot.df, aes(x=gammas,y=cost),color='blue')
+```
+
+Several times we might not have an analytical form for the derivative. Or we out of luck then? We can still apply numerical approximation for the derivative:
+
+$$
+\nabla C(\theta) \approx \frac{C(\theta + \epsilon) - C(\theta - \epsilon)}{2\epsilon}
+$$
+Here is the code with the numerical approximation for the derivative:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+   # Initial conditions/parameters
+  gamma = 0.95
+  theta = 0.0001
+  tau = 0.000001
+  
+  # Compute the gradient using approximation
+  DB.gradient = function(gamma, epsilon = .001) {
+    return((DB.cost(gamma+epsilon) - DB.cost(gamma-epsilon)) / (2*epsilon))
+  }
+  
+  # Compute the cost
+  prior.cost = DB.cost(gamma)
+
+  # plot.gammas or plot.costs are for graphing purposes
+  plot.gammas = gamma
+  plot.costs = prior.cost
+  
+  running = TRUE
+  while(running) {
+    # Compute gradient
+    grad = DB.gradient(gamma)
+    # Compute the next gamma
+    gamma = gamma - theta * grad
+    # Compute the new costs
+    new.cost = DB.cost(gamma)
+    # For plotting purposes
+    plot.gammas = c(plot.gammas, gamma)
+    plot.costs = c(plot.costs, new.cost)
+    # See if the sequence converges upto a a certain precision
+    if(abs(new.cost - prior.cost) < tau) {
+      # If so stop the iteration
+      running = FALSE
+   } else {
+      # Else update the cost function to new cost
+      prior.cost = new.cost
+    }
+  }
+  # This is our solution
+  writeLines(paste("Gradient descent value:", gamma, sep=' '))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Initial conditions/parameters
+  gamma = 0.95
+  theta = 0.0001
+  tau = 0.000001
+  
+  # Compute the gradient using approximation
+  DB.gradient = function(gamma, epsilon = .001) {
+    return((DB.cost(gamma+epsilon) - DB.cost(gamma-epsilon)) / (2*epsilon))
+  }
+  
+  # Compute the cost
+  prior.cost = DB.cost(gamma)
+
+  # plot.gammas or plot.costs are for graphing purposes
+  plot.gammas = gamma
+  plot.costs = prior.cost
+  
+  running = TRUE
+  while(running) {
+    # Compute gradient
+    grad = DB.gradient(gamma)
+    # Compute the next gamma
+    gamma = gamma - theta * grad
+    # Compute the new costs
+    new.cost = DB.cost(gamma)
+    # For plotting purposes
+    plot.gammas = c(plot.gammas, gamma)
+    plot.costs = c(plot.costs, new.cost)
+    # See if the sequence converges upto a a certain precision
+    if(abs(new.cost - prior.cost) < tau) {
+      # If so stop the iteration
+      running = FALSE
+   } else {
+      # Else update the cost function to new cost
+      prior.cost = new.cost
+    }
+  }
+  # This is our solution
+  writeLines(paste("Gradient descent value:", gamma, sep=' '))
+```
+
+We see the answer is almost the same! Wonderful.
 
 ---
 
