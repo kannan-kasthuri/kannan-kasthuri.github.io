@@ -79,6 +79,8 @@ Let us work with the HANES data set.
   str(HANES)
   # Load the tidyverse library
   library(tidyverse)
+  # Set the seed for reproducibility
+  set.seed(23960671)
 ```
 
 
@@ -106,6 +108,8 @@ Let us work with the HANES data set.
   str(HANES)
   # Load the tidyverse library
   library(tidyverse)
+  # Set the seed for reproducibility
+  set.seed(23960671)
 ```
 
 Suppose we draw two hundred people randomly and identify their gender:
@@ -114,12 +118,16 @@ Suppose we draw two hundred people randomly and identify their gender:
   # Randomly sample 200 people and identify their gender
   random_gender <- sample(HANES$GENDER, 200, replace = FALSE)
   random_gender
+  no_of_females <- sum(sapply(gregexpr("F", random_gender, fixed = TRUE), function(x) sum(x > -1)))
+  no_of_females
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
   # Randomly sample 200 people and identify their gender
   random_gender <- sample(HANES$GENDER, 200, replace = FALSE)
   random_gender
+  no_of_females <- sum(sapply(gregexpr("F", random_gender, fixed = TRUE), function(x) sum(x > -1)))
+  no_of_females
 ```
 
 The first thing we can do is assume that we know the proportion of males and females in the population, and ask ourselves how likely it would have been to draw this sequence if we were right about the proportion. We will call the proportion of females $\gamma$ in this case.
@@ -127,7 +135,7 @@ The first thing we can do is assume that we know the proportion of males and fem
 Since there are only two categories, male and the female and each person in sampled independently the distribution being identical, we can calculate the probability of getting that sequence as the product of the probabilities of sampling each individual:
 
 $$
-L(\gamma \mid X) = \prod_{i=1}^{20}
+L(\gamma \mid X) = \prod_{i=1}^{200}
 \begin{cases}
     \gamma,      & \text{if } x_{i} = F \\
     1-\gamma,    & \text{if } x_{i} = M
@@ -224,15 +232,19 @@ The same idea can be used to estimate the proportion of people with diabetes, in
   HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
   # Randomly sample 200 people and identify their diabetes status
   HANES_DIAB_sampled_200 <- sample_n(HANES_DIAB,200) 
+  # Count the number of people with diabetes and without diabetes
+  find_count <- HANES_DIAB_sampled_200 %>% group_by(DX_DBTS) %>% count()
+  # Find the number of people with diabetes
+  DIAB_count <- find_count$n[1]
   # Make a function that returns likelihoods based on the above sequence
   # and the gamma parameter
   likelihoodDB = function(gamma, data = HANES_DIAB_sampled_200) {
-  # Calculate the probabilities
-  probabilities = ifelse(HANES_DIAB_sampled_200 == "DIAB", gamma, 1-gamma)
-  # Calculate the product of probabilities, aka, likelihoods
-  likelihood = prod(probabilities)
-  # Return the likelihood
-  return(likelihood)
+    # Calculate the probabilities
+    probabilities = ifelse(HANES_DIAB_sampled_200 == "DIAB", gamma, 1-gamma)
+    # Calculate the product of probabilities, aka, likelihoods
+    likelihood = prod(probabilities)
+    # Return the likelihood
+    return(likelihood)
   }
   # Make a vector of gammas
   gammas = seq(0.01, 0.99, by=0.01)
@@ -247,15 +259,19 @@ The same idea can be used to estimate the proportion of people with diabetes, in
   HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
   # Randomly sample 200 people and identify their diabetes status
   HANES_DIAB_sampled_200 <- sample_n(HANES_DIAB,200) 
+  # Count the number of people with diabetes and without diabetes
+  find_count <- HANES_DIAB_sampled_200 %>% group_by(DX_DBTS) %>% count()
+  # Find the number of people with diabetes
+  DIAB_count <- find_count$n[1]
   # Make a function that returns likelihoods based on the above sequence
   # and the gamma parameter
   likelihoodDB = function(gamma, data = HANES_DIAB_sampled_200) {
-  # Calculate the probabilities
-  probabilities = ifelse(HANES_DIAB_sampled_200 == "DIAB", gamma, 1-gamma)
-  # Calculate the product of probabilities, aka, likelihoods
-  likelihood = prod(probabilities)
-  # Return the likelihood
-  return(likelihood)
+    # Calculate the probabilities
+    probabilities = ifelse(HANES_DIAB_sampled_200 == "DIAB", gamma, 1-gamma)
+    # Calculate the product of probabilities, aka, likelihoods
+    likelihood = prod(probabilities)
+    # Return the likelihood
+    return(likelihood)
   }
   # Make a vector of gammas
   gammas = seq(0.01, 0.99, by=0.01)
@@ -417,6 +433,72 @@ This can be implemented for the diabetes example as follows:
 ```
 
 We see the result is extremely accurate although the precision of this value is limited by how fine our grid is. Why is this approach bad? Although this is a good method for one parameter and low precision requirements, the computational complexity is enormous when we have multi-parameters. Here we had $1000$ values for a precision upto two degrees. If we had one more parameter, we need to construct $1000 \times 1000$ grid and for 3 parameters, the grid becomes intractable, a whopping $1000 \times 1000 \times 1000$ computations, that too for a small precision.
+
+We can certainly do smarter by making use of the information from the function and this is done by _gradient descent_ algorithm.
+
+---
+
+#### Gradient descent
+
+Gradient descent is a method where we slide along the function in the direction that decreases the cost function, and keep repeating until there is only the tiniest decrease in cost with each step. Mathematically, it is described by:
+
+$$
+\gamma_{t+1} = \gamma_t - \theta \text{ } \nabla C(\gamma_t, X)
+$$
+
+where $\gamma_{0}$ is the initial value of the parameter and $\theta$ is a step size parameter that determines how fast (or slow) we descend. It is also called the _learning rate_. We should also have a threshold $\tau$ that represents how precise we want the cost function to be estimated. In single variable calculus, $\nabla C$ is given by the derivative,
+
+$$
+\nabla C = \frac{dC}{d\theta}
+$$
+
+and hence in our case of diabetic population, it is extremely easy to compute this analytically - we can apply the rules of calculus to calculate the derivative:
+
+$$
+\nabla C(\gamma, X) = \frac{200-\text{DIAB_count}}{1-\gamma} - \frac{\text{DIAB_count}}{\gamma}
+$$
+
+where `DIAB_count` was determined to be `r DIAB_count`. 
+
+We can then run the gradient descent. Here we fix the initial parameters: starting value $\gamma_{0} = 0.95$, $\theta=0.0001$ and the threshold $τ=0.000001$.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Initial conditions/parameters
+  gamma = 0.95
+  theta = 0.0001
+  tau = 0.000001
+  
+  # Compute the gradient
+  DB.gradient = function(gamma) {
+    return(((200-DIAB_count)/(1-gamma)) - (DIAB_count/gamma))
+  }
+  
+  # Compute the cost
+  prior.cost = DB.cost(gamma)
+
+  # plot.gammas or plot.costs are for graphing purposes
+  plot.gammas = gamma
+  plot.costs = prior.cost
+  
+  running = TRUE
+  while(running) {
+    grad = DB.gradient(gamma)
+    gamma = gamma - theta * grad
+    new.cost = DB.cost(gamma)
+    plot.gammas = c(plot.gammas, gamma)
+    plot.costs = c(plot.costs, new.cost)
+    if(abs(new.cost - prior.cost) < tau) {
+      running = FALSE
+   } else {
+      prior.cost = new.cost
+    }
+  }
+  # This is our solution
+  writeLines(paste("Gradient descent value:",gamma,sep=' '))
+```
+
+
 
 ---
 
