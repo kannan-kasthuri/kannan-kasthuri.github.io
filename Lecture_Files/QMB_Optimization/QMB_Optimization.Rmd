@@ -404,7 +404,7 @@ This is the simplest of the optimization technique. In this approach we break th
 
 ---
 
-![](grid_search.png)
+![](grid-search-01.png)
 
 ---
 
@@ -668,6 +668,209 @@ Here is the code with the numerical approximation for the derivative:
 ```
 
 We see the answer is almost the same! Wonderful.
+
+---
+
+#### Multi-variable optimization
+
+So far we saw single variable optimization. But in general this is not adequate and we may need to optimize on several variables. Let us consider an example. 
+
+Glucose test and hemoglobin test (A1C) are two common tests to identify diabetes in a population. If a person has (fasting) glucose levels greater than or equal to 126 mg/dL or A1C levels greater than or equal to 6.5% then they are diagnosed diabetic. Suppose we want to estimate the probability of someone being diabetic given these two variables. We can work backwards from our observation to determine this probability. 
+
+We define $P(Diab \mid A1C \geq 6.5 \%) = \theta_{A1C}$ and $P(Diab \mid GLUCOSE \geq 126 \ mg/dL) = \theta_{GLU}$. From the laws of probability we have:
+
+$$
+  P(Diab) = \begin{cases}
+  0 & if \ A1C < 6.5\% \ \&  \ GLUCOSE < 126 \ mg/dL \\
+  \theta_{A1C} & if\ A1C \geq 6.5\%  \ \& \ GLUCOSE < 126 \ mg/dL \\
+  \theta_{GLU} & if \ A1C < 6.5\% \ \&  \ GLUCOSE \geq 126 \ mg/dL \\
+  \theta_{A1C}+\theta_{GLU}-\theta_{A1C}*\theta_{GLU} & if \ A1C \geq 6.5\% \ \&  \ GLUCOSE \geq 126 \ mg/dL \end{cases}
+$$
+
+Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ that can dermine the probability of someone being diabetic. We have to figure these out from the observations. This can be done as follows:
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  set.seed(11662016)
+  n.obs = 200
+  attendance.obs = data.frame(Working = rbinom(n.obs,1,.6) == 1,
+                         Hungover = rbinom(n.obs,1,.4) == 1)
+  
+  # Make logicals based on diagnostic levels of A1C, GLUCOSE and diabetes status
+  DB.obs <- select(HANES,A1C, GLUCOSE, DX_DBTS) %>% 
+            mutate(A1C_L = as.logical(ifelse(A1C >= 6.5,1,0)), 
+                   GLUCOSE_L= as.logical(ifelse(GLUCOSE >= 126,1,0)),
+                   DX_DBTS_L = as.logical(ifelse(DX_DBTS == "DIAB",1,0))) %>%
+            select(A1C_L,GLUCOSE_L,DX_DBTS_L)
+
+# Here there are two hidden variables: miss.given.working and miss.given.hungover
+# These will be revealed later, but just trust that they exist for now
+
+  missing.work.prob = ifelse(attendance.obs$Working,0.24, 0)
+  missing.hung.prob = ifelse(attendance.obs$Hungover, 0.42, 0)
+  attendance.obs$Missing = rbinom(n.obs,1,missing.work.prob) | rbinom(n.obs,1,missing.hung.prob)
+
+  print(head(attendance.obs))
+  print(head(DB.obs))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+print(with(attendance.obs,table(Working,Hungover,Missing)))
+print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
+
+```
+
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  attendance.cost = function(params, data=attendance.obs) {
+  
+  theta.work = params[1]
+  theta.hung = params[2]
+  
+  predicted.miss.from.work = ifelse(data$Working, theta.work, 0)
+  predicted.miss.from.hung = ifelse(data$Hungover, theta.hung, 0)
+  predicted.miss = predicted.miss.from.work + predicted.miss.from.hung - 
+    (predicted.miss.from.work * predicted.miss.from.hung)
+  
+  likelihood = ifelse(data$Missing, predicted.miss, 1 - predicted.miss)
+  cost = -sum(log(likelihood))
+  # cost = sum(likelihood)
+  # return(cost)
+  return(predicted.miss.from.hung[1])
+  }
+
+  DB.MG.cost = function(params, data=DB.obs) {
+    
+    theta.A1C = params[1]
+    theta.GLU = params[2]
+    
+    predicted.diab.A1C = ifelse(data$A1C_L, theta.A1C, 0)
+    predicted.diab.GLU = ifelse(data$GLUCOSE_L, theta.GLU, 0)
+    predicted.diab = predicted.diab.A1C + predicted.diab.GLU - (predicted.diab.A1C * predicted.diab.GLU)
+    
+    likelihood = ifelse(data$DX_DBTS_L, predicted.diab, 1 - predicted.diab)
+    cost.DB = sum(likelihood) #-sum(log(likelihood)) 
+    # return(cost.DB)
+    return(predicted.diab.GLU[1])
+  }
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+attendance.grid = data.frame(work = rep(seq(.01,.99,by=.01),times=99),
+                             hung = rep(seq(.01,.99,by=.01),each=99))
+attendance.grid$cost = mapply(function(w,h){attendance.cost(c(w,h))}, 
+                               attendance.grid$work, attendance.grid$hung)
+attendance.grid$cost
+
+attendance.plot = ggplot(attendance.grid, aes(x=work, y=hung)) + 
+  geom_raster(aes(fill=cost)) + scale_fill_gradient(low='red', high='yellow', trans = 'log') +
+  stat_contour(aes(z=cost),binwidth=10, color = 'black', linetype = 'dashed') +
+  xlab('P(Missing | Working)') + ylab('P(Missing | Hungover)')
+# print(attendance.plot)
+
+DB.grid = data.frame(A1C = rep(seq(.01,.99,by=.01),times=99),
+                     GLU = rep(seq(.01,.99,by=.01),each=99))
+
+# DB.grid$cost = mapply(function(w,h){DB.MG.cost(c(w,h))}, 
+#                               DB.grid$A1C, DB.grid$GLU)
+
+# DB.grid$cost
+
+test <- mapply(function(w,h){DB.MG.cost(c(w,h))}, 
+                               DB.grid$A1C, DB.grid$GLU)
+test
+
+# DB.plot = ggplot(DB.grid, aes(x=A1C, y=GLU)) + 
+#   geom_raster(aes(fill=cost)) + scale_fill_gradient(low='red', high='yellow', trans = 'log') +
+#   stat_contour(aes(z=cost),binwidth=10, color = 'black', linetype = 'dashed') +
+#   xlab('P(Missing | Working)') + ylab('P(Missing | Hungover)')
+# print(DB.plot)
+
+
+
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+attendance.gradient = function(params, data=attendance.obs, epsilon = .001) {
+  work.plus = attendance.cost(params + c(epsilon,0), attendance.obs)
+  work.minus = attendance.cost(params + c(-epsilon,0), attendance.obs)
+  df.dwork = (work.plus - work.minus) / (2*epsilon)
+  
+  hung.plus = attendance.cost(params + c(0,epsilon), attendance.obs)
+  hung.minus = attendance.cost(params + c(0, -epsilon), attendance.obs)
+  df.dhung = (hung.plus - hung.minus) / (2*epsilon)
+  
+  return(c(df.dwork, df.dhung))
+}
+
+```
+
+
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+make.gradient.arrow = function(params) {
+  grad = attendance.gradient(params)
+  end.x = params[1] - grad[1]*.001
+  end.y = params[2] - grad[2]*.001
+  return(geom_segment(x=params[1],y=params[2],xend=end.x,yend=end.y, arrow = arrow(length=unit(.02, 'npc')),color='blue'))
+}
+
+attendance.grad.plot = attendance.plot +
+        make.gradient.arrow(c(.2,.2)) + make.gradient.arrow(c(.8,.8)) + 
+        make.gradient.arrow(c(.2,.8)) + make.gradient.arrow(c(.8,.2))
+
+print(attendance.grad.plot)
+```
+
+
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+theta = c(.9, .9)
+gamma = .0001
+tau = .01
+
+prior.cost = attendance.cost(theta)
+running = TRUE
+
+# For showing the descent
+plt.xs = theta[1]
+plt.ys = theta[2]
+
+while(running) {
+  grad = attendance.gradient(theta)
+  theta = theta - gamma * grad
+  plt.xs = c(plt.xs, theta[1])
+  plt.ys = c(plt.ys, theta[2])
+  new.cost = attendance.cost(theta)
+  if(abs(new.cost - prior.cost) < tau) {
+    running = FALSE
+  } else {
+    prior.cost = new.cost
+  }
+}
+
+# Code to plot the descent path
+grad.plot = attendance.plot
+for (i in 2:length(plt.xs)) {
+  grad.plot = grad.plot + geom_segment(x = plt.xs[i-1], xend = plt.xs[i],
+                                       y = plt.ys[i-1], yend = plt.ys[i],
+                                       color = 'blue')
+}
+grad.plot = grad.plot + annotate('text', x = plt.xs[1], y = plt.ys[1], color = 'blue', label = 'O') +
+  annotate('text', x = theta[1], y = theta[2], color = 'blue', label = 'X')
+
+print(grad.plot)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+writeLines(paste("Theta_Work: ",theta[1],"\nTheta_Hungover: ",theta[2],sep=''))
+```
+
 
 ---
 
