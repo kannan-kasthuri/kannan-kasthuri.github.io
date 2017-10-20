@@ -710,6 +710,7 @@ Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ tha
   missing.hung.prob = ifelse(attendance.obs$Hungover, 0.42, 0)
   attendance.obs$Missing = rbinom(n.obs,1,missing.work.prob) | rbinom(n.obs,1,missing.hung.prob)
 
+  attendance.obs
   print(head(attendance.obs))
   print(head(DB.obs))
 ```
@@ -738,7 +739,7 @@ print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
   cost = -sum(log(likelihood))
   # cost = sum(likelihood)
   # return(cost)
-  return(predicted.miss.from.hung[1])
+  return(predicted.miss.from.hung[2])
   }
 
   DB.MG.cost = function(params, data=DB.obs) {
@@ -753,7 +754,7 @@ print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
     likelihood = ifelse(data$DX_DBTS_L, predicted.diab, 1 - predicted.diab)
     cost.DB = sum(likelihood) #-sum(log(likelihood)) 
     # return(cost.DB)
-    return(predicted.diab.GLU[1])
+    return(predicted.diab.GLU[2])
   }
 ```
 
