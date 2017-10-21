@@ -691,77 +691,25 @@ Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ tha
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
-  set.seed(11662016)
-  n.obs = 48
-  attendance.obs = data.frame(Working = rbinom(n.obs,1,.6) == 1,
-                         Hungover = rbinom(n.obs,1,.4) == 1)
-  # DB.n.obs = 200
   # Make logicals based on diagnostic levels of A1C, GLUCOSE and diabetes status
   DB.obs <- select(HANES,A1C, GLUCOSE, DX_DBTS) %>%
             mutate(A1C_L = as.logical(ifelse(A1C >= 6.5,1,0)),
                    GLUCOSE_L= as.logical(ifelse(GLUCOSE >= 126,1,0)),
                    DX_DBTS_L = as.logical(ifelse(DX_DBTS == "DIAB",1,0))) %>%
             select(A1C_L,GLUCOSE_L,DX_DBTS_L)
-  # DB.obs <-  data.frame(A1C_var = rbinom(DB.n.obs,1,.6) == 1,
-  #                            GLUCOSE_var = rbinom(DB.n.obs,1,.4) == 1)
-  # DB.obs$A1C_L <- DB.dataframe$A1C_var
-  # DB.obs$GLUCOSE_L <- DB.dataframe$GLUCOSE_var
-  
 
-# Here there are two hidden variables: miss.given.working and miss.given.hungover
-# These will be revealed later, but just trust that they exist for now
-
-  missing.work.prob = ifelse(attendance.obs$Working,0.24, 0)
-  missing.hung.prob = ifelse(attendance.obs$Hungover, 0.42, 0)
-  attendance.obs$Missing = rbinom(n.obs,1,missing.work.prob) | rbinom(n.obs,1,missing.hung.prob)
-  
-  tmp = select(HANES, A1C, GLUCOSE, DX_DBTS) %>% filter(A1C >= 7 & GLUCOSE >= 140) %>% mutate(DX_DBTS_L = as.logical(ifelse(DX_DBTS == "DIAB",1,0))) %>% select(DX_DBTS_L)
-  
-  attendance.obs$Missing <- unlist(tmp)
-  
-  attendance.obs
-
-  # DB.obs$DX_DBTS_L <- rbinom(DB.n.obs,1,missing.work.prob) | rbinom(DB.n.obs,1,missing.hung.prob)
-  
-  # print(head(attendance.obs))
-  # print(head(DB.obs))
+ print(head(DB.obs))
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
-print(with(attendance.obs,table(Working,Hungover,Missing)))
-print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
+  print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
 
 ```
 
 We then define our likelihood function. This function takes the parameters in a single argument and returns the cost vector as negative log likelyhood function.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-
-  attendance.cost = function(params, data=attendance.obs) {
-  
-  theta.work = params[1]
-  theta.hung = params[2]
-  
-  predicted.miss.from.work = ifelse(data$Working, theta.work, 0)
-  # print(predicted.miss.from.work)
-  predicted.miss.from.hung = ifelse(data$Hungover, theta.hung, 0)
-  predicted.miss = predicted.miss.from.work + predicted.miss.from.hung - 
-    (predicted.miss.from.work * predicted.miss.from.hung) + 0.00001
-  
-
-  # cat(predicted.miss, "\n")
-  
-  
-  likelihood = ifelse(data$Missing, predicted.miss, 1-predicted.miss)
-  # cat(likelihood-predicted.miss, "\n")
-
-    # print(predicted.miss)
-  cost = -sum(log(likelihood))
-  # cost = sum(likelihood)
-  return(cost)
-  # return(predicted.miss[2])
-  }
 
   DB.MG.cost = function(params, data=DB.obs) {
     
@@ -782,52 +730,20 @@ We then define our likelihood function. This function takes the parameters in a 
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
-attendance.grid = data.frame(work = rep(seq(.01,.99,by=.01),times=99),
-                             hung = rep(seq(.01,.99,by=.01),each=99))
-attendance.grid$cost = mapply(function(w,h){attendance.cost(c(w,h))}, 
-                               attendance.grid$work, attendance.grid$hung)
-attendance.grid$cost
-
-attendance.plot = ggplot(attendance.grid, aes(x=work, y=hung)) + 
-  geom_raster(aes(fill=cost)) + scale_fill_gradient(low='red', high='yellow', trans = 'log') +
-  stat_contour(aes(z=cost),binwidth=10, color = 'black', linetype = 'dashed') +
-  xlab('P(Missing | Working)') + ylab('P(Missing | Hungover)')
-print(attendance.plot)
-
 DB.grid = data.frame(A1C = rep(seq(.01,.99,by=.01),times=99),
                      GLU = rep(seq(.01,.99,by=.01),each=99))
 
 DB.grid$cost.DB = mapply(function(w,h){DB.MG.cost(c(w,h))}, 
                                DB.grid$A1C, DB.grid$GLU)
 
-# DB.grid$cost
-
-# test <- mapply(function(w,h){DB.MG.cost(c(w,h))}, 
-#                               DB.grid$A1C, DB.grid$GLU)
-# test
-
 DB.plot = ggplot(DB.grid, aes(x=A1C, y=GLU)) +
   geom_raster(aes(fill=cost.DB)) + scale_fill_gradient(low='red', high='yellow', trans = 'log') +
   stat_contour(aes(z=cost.DB),binwidth=10, color = 'black', linetype = 'dashed') +
   xlab('P(Missing | Working)') + ylab('P(Missing | Hungover)')
 print(DB.plot)
-
-
-
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-attendance.gradient = function(params, data=attendance.obs, epsilon = .001) {
-  work.plus = attendance.cost(params + c(epsilon,0), attendance.obs)
-  work.minus = attendance.cost(params + c(-epsilon,0), attendance.obs)
-  df.dwork = (work.plus - work.minus) / (2*epsilon)
-  
-  hung.plus = attendance.cost(params + c(0,epsilon), attendance.obs)
-  hung.minus = attendance.cost(params + c(0, -epsilon), attendance.obs)
-  df.dhung = (hung.plus - hung.minus) / (2*epsilon)
-  
-  return(c(df.dwork, df.dhung))
-}
 
   DB.gradient = function(params, data=DB.obs, epsilon = .001) {
     A1C.plus  = DB.MG.cost(params + c(epsilon,0), DB.obs)
@@ -840,123 +756,96 @@ attendance.gradient = function(params, data=attendance.obs, epsilon = .001) {
   
     return(c(df.dA1C, df.dGLU))
   }
-
-
 ```
 
 
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
-make.gradient.arrow = function(params) {
-  grad = attendance.gradient(params)
-  end.x = params[1] - grad[1]*.001
-  end.y = params[2] - grad[2]*.001
-  return(geom_segment(x=params[1],y=params[2],xend=end.x,yend=end.y, arrow = arrow(length=unit(.02, 'npc')),color='blue'))
-}
+  make.gradient.arrow = function(params) {
+    grad = DB.gradient(params)
+    end.x = params[1] - grad[1]*.001
+    end.y = params[2] - grad[2]*.001
+    return(geom_segment(x=params[1],y=params[2],xend=end.x,yend=end.y, arrow = arrow(length=unit(.02, 'npc')),color='blue'))
+  }
 
-attendance.grad.plot = attendance.plot +
+  DB.grad.plot = DB.plot +
         make.gradient.arrow(c(.2,.2)) + make.gradient.arrow(c(.8,.8)) + 
         make.gradient.arrow(c(.2,.8)) + make.gradient.arrow(c(.8,.2))
 
-print(attendance.grad.plot)
-
-make.gradient.arrow = function(params) {
-  grad = DB.gradient(params)
-  end.x = params[1] - grad[1]*.001
-  end.y = params[2] - grad[2]*.001
-  return(geom_segment(x=params[1],y=params[2],xend=end.x,yend=end.y, arrow = arrow(length=unit(.02, 'npc')),color='blue'))
-}
-
-DB.grad.plot = DB.plot +
-        make.gradient.arrow(c(.2,.2)) + make.gradient.arrow(c(.8,.8)) + 
-        make.gradient.arrow(c(.2,.8)) + make.gradient.arrow(c(.8,.2))
-
-print(DB.grad.plot)
+  print(DB.grad.plot)
 ```
 
 
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
-theta = c(.9, .9)
-gamma = .0001
-tau = .01
+  theta = c(.9, .9)
+  gamma = .0001
+  tau = .01
 
-prior.cost = attendance.cost(theta)
-running = TRUE
+  prior.cost = DB.MG.cost(theta)
+  running = TRUE
 
-# For showing the descent
-plt.xs = theta[1]
-plt.ys = theta[2]
+  # For showing the descent
+  plt.xs = theta[1]
+  plt.ys = theta[2]
 
-while(running) {
-  grad = attendance.gradient(theta)
-  theta = theta - gamma * grad
-  plt.xs = c(plt.xs, theta[1])
-  plt.ys = c(plt.ys, theta[2])
-  new.cost = attendance.cost(theta)
-  if(abs(new.cost - prior.cost) < tau) {
-    running = FALSE
-  } else {
-    prior.cost = new.cost
+  while(running) {
+    grad = DB.gradient(theta)
+    theta = theta - gamma * grad
+    plt.xs = c(plt.xs, theta[1])
+    plt.ys = c(plt.ys, theta[2])
+    new.cost = DB.MG.cost(theta)
+    
+    if(abs(new.cost - prior.cost) < tau) {
+      running = FALSE
+    } else {
+      prior.cost = new.cost
+    }
   }
-}
 
 # Code to plot the descent path
-grad.plot = attendance.plot
-for (i in 2:length(plt.xs)) {
-  grad.plot = grad.plot + geom_segment(x = plt.xs[i-1], xend = plt.xs[i],
+  grad.plot = DB.plot
+  for (i in 2:length(plt.xs)) {
+    grad.plot = grad.plot + geom_segment(x = plt.xs[i-1], xend = plt.xs[i],
                                        y = plt.ys[i-1], yend = plt.ys[i],
                                        color = 'blue')
-}
-grad.plot = grad.plot + annotate('text', x = plt.xs[1], y = plt.ys[1], color = 'blue', label = 'O') +
-  annotate('text', x = theta[1], y = theta[2], color = 'blue', label = 'X')
-
-print(grad.plot)
-
-theta = c(.9, .9)
-gamma = .0001
-tau = .01
-
-prior.cost = DB.MG.cost(theta)
-running = TRUE
-
-# For showing the descent
-plt.xs = theta[1]
-plt.ys = theta[2]
-
-while(running) {
-  grad = DB.gradient(theta)
-  theta = theta - gamma * grad
-  plt.xs = c(plt.xs, theta[1])
-  plt.ys = c(plt.ys, theta[2])
-  new.cost = DB.MG.cost(theta)
-  if(abs(new.cost - prior.cost) < tau) {
-    running = FALSE
-  } else {
-    prior.cost = new.cost
   }
-}
-
-# Code to plot the descent path
-grad.plot = DB.plot
-for (i in 2:length(plt.xs)) {
-  grad.plot = grad.plot + geom_segment(x = plt.xs[i-1], xend = plt.xs[i],
-                                       y = plt.ys[i-1], yend = plt.ys[i],
-                                       color = 'blue')
-}
-grad.plot = grad.plot + annotate('text', x = plt.xs[1], y = plt.ys[1], color = 'blue', label = 'O') +
+  grad.plot = grad.plot + annotate('text', x = plt.xs[1], y = plt.ys[1], color = 'blue', label = 'O') +
   annotate('text', x = theta[1], y = theta[2], color = 'blue', label = 'X')
 
-print(grad.plot)
-
+  print(grad.plot)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-writeLines(paste("Theta_Work: ",theta[1],"\nTheta_Hungover: ",theta[2],sep=''))
+  writeLines(paste("Theta_Work: ",theta[1],"\nTheta_Hungover: ",theta[2],sep=''))
 ```
 
+---
+
+#### Implementation
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  o = optim(c(.95,.95), DB.MG.cost)
+  print(o)
+```
+
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  o = optim(c(.95,.95), DB.MG.cost, method = 'BFGS')
+  print(o)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  o = optim(c(.95,.95), DB.MG.cost, method = 'BFGS', gr = DB.gradient)
+  print(o)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  o = optim(c(.95,.95), DB.MG.cost, method = 'L-BFGS-B', lower = c(.00001, .00001), upper = c(.99999, .99999))
+  print(o)
+```
 
 ---
 
