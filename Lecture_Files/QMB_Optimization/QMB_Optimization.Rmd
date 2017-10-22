@@ -18,22 +18,21 @@ Optimization is a graduate level course for a semester or two, typically in engi
 
 We will see the following:
 
-1. What optimization is used for?
+1. Different optimization concepts.
 
-2. Different optimization concepts.
+2. Commonly used techniques for optimization.
 
-3. Commonly used terminologies.
-
-4. Basic pointer on how to perform optimization with programming languages such as R.
+3. Optimization with R.
 
 based on an overview of the following concepts:
 
 a. Likelihood and maximum likelihood estimates
 b. Cost functions
-c. Gradient descent and minimas
-d. Convex/Non-convex and differentiable functions
-e. Stochastic gradient descent
-f. Regularization, sparse coding and momentum methods
+c. Optimization in one variable and gradient descent 
+d. Multi-variable optimization
+e. Introduction to big data optimization
+f. Regularization
+g. Mathematics of optimization
 
 ---
 
@@ -56,6 +55,7 @@ This may seem really abstract and so we can look at concrete example.
 Let us work with the HANES data set.
 
 ```{r eval=FALSE, message=FALSE, echo = TRUE}
+
   # Load the package RCurl
   library(RCurl)
   # Import the HANES data set from GitHub; break the string into two for readability
@@ -85,6 +85,7 @@ Let us work with the HANES data set.
 
 
 ```{r eval=TRUE, message=FALSE, echo = FALSE}
+
   # Load the package RCurl
   library(RCurl)
   # Import the HANES data set from GitHub; break the string into two for readability
@@ -115,6 +116,7 @@ Let us work with the HANES data set.
 Suppose we draw two hundred people randomly and identify their gender:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Randomly sample 200 people and identify their gender
   random_gender <- sample(HANES$GENDER, 200, replace = FALSE)
   random_gender
@@ -123,6 +125,7 @@ Suppose we draw two hundred people randomly and identify their gender:
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Randomly sample 200 people and identify their gender
   random_gender <- sample(HANES$GENDER, 200, replace = FALSE)
   random_gender
@@ -144,6 +147,7 @@ $$
 Now we can use the above equation to calculate the probability of getting the specific sequence if the gender were equally distributed:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Assign probablities to the above seqence assuming men and women are equally distributed
   # in the general population
   probabilities = ifelse(random_gender == "F", 0.5, 1-0.5)
@@ -154,6 +158,7 @@ Now we can use the above equation to calculate the probability of getting the sp
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Assign probablities to the above seqence assuming men and women are equally distributed
   # in the general population
   probabilities = ifelse(random_gender == "F", 0.5, 1-0.5)
@@ -166,6 +171,7 @@ Now we can use the above equation to calculate the probability of getting the sp
 If men are over-represented in the population, say, by 80%, then:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Assign probablities to the above seqence assuming men represent 80% of
   # the general population
   probabilities = ifelse(random_gender == "F", 0.2, 1-0.2)
@@ -176,6 +182,7 @@ If men are over-represented in the population, say, by 80%, then:
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Assign probablities to the above seqence assuming men represent 80% of
   # the general population
   probabilities = ifelse(random_gender == "F", 0.2, 1-0.2)
@@ -188,6 +195,7 @@ If men are over-represented in the population, say, by 80%, then:
 Thus we can easily generalize this as a function of $\gamma$, and graph the likelihood as a function of any value of the proportion of females ranging from 0 to 1:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Make a function that returns likelihoods based on the above sequence
   # and the gamma parameter
   likelihoodMF = function(gamma, data = random_gender) {
@@ -207,6 +215,7 @@ Thus we can easily generalize this as a function of $\gamma$, and graph the like
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Make a function that returns likelihoods based on the above sequence
   # and the gamma parameter
   likelihoodMF = function(gamma, data = random_gender) {
@@ -228,6 +237,7 @@ Thus we can easily generalize this as a function of $\gamma$, and graph the like
 The same idea can be used to estimate the proportion of people with diabetes, instead of males and females:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Select only people with diabetes and no diabetes
   HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
   # Randomly sample 200 people and identify their diabetes status
@@ -255,6 +265,7 @@ The same idea can be used to estimate the proportion of people with diabetes, in
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Select only people with diabetes and no diabetes
   HANES_DIAB <- filter(HANES, DX_DBTS == "DIAB" | DX_DBTS == "NO DIAB") %>% select(DX_DBTS)
   # Randomly sample 200 people and identify their diabetes status
@@ -291,6 +302,7 @@ $$
 The following code in R evaluates maximum likelihood parameter for the male/female distribution:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Compute maximum likelihood parameter for male/female distribution
   mle.resultsMF <- optimize(function(gammas) {likelihoodMF(gammas,likelihoodMF)},
                         interval = c(0, 1), maximum = TRUE)
@@ -298,6 +310,7 @@ The following code in R evaluates maximum likelihood parameter for the male/fema
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Compute maximum likelihood parameter for male/female distribution
   mle.resultsMF <- optimize(function(gammas) {likelihoodMF(gammas,likelihoodMF)},
                         interval = c(0, 1), maximum = TRUE)
@@ -307,6 +320,7 @@ The following code in R evaluates maximum likelihood parameter for the male/fema
 Similarly the following code in R evaluates maximum likelihood parameter for the diabetes distribution:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Compute maximum likelihood parameter for the diabetes distribution
   mle.resultsDB <- optimize(function(gammas) {likelihoodDB(gammas,likelihoodDB)},
                         interval = c(0, 1), maximum = TRUE)
@@ -314,6 +328,7 @@ Similarly the following code in R evaluates maximum likelihood parameter for the
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Compute maximum likelihood parameter for the diabetes distribution
   mle.resultsDB <- optimize(function(gammas) {likelihoodDB(gammas,likelihoodDB)},
                         interval = c(0, 1), maximum = TRUE)
@@ -327,7 +342,9 @@ Determining maximum likelihood can become difficult as the complexity of the mod
 
 ---
 
-##### Cost functions
+#### Cost functions
+
+---
 
 Cost functions are functions that maps a set of events into a number that represents the _cost_ of that event occurring. Mathematically it is defined as the negative log of likelihood.
 
@@ -349,6 +366,7 @@ There are other cost functions in areas such as motion planning and traveling sa
 With this cost function as a negative log likelihood we can reformulate the cost of the given parameterization of the population and plot it. In the case of male/female observations here is the cost:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Compute the -log of the likelihood function
   MF.cost = function(gamma, data = random_gender) {
     return(-log(likelihoodMF(gamma, data)))
@@ -360,6 +378,7 @@ With this cost function as a negative log likelihood we can reformulate the cost
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Compute the -log of the likelihood function
   MF.cost = function(gamma, data = random_gender) {
     return(-log(likelihoodMF(gamma, data)))
@@ -373,7 +392,8 @@ With this cost function as a negative log likelihood we can reformulate the cost
 For the diabetes population, we have:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-   # Compute the -log of the likelihood function
+
+  # Compute the -log of the likelihood function
   DB.cost = function(gamma, data = HANES_DIAB_sampled_200) {
     return(-log(likelihoodDB(gamma, data)))
   }
@@ -384,6 +404,7 @@ For the diabetes population, we have:
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Compute the -log of the likelihood function
   DB.cost = function(gamma, data = HANES_DIAB_sampled_200) {
     return(-log(likelihoodDB(gamma, data)))
@@ -398,9 +419,11 @@ We note that the maximum of likelihood function is the minimum of the cost funct
 
 ---
 
-#### Grid search
+#### Optimization in one variable and gradient descent 
 
-This is the simplest of the optimization technique. In this approach we break the interval of $\gamma$ and evaluate the cost at every break point. We then pick the value of $\gamma$ that gives the minimum cost. It is called _grid search_ because it can be visualized by placing a grid over the cost function and evaluating that at each point of the grid:
+---
+
+_Grid search_ is the simplest of the optimization technique. In this approach we break the interval of $\gamma$ and evaluate the cost at every break point. We then pick the value of $\gamma$ that gives the minimum cost. It is called grid search because it can be visualized by placing a grid over the cost function and evaluating that at each point of the grid:
 
 ---
 
@@ -411,6 +434,7 @@ This is the simplest of the optimization technique. In this approach we break th
 This can be implemented for the diabetes example as follows:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Make a grid of potential gammas
   potential.gammas = seq(.001, .999, by=.001)
   # Calculate the cost of the DB cost function at each gamma
@@ -422,6 +446,7 @@ This can be implemented for the diabetes example as follows:
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Make a grid of potential gammas
   potential.gammas = seq(.001, .999, by=.001)
   # Calculate the cost of the DB cost function at each gamma
@@ -438,7 +463,7 @@ We can certainly do smarter by making use of the information from the function a
 
 ---
 
-#### Gradient descent
+##### Gradient descent and variations
 
 Gradient descent is a method where we slide along the function in the direction that decreases the cost function, and keep repeating until there is only the tiniest decrease in cost with each step. Mathematically, it is described by:
 
@@ -449,7 +474,7 @@ $$
 where $\gamma_{0}$ is the initial value of the parameter and $\theta$ is a step size parameter that determines how fast (or slow) we descend. It is also called the _learning rate_. We should also have a threshold $\tau$ that represents how precise we want the cost function to be estimated. In single variable calculus, $\nabla C$ is given by the derivative,
 
 $$
-\nabla C = \frac{dC}{d\theta}
+\nabla C = \frac{dC}{d\gamma}
 $$
 
 and hence in our case of diabetic population, it is extremely easy to compute this analytically - we can apply the rules of calculus to calculate the derivative:
@@ -551,6 +576,7 @@ We can then run the gradient descent. Here we fix the initial parameters: starti
 We can now see the convergence:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
   # Make a vector of gammas
   all.gammas = seq(.01,.99,by=.01)
   # Find the costs for all gammas
@@ -563,6 +589,7 @@ We can now see the convergence:
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
   # Make a vector of gammas
   all.gammas = seq(.01,.99,by=.01)
   # Find the costs for all gammas
@@ -577,7 +604,7 @@ We can now see the convergence:
 Several times we might not have an analytical form for the derivative. Or we out of luck then? We can still apply numerical approximation for the derivative:
 
 $$
-\nabla C(\theta) \approx \frac{C(\theta + \epsilon) - C(\theta - \epsilon)}{2\epsilon}
+\nabla C(\gamma, X) \approx \frac{C(\gamma + \epsilon) - C(\gamma - \epsilon)}{2\epsilon}
 $$
 Here is the code with the numerical approximation for the derivative:
 
@@ -673,6 +700,8 @@ We see the answer is almost the same! Wonderful.
 
 #### Multi-variable optimization
 
+---
+
 So far we saw single variable optimization. But in general this is not adequate and we may need to optimize on several variables. Let us consider an example. 
 
 Glucose test and hemoglobin test (A1C) are two common tests to identify diabetes in a population. If a person has (fasting) glucose levels greater than or equal to 126 mg/dL or A1C levels greater than or equal to 6.5% then they are diagnosed diabetic. Suppose we want to estimate the probability of someone being diabetic given these two variables. We can work backwards from our observation to determine this probability. 
@@ -687,7 +716,20 @@ $$
   \theta_{A1C}+\theta_{GLU}-\theta_{A1C}*\theta_{GLU} & if \ A1C \geq 6.5\% \ \&  \ GLUCOSE \geq 126 \ mg/dL \end{cases}
 $$
 
-Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ that can dermine the probability of someone being diabetic. We have to figure these out from the observations. Thus we first extract this data from the data table:
+Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ that determines the probability of someone being diabetic. We have to figure the values of these variables from the observations. To do this we will extract the observations from the data table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Make logicals based on diagnostic levels of A1C, GLUCOSE and diabetes status
+  DB.obs <- select(HANES,A1C, GLUCOSE, DX_DBTS) %>%
+            mutate(A1C_L = as.logical(ifelse(A1C >= 6.5,1,0)),
+                   GLUCOSE_L= as.logical(ifelse(GLUCOSE >= 126,1,0)),
+                   DX_DBTS_L = as.logical(ifelse(DX_DBTS == "DIAB",1,0))) %>%
+            select(A1C_L,GLUCOSE_L,DX_DBTS_L)
+
+  # Print the first few lines to see if the data looks okay
+  print(head(DB.obs))
+```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
@@ -698,70 +740,181 @@ Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ tha
                    DX_DBTS_L = as.logical(ifelse(DX_DBTS == "DIAB",1,0))) %>%
             select(A1C_L,GLUCOSE_L,DX_DBTS_L)
 
- print(head(DB.obs))
+  # Print the first few lines to see if the data looks okay
+  print(head(DB.obs))
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+We can list the data matrix corresponding to the observations 
 
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Print the data matrix corresponding to the observations
   print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
-
 ```
-
-We then define our likelihood function. This function takes the parameters in a single argument and returns the cost vector as negative log likelyhood function.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
+  # Print the data matrix corresponding to the observations
+  print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
+```
+
+We then define our likelihood function. This function takes the parameters in a single argument and returns the cost vector as negative log likelihood function.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Define the cost function
   DB.MG.cost = function(params, data=DB.obs) {
-    
+    # Receive the parameters in theta variables
     theta.A1C = params[1]
     theta.GLU = params[2]
     
+    # Define the probability model as given by the equation above
+    # We introduce a small value called reg_value (stands for 'regularization value')
+    # that takes care of arithmetic when the cost function goes to infinity as we 
+    # take logrithms
+    REG_VALUE = 0.000000001
     predicted.diab.A1C = ifelse(data$A1C_L, theta.A1C, 0)
     predicted.diab.GLU = ifelse(data$GLUCOSE_L, theta.GLU, 0)
-    predicted.diab = predicted.diab.A1C + predicted.diab.GLU - (predicted.diab.A1C * predicted.diab.GLU) + 0.000000001
-    
+    predicted.diab = predicted.diab.A1C + predicted.diab.GLU - 
+                      (predicted.diab.A1C * predicted.diab.GLU) + REG_VALUE
+    # Define the likelihood function
     likelihood = ifelse(data$DX_DBTS_L, predicted.diab, 1-predicted.diab)
-    # print(likelihood)
+    # Find the cost function as the sum of negative log likelihoods
     cost.DB = -sum(log(likelihood)) 
+    # Return the cost
     return(cost.DB)
-    # return(predicted.diab[2])
   }
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
-DB.grid = data.frame(A1C = rep(seq(.01,.99,by=.01),times=99),
-                     GLU = rep(seq(.01,.99,by=.01),each=99))
+  # Define the cost function
+  DB.MG.cost = function(params, data=DB.obs) {
+    # Receive the parameters in theta variables
+    theta.A1C = params[1]
+    theta.GLU = params[2]
+    
+    # Define the probability model as given by the equation above
+    # We introduce a small value called reg_value (stands for 'regularization value')
+    # that takes care of arithmetic when the cost function goes to infinity as we 
+    # take logrithms
+    REG_VALUE = 0.000000001
+    predicted.diab.A1C = ifelse(data$A1C_L, theta.A1C, 0)
+    predicted.diab.GLU = ifelse(data$GLUCOSE_L, theta.GLU, 0)
+    predicted.diab = predicted.diab.A1C + predicted.diab.GLU - 
+                      (predicted.diab.A1C * predicted.diab.GLU) + REG_VALUE
+    # Define the likelihood function
+    likelihood = ifelse(data$DX_DBTS_L, predicted.diab, 1-predicted.diab)
+    # Find the cost function as the sum of negative log likelihoods
+    cost.DB = -sum(log(likelihood)) 
+    # Return the cost
+    return(cost.DB)
+  }
+```
 
-DB.grid$cost.DB = mapply(function(w,h){DB.MG.cost(c(w,h))}, 
+We can now _see_ what the cost function looks like by varying the conditional probabilities. The lower the cost is, more red will be the point.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Define the grid by varing the conditional probabilities between 0.01 to 0.99 by
+  # increments of 0.01
+  DB.grid = data.frame(A1C = rep(seq(.01,.99,by=.01),times=99),
+                        GLU = rep(seq(.01,.99,by=.01),each=99))
+
+  # Find the cost by evaluating the above cost function using the grid just defined
+  DB.grid$cost.DB = mapply(function(w,h){DB.MG.cost(c(w,h))}, 
                                DB.grid$A1C, DB.grid$GLU)
-
-DB.plot = ggplot(DB.grid, aes(x=A1C, y=GLU)) +
-  geom_raster(aes(fill=cost.DB)) + scale_fill_gradient(low='red', high='yellow', trans = 'log') +
-  stat_contour(aes(z=cost.DB),binwidth=10, color = 'black', linetype = 'dashed') +
-  xlab('P(Missing | Working)') + ylab('P(Missing | Hungover)')
-print(DB.plot)
+  
+  # Create a plot the "cost grid" and fill in the values
+  DB.plot = ggplot(DB.grid, aes(x=A1C, y=GLU)) +
+            geom_raster(aes(fill=cost.DB)) + 
+            scale_fill_gradient(low='red', high='yellow', trans = 'log') +
+            stat_contour(aes(z=cost.DB),binwidth=5, color = 'black', linetype = 'dashed') +
+            xlab('P(Diabetes | A1C)') + ylab('P(Diabetes | Glucose)')
+  # Make a plot
+  print(DB.plot)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
+  # Define the grid by varing the conditional probabilities between 0.01 to 0.99 by
+  # increments of 0.01
+  DB.grid = data.frame(A1C = rep(seq(.01,.99,by=.01),times=99),
+                        GLU = rep(seq(.01,.99,by=.01),each=99))
+
+  # Find the cost by evaluating the above cost function using the grid just defined
+  DB.grid$cost.DB = mapply(function(w,h){DB.MG.cost(c(w,h))}, 
+                               DB.grid$A1C, DB.grid$GLU)
+  
+  # Create a plot the "cost grid" and fill in the values
+  DB.plot = ggplot(DB.grid, aes(x=A1C, y=GLU)) +
+            geom_raster(aes(fill=cost.DB)) + 
+            scale_fill_gradient(low='red', high='yellow', trans = 'log') +
+            stat_contour(aes(z=cost.DB),binwidth=5, color = 'black', linetype = 'dashed') +
+            xlab('P(Diabetes | A1C)') + ylab('P(Diabetes | Glucose)')
+  # Make a plot
+  print(DB.plot)
+```
+
+We see that the cost is minimized somewhere around 0.6 and 0.5. We hope our optimization techniques will give us the values of the hidden variables around this value. The optimization for multiple variables $\gamma_{0}, \gamma_{1}, \dots \gamma_{N}$, using gradient descent is just like the optimization for a single variable. Here the gradient function is given by:
+
+$$
+\nabla C(\gamma, X) = \bigg[ \frac{\partial C}{\partial \gamma_0}, \frac{\partial C}{\partial \gamma_1}, ..., \frac{\partial C}{\partial \gamma_N} \bigg]
+$$
+in particular in our case, 
+
+$$
+\nabla C(\gamma, X) = \bigg[ \frac{\partial C}{\partial \theta_{A1C}}, \frac{\partial C}{\partial \theta_{GLU}} \bigg]
+$$
+
+which can be approximated like we did for the single variable, however we have to do it for each variable here. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Find gradient through approximation
   DB.gradient = function(params, data=DB.obs, epsilon = .001) {
+
+    # Find A1C gradient by perturbing in both directions
     A1C.plus  = DB.MG.cost(params + c(epsilon,0), DB.obs)
     A1C.minus = DB.MG.cost(params + c(-epsilon,0), DB.obs)
     df.dA1C = (A1C.plus - A1C.minus) / (2*epsilon)
-  
+
+    # Find GLU gradient by perturbing in both directions
     GLU.plus  = DB.MG.cost(params + c(0,epsilon), DB.obs)
     GLU.minus = DB.MG.cost(params + c(0, -epsilon), DB.obs)
     df.dGLU = (GLU.plus - GLU.minus) / (2*epsilon)
   
+    # Return the gradient
     return(c(df.dA1C, df.dGLU))
   }
 ```
 
-
-
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
+  # Find gradient through approximation
+  DB.gradient = function(params, data=DB.obs, epsilon = .001) {
+
+    # Find A1C gradient by perturbing in both directions
+    A1C.plus  = DB.MG.cost(params + c(epsilon,0), DB.obs)
+    A1C.minus = DB.MG.cost(params + c(-epsilon,0), DB.obs)
+    df.dA1C = (A1C.plus - A1C.minus) / (2*epsilon)
+
+    # Find GLU gradient by perturbing in both directions
+    GLU.plus  = DB.MG.cost(params + c(0,epsilon), DB.obs)
+    GLU.minus = DB.MG.cost(params + c(0, -epsilon), DB.obs)
+    df.dGLU = (GLU.plus - GLU.minus) / (2*epsilon)
+  
+    # Return the gradient
+    return(c(df.dA1C, df.dGLU))
+  }
+```
+
+This helps us to see how the gradient descent works in two dimensions. The gradient points towards the direction of lowering cost function. If we are too much away from the bottom we need to take larger steps, otherwise smaller steps are sufficient for convergence.  
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  
+  # Demostrate the gradient descent in two dimensions using arrows
+  # Make an arrow using given gradient
   make.gradient.arrow = function(params) {
     grad = DB.gradient(params)
     end.x = params[1] - grad[1]*.001
@@ -769,81 +922,218 @@ print(DB.plot)
     return(geom_segment(x=params[1],y=params[2],xend=end.x,yend=end.y, arrow = arrow(length=unit(.02, 'npc')),color='blue'))
   }
 
+  # Make the arrow + cost grid plot
   DB.grad.plot = DB.plot +
         make.gradient.arrow(c(.2,.2)) + make.gradient.arrow(c(.8,.8)) + 
         make.gradient.arrow(c(.2,.8)) + make.gradient.arrow(c(.8,.2))
 
+  # Plot the result
   print(DB.grad.plot)
 ```
 
-
-
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  
+  # Demostrate the gradient descent in two dimensions using arrows
+  # Make an arrow using given gradient
+  make.gradient.arrow = function(params) {
+    grad = DB.gradient(params)
+    end.x = params[1] - grad[1]*.001
+    end.y = params[2] - grad[2]*.001
+    return(geom_segment(x=params[1],y=params[2],xend=end.x,yend=end.y, arrow = arrow(length=unit(.02, 'npc')),color='blue'))
+  }
 
+  # Make the arrow + cost grid plot
+  DB.grad.plot = DB.plot +
+        make.gradient.arrow(c(.2,.2)) + make.gradient.arrow(c(.8,.8)) + 
+        make.gradient.arrow(c(.2,.8)) + make.gradient.arrow(c(.8,.2))
+
+  # Plot the result
+  print(DB.grad.plot)
+```
+
+We are now ready to see gradient descent in action. It works exactly as in one dimensional case, except that we need to work with vectors. We need to initalize the conditional probablities $\theta_{A1C}$ and $\theta_{GLU}$. We will assume they have a great predictive power of about 90%. Lets fix the convergence threshold, $\tau$ as 0.01 and the learning parameter, now denoted by $\alpha$ as 0.0001.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Initialize the parameters
   theta = c(.9, .9)
-  gamma = .0001
+  alpha = 0.0001
   tau = .01
 
+  # Compute the prior run's cost
   prior.cost = DB.MG.cost(theta)
   running = TRUE
 
-  # For showing the descent
+  # Plots for showing the descent
   plt.xs = theta[1]
   plt.ys = theta[2]
 
   while(running) {
+    # Compute the gradient
     grad = DB.gradient(theta)
-    theta = theta - gamma * grad
+    # Update the probabilities
+    theta = theta - alpha * grad
+    # For plotting purposes
     plt.xs = c(plt.xs, theta[1])
     plt.ys = c(plt.ys, theta[2])
+    # Compute the new cost
     new.cost = DB.MG.cost(theta)
-    
+    # Check if the cost sequence converges upto the given threshold
     if(abs(new.cost - prior.cost) < tau) {
+      # If the cost gets converged, stop the iteration
       running = FALSE
     } else {
+      # Else update the cost
       prior.cost = new.cost
     }
   }
 
-# Code to plot the descent path
+  # Code to plot the descent path
   grad.plot = DB.plot
   for (i in 2:length(plt.xs)) {
     grad.plot = grad.plot + geom_segment(x = plt.xs[i-1], xend = plt.xs[i],
-                                       y = plt.ys[i-1], yend = plt.ys[i],
-                                       color = 'blue')
+                                         y = plt.ys[i-1], yend = plt.ys[i],
+                                         color = 'blue')
   }
+  # Make the plot
   grad.plot = grad.plot + annotate('text', x = plt.xs[1], y = plt.ys[1], color = 'blue', label = 'O') +
-  annotate('text', x = theta[1], y = theta[2], color = 'blue', label = 'X')
+                                    annotate('text', x = theta[1], y = theta[2], color = 'blue', label = 'X')
 
+  # Plot the results
   print(grad.plot)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  writeLines(paste("Theta_Work: ",theta[1],"\nTheta_Hungover: ",theta[2],sep=''))
+
+  # Initialize the parameters
+  theta = c(.9, .9)
+  alpha = 0.0001
+  tau = .01
+
+  # Compute the prior run's cost
+  prior.cost = DB.MG.cost(theta)
+  running = TRUE
+
+  # Plots for showing the descent
+  plt.xs = theta[1]
+  plt.ys = theta[2]
+
+  while(running) {
+    # Compute the gradient
+    grad = DB.gradient(theta)
+    # Update the probabilities
+    theta = theta - alpha * grad
+    # For plotting purposes
+    plt.xs = c(plt.xs, theta[1])
+    plt.ys = c(plt.ys, theta[2])
+    # Compute the new cost
+    new.cost = DB.MG.cost(theta)
+    # Check if the cost sequence converges upto the given threshold
+    if(abs(new.cost - prior.cost) < tau) {
+      # If the cost gets converged, stop the iteration
+      running = FALSE
+    } else {
+      # Else update the cost
+      prior.cost = new.cost
+    }
+  }
+
+  # Code to plot the descent path
+  grad.plot = DB.plot
+  for (i in 2:length(plt.xs)) {
+    grad.plot = grad.plot + geom_segment(x = plt.xs[i-1], xend = plt.xs[i],
+                                         y = plt.ys[i-1], yend = plt.ys[i],
+                                         color = 'blue')
+  }
+  # Make the plot
+  grad.plot = grad.plot + annotate('text', x = plt.xs[1], y = plt.ys[1], color = 'blue', label = 'O') +
+                                    annotate('text', x = theta[1], y = theta[2], color = 'blue', label = 'X')
+
+  # Plot the results
+  print(grad.plot)
 ```
+
+We can now see the values of the hidden variables $\theta_{A1C}$ and $\theta_{GLU}$.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Print the values of the conditional probabilites P(diab|A1C) and P(diab|GLU)
+  writeLines(paste("Theta_A1C: ",theta[1],"\nTheta_GLU: ",theta[2],sep=''))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Print the values of the conditional probabilites P(diab|A1C) and P(diab|GLU)
+  writeLines(paste("Theta_A1C: ",theta[1],"\nTheta_GLU: ",theta[2],sep=''))
+```
+
+Thus, the probability of observing someone with diabetes given A1C value is `r 100*round(theta[1],2)`% and the probablity given GLUCOSE value is `r 100*round(theta[2],2)`% and given both values the probablity is `r 100*round(theta[1]+theta[2]-(theta[1]*theta[2]),2)`%. From this analysis we can conclude it is best to use both variables, than just either A1C or GLUCOSE.
 
 ---
 
-#### Implementation
+##### Implementation
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+Several of these optimization techniques are already implemented in R. The package/function is called `optim()`. All this function needs are two inputs - the initial guess for the parameters and the cost function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Use the optim package to evaluate the parameters
   o = optim(c(.95,.95), DB.MG.cost)
   print(o)
 ```
 
-
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Use the optim package to evaluate the parameters
+  o = optim(c(.95,.95), DB.MG.cost)
+  print(o)
+```
+
+Note that the result varies but kinda compares to our results we obtained through gradient descent (62% vs 65% for A1C and 48% vs 38% for GLUCOSE). The difference (especially for the glucose variable) is most likely due to the existence of multiple minimas (we see "red" regions throughout) and the default method `option()` uses - the [Nelder-Mead method](https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method) although is computationally more efficient, can get struck in a minimum. The gradient descent too will suffer from this problem depending on the initial conditions, as we will see shortly.
+
+There are other algorithms for optimization which can be easily used with the `optim()` function. The [BFGS algorithm](https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm) is one such algorithm. To use this, we just need to specify `method='BGFS'` argument of the package.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Use the optim package with BGFS method to evaluate the parameters
   o = optim(c(.95,.95), DB.MG.cost, method = 'BFGS')
   print(o)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Use the optim package with BGFS method to evaluate the parameters
+  o = optim(c(.95,.95), DB.MG.cost, method = 'BFGS')
+  print(o)
+```
+
+Further, the `optim()` function allows us to specify the gradiant function if we know them analytically. This can be done by specifying the argument `gr`. In our case,
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Use the optim package with BGFS method to evaluate the parameters
+  # by specifying the gradient function
   o = optim(c(.95,.95), DB.MG.cost, method = 'BFGS', gr = DB.gradient)
   print(o)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  o = optim(c(.95,.95), DB.MG.cost, method = 'L-BFGS-B', lower = c(.00001, .00001), upper = c(.99999, .99999))
+  # Use the optim package with BGFS method to evaluate the parameters
+  # by specifying the gradient function
+  o = optim(c(.95,.95), DB.MG.cost, method = 'BFGS', gr = DB.gradient)
+  print(o)
+```
+
+And finally, the _L-BFSG-B_ algorithm will allow us to perform constrained optimizaion where we can specify the lower and upper bounds on the parameters. Here since they are probabilities they vary between 0 and 1. And so we can specify:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Use the optim package with L-BFGS-B method and specifying the upper and lower
+  # limits of the parameters
+  o = optim(c(.95,.95), DB.MG.cost, method = 'L-BFGS-B', 
+            lower = c(.00001, .00001), upper = c(.99999, .99999))
+  print(o)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Use the optim package with L-BFGS-B method and specifying the upper and lower
+  # limits of the parameters
+  o = optim(c(.95,.95), DB.MG.cost, method = 'L-BFGS-B', 
+            lower = c(.00001, .00001), upper = c(.99999, .99999))
   print(o)
 ```
 
