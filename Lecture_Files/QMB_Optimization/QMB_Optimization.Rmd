@@ -31,12 +31,11 @@ b. Cost functions
 c. Optimization in one variable and gradient descent 
 d. Multi-variable optimization
 e. Introduction to big data optimization
-f. Regularization
-g. Mathematics of optimization
+f. Local minima and convex functions
 
 ---
 
-#### Likelihood and maximum likelihood estimates
+#### Likelihood and Maximum Likelihood Estimates
 
 ---
 
@@ -342,7 +341,7 @@ Determining maximum likelihood can become difficult as the complexity of the mod
 
 ---
 
-#### Cost functions
+#### Cost Functions
 
 ---
 
@@ -419,7 +418,7 @@ We note that the maximum of likelihood function is the minimum of the cost funct
 
 ---
 
-#### Optimization in one variable and gradient descent 
+#### Optimization in One variable and Gradient Descent 
 
 ---
 
@@ -698,7 +697,7 @@ We see the answer is almost the same! Wonderful.
 
 ---
 
-#### Multi-variable optimization
+#### Multi-variable Optimization
 
 ---
 
@@ -1139,6 +1138,273 @@ And finally, the _L-BFSG-B_ algorithm will allow us to perform constrained optim
 
 ---
 
+#### Big Data Optimization (Stochastic Gradient Descent)
+
+Note that in the previous algorithm we described, every step of the descent required a call to compute the cost. In the case of HANES data, it was managable since we had 1112 observations. What if there are a several millions of observations? For instance MIMIC3 has tens of millions of observations. The total number of calls would be formidable. In such cases, we can make use of _stochastic gradient descent_. Stochastic gradient descent works on the principle that when the observations are independent the cost function can be decomposed - the cost of errors on one observation is independent of any other observation and _randomly_ choosing some observations we can get a good estimate of the cost function. Mathematically,
+$$
+C(\gamma, X) \approx \sum_{i=1}^{N}C(\gamma, x_i)
+$$
+where $x_i$'s are individual observations chosen randomly. 
+
+Thus, we can perform stochastic gradient descent choosing only 100 observations at each time step to estimate the cost in our demostration of finding the probability of person being diabetic given A1C and GLUCOSE variables.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Initialize the parameters  
+  theta = c(.9, .9)
+  alpha_init= .0001
+  tau = .01
+
+  # Choose the number of observations we want to use
+  n.obs = 100 
+  
+  # Define prior cost
+  prior.cost = DB.MG.cost(theta, DB.obs)
+  running = TRUE
+  nth.iter = 0
+
+  # Plots for showing the descent
+  plt.xs = theta[1]
+  plt.ys = theta[2]
+  plt.ns = NULL
+
+  while(running) {
+    # Iterate until the total cost converges
+    nth.iter = nth.iter + 1
+    alpha = alpha_init / nth.iter
+  
+    # Choose random sample from the data set to estimate the cost
+    obs.order = sample(1:n.obs, n.obs) 
+    tot.cost = 0
+  
+    # For those observations estimate the total cost
+    for(d.i in obs.order) {
+      # Find the gradient and theta
+      grad = DB.gradient(theta, DB.obs[d.i,])
+      theta = theta-alpha*grad
+      # For plotting purposes, append the thetas
+      plt.xs = c(plt.xs, theta[1])
+      plt.ys = c(plt.ys, theta[2])
+      plt.ns = c(plt.ns, nth.iter)
+      # Find the total cost for only those the random sample of observations
+      tot.cost = tot.cost + DB.MG.cost(theta, DB.obs[d.i,])
+    }
+    # If the sequence converges within our threshold, stop else continue
+    if(abs(tot.cost - prior.cost) < tau) {
+      running = FALSE
+    } else {
+      prior.cost = tot.cost
+    }
+  }
+  # Print the final theta values
+  writeLines(paste("Theta_A1C: ",theta[1],"\nTheta_GLU: ",theta[2],sep=''))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Initialize the parameters  
+  theta = c(.9, .9)
+  alpha_init= .0001
+  tau = .01
+
+  # Choose the number of observations we want to use
+  n.obs = 100 
+  
+  # Define prior cost
+  prior.cost = DB.MG.cost(theta, DB.obs)
+  running = TRUE
+  nth.iter = 0
+
+  # Plots for showing the descent
+  plt.xs = theta[1]
+  plt.ys = theta[2]
+  plt.ns = NULL
+
+  while(running) {
+    # Iterate until the total cost converges
+    nth.iter = nth.iter + 1
+    alpha = alpha_init / nth.iter
+  
+    # Choose random sample from the data set to estimate the cost
+    obs.order = sample(1:n.obs, n.obs) 
+    tot.cost = 0
+  
+    # For those observations estimate the total cost
+    for(d.i in obs.order) {
+      # Find the gradient and theta
+      grad = DB.gradient(theta, DB.obs[d.i,])
+      theta = theta-alpha*grad
+      # For plotting purposes, append the thetas
+      plt.xs = c(plt.xs, theta[1])
+      plt.ys = c(plt.ys, theta[2])
+      plt.ns = c(plt.ns, nth.iter)
+      # Find the total cost for only those the random sample of observations
+      tot.cost = tot.cost + DB.MG.cost(theta, DB.obs[d.i,])
+    }
+    # If the sequence converges within our threshold, stop else continue
+    if(abs(tot.cost - prior.cost) < tau) {
+      running = FALSE
+    } else {
+      prior.cost = tot.cost
+    }
+  }
+  # Print the final theta values
+  writeLines(paste("Theta_A1C: ",theta[1],"\nTheta_GLU: ",theta[2],sep=''))
+```
+
+We see the values are really close to what we estimated by multi-variable gradient descent. We can infact plot the convergence of the iterations by giving different colors - first iteration purple, second yellow etc. 
+
+---
+
+![](Stochastic.GD.01.png)
+
+---
+
+In fact, if we zoon in, we can see how the convergence behaves:
+
+---
+
+![](Stochastic.GD.02.png)
+
+
+---
+
+Thus, we only need three iterations for convergence by choosing only 100 observations. Thus, stochastic gradient descent may save us substantially if we work with big data.
+
+##### Using stochastic gradient with parallel frameworks
+
+In our example, it is established that A1C values greater than or equal to 6.5 and glucose levels greater than or equal to 126 are indicators of diabetes. In case if we don't know this information, one can iterate through pairs of numbers (A1C value, GLUCOSE value) to estimate the pair of values that gives maximum probability of person having diabetes. Since these computations are independent on a number pair-level, one can parallelize such computations through frameworks such as Map-Reduce/High performance computing and stochastic gradient can be used to detrmine the minimal cost for each such pair and eventually chooing the cost (and the pair) that is minimum of all minimums. Such analysis will give us the thresholds for classifying diabetic populations. This type of analysis can also be extended for other variables.
+
+---
+
+#### Local Minima and Convex Functions
+
+Consider this cost function:
+
+$$
+C(\theta) = \theta * (\theta + 1) * (\theta + 1.5) * (\theta * 2)
+$$
+Let us compute the minimum for this function through gradient descent.
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  
+  # Define the function
+  arbitrary.cost = function(theta) {
+    return(theta*(theta+1)*(theta+1.5)*(theta-2))
+  }
+  
+  # Find its gradient
+  arbitrary.gradient = function(theta, epsilon = 0.001) {
+    return( (arbitrary.cost(theta+epsilon) - arbitrary.cost(theta-epsilon)) / (2*epsilon) )
+  }
+
+  # Initalize parameters
+  theta = -2.5
+  gamma = .0001
+  tau = .000001
+
+  prior.cost = arbitrary.cost(theta)
+
+  running = TRUE
+  
+  # Run the descent algorithm
+  while(running) {
+    grad = arbitrary.gradient(theta)
+    theta = theta - gamma * grad
+    new.cost = arbitrary.cost(theta)
+  
+    if(abs(new.cost - prior.cost)< tau) {
+      running = FALSE
+    } else {
+      prior.cost = new.cost
+    }
+  }
+  # Write the output
+  writeLines(paste("Gradient descent value:",theta,sep=' '))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Define the function
+  arbitrary.cost = function(theta) {
+    return(theta*(theta+1)*(theta+1.5)*(theta-2))
+  }
+  
+  # Find its gradient
+  arbitrary.gradient = function(theta, epsilon = 0.001) {
+    return( (arbitrary.cost(theta+epsilon) - arbitrary.cost(theta-epsilon)) / (2*epsilon) )
+  }
+
+  # Initalize parameters
+  theta = -2.5
+  gamma = .0001
+  tau = .000001
+
+  prior.cost = arbitrary.cost(theta)
+
+  running = TRUE
+  
+  # Run the descent algorithm
+  while(running) {
+    grad = arbitrary.gradient(theta)
+    theta = theta - gamma * grad
+    new.cost = arbitrary.cost(theta)
+  
+    if(abs(new.cost - prior.cost)< tau) {
+      running = FALSE
+    } else {
+      prior.cost = new.cost
+    }
+  }
+  # Write the output
+  writeLines(paste("Gradient descent value:",theta,sep=' '))
+```
+
+Great! Are we done? Let's look at the function:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+
+  # Plot function vs costs
+  thetas = seq(-3,3,by=.01)
+  costs = sapply(thetas,arbitrary.cost)
+  qplot(thetas,costs,geom='line',xlab=expression(theta),ylab='Cost') + coord_cartesian(ylim=c(-8,10))
+
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Plot function vs costs
+  thetas = seq(-3,3,by=.01)
+  costs = sapply(thetas,arbitrary.cost)
+  qplot(thetas,costs,geom='line',xlab=expression(theta),ylab='Cost') + coord_cartesian(ylim=c(-8,10))
+
+```
+
+We see the _minimum_ is actually 1.3, however we got -1.29 as the answer. Why is that? Because there are two types of minimum.
+
+**Global minimum**: a point $x^{*}$ is a global minimum if it is the lowest value of the function across all allowable values of the parameter.
+
+**Local minimum**:  a point $x^{*}$ is a local minimum if it is the lowest value of the function within some range centered on $x^{*}$.
+
+Here 1.29 is the local minimum and 1.3 is the global minimum and gradient descent is highly sensitive to initial conditions. That is why it is important to try several initial conditions. Gradient descent doesn't give any claims to giving global optimal results. The result could equally be locally optimal or sub-optimal.
+
+Therefore are we out of luck? Not really! There are some class of functions where there can be no different types of minima. In other words, all local minimim are global minimums. These are called convex functions and there are lots of methods to do optimization for this _nice_ class of functions. This sub-field of optmization is called _convex optimization_. Loosely speaking, a function is convex if for every line segment drawn between two points on the function, that line segment passes above the graph. A function that is not convex is called a non-convex function.
+
+For example, the above function is non-convex, the reason why it has multiple minimums.
+
+---
+
+![](convex.png)
+
+---
+
+Here is a rigorous proof of why convex functions have only global minimums. Mathematically, convex functions are defined by:
+
+$$
+f(λx + (1 − λ)y) ≤ λf(x) + (1 − λ)f(y)
+$$
+
 **Theorem**: For a convex function defined on a convex set, any local minimum is also a global minimum.
 
 _Proof_: Let $f:C \rightarrow \mathbb{R}$, be a convex function, on a convex set $C$. Suppose that $x$ is a local minimum of $f$ but not a global one. This means $\exists y \in C$ such that $f(y) < f(x)$. By definition of convexity for any $\alpha \in [0,1]$, we have,
@@ -1153,3 +1419,5 @@ since $f(y) < f(x)$. Hence, for any small ball $B(x;\epsilon)$ around $x$, there
 #### References
 
 1. An excellent tutorial here: [Introduction to Optimization](https://www.youtube.com/watch?v=PoTpmjvHxlg)
+
+---
