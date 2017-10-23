@@ -709,13 +709,13 @@ We define $P(Diab \mid A1C \geq 6.5 \%) = \theta_{A1C}$ and $P(Diab \mid GLUCOSE
 
 $$
   P(Diab) = \begin{cases}
-  0 & if \ A1C < 6.5\% \ \&  \ GLUCOSE < 126 \ mg/dL \\
+  p & if \ A1C < 6.5\% \ \&  \ GLUCOSE < 126 \ mg/dL \\
   \theta_{A1C} & if\ A1C \geq 6.5\%  \ \& \ GLUCOSE < 126 \ mg/dL \\
   \theta_{GLU} & if \ A1C < 6.5\% \ \&  \ GLUCOSE \geq 126 \ mg/dL \\
   \theta_{A1C}+\theta_{GLU}-\theta_{A1C}*\theta_{GLU} & if \ A1C \geq 6.5\% \ \&  \ GLUCOSE \geq 126 \ mg/dL \end{cases}
 $$
 
-Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ that determines the probability of someone being diabetic. We have to figure the values of these variables from the observations. To do this we will extract the observations from the data table:
+Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ that determines the probability of someone being diabetic. Also we have the variable $p$ that defines the population that is unexplained by the hidden variables. This value can be directly computed from the observation. However for the hidden variables, we have to figure out the values from the observations using optimization. To do this we will extract the observations from the data table:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
 
@@ -743,18 +743,42 @@ Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ tha
   print(head(DB.obs))
 ```
 
-We can list the data matrix corresponding to the observations 
+We can list the data matrix corresponding to the observations and determine the variable $p$ from it.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
 
   # Print the data matrix corresponding to the observations
   print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
+
+   # Find the number of people with diabetes
+  DBTS_T <- table(DB.obs$DX_DBTS_L == T )
+  # Find the number of people with diabetes where
+  # A1C_L <= 6.5 and GLUCOSE_L <= 126
+  # It is this population that is unexplained by both variables
+  A1C_GLU_unexplained <- with(DB.obs,table(A1C_L == F & GLUCOSE_L == F & DX_DBTS_L == T))
+  # Find the proportion of people with diabetes that are unexplained, the variable $p$
+  DBTS_U <- c(proportion = A1C_GLU_unexplained[2]/DBTS_T[2])
+  # Name the column and print the proportion
+  names(DBTS_U) <- c("DBTS_U")
+  DBTS_U
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
   # Print the data matrix corresponding to the observations
   print(with(DB.obs,table(A1C_L,GLUCOSE_L,DX_DBTS_L)))
+
+   # Find the number of people with diabetes
+  DBTS_T <- table(DB.obs$DX_DBTS_L == T )
+  # Find the number of people with diabetes where
+  # A1C_L <= 6.5 and GLUCOSE_L <= 126
+  # It is this population that is unexplained by both variables
+  A1C_GLU_unexplained <- with(DB.obs,table(A1C_L == F & GLUCOSE_L == F & DX_DBTS_L == T))
+  # Find the proportion of people with diabetes that are unexplained, the variable $p$
+  DBTS_U <- c(proportion = A1C_GLU_unexplained[2]/DBTS_T[2])
+  # Name the column and print the proportion
+  names(DBTS_U) <- c("DBTS_U")
+  DBTS_U
 ```
 
 We then define our likelihood function. This function takes the parameters in a single argument and returns the cost vector as negative log likelihood function.
@@ -768,16 +792,16 @@ We then define our likelihood function. This function takes the parameters in a 
     theta.GLU = params[2]
     
     # Define the probability model as given by the equation above
-    # We introduce a small value called reg_value (stands for 'regularization value')
-    # that takes care of arithmetic when the cost function goes to infinity as we 
-    # take logrithms
-    REG_VALUE = 0.000000001
+
     predicted.diab.A1C = ifelse(data$A1C_L, theta.A1C, 0)
     predicted.diab.GLU = ifelse(data$GLUCOSE_L, theta.GLU, 0)
     predicted.diab = predicted.diab.A1C + predicted.diab.GLU - 
-                      (predicted.diab.A1C * predicted.diab.GLU) + REG_VALUE
+                      (predicted.diab.A1C * predicted.diab.GLU) 
     # Define the likelihood function
-    likelihood = ifelse(data$DX_DBTS_L, predicted.diab, 1-predicted.diab)
+    likelihood_explained = ifelse(data$DX_DBTS_L, predicted.diab, 1-predicted.diab)
+    
+    likelihood  = ifelse(likelihood_explained == 0, DBTS_U, likelihood_explained)
+    
     # Find the cost function as the sum of negative log likelihoods
     cost.DB = -sum(log(likelihood)) 
     # Return the cost
@@ -794,16 +818,16 @@ We then define our likelihood function. This function takes the parameters in a 
     theta.GLU = params[2]
     
     # Define the probability model as given by the equation above
-    # We introduce a small value called reg_value (stands for 'regularization value')
-    # that takes care of arithmetic when the cost function goes to infinity as we 
-    # take logrithms
-    REG_VALUE = 0.000000001
+
     predicted.diab.A1C = ifelse(data$A1C_L, theta.A1C, 0)
     predicted.diab.GLU = ifelse(data$GLUCOSE_L, theta.GLU, 0)
     predicted.diab = predicted.diab.A1C + predicted.diab.GLU - 
-                      (predicted.diab.A1C * predicted.diab.GLU) + REG_VALUE
+                      (predicted.diab.A1C * predicted.diab.GLU) 
     # Define the likelihood function
-    likelihood = ifelse(data$DX_DBTS_L, predicted.diab, 1-predicted.diab)
+    likelihood_explained = ifelse(data$DX_DBTS_L, predicted.diab, 1-predicted.diab)
+    
+    likelihood  = ifelse(likelihood_explained == 0, DBTS_U, likelihood_explained)
+    
     # Find the cost function as the sum of negative log likelihoods
     cost.DB = -sum(log(likelihood)) 
     # Return the cost
