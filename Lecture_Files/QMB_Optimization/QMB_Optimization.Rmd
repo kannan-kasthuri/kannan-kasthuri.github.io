@@ -715,7 +715,7 @@ $$
   \theta_{A1C}+\theta_{GLU}-\theta_{A1C}*\theta_{GLU} & if \ A1C \geq 6.5\% \ \&  \ GLUCOSE \geq 126 \ mg/dL \end{cases}
 $$
 
-Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ that determines the probability of someone being diabetic. Also we have the variable $p$ that defines the population that is unexplained by the hidden variables. This value can be directly computed from the observation. However for the hidden variables, we have to figure out the values from the observations using optimization. To do this we will extract the observations from the data table:
+Thus, we have these two _hidden variables_ $\theta_{A1C}$ and $\theta_{GLU}$ that determines the probability of someone being diabetic. Also we have the variable $p$ that defines the population that is unexplained by the hidden variables. This value can be directly computed from the observations. However for the hidden variables, we have to figure out the values from the observations using optimization. To do this we will extract the observations from the data table:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
 
@@ -1426,14 +1426,14 @@ For example, the above function is non-convex, the reason why it has multiple mi
 Here is a rigorous proof of why convex functions have only global minimums. Mathematically, convex functions are defined by:
 
 $$
-f(λx + (1 − λ)y) ≤ λf(x) + (1 − λ)f(y)
+f(λy + (1 − λ)x) ≤ λf(y) + (1 − λ)f(x)
 $$
 
 **Theorem**: For a convex function defined on a convex set, any local minimum is also a global minimum.
 
-_Proof_: Let $f:C \rightarrow \mathbb{R}$, be a convex function, on a convex set $C$. Suppose that $x$ is a local minimum of $f$ but not a global one. This means $\exists y \in C$ such that $f(y) < f(x)$. By definition of convexity for any $\alpha \in [0,1]$, we have,
+_Proof_: Let $f:C \rightarrow \mathbb{R}$, be a convex function, on a convex set $C$. Suppose that $x$ is a local minimum of $f$ but not a global one. This means $\exists y \in C$ such that $f(y) < f(x)$. By definition of convexity for any $\lambda \in [0,1]$, we have,
 
-$$ f(x+\alpha (y-x)) < f(x) + \alpha [f(y) - f(x)] \\
+$$ f(x+\lambda (y-x)) \leq f(x) + \lambda [f(y) - f(x)] \\
  < f(x) 
 $$
 since $f(y) < f(x)$. Hence, for any small ball $B(x;\epsilon)$ around $x$, there exists $z$ such that $f(z) < f(x)$. Therefore, $x$ is not a local minimum - a contradiction. QED.
