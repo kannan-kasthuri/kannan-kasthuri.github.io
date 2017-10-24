@@ -14,6 +14,14 @@ text-align: justify}
 
 ---
 
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v5S_Tij5204" frameborder="0" allowfullscreen></iframe>
+
+---
+
 Optimization is a graduate level course for a semester or two, typically in engineering and mathematics departments. Here we will be giving an overview of the subject, in particular on how the concepts fit into other areas such as machine learning, image processing etc.
 
 We will see the following:
