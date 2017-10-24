@@ -181,6 +181,11 @@ Similarly we can make a qqplot for the disease variable.
 
 We note that the control variable is more normal-like than the disease variable. Thus, a $Z$-test may not be appropriate. Even if the disease variable is normally distributed, a major disadvantage of a $Z$-test is that it requires the standard deviation of the population which we will not know in reality.
 
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Check if the GLUCOSE values for the _non-diabetic_ male and female population are close to normal by constructing qqplots.
+
+<br>
+
 ##### t-Test
 
 Even if we don't know the population standard deviations, we can estimate from the sample standard deviations:
@@ -199,13 +204,19 @@ Although the disease variable in our case is not really normally distributed, _h
   t.test(disease,control)
 ```
 
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Perform t-test between male and female populations in non-diabetic sub population based on the GLUCOSE variable.
+
+<br>
+
 ##### Confidence intervals
 
 p-values are everywhere in life sciences.But it is not good to report only p-values for the simple reason that statistical significance doesn't mean causality or scientific significance. A better alternative is to report confidence interval. Confidence intervals include information about the uncertainty associated with this estimate. 
 
-A 95% confidence interval (we can use percentages other than 95%) is a random interval with a 95% probability of falling on the parameter we are estimating. To construct it, we note that the central limit theorem tells us that $\sqrt{N} (\bar{X}-\mu_X) / s_X$ follows a normal distribution with mean 0 and standard deviation 1. This implies that the probability of this event:
+A 95% confidence interval (we can use percentages other than 95%) is a random interval with a 95% probability of falling on the parameter we are estimating. To construct it, we note that the central limit theorem tells us that $\sqrt{N} (\bar{X}-\mu_X) / s_X$ follows a normal distribution with mean 0 and standard deviation 1. This implies that the probability of this event is (where $p$ is the 95% intreval around 0):
 
-$$ -2 \leq \sqrt{N} (\bar{X}-\mu_X)/s_X \leq 2 $$
+$$ -p \leq \sqrt{N} (\bar{X}-\mu_X)/s_X \leq p $$
 
 is about 95% because:
 
@@ -216,9 +227,120 @@ is about 95% because:
 
 Now doing some algebra on the above inequality we see that:
 
-$$ \bar{X}-2 s_X/\sqrt{N} \leq \mu_X \leq \bar{X}+2s_X/\sqrt{N} $$
+$$ \bar{X}-p* s_X/\sqrt{N} \leq \mu_X \leq \bar{X}+p*s_X/\sqrt{N} $$
 
-the chance of mean falling into the interval has a probability of 95%. Thus, we can compute:
+the chance of mean falling into the interval has a probability of 95%. Thus, we can compute the above estimate:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Find the estimate of s_{X}/sqrt(N)
+  se <- sd(disease$A1C)/sqrt(length(disease$A1C))
+  # Find the 95% semi-interval around the normal distribution
+  p <- qnorm(1- 0.05/2)
+  # Compute the confidence interval
+  interval <- c(mean(disease$A1C)-p*se, mean(disease$A1C)+p*se)
+  # Check if the mean of the disease population is in the confidence interval 
+  interval[1] < mean(disease$A1C) & interval[2] > mean(disease$A1C)
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Find the estimate of s_{X}/sqrt(N)
+  se <- sd(disease$A1C)/sqrt(length(disease$A1C))
+  # Find the 95% semi-interval around the normal distribution
+  p <- qnorm(1- 0.05/2)
+  # Compute the confidence interval
+  interval <- c(mean(disease$A1C)-p*se, mean(disease$A1C)+p*se)
+  # Check if the mean of the disease population is in the confidence interval 
+  interval[1] < mean(disease$A1C) & interval[2] > mean(disease$A1C)
+```
+
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Report the confidence interval for the mean GLUCOSE variable for both female and male population for the non-diabetic sub population. Do they overlap?
+
+<br>
+
+
+##### Association tests
+
+Several life science and biomedical data sets come not just with continuous variables, but with categorical, binary and ordinal variables. For example, a locus in the genome has a mutation or not, is a binary variable on a set of loci. Association tests are extremely useful in detrmining whether such variables exhibit association between the categories. For example, lets consider the MIMIC3 admissions data:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the admissions data set in MIMIC3 from GitHub; 
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/MIMIC3/admissions.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  MIMIC3_ADM <- read.csv(text=getURL(URL))
+  # Observe the structure
+  str(MIMIC3_ADM)
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the admissions data set in MIMIC3 from GitHub; 
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/MIMIC3/admissions.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  MIMIC3_ADM <- read.csv(text=getURL(URL))
+  # Observe the structure
+  str(MIMIC3_ADM)
+```
+
+Let us find the number of people who are separated, have Medicaid and Government insurance and find their ethinicity.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  
+  # Find the count of insurance and marital status
+  insurance_marital.status <- MIMIC3_ADM %>% 
+    group_by(insurance, marital_status) %>% count()
+  insurance_marital.status
+  # Find the number of people with medicaid
+  folks_with_medicaid <- MIMIC3_ADM %>% 
+    filter(insurance == "Medicaid") %>% count() 
+  folks_with_medicaid$n
+  # Find the ethinicities for the separated Medicaid group
+  MIMIC3_ADM %>% 
+    filter(insurance =="Medicaid" & marital_status == "SEPARATED") %>% 
+    group_by(ethnicity) %>% count()
+  # Find the ethinicities for the separated Government group
+  MIMIC3_ADM %>% 
+    filter(insurance =="Government" & marital_status == "SEPARATED") %>% 
+    group_by(ethnicity) %>% count()
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  
+  # Find the count of insurance and marital status
+  insurance_marital.status <- MIMIC3_ADM %>% 
+    group_by(insurance, marital_status) %>% count()
+  insurance_marital.status
+  # Find the number of people with medicaid
+  folks_with_medicaid <- MIMIC3_ADM %>% 
+    filter(insurance == "Medicaid") %>% count() 
+  folks_with_medicaid$n
+  # Find the ethinicities for the separated Medicaid group
+  MIMIC3_ADM %>% 
+    filter(insurance =="Medicaid" & marital_status == "SEPARATED") %>% 
+    group_by(ethnicity) %>% count()
+  # Find the ethinicities for the separated Government group
+  MIMIC3_ADM %>% 
+    filter(insurance =="Government" & marital_status == "SEPARATED") %>% 
+    group_by(ethnicity) %>% count()
+```
+
+The question we ask about the data is the following: knowing that 12 out of 15 separated people have Medicaid insurance, and that 5 out of 15 people are blacks, assuming the null hypothesis that blacks and non-blacks are equally likely to have Medicaid, what is the probability that these 12 peope would be so unevenly distributed between blacks and non-blacks? That is, if we were to choose 12 separated people at random, what is the probability that 3 or more of them would be among the 5 blacks, and only 9 or fewer among the 10 non-blacks?
+
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  
+  tab <- matrix(c(3,2,9,1),2,2)
+  colnames(tab)<-c("BLACK","NON-BLACK")
+  rownames(tab)<-c("MEDICAID","GOVERNMENT")
+  tab
+  fisher.test(tab,alternative="less")
+```
 
 ---
 
