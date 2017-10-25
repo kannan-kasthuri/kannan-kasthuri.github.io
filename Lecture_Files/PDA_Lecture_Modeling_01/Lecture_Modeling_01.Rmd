@@ -330,17 +330,98 @@ Let us find the number of people who are separated, have Medicaid and Government
     group_by(ethnicity) %>% count()
 ```
 
-The question we ask about the data is the following: knowing that 12 out of 15 separated people have Medicaid insurance, and that 5 out of 15 people are blacks, assuming the null hypothesis that blacks and non-blacks are equally likely to have Medicaid, what is the probability that these 12 peope would be so unevenly distributed between blacks and non-blacks? That is, if we were to choose 12 separated people at random, what is the probability that 3 or more of them would be among the 5 blacks, and only 9 or fewer among the 10 non-blacks?
+The question we ask about the data is the following: knowing that $3$ out of $5$ separated blacks have Medicaid insurance, and $2$ out of $5$ have Government insurance, can we REJECT the null hypothesis ($0.05$ level) that the odds of finding separated blacks with Medicaid is the same as the odds of finding them with Government insurance? To answer this question we can perform Fisher's exact test:
 
+**Fisher's exact test**
 
-```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
-  
+We set up the contingency table as follows:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Make a data table and define row names and column names
   tab <- matrix(c(3,2,9,1),2,2)
   colnames(tab)<-c("BLACK","NON-BLACK")
   rownames(tab)<-c("MEDICAID","GOVERNMENT")
   tab
-  fisher.test(tab,alternative="less")
+  # Run Fisher's exact test
+  fisher.test(tab)
 ```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Make a data table and define row names and column names
+  tab <- matrix(c(3,2,9,1),2,2)
+  colnames(tab)<-c("BLACK","NON-BLACK")
+  rownames(tab)<-c("MEDICAID","GOVERNMENT")
+  tab
+  # Run Fisher's exact test
+  fisher.test(tab)
+```
+
+The p-value of $0.24$ suggests that null hypothesis holds and that the odds of finding separated black people with Medicaid are almost the same with Government insurance.
+
+**Chi-square test**
+
+In the above example we had a sample size of $15$. If the sample sizes are large, chi-square test gives a good approximation for the confidence intervals in hypothesis testing that will allow us to determine association. Let's use chi-square test to see if there is an association between ethnicity and dignosis of a disease. We will consider two ethnicities - WHITE and BLACK and the diagnosis of DIABETIC KETOACIDOSIS.   
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  
+  # Find the diagnosis and ethnicity info by grouping 
+  diagnosis_ethnicity <- MIMIC3_ADM %>% 
+    group_by(diagnosis, ethnicity) %>% count() %>% arrange(desc(n))
+  # Display the table
+  diagnosis_ethnicity
+  # Select only the required ethinicity
+  MIMIC3_ADM %>% filter((ethnicity == "BLACK/AFRICAN AMERICAN" | ethnicity == "WHITE") & diagnosis == "DIABETIC KETOACIDOSIS") %>% group_by(ethnicity,diagnosis) %>% count()
+  # Find the count of the population
+  black_pop <- MIMIC3_ADM %>% filter(ethnicity == "BLACK/AFRICAN AMERICAN") %>% count()
+  white_pop <- MIMIC3_ADM %>% filter(ethnicity == "WHITE") %>% count()
+  black_pop$n
+  white_pop$n
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  
+  # Find the diagnosis and ethnicity info by grouping 
+  diagnosis_ethnicity <- MIMIC3_ADM %>% 
+    group_by(diagnosis, ethnicity) %>% count() %>% arrange(desc(n))
+  # Display the table
+  diagnosis_ethnicity
+  # Select only the required ethinicity
+  MIMIC3_ADM %>% filter((ethnicity == "BLACK/AFRICAN AMERICAN" | ethnicity == "WHITE") & diagnosis == "DIABETIC KETOACIDOSIS") %>% group_by(ethnicity,diagnosis) %>% count()
+  # Find the count of the population
+  black_pop <- MIMIC3_ADM %>% filter(ethnicity == "BLACK/AFRICAN AMERICAN") %>% count()
+  white_pop <- MIMIC3_ADM %>% filter(ethnicity == "WHITE") %>% count()
+  black_pop$n
+  white_pop$n
+```
+
+From the above analysis we see that $33$ and $18$ patients are affected by DIABETIC KETOACIDOSIS from the black and white ethnicities. Also, from the total count we have `r black_pop$n-33` and `r white_pop$n-18` are unaffected by the disease. This information would allow us to perform the chi-square test by forming a contingency table:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Make a data table and define row names and column names
+  tab <- matrix(c(510,33,3982,18),2,2)
+  colnames(tab)<-c("BLACK","WHITE")
+  rownames(tab)<-c("Unaffected","DIAB.KET")
+  tab
+  # Run chi-square test
+  chisq.test(tab)
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+  # Make a data table and define row names and column names
+  tab <- matrix(c(510,33,3982,18),2,2)
+  colnames(tab)<-c("BLACK","WHITE")
+  rownames(tab)<-c("Unaffected","DIAB.KET")
+  tab
+  # Run chi-square test
+  chisq.test(tab)
+```
+
+Thus, from the small p-value we infer that there is a good association between DIABETIC KETOACIDOSIS and the black population. Aparantly, it appears that this disease is common among the black and hispanic populations  as one can see from the [reference](http://annals.org/aim/article/720954/narrative-review-ketosis-prone-type-2-diabetes-mellitus).
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Perform chi-square test and report association (or not) between the variables of your choice in your favorite data set.
+
+<br>
 
 ---
 

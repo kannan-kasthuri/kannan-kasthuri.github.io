@@ -367,7 +367,16 @@ R = \frac{\mu_{Z}-\mu_{V}}{\sqrt{\frac{\sigma_Z^2}{N} + \frac{\sigma_V^2}{N}}}
 ##                   &lt;fctr&gt; &lt;int&gt;
 ## 1 BLACK/AFRICAN AMERICAN     2
 ## 2     HISPANIC OR LATINO     1</code></pre>
-<p>The question we ask about the data is the following: knowing that 12 out of 15 separated people have Medicaid insurance, and that 5 out of 15 people are blacks, assuming the null hypothesis that blacks and non-blacks are equally likely to have Medicaid, what is the probability that these 12 peope would be so unevenly distributed between blacks and non-blacks? That is, if we were to choose 12 separated people at random, what is the probability that 3 or more of them would be among the 5 blacks, and only 9 or fewer among the 10 non-blacks?</p>
+<p>The question we ask about the data is the following: knowing that <span class="math inline">\(3\)</span> out of <span class="math inline">\(5\)</span> separated blacks have Medicaid insurance, and <span class="math inline">\(2\)</span> out of <span class="math inline">\(5\)</span> have Government insurance, can we REJECT the null hypothesis (<span class="math inline">\(0.05\)</span> level) that the odds of finding separated blacks with Medicaid is the same as the odds of finding them with Government insurance? To answer this question we can perform Fisher’s exact test:</p>
+<p><strong>Fisher’s exact test</strong></p>
+<p>We set up the contingency table as follows:</p>
+<pre class="r"><code>  # Make a data table and define row names and column names
+  tab &lt;- matrix(c(3,2,9,1),2,2)
+  colnames(tab)&lt;-c(&quot;BLACK&quot;,&quot;NON-BLACK&quot;)
+  rownames(tab)&lt;-c(&quot;MEDICAID&quot;,&quot;GOVERNMENT&quot;)
+  tab
+  # Run Fisher's exact test
+  fisher.test(tab)</code></pre>
 <pre><code>##            BLACK NON-BLACK
 ## MEDICAID       3         9
 ## GOVERNMENT     2         1</code></pre>
@@ -376,12 +385,70 @@ R = \frac{\mu_{Z}-\mu_{V}}{\sqrt{\frac{\sigma_Z^2}{N} + \frac{\sigma_V^2}{N}}}
 ## 
 ## data:  tab
 ## p-value = 0.2418
-## alternative hypothesis: true odds ratio is less than 1
+## alternative hypothesis: true odds ratio is not equal to 1
 ## 95 percent confidence interval:
-##  0.00000 3.21049
+##  0.002558237 4.897124851
 ## sample estimates:
 ## odds ratio 
 ##  0.1920886</code></pre>
+<p>The p-value of <span class="math inline">\(0.24\)</span> suggests that null hypothesis holds and that the odds of finding separated black people with Medicaid are almost the same with Government insurance.</p>
+<p><strong>Chi-square test</strong></p>
+<p>In the above example we had a sample size of <span class="math inline">\(15\)</span>. If the sample sizes are large, chi-square test gives a good approximation for the confidence intervals in hypothesis testing that will allow us to determine association. Let’s use chi-square test to see if there is an association between ethnicity and dignosis of a disease. We will consider two ethnicities - WHITE and BLACK and the diagnosis of DIABETIC KETOACIDOSIS.</p>
+<pre class="r"><code>  # Find the diagnosis and ethnicity info by grouping 
+  diagnosis_ethnicity &lt;- MIMIC3_ADM %&gt;% 
+    group_by(diagnosis, ethnicity) %&gt;% count() %&gt;% arrange(desc(n))
+  # Display the table
+  diagnosis_ethnicity
+  # Select only the required ethinicity
+  MIMIC3_ADM %&gt;% filter((ethnicity == &quot;BLACK/AFRICAN AMERICAN&quot; | ethnicity == &quot;WHITE&quot;) &amp; diagnosis == &quot;DIABETIC KETOACIDOSIS&quot;) %&gt;% group_by(ethnicity,diagnosis) %&gt;% count()
+  # Find the count of the population
+  black_pop &lt;- MIMIC3_ADM %&gt;% filter(ethnicity == &quot;BLACK/AFRICAN AMERICAN&quot;) %&gt;% count()
+  white_pop &lt;- MIMIC3_ADM %&gt;% filter(ethnicity == &quot;WHITE&quot;) %&gt;% count()
+  black_pop$n
+  white_pop$n</code></pre>
+<pre><code>## # A tibble: 2,861 x 3
+## # Groups:   diagnosis, ethnicity [2,861]
+##                                                    diagnosis
+##                                                       &lt;fctr&gt;
+##  1                                                   NEWBORN
+##  2                                                 PNEUMONIA
+##  3                                                    SEPSIS
+##  4                                                   NEWBORN
+##  5                                                   NEWBORN
+##  6 CORONARY ARTERY DISEASE\CORONARY ARTERY BYPASS GRAFT /SDA
+##  7                                   INTRACRANIAL HEMORRHAGE
+##  8                                   CORONARY ARTERY DISEASE
+##  9                                    GASTROINTESTINAL BLEED
+## 10                                     ALTERED MENTAL STATUS
+## # ... with 2,851 more rows, and 2 more variables: ethnicity &lt;fctr&gt;,
+## #   n &lt;int&gt;</code></pre>
+<pre><code>## # A tibble: 2 x 3
+## # Groups:   ethnicity, diagnosis [2]
+##                ethnicity             diagnosis     n
+##                   &lt;fctr&gt;                &lt;fctr&gt; &lt;int&gt;
+## 1 BLACK/AFRICAN AMERICAN DIABETIC KETOACIDOSIS    33
+## 2                  WHITE DIABETIC KETOACIDOSIS    18</code></pre>
+<pre><code>## [1] 543</code></pre>
+<pre><code>## [1] 4000</code></pre>
+<p>From the above analysis we see that <span class="math inline">\(33\)</span> and <span class="math inline">\(18\)</span> patients are affected by DIABETIC KETOACIDOSIS from the black and white ethnicities. Also, from the total count we have 510 and 3982 are unaffected by the disease. This information would allow us to perform the chi-square test by forming a contingency table:</p>
+<pre class="r"><code>  # Make a data table and define row names and column names
+  tab &lt;- matrix(c(510,33,3982,18),2,2)
+  colnames(tab)&lt;-c(&quot;BLACK&quot;,&quot;WHITE&quot;)
+  rownames(tab)&lt;-c(&quot;Unaffected&quot;,&quot;DIAB.KET&quot;)
+  tab
+  # Run chi-square test
+  chisq.test(tab)</code></pre>
+<pre><code>##            BLACK WHITE
+## Unaffected   510  3982
+## DIAB.KET      33    18</code></pre>
+<pre><code>## 
+##  Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  tab
+## X-squared = 131.37, df = 1, p-value &lt; 2.2e-16</code></pre>
+<p>Thus, from the small p-value we infer that there is a good association between DIABETIC KETOACIDOSIS and the black population. Aparantly, it appears that this disease is common among the black and hispanic populations as one can see from the <a href="http://annals.org/aim/article/720954/narrative-review-ketosis-prone-type-2-diabetes-mellitus">reference</a>.</p>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Perform chi-square test and report association (or not) between the variables of your choice in your favorite data set.</p>
+<p><br></p>
 <hr />
 </div>
 </div>
