@@ -33,9 +33,9 @@ You need to submit the presentation in Github by **Oct. 12**, 5pm.
 
 ---
 
-##### Part II: Mid-term project assessment (due Oct. 26, 5pm)
+##### Part II: Mid-term project assessment (due Oct. 28, 12am)
 
-You have to apply explore and wrangle paradigm on the data set of your choice and submit the results. Your analysis should reflect all aspects of exploration and wrangling. That is, all sorts of analysis explained in Data science fundamentals lectures 1 through 5. This will be your home work assignment # 04. The due date is **Oct. 26** at 5pm. 
+You have to apply explore and wrangle paradigm on the data set of your choice and submit the results. Your analysis should reflect all aspects of exploration and wrangling. That is, all sorts of analysis explained in Data science fundamentals lectures 1 through 5. This will be your home work assignment # 04. The due date is **Oct. 28** at 12am. 
 
 ---
 
