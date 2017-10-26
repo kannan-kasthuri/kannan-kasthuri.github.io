@@ -506,6 +506,44 @@ Kolmogorov And Smirnov test can be applied to test if two samples/variables are 
 
 The result suggests that they are indeed drawn from the same distribution. Since we saw that TRIGLYCERIDE is drawn from a normal distribution, COTININE should be drawn from it as well.
 
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Perform ks-test on three different variable-pairs in the HANES dataset. Report the findings.
+
+<br>
+
+##### Correlation
+
+Correlation tests for linear relationship between variables. The function `cor.test(x,y)` computes the correlation between two continuous variables $x$ and $y$. The null hypothesis is that there is no correlation between the variables. We saw in the exploratory data analysis section that the variables LDLESTIMATE and CHOLESTEROLTOTALL seemed to exhibit linear relationship. We will verify that here -
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # Get the LDLESTIMATE variable in the HANES data set
+  HANES_LDLESTIMATE <- HANES %>% select(LDLESTIMATE)
+  # Get the CHOLESTEROLTOTAL variable in the HANES data set
+  HANES_CHOLESTEROLTOTAL <- HANES %>% select(CHOLESTEROLTOTAL)
+  # Perform correlation test on the variables using cor.test
+  cor.test(unlist(HANES_LDLESTIMATE), unlist(HANES_CHOLESTEROLTOTAL))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Get the LDLESTIMATE variable in the HANES data set
+  HANES_LDLESTIMATE <- HANES %>% select(LDLESTIMATE)
+  # Get the CHOLESTEROLTOTAL variable in the HANES data set
+  HANES_CHOLESTEROLTOTAL <- HANES %>% select(CHOLESTEROLTOTAL)
+  # Perform correlation test on the variables using cor.test
+  cor.test(unlist(HANES_LDLESTIMATE), unlist(HANES_CHOLESTEROLTOTAL))
+```
+
+We see that there is high degree of correlation between LDLESTIMATE and CHOLESTEROLTOTAL
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Perform correlation tests on three different variable-pairs in the HANES dataset. Report the correlations.
+
+<br>
+
+
+
 ---
 
 #### Selected materials and references
