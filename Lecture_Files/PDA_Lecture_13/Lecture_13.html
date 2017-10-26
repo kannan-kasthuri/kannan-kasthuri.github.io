@@ -448,7 +448,55 @@ R = \frac{\mu_{Z}-\mu_{V}}{\sqrt{\frac{\sigma_Z^2}{N} + \frac{\sigma_V^2}{N}}}
 ## X-squared = 131.37, df = 1, p-value &lt; 2.2e-16</code></pre>
 <p>Thus, from the small p-value we infer that there is a good association between DIABETIC KETOACIDOSIS and the black population. Aparantly, it appears that this disease is common among the black and hispanic populations as one can see from the <a href="http://annals.org/aim/article/720954/narrative-review-ketosis-prone-type-2-diabetes-mellitus">reference</a>.</p>
 <p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Perform chi-square test and report association (or not) between the variables of your choice in your favorite data set.</p>
+<hr />
+</div>
+<div id="other-statistical-tests" class="section level5">
+<h5>Other statistical tests</h5>
+<p>For seveal data sets the normal distribution may be too much of an imposition to run tests such as t-tests. In such cases, Wilcoxon signed rank test can be an alternative to a t-test. It is a non-paramertic method which can be used to test if an estimate is different from its true value.</p>
+<p><strong>Wilcoxon signed rank test</strong></p>
+<p>The basic idea is to 1) combine all the data, 2) turn the values into ranks, 3) separate them back into their groups, and 4) compute the sum or average rank and perform a test. In R <code>wilcox.test()</code> function be used to perform this test. Lets perform this test on MERCURYU variable on diabetic and non-diabetic populations.</p>
+<pre class="r"><code>  # Get the MERCURYU variable for the diabetic population
+  mercuryu_diab &lt;- HANES %&gt;% filter(DX_DBTS == &quot;DIAB&quot;) %&gt;% select(MERCURYU)
+  # Get the MERCURYU variable for the non-diabetic population
+  mercuryu_non_diab &lt;- HANES %&gt;% filter(DX_DBTS == &quot;NO DIAB&quot;) %&gt;% select(MERCURYU)
+  # Run Wilcoxon ranked test
+  wilcox.test(unlist(mercuryu_diab), unlist(mercuryu_non_diab))</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  unlist(mercuryu_diab) and unlist(mercuryu_non_diab)
+## W = 45818, p-value = 0.09662
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Perform Wilcoxon signed rank test on any two age groups for the CHOLESTEROLTOTAL variable. Do you see any significant difference?</p>
 <p><br></p>
+<p>There are other tests (than qqplots) to check if a sample/variable is drawn from a normal distribution or if two samples/variables are drawn from the same distribution.</p>
+<p><strong>Shapiro test</strong></p>
+<p>Shapiro test can be use to test if a variable is drawn from a normal distribution. We will check if the TRIGLYCERIDE variable has a normal distribution.</p>
+<pre class="r"><code>  # Get the TRIGLYCERIDE variable in the HANES data set
+  HANES_TRIGLYCERIDE &lt;- HANES %&gt;% select(TRIGLYCERIDE)
+  # Perform Shapiro test
+  shapiro.test(unlist(HANES_TRIGLYCERIDE))</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  unlist(HANES_TRIGLYCERIDE)
+## W = 0.85149, p-value &lt; 2.2e-16</code></pre>
+<p>The extremely low p-value suggests that the TRIGLYCERIDE variable has a normal distribution.</p>
+<p><strong>Kolmogorov And Smirnov test</strong></p>
+<p>Kolmogorov And Smirnov test can be applied to test if two samples/variables are drawn from the same disrtibution. We can check if two variables TRIGLYCERIDE and COTININE have same distribution.</p>
+<pre class="r"><code>  # Get the TRIGLYCERIDE variable in the HANES data set
+  HANES_TRIGLYCERIDE &lt;- HANES %&gt;% select(TRIGLYCERIDE)
+  # Get the COTININE variable in the HANES data set
+  HANES_COTININE &lt;- HANES %&gt;% select(COTININE)
+  # Perform Kolmogorov And Smirnov test
+  ks.test(unlist(HANES_TRIGLYCERIDE), unlist(HANES_COTININE))</code></pre>
+<pre><code>## 
+##  Two-sample Kolmogorov-Smirnov test
+## 
+## data:  unlist(HANES_TRIGLYCERIDE) and unlist(HANES_COTININE)
+## D = 0.80845, p-value &lt; 2.2e-16
+## alternative hypothesis: two-sided</code></pre>
+<p>The result suggests that they are indeed drawn from the same distribution. Since we saw that TRIGLYCERIDE is drawn from a normal distribution, COTININE should be drawn from it as well.</p>
 <hr />
 </div>
 </div>

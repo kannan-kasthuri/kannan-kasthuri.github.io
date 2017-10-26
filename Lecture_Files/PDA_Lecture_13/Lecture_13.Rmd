@@ -421,7 +421,90 @@ Thus, from the small p-value we infer that there is a good association between D
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: Perform chi-square test and report association (or not) between the variables of your choice in your favorite data set.
 
+---
+
+##### Other statistical tests
+
+For seveal data sets the normal distribution may be too much of an imposition to run tests such as t-tests. In such cases, Wilcoxon signed rank test can be an alternative to a t-test. It is a non-paramertic method which can be used to test if an estimate is different from its true value.
+
+**Wilcoxon signed rank test**
+
+The basic idea is to 1) combine all the data, 2) turn the values into ranks, 3) separate them back into their groups, and 4) compute the sum or average rank and perform a test. In R `wilcox.test()` function be used to perform this test. Lets perform this test on MERCURYU variable on diabetic and non-diabetic populations.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # Get the MERCURYU variable for the diabetic population
+  mercuryu_diab <- HANES %>% filter(DX_DBTS == "DIAB") %>% select(MERCURYU)
+  # Get the MERCURYU variable for the non-diabetic population
+  mercuryu_non_diab <- HANES %>% filter(DX_DBTS == "NO DIAB") %>% select(MERCURYU)
+  # Run Wilcoxon ranked test
+  wilcox.test(unlist(mercuryu_diab), unlist(mercuryu_non_diab))
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+
+  # Get the MERCURYU variable for the diabetic population
+  mercuryu_diab <- HANES %>% filter(DX_DBTS == "DIAB") %>% select(MERCURYU)
+  # Get the MERCURYU variable for the non-diabetic population
+  mercuryu_non_diab <- HANES %>% filter(DX_DBTS == "NO DIAB") %>% select(MERCURYU)
+  # Run Wilcoxon ranked test
+  wilcox.test(unlist(mercuryu_diab), unlist(mercuryu_non_diab))
+```
+
 <br>
+<span style="color:blue">**Classwork/Homework**</span>: Perform Wilcoxon signed rank test on any two age groups for the CHOLESTEROLTOTAL variable. Do you see any significant difference?
+
+<br>
+
+There are other tests (than qqplots) to check if a sample/variable is drawn from a normal distribution or if two samples/variables are drawn from the same distribution. 
+
+**Shapiro test**
+
+Shapiro test can be use to test if a variable is drawn from a normal distribution. We will check if the TRIGLYCERIDE variable has a normal distribution.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # Get the TRIGLYCERIDE variable in the HANES data set
+  HANES_TRIGLYCERIDE <- HANES %>% select(TRIGLYCERIDE)
+  # Perform Shapiro test
+  shapiro.test(unlist(HANES_TRIGLYCERIDE))
+```
+
+```{r eval=TRUE, message=FALSE, warning=TRUE, echo=FALSE}
+
+  # Get the TRIGLYCERIDE variable in the HANES data set
+  HANES_TRIGLYCERIDE <- HANES %>% select(TRIGLYCERIDE)
+  # Perform Shapiro test
+  shapiro.test(unlist(HANES_TRIGLYCERIDE))
+```
+
+The extremely low p-value suggests that the TRIGLYCERIDE variable has a normal distribution.
+
+**Kolmogorov And Smirnov test**
+
+Kolmogorov And Smirnov test can be applied to test if two samples/variables are drawn from the same disrtibution. We can check if two variables TRIGLYCERIDE and COTININE have same distribution.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # Get the TRIGLYCERIDE variable in the HANES data set
+  HANES_TRIGLYCERIDE <- HANES %>% select(TRIGLYCERIDE)
+  # Get the COTININE variable in the HANES data set
+  HANES_COTININE <- HANES %>% select(COTININE)
+  # Perform Kolmogorov And Smirnov test
+  ks.test(unlist(HANES_TRIGLYCERIDE), unlist(HANES_COTININE))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Get the TRIGLYCERIDE variable in the HANES data set
+  HANES_TRIGLYCERIDE <- HANES %>% select(TRIGLYCERIDE)
+  # Get the COTININE variable in the HANES data set
+  HANES_COTININE <- HANES %>% select(COTININE)
+  # Perform Kolmogorov And Smirnov test
+  ks.test(unlist(HANES_TRIGLYCERIDE), unlist(HANES_COTININE))
+```
+
+The result suggests that they are indeed drawn from the same distribution. Since we saw that TRIGLYCERIDE is drawn from a normal distribution, COTININE should be drawn from it as well.
 
 ---
 
