@@ -520,11 +520,16 @@ R = \frac{\mu_{Z}-\mu_{V}}{\sqrt{\frac{\sigma_Z^2}{N} + \frac{\sigma_V^2}{N}}}
 ## sample estimates:
 ##       cor 
 ## 0.8922906</code></pre>
-<p>We see that there is high degree of correlation between LDLESTIMATE and CHOLESTEROLTOTAL</p>
+<p>We see that there is high degree of correlation between LDLESTIMATE and CHOLESTEROLTOTAL. There are other important tests. The packages <code>lawstat</code> and <code>outliers</code> has a good collection for testing and detecting outliers, respectively.</p>
 <p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Perform correlation tests on three different variable-pairs in the HANES dataset. Report the correlations.</p>
-<p><br></p>
 <hr />
 </div>
+</div>
+<div id="linear-regression" class="section level4">
+<h4>Linear Regression</h4>
+<p>We saw that there is a good correlation between LDLESTIMATE and CHOLESTEROLTOTAL suggesting there is possibly a linear relationship between them. Assuming there is a linear relationship between them, is it possible to predict the values of CHOLESTEROLTOTAL when we have the values for LDLESTIMATE? When the outcome (random) variable <span class="math inline">\(Y\)</span> has a <em>linear</em> relationship with one or more predictor variables <span class="math inline">\(X\)</span>, we can use linear regression to predict <span class="math inline">\(Y\)</span> from <span class="math inline">\(X\)</span>.</p>
+<p>Linear regression is used to predict the value of an outcome variable Y based on one or more input predictor variables X. The aim is to establish a linear relationship (a mathematical formula) between the predictor variable(s) and the response variable, so that, we can use this formula to estimate the value of the response Y, when only the predictors (Xs) values are known.</p>
+<hr />
 </div>
 <div id="selected-materials-and-references" class="section level4">
 <h4>Selected materials and references</h4>

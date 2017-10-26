@@ -535,14 +535,18 @@ Correlation tests for linear relationship between variables. The function `cor.t
   cor.test(unlist(HANES_LDLESTIMATE), unlist(HANES_CHOLESTEROLTOTAL))
 ```
 
-We see that there is high degree of correlation between LDLESTIMATE and CHOLESTEROLTOTAL
+We see that there is high degree of correlation between LDLESTIMATE and CHOLESTEROLTOTAL. There are other important tests. The packages `lawstat` and `outliers` has a good collection for testing and detecting outliers, respectively.
 
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: Perform correlation tests on three different variable-pairs in the HANES dataset. Report the correlations.
 
-<br>
+---
 
+#### Linear Regression
 
+We saw that there is a good correlation between LDLESTIMATE and CHOLESTEROLTOTAL suggesting there is possibly a linear relationship between them. Assuming there is a linear relationship between them, is it possible to predict the values of CHOLESTEROLTOTAL when we have the values for LDLESTIMATE?  When the outcome (random) variable $Y$ has a _linear_ relationship with one or more predictor variables $X$, we can use linear regression to predict $Y$ from $X$.   
+
+Linear regression is used to predict the value of an outcome variable Y based on one or more input predictor variables X. The aim is to establish a linear relationship (a mathematical formula) between the predictor variable(s) and the response variable, so that, we can use this formula to estimate the value of the response Y, when only the predictors (Xs) values are known.
 
 ---
 
