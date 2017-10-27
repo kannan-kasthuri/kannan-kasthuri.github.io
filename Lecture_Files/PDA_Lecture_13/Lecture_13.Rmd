@@ -513,7 +513,7 @@ The result suggests that they are indeed drawn from the same distribution. Since
 
 ##### Correlation
 
-Correlation tests for linear relationship between variables. The function `cor.test(x,y)` computes the correlation between two continuous variables $x$ and $y$. The null hypothesis is that there is no correlation between the variables. We saw in the exploratory data analysis section that the variables LDLESTIMATE and CHOLESTEROLTOTALL seemed to exhibit linear relationship. We will verify that here -
+Correlation tests for linear relationship between variables. The function `cor.test(x,y)` computes the correlation between two continuous variables $x$ and $y$. The null hypothesis is that there is no correlation between the variables. We saw in the exploratory data analysis section that the variables LDLESTIMATE and CHOLESTEROLTOTAL seemed to exhibit linear relationship. We will verify that here -
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
 
@@ -544,9 +544,48 @@ We see that there is high degree of correlation between LDLESTIMATE and CHOLESTE
 
 #### Linear Regression
 
-We saw that there is a good correlation between LDLESTIMATE and CHOLESTEROLTOTAL suggesting there is possibly a linear relationship between them. Assuming there is a linear relationship between them, is it possible to predict the values of CHOLESTEROLTOTAL when we have the values for LDLESTIMATE?  When the outcome (random) variable $Y$ has a _linear_ relationship with one or more predictor variables $X$, we can use linear regression to predict $Y$ from $X$.   
+The aim of linear regression is to establish a linear relationship (in parameters) between the predictor variable(s) and the response variable, so that, we can use this formula to estimate the value of the response $Y$, when only the predictors $X$s values are known.
 
-Linear regression is used to predict the value of an outcome variable Y based on one or more input predictor variables X. The aim is to establish a linear relationship (a mathematical formula) between the predictor variable(s) and the response variable, so that, we can use this formula to estimate the value of the response Y, when only the predictors (Xs) values are known.
+We saw that there is a good correlation between LDLESTIMATE and CHOLESTEROLTOTAL suggesting there is possibly a linear relationship between them. Assuming there is a linear relationship, is it possible to predict the values of CHOLESTEROLTOTAL when we have the values for LDLESTIMATE? We will try to do this in what follows. First we will get these two variables from the data set.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # Get the LDLESTIMATE and CHOLESTEROLTOTAL variables from the HANES data set
+  mydata <- HANES %>% select(LDLESTIMATE,CHOLESTEROLTOTAL)
+  # Take 30 random points (subsample) for illustration purposes
+  mysample <- mydata[sample(1:nrow(mydata), 30, replace=FALSE),]
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Get the LDLESTIMATE and CHOLESTEROLTOTAL variables from the HANES data set
+  mydata <- HANES %>% select(LDLESTIMATE,CHOLESTEROLTOTAL)
+  # Take 30 random points (subsample) for illustration purposes
+  mysample <- mydata[sample(1:nrow(mydata), 30, replace=FALSE),]
+```
+
+Typically, for each of the independent variables, the following three plots are drawn to visualize the behavior:
+
+1. _Scatter plot_: This will help to visualize linear relationship between the predictor and response variables.
+
+2. _Box plot_: Help determine outliers. Having outliers in as a predictor can drastically affect the predictions as they can easily affect the slope of the line of best fit.
+
+3. _Density plot_: To help us see the distribution of the predictor variable. 
+
+We will check these plots now:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # Make a scatter plot of the samples
+  ggplot(mysample, aes(LDLESTIMATE, CHOLESTEROLTOTAL)) + geom_point()
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+  # Make a scatter plot of the samples
+  ggplot(mysample, aes(LDLESTIMATE, CHOLESTEROLTOTAL)) + geom_point()
+```
+
 
 ---
 
