@@ -722,6 +722,15 @@ This section talks about the coefficients of the model. In a simple linear model
 
 _Coefficient - Estimate_
 
+This gives the estimated values of the coefficients. The estimate of the intercept means on an average the difference between the cholesterol variable and LDL is about `r round(linearMod$coefficients[1],2)`. The LDLESTIMATE coefficent estimate gives the slope.
+
+_Coefficient - Standard Error_
+
+This measures the average amount that the coefficient estimates vary from the actual average value of our response variable. We would ideally want to see lower values relative to coefficents. This can be use to construct confidence intervals.
+
+_Coefficient - t value_
+
+
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   ggplot(data = data.frame(x = c(-70, 70)), aes(x)) +
