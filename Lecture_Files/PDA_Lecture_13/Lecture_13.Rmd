@@ -288,7 +288,7 @@ Several life science and biomedical data sets come not just with continuous vari
   str(MIMIC3_ADM)
 ```
 
-Let us find the number of people who are separated, have Medicaid and Government insurance and find their ethinicity.
+Let us say we want to find if the odds of finding separated black people with Medicaid are almost the same as the ones with Government insurance.To do this first we need to find the number of people who are separated, have Medicaid and Government insurance and find their ethinicity. Let's do that:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   
@@ -330,7 +330,7 @@ Let us find the number of people who are separated, have Medicaid and Government
     group_by(ethnicity) %>% count()
 ```
 
-The question we ask about the data is the following: knowing that $3$ out of $5$ separated blacks have Medicaid insurance, and $2$ out of $5$ have Government insurance, can we REJECT the null hypothesis ($0.05$ level) that the odds of finding separated blacks with Medicaid is the same as the odds of finding them with Government insurance? To answer this question we can perform Fisher's exact test:
+In particular the question we ask about the data is the following: knowing that $3$ out of $5$ separated blacks have Medicaid insurance, and $2$ out of $5$ have Government insurance, can we REJECT the null hypothesis ($0.05$ level) that the odds of finding separated blacks with Medicaid is the same as the odds of finding them with Government insurance? To answer this question we can perform Fisher's exact test:
 
 **Fisher's exact test**
 
@@ -370,7 +370,10 @@ In the above example we had a sample size of $15$. If the sample sizes are large
   # Display the table
   diagnosis_ethnicity
   # Select only the required ethinicity
-  MIMIC3_ADM %>% filter((ethnicity == "BLACK/AFRICAN AMERICAN" | ethnicity == "WHITE") & diagnosis == "DIABETIC KETOACIDOSIS") %>% group_by(ethnicity,diagnosis) %>% count()
+  MIMIC3_ADM %>% 
+    filter((ethnicity == "BLACK/AFRICAN AMERICAN" | ethnicity == "WHITE") & 
+             diagnosis == "DIABETIC KETOACIDOSIS") %>% 
+              group_by(ethnicity,diagnosis) %>% count()
   # Find the count of the population
   black_pop <- MIMIC3_ADM %>% filter(ethnicity == "BLACK/AFRICAN AMERICAN") %>% count()
   white_pop <- MIMIC3_ADM %>% filter(ethnicity == "WHITE") %>% count()
@@ -386,7 +389,10 @@ In the above example we had a sample size of $15$. If the sample sizes are large
   # Display the table
   diagnosis_ethnicity
   # Select only the required ethinicity
-  MIMIC3_ADM %>% filter((ethnicity == "BLACK/AFRICAN AMERICAN" | ethnicity == "WHITE") & diagnosis == "DIABETIC KETOACIDOSIS") %>% group_by(ethnicity,diagnosis) %>% count()
+  MIMIC3_ADM %>% 
+    filter((ethnicity == "BLACK/AFRICAN AMERICAN" | ethnicity == "WHITE") & 
+             diagnosis == "DIABETIC KETOACIDOSIS") %>% 
+              group_by(ethnicity,diagnosis) %>% count()
   # Find the count of the population
   black_pop <- MIMIC3_ADM %>% filter(ethnicity == "BLACK/AFRICAN AMERICAN") %>% count()
   white_pop <- MIMIC3_ADM %>% filter(ethnicity == "WHITE") %>% count()
@@ -544,7 +550,7 @@ We see that there is high degree of correlation between LDLESTIMATE and CHOLESTE
 
 #### Linear Regression
 
-The aim of linear regression is to establish a linear relationship (in parameters) between the predictor variable(s) and the response variable, so that, we can use this formula to estimate the value of the response $Y$, when only the predictors $X$s values are known.
+The aim of linear regression is to establish a linear relationship (in parameters) between the predictor variable(s) and the response variable, so that we can use this formula to estimate the value of the response $Y$, when only the predictors $X$s values are known.
 
 We saw that there is a good correlation between LDLESTIMATE and CHOLESTEROLTOTAL suggesting there is possibly a linear relationship between them. Assuming there is a linear relationship, is it possible to predict the values of CHOLESTEROLTOTAL when we have the values for LDLESTIMATE? We will try to do this in what follows. First we will get these two variables from the data set.
 
@@ -572,19 +578,47 @@ Before fitting linear model, typically, for each of the independent variables, t
 
 3. _Density plot_: To help us see the distribution of the predictor variable. 
 
-We will check these plots now:
+We will check these plots now. 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
 
-  # Make a scatter plot of the samples
-  ggplot(mysample, aes(LDLESTIMATE, CHOLESTEROLTOTAL)) + geom_point()
+  # Make a scatter plot of the samples between LDL and Cholesterol
+  ggplot(mysample, aes(LDLESTIMATE, CHOLESTEROLTOTAL)) + geom_point() + geom_smooth()
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
 
-  # Make a scatter plot of the samples
-  ggplot(mysample, aes(LDLESTIMATE, CHOLESTEROLTOTAL)) + geom_point()
+  # Make a scatter plot of the samples between LDL and Cholesterol
+  ggplot(mysample, aes(LDLESTIMATE, CHOLESTEROLTOTAL)) + geom_point() + geom_smooth()
 ```
+
+The scatter plot along with the smoothing line above suggests a linearly increasing relationship between LDL and Cholesterol variables. This is a good thing, because, one of the underlying assumptions in linear regression is that the relationship between the response and predictor variables is linear and additive.
+
+Now let's do a box plot to determine if there are any major outliers.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # We first gather the two variables to make a box plot in one plot
+  LDL_CHOL_gather <- mysample %>% 
+    gather(`LDLESTIMATE`, `CHOLESTEROLTOTAL`, key = "Variables", value = "Values")
+  # View as a tibble
+  as.tibble(LDL_CHOL_gather)
+  # Make a box plot
+  ggplot(LDL_CHOL_gather, aes(Variables, Values)) + geom_boxplot() 
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  
+  # We first gather the two variables to make a box plot in one plot
+  LDL_CHOL_gather <- mysample %>% 
+    gather(`LDLESTIMATE`, `CHOLESTEROLTOTAL`, key = "Variables", value = "Values")
+  # View as a tibble
+  as.tibble(LDL_CHOL_gather)
+  # Make a box plot
+  ggplot(LDL_CHOL_gather, aes(Variables, Values)) + geom_boxplot() 
+```
+
+Thus, we see there aren't any outliers.
 
 
 ---
