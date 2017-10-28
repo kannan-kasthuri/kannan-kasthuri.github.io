@@ -576,7 +576,7 @@ Before fitting linear model, typically, for each of the independent variables, t
 
 2. _Box plot_: Help determine outliers. Having outliers in as a predictor can drastically affect the predictions as they can easily affect the slope of the line of best fit.
 
-3. _Density plot_: To help us see the distribution of the predictor variable. 
+3. _Density plot_: To help us see the distribution of the predictor variable. Although normality of the variables is **not needed** for ordinary least square (OSL) regression, and only needed for the residuals, this is for sanity check to see that the distributions are not utterly skewed.
 
 We will check these plots now. 
 
@@ -604,7 +604,8 @@ Now let's do a box plot to determine if there are any major outliers.
   # View as a tibble
   as.tibble(LDL_CHOL_gather)
   # Make a box plot
-  ggplot(LDL_CHOL_gather, aes(Variables, Values)) + geom_boxplot() 
+  ggplot(LDL_CHOL_gather, aes(Variables, Values)) + 
+    geom_boxplot(fill='cyan', color="darkred", alpha = 0.5) 
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
@@ -615,11 +616,27 @@ Now let's do a box plot to determine if there are any major outliers.
   # View as a tibble
   as.tibble(LDL_CHOL_gather)
   # Make a box plot
-  ggplot(LDL_CHOL_gather, aes(Variables, Values)) + geom_boxplot() 
+  ggplot(LDL_CHOL_gather, aes(Variables, Values)) + 
+    geom_boxplot(fill='cyan', color="darkred", alpha = 0.5) 
 ```
 
-Thus, we see there aren't any outliers.
+Thus, we see there aren't any outliers. Next we will study the density plots for these variables.
 
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # Make a density plot for sanity check
+ ggplot(LDL_CHOL_gather, aes(x=Values, fill=Variables)) +
+  geom_density(alpha=0.5) + xlim(0,350) 
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  
+  # Make a density plot for sanity check
+ ggplot(LDL_CHOL_gather, aes(x=Values, fill=Variables)) +
+  geom_density(alpha=0.5) + xlim(0,350)
+```
+
+The distribution doesn't seem to be entirely skewed. So we may proceed with the analysis.
 
 ---
 
