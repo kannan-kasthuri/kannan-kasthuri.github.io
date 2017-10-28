@@ -708,6 +708,24 @@ Now that we have a formula to predict the cholesterol values given the LDL value
 
 The summary statistics gives us several things. The following describes what they mean.
 
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  ggplot(data = data.frame(x = c(-70, 70)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, 
+                args = list(mean = 0, sd = sd(linearMod$residuals)), 
+                color="blue") + ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  geom_density(data = linearMod, aes(x=linearMod$residuals),fill = "red", alpha=0.3) 
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  ggplot(data = data.frame(x = c(-70, 70)), aes(x)) +
+  stat_function(fun = dnorm, n = 101, 
+                args = list(mean = 0, sd = sd(linearMod$residuals)), 
+                color="blue") + ylab("") +
+  scale_y_continuous(breaks = NULL) +
+  geom_density(data = linearMod, aes(x=linearMod$residuals),fill = "red", alpha=0.3) 
+```
+
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Install the package
