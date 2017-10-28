@@ -636,7 +636,94 @@ Thus, we see there aren't any outliers. Next we will study the density plots for
   geom_density(alpha=0.5) + xlim(0,350)
 ```
 
-The distribution doesn't seem to be entirely skewed. So we may proceed with the analysis.
+The distribution doesn't seem to be entirely skewed and reasonably alright. Thus, we may proceed with the linear model fitting since correlation and visual/graphical analysis appear to be okay. In R the function `lm()` calls linear model bulding function. The `lm()` function takes in two main arguments, namely formula and data. The data is typically a data frame and the formula is a object of class `formula`. 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+
+  # build linear regression model on the sampled data
+  linearMod <- lm(CHOLESTEROLTOTAL ~ LDLESTIMATE, data=mysample)  
+  print(linearMod)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  
+  # build linear regression model on the sampled data
+  linearMod <- lm(CHOLESTEROLTOTAL ~ LDLESTIMATE, data=mysample)  
+  print(linearMod)
+```
+
+The above model establishes the linear relationship between the predictor variable LDLESTIMATE and the response variable CHOLESTEROLTOTAL in the form:
+$$
+CHOLESTEROLTOTAL = Intercept+Coefficient[LDLESTIMATE]* LDLESTIMATE
+$$
+And thus here CHOLESTEROLTOTAL = `r round(linearMod$coefficients[1],2)`+`r round(linearMod$coefficients[2],2)`*LDLESTIMATE. We can plot the relationship by making the size of the point to reflect the residual:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # We first get the predicted values and residuals
+  mysample$predicted <- predict(linearMod)
+  mysample$residuals <- residuals(linearMod)
+
+  # Use the lm function to smooth and plot the segment
+  ggplot(mysample, aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL)) +
+    geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +
+    geom_segment(aes(xend = LDLESTIMATE, yend = predicted), alpha = .2) +
+    # Color the residuals and adjust their size and remove the size legend
+    geom_point(aes(color = abs(residuals), size = abs(residuals))) + 
+    scale_color_continuous(low = "black", high = "red") +
+    guides(color = FALSE, size = FALSE) + 
+    # and finally plot the predicted values
+    geom_point(aes(y = predicted), shape = 1) +
+    theme_bw()
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # We first get the predicted values and residuals
+  mysample$predicted <- predict(linearMod)
+  mysample$residuals <- residuals(linearMod)
+
+  # Use the lm function to smooth and plot the segment
+  ggplot(mysample, aes(x = LDLESTIMATE, y = CHOLESTEROLTOTAL)) +
+    geom_smooth(method = "lm", se = FALSE, color = "lightgrey") +
+    geom_segment(aes(xend = LDLESTIMATE, yend = predicted), alpha = .2) +
+    # Color the residuals and adjust their size and remove the size legend
+    geom_point(aes(color = abs(residuals), size = abs(residuals))) + 
+    scale_color_continuous(low = "black", high = "red") +
+    guides(color = FALSE, size = FALSE) + 
+    # and finally plot the predicted values
+    geom_point(aes(y = predicted), shape = 1) +
+    theme_bw()
+```
+
+Now that we have a formula to predict the cholesterol values given the LDL values, before we can use it we need to ensure the statistics are okay. This can be checked using the summary function `summary()`.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Summarize the predicted linear model
+  summary(linearMod)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Summarize the predicted linear model
+  summary(linearMod)
+```
+
+The summary statistics gives us several things. The following describes what they mean.
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Install the package
+  install.packages("gvlma")
+  # Load the library
+  library(gvlma)
+  # Check the assumptions of the linear model
+  gvlma(linearMod)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Load the library
+  library(gvlma)
+  # Check the assumptions of the linear model
+  gvlma(linearMod)
+```
 
 ---
 
