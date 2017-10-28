@@ -16,7 +16,7 @@ text-align: justify}
 
 ---
 
-### Modeling fundamentals 01: Basic inference and linear modeling (Oct. 31, 2017)
+### Data science fundamentals 06: Basic inference and linear regression (Oct. 31, 2017)
 
 ---
 
@@ -564,7 +564,7 @@ We saw that there is a good correlation between LDLESTIMATE and CHOLESTEROLTOTAL
   mysample <- mydata[sample(1:nrow(mydata), 30, replace=FALSE),]
 ```
 
-Typically, for each of the independent variables, the following three plots are drawn to visualize the behavior:
+Before fitting linear model, typically, for each of the independent variables, the following three plots are drawn to visualize the behavior:
 
 1. _Scatter plot_: This will help to visualize linear relationship between the predictor and response variables.
 
