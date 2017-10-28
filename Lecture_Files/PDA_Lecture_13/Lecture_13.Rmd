@@ -708,6 +708,18 @@ Now that we have a formula to predict the cholesterol values given the LDL value
 
 The summary statistics gives us several things. The following describes what they mean.
 
+**Formula Call**
+
+This is a straight-forward description of the call we issued.
+
+**Residuals**
+
+Residuals are the difference between the actual observed response values and the response values that the model predicted (distance to CHOLESTEROLTOTAL values from the predicted line in our case). The Residuals section of the summary breaks it down into 5 summary points, Min, 1Q, Median, 3Q and Max. The Median should theoretically be equal to zero as we will see in the assumptions section below. So the closer it is to zero, the better it is. This is the case in our example - `r round(median(linearMod$residuals),2)`
+
+**Coefficients**
+
+
+
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   ggplot(data = data.frame(x = c(-70, 70)), aes(x)) +
   stat_function(fun = dnorm, n = 101, 
@@ -750,5 +762,9 @@ The summary statistics gives us several things. The following describes what the
 [R for Data Science - Introduction to Modeling](http://r4ds.had.co.nz/model-basics.html)
 
 [PH525x series Biomedical Data Science](http://genomicsclass.github.io/book/)
+
+[Quick Guide: Interpreting Simple Linear Model Output in R](https://feliperego.github.io/blog/2015/10/23/Interpreting-Model-Output-In-R)
+
+[Linear Regression](http://r-statistics.co/Linear-Regression.html)
 
 ---
