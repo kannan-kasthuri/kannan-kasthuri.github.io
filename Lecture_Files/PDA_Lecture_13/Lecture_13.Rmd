@@ -718,6 +718,9 @@ Residuals are the difference between the actual observed response values and the
 
 **Coefficients**
 
+This section talks about the coefficients of the model. In a simple linear model, we have some number of unknown co-efficients (here it is two) that needs to be determined. The coefficient that is independent of the predictor variable is the _intercept_. The estimates of each of these coefficients come with statistics.
+
+_Coefficient - Estimate_
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
