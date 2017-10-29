@@ -730,7 +730,25 @@ This measures the average amount that the coefficient estimates vary from the ac
 
 _Coefficient - t value_
 
+The t-statistic for a coefficient is defined by,
 
+$$
+\text{t−statistic} = \frac{\text{Estimated β−coefficient}}{\text{Std.Error}}
+$$
+
+Thus, we want to keep the error low and hence t-value is expected to be high for a good fit, as it is in our case.
+
+_Coefficient - $Pr(>t)$_
+
+$Pr(>|t|)$ or $p$-value is the probability that we get a $t$-value as high or higher than the observed value when the null hypothesis (that there is no relationship) is true. So if the $Pr(>|t|)$ is low, the coefficients are significant (significantly different from zero). If the $Pr(>|t|)$ is high, the coefficients are not significant. In our case, they are extremely low suggesting that we can reject the null hypothesis that there is no relationship.
+
+**Residual Standard Error**
+
+The Residual Standard Error is the average amount that the response, here total cholesterol, will deviate from the true regression line. Mathematically,
+
+$$
+\text{Residual Standard Error} = \sqrt{ \frac{\sum_i{e_i^2}}{d.f.} } 
+$$
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   ggplot(data = data.frame(x = c(-70, 70)), aes(x)) +
