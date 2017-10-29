@@ -87,7 +87,7 @@ Previously in the HANES data set, we saw that there were two clusters when we lo
     geom_point(mapping = aes(x = log(A1C), y = log(UACR), color=DX_DBTS))
 ```
 
-These two clusters are primarily composed of non-diabetic people. In the set of all non-diabetic people, if we call the lower cluster (i.e, `log(UACR) <= -2`) as `0` and the upper cluster (i.e, `log(UACR) >= -2`) as `1`, out of UCREATININE and UALBUMIN variables that makes this ratio UACR which variable distingushes these two clusters. We can answer this question through logistic regression. But to do this, we will first extract this data using data transformation techniques we learnt.
+These two clusters are primarily composed of non-diabetic people. In the set of all non-diabetic people, if we call the lower cluster (i.e, `log(UACR) <= -2`) as `0` and the upper cluster (i.e, `log(UACR) >= -2`) as `1` (right now we will manually distingush the clusters, but later we will see algorthms such as _k-means_ will do this for us), out of UCREATININE and UALBUMIN variables that makes this ratio UACR which variable distingushes these two clusters? We can answer this question through logistic regression. But to do this, we will first extract this data using data transformation techniques we learnt.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Extract only non-diabetic people, name the ones with log(UACR) <= -2 as 0
@@ -116,23 +116,48 @@ These two clusters are primarily composed of non-diabetic people. In the set of 
 We can now perform a logistic regression where the predictor variables will be UCREATININE and UALBUMIN and the response variable would be the cluster.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
-  # Build a logistic regression model for the predictor variables UCREATININE and UALBUMIN
-  # and the response variable Cluster
-  logistic_model <- glm(Cluster ~ UCREATININE + UALBUMIN, family=binomial(link='logit'),data=mydata)
+  # Build a logistic regression model for the predictor variable UCREATININE 
+  # with the response variable Cluster
+  logistic_model.UCREATININE <- glm(Cluster ~ UCREATININE, family=binomial(link='logit'),data=mydata)
   # And summarize the model
-  summary(logistic_model)
+  summary(logistic_model.UCREATININE)
+  # Build a logistic regression model for the predictor variable UALBUMIN 
+  # with the response variable Cluster
+  logistic_model.UALBUMIN <- glm(Cluster ~ UALBUMIN, family=binomial(link='logit'),data=mydata)
+  # and summarize the model
+  summary(logistic_model.UALBUMIN)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Build a logistic regression model for the predictor variables UCREATININE and UALBUMIN
-  # and the response variable Cluster
-  logistic_model <- glm(Cluster ~ UCREATININE + UALBUMIN, family=binomial(link='logit'),data=mydata)
+
+  # Build a logistic regression model for the predictor variable UCREATININE 
+  # with the response variable Cluster
+  logistic_model.UCREATININE <- glm(Cluster ~ UCREATININE, family=binomial(link='logit'),data=mydata)
   # And summarize the model
-  summary(logistic_model)
+  summary(logistic_model.UCREATININE)
+  # Build a logistic regression model for the predictor variable UALBUMIN 
+  # with the response variable Cluster
+  logistic_model.UALBUMIN <- glm(Cluster ~ UALBUMIN, family=binomial(link='logit'),data=mydata)
+  # and summarize the model
+  summary(logistic_model.UALBUMIN)
 ```
 
+
+
+
 <br>
-<span style="color:blue">**Classwork/Homework**</span>: Perform logistic regression on diabetic vs. non-diabetic populations and report which variables distingush the populations.
+<span style="color:blue">**Classwork/Homework**</span>: Perform logistic regression on diabetic vs. non-diabetic populations and report which variable(s) distingush the populations.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Filter for the variables
+  mydataDB <- HANES %>% filter(DX_DBTS == "NO DIAB" | DX_DBTS == "DIAB") %>% 
+              mutate(Cluster = ifelse(DX_DBTS == "NO DIAB", 0, 1)) %>%
+              select(everything(), -KEY, -GENDER, -AGEGROUP, -HSQ_1, -DX_DBTS)
+  # Perform logistic regression
+  logistic_modelDB <- glm(Cluster ~ ., family=binomial(link='logit'),data=mydataDB)
+  # Summarize the results
+  summary(logistic_modelDB)
+```
 
 ---
 
