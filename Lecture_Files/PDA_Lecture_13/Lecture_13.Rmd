@@ -749,25 +749,110 @@ The Residual Standard Error is the average amount that the response, here total 
 $$
 \text{Residual Standard Error} = \sqrt{ \frac{\sum_i{e_i^2}}{d.f.} } 
 $$
+where $d.f$ is the degree of freedom and $e_{i}$'s are residuals.
+
+Before we look the other summary, we define the following:
+
+If $\hat{y}$ is the fitted value for the observation $i$ and $\bar{y}$ is the mean of $Y$, the _Sum of Squared Error_, SSE, is defined by,
+
+$$
+\text{SSE} = \sum_{i}^{n} \left( y_{i} - \hat{y_{i}} \right) ^{2},
+$$
+
+and the _Sum of Squared Total_, SST, is given by,
+
+$$
+\text{SST} = \sum_{i}^{n} \left( y_{i} - \bar{y_{i}} \right) ^{2}.
+$$
+
+Similarly, the _Mean Squared Error_, MSE, is defined as,
+
+$$
+\text{MSE} = \frac{SSE}{n-q}
+$$
+where $n$ is the number of observations and $q$ is the number of coefficients.
+
+**Multiple R-squared, Adjusted R-squared**
+
+The R-squared statistic provides a measure of how well the model is fitting the actual data. It is between 0 and 1 and represents how much of the variance is explained by the model. In our case, it is `r round(summary(linearMod)$r.squared,2)`, meaning `r round(summary(linearMod)$r.squared,2)*100`% of the variance is explained by the model. Mathematically,
+
+$$
+\text{R}^{2} = 1 - \frac{SSE}{SST}
+$$
+When we add more predictor variables, the $R^2$ will naturally increase and Adjusted $R^2$ takes into account the number of predicted variables. Adjusted $R^2$ is defined by,
+
+$$
+\text{R}^{2}_{adj} = 1 - \frac{(n-1)MSE}{SST}
+$$
+where $n$ is the number of observations.
+
+**F-Statistic**
+
+Finally the F-statistic is defined by,
+
+$$
+\text{F-statistic} = \frac{SST-SSE}{(q-1)MSE}
+$$
+
+where further the F-statistic is from 1 the better it is.
+
+---
+
+#### Assumptions on linear regression
+
+Although linear regression is the simplest form of regression, there are several assumptions that go into it. If any of the assumptions are voided, linear regression may not be the best model to fit the data. Although there are several other assumptions such as no auto correlation of the residuals, no multicollinearity etc., we list the main ones here.
+
+##### Assumption 1
+
+The linearity is with respect to the parameters and **not** with respect to the predictor variables.
+Thus,
+
+$$
+Y = \beta_0+\beta_1X+\beta_2X^2
+$$
+is still a linear regression.
+
+##### Assumption 2
+
+The mean of the residuals is theoritically zero and practically should be close to zero.
+
+##### Assumption 3
+
+The residuals should be normally distributed. This is one of the key assumptions behind linear regression and can be verified by making a qqplot or drawing a normal distribution with mean 0 and standard deviation equaling the deviation of the residuals, as shown below:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
+  # Draw a normal distribution by taking the standard deviation of
+  # of the residuals
   ggplot(data = data.frame(x = c(-70, 70)), aes(x)) +
   stat_function(fun = dnorm, n = 101, 
                 args = list(mean = 0, sd = sd(linearMod$residuals)), 
                 color="blue") + ylab("") +
   scale_y_continuous(breaks = NULL) +
+  # Also plot the density of the residuals
   geom_density(data = linearMod, aes(x=linearMod$residuals),fill = "red", alpha=0.3) 
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Draw a normal distribution by taking the standard deviation of
+  # of the residuals
   ggplot(data = data.frame(x = c(-70, 70)), aes(x)) +
   stat_function(fun = dnorm, n = 101, 
                 args = list(mean = 0, sd = sd(linearMod$residuals)), 
                 color="blue") + ylab("") +
   scale_y_continuous(breaks = NULL) +
+  # Also plot the density of the residuals
   geom_density(data = linearMod, aes(x=linearMod$residuals),fill = "red", alpha=0.3) 
 ```
 
+Thus we have a near normality of the residuals validating the linear regression modeling.
+
+##### Assumption 4
+
+Homoscedasticity of residuals or equal variance. The residuals should not show different variance for different values of the predictors.
+
+Although each one of these assumptions can be checked, there is a packaged called Global Validation of Linear Model Assumptions, or `gvlma` that can be used to check the assumptions of the linear model. Here we use that package to validate our model.
+
+**Note** You may have to install the package.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
   # Install the package
@@ -784,6 +869,11 @@ $$
   # Check the assumptions of the linear model
   gvlma(linearMod)
 ```
+
+We see that the model assumptions are acceptable. Yay!
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Fit a linear model to any two variables of choice in the HANES/MIMIC3 data set, other than the one described above. Make a `qqplot` for the residuals and check the assumptions. If the model fails explain why it is the case. If the model succeeds report the validity of the assumptions.
 
 ---
 
