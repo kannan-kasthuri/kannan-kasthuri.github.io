@@ -20,6 +20,14 @@ text-align: justify}
 
 ---
 
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OD4r8XbX9LQ" frameborder="0" allowfullscreen></iframe>
+
+---
+
 #### Basic inference
 
 We will first study basic ideas in statistical inference using our HANES data set.
