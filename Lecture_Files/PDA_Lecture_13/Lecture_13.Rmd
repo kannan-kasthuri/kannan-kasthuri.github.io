@@ -49,6 +49,8 @@ We will first study basic ideas in statistical inference using our HANES data se
   str(HANES)
   # Load the tidyverse library
   library(tidyverse)
+  # Set the seed for reproducibility
+  set.seed(23960400)
 ```
 
 Also, we need a package "rafalib" for these materials. So, lets go ahead and install that package, and load the library.
