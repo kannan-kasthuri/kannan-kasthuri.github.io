@@ -9,11 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<style>
-body {
-text-align: justify}
-</style>
-
 ---
 
 ### Data science fundamentals 06: Basic inference and linear regression (Oct. 31, 2017)
