@@ -13,7 +13,7 @@ text-align: justify}
 
 ---
 
-We will see the following topics in this lecture.
+We will learn the following topics in this lecture.
 
 1. Digital image fundamentals
 
@@ -70,6 +70,61 @@ The following is the height profile of Switzerland and sub-sampled height profil
 ![](switzerland.jpg) ![](swiss-sampling.png)
 
 ---
+
+Similarly, we can quantize the intensity along the red line:
+
+---
+
+![](swiss-quant.jpg) ![](swiss-cont.png)
+
+
+---
+
+to get the quantized version,
+
+---
+
+![](swiss-quantized.png)
+
+---
+
+When considered together, the digitization process requires making decision about:
+
+- the size of the image array $N\times M$ and
+
+- the number of discrete grey-levels $G$ allowed for each pixel, $f(x,y)$
+
+---
+
+![](fxy.png)
+
+---
+
+In digital image processing these quantities are usually powers of two, thus,
+
+$N = 2^n$, $M = 2^m$ and $G = 2^k$ for some $n, m \text{ and } k$.
+
+How many samples and grey-levels are required for a good approximation?
+
+- **resolution** (degree of discernable detail) of an image depends on the number of samples and grey-levels
+
+- the bigger these parameters, the closer the digitised array approximates the original image
+
+- however, the storage and processing time increases rapidly
+
+##### Relationship between the pixels
+
+Quantisation alone does not imply a spatial structure → it must be defined
+
+We have to consider topology and metrics
+
+Neighborhood is defined via metrics and vice-versa and are defined on the grid
+
+In 2D they are defined as 4-, 8- or mixed-neighbourhoods. We will see them now.
+
+But before that we will define the following:
+
+Digital image is denoted by $f(x,y)$, pixels as $p,q$ and subset of pixels of $f(x,y)$ as $S$
 
 ---
 
