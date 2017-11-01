@@ -55,6 +55,21 @@ $$
 f(x,y) = i(x,y)r(x,y) \text{ and hence } 0 \leq f(x,y) \leq \infty
 $$
 
+In order for a computer to process an image, it has to be described as a series of numbers, each of finite precision. The digitisation of $f(x,y)$ is called:
+
+1. **Image sampling** when it refers to spatial coordinates $(x,y)$ and
+
+2. **Quantisation** when it refers to the amplitude of $f(x,y)$
+
+The images are thus only sampled at a discrete number of locations with a discrete set of brightness levels.
+
+The following is the height profile of Switzerland and sub-sampled height profile of Swiss.
+
+---
+
+![](switzerland.jpg) ![](swiss-sampling.png)
+
+---
 
 ---
 
