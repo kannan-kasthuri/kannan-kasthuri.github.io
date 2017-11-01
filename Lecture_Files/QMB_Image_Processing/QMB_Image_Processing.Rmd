@@ -1,0 +1,65 @@
+---
+output: html_document
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+---
+
+### An Introduction to Image Processing (Nov. 06, 2017)
+
+---
+
+We will see the following topics in this lecture.
+
+1. Digital image fundamentals
+
+2. Signal processing background
+
+3. Image sampling and quantization
+
+4. Image enhancement
+
+5. Image restoration
+
+6. Image segmentation
+
+---
+
+#### Digital image fundamentals
+
+The term image refers to a 2D light-intensity function denoted by $f(x,y)$, where the value or amplitude of $f$ at spatial coordinates $(x,y)$ gives the intensity (brightness) of the image at that point.
+
+The basic nature of $f(x,y)$ can be characterised by two components:
+
+1. The amount of source light incident (_illumination_) on the scene:
+
+$$
+i(x,y) \text{ where } 0\leq i(x,y) \leq \infty
+$$
+
+2. The amount of light reflected (_reflectance_) by the objects:
+
+$$
+r(x,y) \text{ where } 0\leq r(x,y) \leq 1
+$$
+
+Total absorption $r(x,y) = 0$ and $r(x,y) = 1$ is never acheived.
+
+The functions $i(x,y)$ and $r(x,y)$ combine as a product:
+
+$$
+f(x,y) = i(x,y)r(x,y) \text{ and hence } 0 \leq f(x,y) \leq \infty
+$$
+
+
+---
+
+#### References
+
+1. [Introduction to Signal and Image Processing](https://miac.unibas.ch/SIP/)
+
+---
