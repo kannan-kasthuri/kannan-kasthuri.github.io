@@ -1,13 +1,29 @@
 ---
-output: html_document
+output:
+  revealjs::revealjs_presentation: null
+  pandoc_args:
+  - --slide-level
+  - '2'
+
 ---
 
-<style>
-body {
-text-align: justify}
+<style type="text/css">
+p { text-align: left; }
 </style>
 
----
+<style>
+    .reveal .slides {
+        text-align: left;
+    }
+    .reveal .slides section>* {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .reveal .slide-number {
+    font-size: 24pt;
+    color: #ffffff;
+</style>
 
 ### An Introduction to Image Processing (Nov. 06, 2017)
 
@@ -31,7 +47,9 @@ We will learn the following topics in this lecture.
 
 #### Digital image fundamentals
 
-The term image refers to a 2D light-intensity function denoted by $f(x,y)$, where the value or amplitude of $f$ at spatial coordinates $(x,y)$ gives the intensity (brightness) of the image at that point.
+The term image refers to a 2D light-intensity function denoted by $f(x,y)$
+
+The value or amplitude of $f$ at spatial coordinates $(x,y)$ gives the intensity (brightness) of the image at that point.
 
 The basic nature of $f(x,y)$ can be characterised by two components:
 
@@ -47,6 +65,8 @@ $$
 r(x,y) \text{ where } 0\leq r(x,y) \leq 1
 $$
 
+##
+
 Total absorption $r(x,y) = 0$ and $r(x,y) = 1$ is never acheived.
 
 The functions $i(x,y)$ and $r(x,y)$ combine as a product:
@@ -54,6 +74,8 @@ The functions $i(x,y)$ and $r(x,y)$ combine as a product:
 $$
 f(x,y) = i(x,y)r(x,y) \text{ and hence } 0 \leq f(x,y) \leq \infty
 $$
+
+##
 
 In order for a computer to process an image, it has to be described as a series of numbers, each of finite precision. The digitisation of $f(x,y)$ is called:
 
@@ -73,16 +95,9 @@ The following is the height profile of Switzerland and sub-sampled height profil
 
 Similarly, we can quantize the intensity along the red line:
 
----
-
 ![](swiss-quant.jpg) ![](swiss-cont.png)
 
-
----
-
 to get the quantized version,
-
----
 
 ![](swiss-quantized.png)
 
@@ -94,15 +109,11 @@ When considered together, the digitization process requires making decision abou
 
 - the number of discrete grey-levels $G$ allowed for each pixel, $f(x,y)$
 
----
-
 ![](fxy.png)
 
----
+In digital image processing these quantities are usually powers of two, thus, $N = 2^n$, $M = 2^m$ and $G = 2^k$ for some $n, m \text{ and } k$.
 
-In digital image processing these quantities are usually powers of two, thus,
-
-$N = 2^n$, $M = 2^m$ and $G = 2^k$ for some $n, m \text{ and } k$.
+##
 
 How many samples and grey-levels are required for a good approximation?
 
@@ -112,11 +123,11 @@ How many samples and grey-levels are required for a good approximation?
 
 - however, the storage and processing time increases rapidly
 
+##
+
 ##### Relationship between the pixels
 
-Quantisation alone does not imply a spatial structure → it must be defined
-
-We have to consider topology and metrics
+Quantisation alone does not imply a spatial structure → it must be defined and we have to consider topology and metrics
 
 Neighborhood is defined via metrics and vice-versa and are defined on the grid
 
@@ -125,6 +136,8 @@ In 2D they are defined as 4-, 8- or mixed-neighbourhoods. We will see them now.
 But before that we will define the following:
 
 Digital image is denoted by $f(x,y)$, pixels as $p,q$ and subset of pixels of $f(x,y)$ as $S$
+
+##
 
 **$4$-Neighbours**
 
@@ -146,13 +159,8 @@ $N_4(p)+N_D(p)\rightarrow N_8(p)$
 
 ---
 
-![](4-neighbours.png)
----
+![](4-neighbours.png) ![](diagonal-neighbours.png) ![](8-neighbours.png)
 
-![](diagonal-neighbours.png)
----
-
-![](8-neighbours.png)
 ---
 
 ##### Connectivity
@@ -169,11 +177,13 @@ Two pixels $p,q$ are connected if
 
 2. Their grey values satisfy a specified criterion of similarity, e.g. in a binary image they have the same value of either $0$ or $1$
 
+##
+
 Let V be the set of grey-level values used to define connectivity; for example in a binary image $V=\{1\}$ or in a grey-scale image $V=\{16,17,...,32\}$. We can define two types of connectivity:
 
-1. $4$-connectivity if two pixels p,q with values from V and q is in $N_4(p)$
+1. $4$-connectivity if two pixels $p,q$ with values from V and q is in $N_4(p)$
 
-2. $8$-connectivity if two pixels p,q with values from V and q is in $N_8(p)$
+2. $8$-connectivity if two pixels $p,q$ with values from V and q is in $N_8(p)$
 
 ---
 
@@ -187,15 +197,13 @@ Let V be the set of grey-level values used to define connectivity; for example i
 
 ![](8-conn.prob.png)
 
----
-
 **Solution**
 
 Foreground $8$-neighbourhood + Background $4$-neighbourhood
 
-#####
+##
 
-Fundamental steps in image processing
+##### Fundamental steps in image processing
 
 ![](image_processing_steps.png)
 
