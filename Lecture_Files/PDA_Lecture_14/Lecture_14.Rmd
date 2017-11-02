@@ -17,6 +17,14 @@ text-align: justify}
 
 ---
 
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AUs0X_pBEwo" frameborder="0" allowfullscreen></iframe>
+
+---
+
 #### Logistic regression
 
 In the previous lectures we saw basic inference and linear regression. Linear regression as we saw comes with several assumptions, one of which is that the errors (or residuals) should be normally distributed. Also, the dependent/response variable is a continous variable. In several applications and in biomedicine the response variable is a categorical or a binary variable. For instance, a patient in an emergency ward could be dead or alive. Like wise a person in the HANES dataset could be diabetic, or not. In such cases, we cannot use simple linear regression to predict the outcomes. We thus have to use a special type of regression known as _logistic regression_. These models are captured under Generalized Linear Model (GLM) which is a flexible framework to handle such response variables. Before we see a specific example of how we apply logistic regression to our HANES dataset in R, we will watch this video that explains this regression technique:
