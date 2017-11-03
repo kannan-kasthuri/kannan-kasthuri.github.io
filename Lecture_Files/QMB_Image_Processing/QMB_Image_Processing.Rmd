@@ -187,22 +187,72 @@ Let V be the set of grey-level values used to define connectivity; for example i
 
 ![](8-conn.prob.png)
 
----
+
 
 **Solution**
 
 Foreground $8$-neighbourhood + Background $4$-neighbourhood
 
-#####
+---
 
-Fundamental steps in image processing
+##### Fundamental steps in image processing
+
+---
 
 ![](image_processing_steps.png)
+
+---
+
+#### Signal processing background
+
+---
+
+![](FFT1.png)
+
+![](FFT2.png)
+
+---
+
+##### Basic ideas
+
+A periodic function can be represented by the sum of sines and cosines of different frequencies, multiplied by a different coefficient (Fourier Series)
+
+Non-periodic functions can also be represented as the integral of sines/cosines multiplied by a weighting function (Fourier Transformation)
+
+---
+
+![](FFT3.png)
+
+---
+
+![](FFT4.png)
+
+---
+
+![](FFT5.png)
+
+---
+
+![](FFT6.png)
+
+---
+
+![](FFT7.png)
+
+---
+
+The Discrete Fourier Transform (DFT) is generally calculated using the Fast Fourier Transform (FFT). FFT is an algorithm to compute DFT in a fast and efficient manner. In general DFT takes about $O(N^2)$. Proper decomposition can reduce the number of multiplications and addition proportional to $O(N\log_2N)$. This decomposition is called the fast Fourier Transform (FFT) algorithm.
+
+For example, let's assume that an FFT of size $8,192$ takes on one particular machine $1$ second. Using the DFT method the same Fourier Transform would require $10$ minutes $30$ seconds.
+
+![](FFT8.png)
 
 ---
 
 #### References
 
 1. [Introduction to Signal and Image Processing](https://miac.unibas.ch/SIP/)
+
+2. [Introduction to Fourier Transform for Image Processing](https://www.cs.unm.edu/~brayer/vision/fourier.html)
 
 ---

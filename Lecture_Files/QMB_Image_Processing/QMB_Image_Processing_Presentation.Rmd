@@ -205,7 +205,31 @@ Foreground $8$-neighbourhood + Background $4$-neighbourhood
 
 ##### Fundamental steps in image processing
 
+---
+
 ![](image_processing_steps.png)
+
+---
+
+#### Signal processing background
+
+---
+
+![](FFT1.png)
+
+![](FFT2.png)
+
+---
+
+##### Basic ideas
+
+A periodic function can be represented by the sum of sines and cosines of different frequencies, multiplied by a different coefficient (Fourier Series)
+
+Non-periodic functions can also be represented as the integral of sines/cosines multiplied by a weighting function (Fourier Transformation)
+
+---
+
+![](FFT3.png)
 
 ---
 
