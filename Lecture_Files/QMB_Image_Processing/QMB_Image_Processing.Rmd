@@ -15,19 +15,24 @@ text-align: justify}
 
 We will study some specific ideas in the following general topics in image processing.
 
-1. Digital image fundamentals
-
-2. Signal processing background
-
-3. Filtering in the frequency domain
-
-4. Image sampling 
-
-5. Image enhancement 
-
-6. Image restoration
-
-7. Image segmentation
+- Digital image fundamentals
+    - Relationship between pixels
+    - Connectivity
+- Signal processing background
+    - Fourier transforms and its cousins
+- Fourier Transform (FT) applications
+    - FT applied to primitive images
+    - FT applied to real images
+- Image sampling 
+    - Limits in reconstruction
+- Image enhancement
+    - Various filters
+    - Interpolation methods
+- Image restoration
+    - Noise models
+    - Recovering images
+- Image segmentation
+    - Segmenting by edge detection
 
 ---
 
@@ -226,17 +231,17 @@ Non-periodic functions can also be represented as the integral of sines/cosines 
 
 ---
 
-##### Definition of the fourier transform
+##### Fourier transform and its cousins
 
 ![](FFT3.png)
 
 ---
 
-We will now see an example of fourier transform
+We will now see an example of a function and its fourier transform. The function is defined by,
 
----
-
-![](FFT4.png)
+$$
+f(x) = \begin{cases} A, & \mbox{if } 0 \leq x \leq X \\ 0, & \mbox{otherwise} \end{cases}
+$$
 
 ---
 
@@ -244,7 +249,37 @@ We will now see an example of fourier transform
 
 ---
 
+Why?
+
+---
+
+
+![](FFT4.png)
+
+---
+
+Discrete Fourier Transform (DFT) is the discrete analog of the fourier transform. Since an image is a two-dimensional quantity, we need DFT in two dimensions.
+
+---
+
 ![](FFT6.png)
+
+---
+
+DFT is generally calculated using the Fast Fourier Transform (FFT). FFT is an algorithm to compute DFT in a fast and efficient manner. In general DFT takes about $O(N^2)$. Proper decomposition can reduce the number of multiplications and addition proportional to $O(N\log_2N)$. This decomposition is called the fast Fourier Transform (FFT) algorithm.
+
+For example, let's assume that an FFT of size $8,192$ takes on one particular machine $1$ second. Using the DFT method the same Fourier Transform would require $10$ minutes $30$ seconds.
+
+![](FFT8.png)
+
+---
+
+The dynamic range of Fourier spectra usually is much higher than the typical display device can reliably reproduce. The consequence is that only the brightest parts are shown. A useful technique that compensates for this difficulty is of displaying the following function:
+
+$$
+D(u,v) = c. \log[1+\lvert F(u,v) \lvert]
+$$
+We can see the application of this technique in the following voyager image:
 
 ---
 
@@ -252,11 +287,54 @@ We will now see an example of fourier transform
 
 ---
 
-The Discrete Fourier Transform (DFT) is generally calculated using the Fast Fourier Transform (FFT). FFT is an algorithm to compute DFT in a fast and efficient manner. In general DFT takes about $O(N^2)$. Proper decomposition can reduce the number of multiplications and addition proportional to $O(N\log_2N)$. This decomposition is called the fast Fourier Transform (FFT) algorithm.
+#### Fourier transform applications
 
-For example, let's assume that an FFT of size $8,192$ takes on one particular machine $1$ second. Using the DFT method the same Fourier Transform would require $10$ minutes $30$ seconds.
+First we will investigate the "basis" functions for the Fourier Transform (FT). The FT tries to represent all images as a summation of cosine-like images. Therefore images that are pure cosines have particularly simple FTs. Thus we will see FT's application to primitive images.
 
-![](FFT8.png)
+---
+
+##### FT applied to primitive images
+
+---
+
+![](FTA1.gif)
+
+---
+
+The images are a pure horizontal cosine of 8 cycles and a pure vertical cosine of 32 cycles. Notice that the FT for each just has a single component, represented by 2 bright spots symmetrically placed about the center of the FT image. The center of the image is the origin of the frequency coordinate system. The u-axis runs left to right through the center and represents the horizontal component of frequency. The v-axis runs bottom to top through the center and represents the vertical component of frequency. In both cases there is a dot at the center that represents the (0,0) frequency term or average value of the image. Images usually have a large average value (like 128) and lots of low frequency information so FT images usually have a bright blob of components near the center. Notice that high frequencies in the vertical direction will cause bright dots away from the center in the vertical direction. And that high frequencies in the horizontal direction will cause bright dots away from the center in the horizontal direction.
+
+---
+
+![](FTA2.gif)
+
+---
+
+Here are 2 images of more general Fourier components. They are images of 2D cosines with both horizontal and vertical components. The one on the left has 4 cycles horizontally and 16 cycles vertically. The one on the right has 32 cycles horizontally and 2 cycles vertically. (Note: You see a gray band when the function goes through gray = 128 which happens twice/cycle.) You may begin to notice there is a lot of symmetry. For all REAL (as opposed to IMAGINARY or COMPLEX) images, the FT is symmetrical about the origin so the 1st and 3rd quadrants are the same and the 2nd and 4th quadrants are the same. If the image is symmetrical about the x-axis (as the cosine images are) 4-fold symmetry results.
+
+---
+
+In general, rotation of the image results in equivalent rotation of its FT. To see that this is true, we will take the FT of a simple cosine and also the FT of a rotated version of the same function. The results can be seen by:
+
+![](FTA3.gif)
+
+---
+
+At first, the results seem rather surprising. The horizontal cosine has its normal, very simple FT. But the rotated cosine seems to have an FT that is much more complicated, with strong diagonal components, and also strong "plus sign" shaped horizontal and vertical components. The question is, where did these horizontal and vertical components come from? The answer is that the FT always treats an image as if it were part of a periodically replicated array of identical images extending horizontally and vertically to infinity. And there are strong edge effects between the neighbors of such a periodic array as can be seen by:
+
+![](FTA4.gif)
+
+---
+
+Thus, what we see as the FT in the "slant" image (lower right of the image before last) is actually the combination of the actual FT of the cosine function and that caused by the edge effects of looking at a finite part of the image. These edge effects can be significantly reduced by "windowing" the image with a function that slowly tapers off to a medium gray at the edge. The result can be seen by:
+
+![](FTA5.gif)
+
+---
+
+The windowed image is shown in the upper left. Its FT is shown in the lower left. The non-windowed FT is shown in the upper right and the actual, true FT of a cosine is shown in the lower right. These images are all scaled differently and the comparison is only qualitative, but it can be seen that the windowed image FT is much closer to the true FT and eliminates many of the edge effects.
+
+---
+
 
 ---
 
