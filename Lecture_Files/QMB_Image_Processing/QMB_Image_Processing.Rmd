@@ -335,8 +335,86 @@ The windowed image is shown in the upper left. Its FT is shown in the lower left
 
 ---
 
+##### FT applied to real images
+
+Now, with the above introduction, the best way to become familiar with Fourier Transforms is to see lots of images and lots of their FTs. First, an interesting pair of images, one sharp and clear, and the other blurred and noisy.
+
+![](FTA6.gif)
 
 ---
+
+There are 2 images, goofy and the degraded goofy, with FTs below each. Notice that both suffer from edge effects as evidenced by the strong vertical line through the center. The major effect to notice is that in the transform of the degraded goofy the high frequencies in the horizontal direction have been significantly attenuated. This is due to the fact that the degraded image was formed by smoothing only in the horizontal direction. Also, if you look carefully you can see that the degraded goofy has a slightly larger background noise level at high frequencies. This is difficult to see and perhaps not even meaningful because the images are scaled differently, but if really there, it is due to the random noise added to the degraded goofy. Notice also that it is difficult to make much sense out of the low frequency information. This is typical of real life images.
+
+---
+
+The next images show the effects of edges in images:
+
+![](FTA7.gif)
+
+---
+
+Notice the strong periodic component, especially in the vertical direction for the bricks image. Horizontal components appear closer together in the FT. In the blocks image, notice a bright line going to high frequencies perpendicular to the strong edges in the image. Anytime an image has a strong-contrast, sharp edge the gray values must change very rapidly. It takes lots of high frequency power to follow such an edge so there is usually such a line in its magnitude spectrum.
+
+---
+
+Now lets look at a bunch of different shapes and their FTs.
+
+![](FTA8.gif)
+
+---
+
+Notice that the letters have quite different FTs, especially at the lower frequencies. The FTs also tend to have bright lines that are perpendicular to lines in the original letter. If the letter has circular segments, then so does the FT.
+
+---
+
+Now lets look at some collections of similar objects:
+
+![](FTA9.gif)
+
+---
+
+Notice the concentric ring structure in the FT of the white pellets image. It is due to each individual pellet. That is, if we took the FT of just one pellet, we would still get this pattern. Remember, we are looking only at the magnitude spectrum. The fact that there are many pellets and information about exactly where each one is is contained mostly in the phase. The coffee beans have less symmetry and are more variably colored so they do not show the same ring structure. You may be able to detect a faint "halo" in the coffee FT. What do you think this is from?
+
+---
+
+![](FTA10.gif)
+
+---
+
+Here are our first truly general images. Notice there is very little structure. You can see a top left to bottom right slanting line in the girl image FT. It is probably due to the edge between her hat and her hair. There are also some small edge effects in both images. The mandril image appears to have more high frequency power, probably due to the hair.
+
+---
+
+![](FTA11.gif)
+
+---
+
+The seafan image has a lot of little holes that are about the same size and somewhat randomly oriented. The size of the holes is about 2 pixels wide so that corresponds to frequency components about 1/2 way out to the maximum. The strong horizontal components in the lake image is probably due to the tree trunk edges.
+
+---
+
+Now, here is your first quiz. Consider an image that is totally random. That is, every pixel is some random value, independent of all other pixels. What is its FT?
+
+![](FTA12.png)
+
+---
+
+By the way, notice the single bright dot in the middle of the noise FT image. Why is it there? Why does the noise FT look dark gray?
+
+---
+
+![](FTA13.png)
+
+---
+
+#### Image sampling 
+
+Sampling is the process of measuring the brightness information only at a discrete number of locations. The sampling process can be modeled in a 2-step scheme:
+
+1. Integrate brightness over regions of the pixel size, 
+
+2. Read out values only at the pixel positions.
+
 
 #### References
 
