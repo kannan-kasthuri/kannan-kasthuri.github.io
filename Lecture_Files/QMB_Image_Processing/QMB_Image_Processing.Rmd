@@ -13,19 +13,21 @@ text-align: justify}
 
 ---
 
-We will learn the following topics in this lecture.
+We will study some specific ideas in the following general topics in image processing.
 
 1. Digital image fundamentals
 
 2. Signal processing background
 
-3. Image sampling and quantization
+3. Filtering in the frequency domain
 
-4. Image enhancement
+4. Image sampling 
 
-5. Image restoration
+5. Image enhancement 
 
-6. Image segmentation
+6. Image restoration
+
+7. Image segmentation
 
 ---
 
@@ -33,7 +35,7 @@ We will learn the following topics in this lecture.
 
 The term image refers to a 2D light-intensity function denoted by $f(x,y)$, where the value or amplitude of $f$ at spatial coordinates $(x,y)$ gives the intensity (brightness) of the image at that point.
 
-The basic nature of $f(x,y)$ can be characterised by two components:
+The basic nature of $f(x,y)$ can be characterized by two components:
 
 1. The amount of source light incident (_illumination_) on the scene:
 
@@ -47,7 +49,7 @@ $$
 r(x,y) \text{ where } 0\leq r(x,y) \leq 1
 $$
 
-Total absorption $r(x,y) = 0$ and $r(x,y) = 1$ is never acheived.
+Total absorption $r(x,y) = 0$ and $r(x,y) = 1$ is never achieved.
 
 The functions $i(x,y)$ and $r(x,y)$ combine as a product:
 
@@ -55,7 +57,7 @@ $$
 f(x,y) = i(x,y)r(x,y) \text{ and hence } 0 \leq f(x,y) \leq \infty
 $$
 
-In order for a computer to process an image, it has to be described as a series of numbers, each of finite precision. The digitisation of $f(x,y)$ is called:
+In order for a computer to process an image, it has to be described as a series of numbers, each of finite precision. The digitization of $f(x,y)$ is called:
 
 1. **Image sampling** when it refers to spatial coordinates $(x,y)$ and
 
@@ -90,9 +92,11 @@ to get the quantized version,
 
 When considered together, the digitization process requires making decision about:
 
-- the size of the image array $N\times M$ and
+1. the size of the image array $N\times M$ and
 
-- the number of discrete grey-levels $G$ allowed for each pixel, $f(x,y)$
+2. the number of discrete grey-levels $G$ allowed for each pixel, $f(x,y)$
+
+Thus,
 
 ---
 
@@ -100,72 +104,73 @@ When considered together, the digitization process requires making decision abou
 
 ---
 
+is an image.
+
 In digital image processing these quantities are usually powers of two, thus,
 
 $N = 2^n$, $M = 2^m$ and $G = 2^k$ for some $n, m \text{ and } k$.
 
 How many samples and grey-levels are required for a good approximation?
 
-- **resolution** (degree of discernable detail) of an image depends on the number of samples and grey-levels
+1. **Resolution** (degree of discernible detail) of an image depends on the number of samples and grey-levels
 
-- the bigger these parameters, the closer the digitised array approximates the original image
+2. The bigger these parameters, the closer the digitized array approximates the original image
 
-- however, the storage and processing time increases rapidly
+3. However, the storage and processing time increases rapidly.
+
+---
 
 ##### Relationship between the pixels
 
-Quantisation alone does not imply a spatial structure → it must be defined
-
-We have to consider topology and metrics
-
-Neighborhood is defined via metrics and vice-versa and are defined on the grid
-
-In 2D they are defined as 4-, 8- or mixed-neighbourhoods. We will see them now.
+Quantisation alone does not imply a spatial structure → it must be defined. We have to consider topology and metrics as well. Neighborhood is defined via metrics and vice-versa and are defined on the grid. In 2D they are defined as $4$-, $8$- or mixed-neighborhoods. We will see them now.
 
 But before that we will define the following:
 
 Digital image is denoted by $f(x,y)$, pixels as $p,q$ and subset of pixels of $f(x,y)$ as $S$
 
-**$4$-Neighbours**
+**Definitions** 
 
-A pixel $p$ at spatial position $(x,y)$ has $4$ neighbours:
+_$4$-Neighbours_: A pixel $p$ at spatial position $(x,y)$ has $4$ neighbors if $S$ is defined as:
 
 $S:(x+1,y),(x-1,y),(x,y+1),(x,y-1)$
 
-This set of pixels is called the $4$-neighbourhood of $p: S=N_4(p)$
-
-**Diagonal Neighbours**
-
-The four diagonal neighbours of $p$ are $N_D(p)$:
-
-$S:(x+1,y+1),(x-1,y+1),(x+1,y-1),(x-1,y-1)$
-
-**8-Neighbourhood**
-
-$N_4(p)+N_D(p)\rightarrow N_8(p)$
+This set of pixels is called the $4$-neighborhood of $p: S=N_4(p)$. Pictorially,
 
 ---
 
 ![](4-neighbours.png)
+
+---
+
+_Diagonal Neighbours_: The diagonal neighbors of $p$ are $N_D(p)$ is defined as the set $S$:
+
+$S:(x+1,y+1),(x-1,y+1),(x+1,y-1),(x-1,y-1)$
+
 ---
 
 ![](diagonal-neighbours.png)
+
+---
+
+_8-Neighbourhood_: The set theoretic sum of $N_4(p)$ and $N_8(p)$. 
+
+$S: N_4(p)+N_D(p)\rightarrow N_8(p)$
+
+Thus,
+
 ---
 
 ![](8-neighbours.png)
+
 ---
 
 ##### Connectivity
 
-Connectivity between pixels is important to:
+Connectivity between pixels is important in several areas of image processing where we need to identify regions of interest, segment etc. Important to the idea of connectivity is esatblishing boundaries around objects and extract connected components in images.
 
-1. Establish boundaries around objects
+Two pixels $p,q$ are connected if:
 
-2. Extract connected components in an image
-
-Two pixels $p,q$ are connected if
-
-1. They are neighbours, e.g. $N_4(p)$,$N_8(p)$,...
+1. They are neighbors, e.g. $N_4(p)$,$N_8(p)$,...
 
 2. Their grey values satisfy a specified criterion of similarity, e.g. in a binary image they have the same value of either $0$ or $1$
 
@@ -191,7 +196,7 @@ Let V be the set of grey-level values used to define connectivity; for example i
 
 **Solution**
 
-Foreground $8$-neighbourhood + Background $4$-neighbourhood
+Foreground $8$-neighborhood + Background $4$-neighborhood
 
 ---
 
@@ -221,7 +226,13 @@ Non-periodic functions can also be represented as the integral of sines/cosines 
 
 ---
 
+##### Definition of the fourier transform
+
 ![](FFT3.png)
+
+---
+
+We will now see an example of fourier transform
 
 ---
 
