@@ -24,7 +24,7 @@ We will study some specific ideas in the following general topics in image proce
     - FT applied to primitive images
     - FT applied to real images
 - Image sampling 
-    - Limits in reconstruction 
+    - Limits in reconstruction (Whittaker-Shannon Sampling Theorem)
 - Image enhancement
     - Various filters
     - Interpolation methods
@@ -249,20 +249,34 @@ $$
 
 ---
 
-Why?
+Why? Because,
+
+$$
+\begin{equation} 
+\begin{split}
+F(u) & = \int_{-\infty}^{\infty}f(x)e^{-j2\pi ux}dx \\
+ & = \int_{0}^{X}Ae^{-j2\pi ux}dx \\
+ & = \frac{-A}{j2\pi u}\big[e^{-j2\pi ux}\big]_{0}^{X} \\
+ & = \frac{-A}{j2\pi u}\big[e^{-j2\pi uX} - 1\big] \\
+ & = \frac{A}{\pi u} sin(\pi u X)e^{-j\pi uX}
+\end{split}
+\end{equation}
+$$
 
 ---
 
+Discrete Fourier Transform (DFT) is the discrete analog of the fourier transform. Since an image is a two-dimensional quantity, we need DFT in two dimensions. DFT is defined by,
 
-![](FFT4.png)
+$$
+\mathcal{F}\{ f(x,y)\} = F(u,v) = \frac{1}{MN}\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}f(x,y)e^{-j2\pi (ux/M+vy/N)}
+$$
 
----
+for $u = 0,1,2,\dots,M-1$ and $v = 0,1,2,...,N-1$. The _inverse DFT_ is defined by,
 
-Discrete Fourier Transform (DFT) is the discrete analog of the fourier transform. Since an image is a two-dimensional quantity, we need DFT in two dimensions.
-
----
-
-![](FFT6.png)
+$$
+\mathcal{F}^{-1}\{ F(u,v)\} = f(x,y) = \sum_{x=0}^{M-1}\sum_{y=0}^{N-1}F(u,v)e^{j2\pi (ux/M+vy/N)}
+$$
+for $x = 0,1,2,\dots,M-1$ and $y = 0,1,2,...,N-1$.
 
 ---
 
@@ -413,16 +427,26 @@ Sampling is the process of measuring the brightness information only at a discre
 
 Consider the real neighbourhood function filtered $f(x)$. Suppose its FT vanishes outside the interval $u\in[-\omega,\omega]$:
 
+---
+
 ![](FTA14.png)
+
+---
 
 To obtain a sampled version of $f(x)$ simply involves multiplying it by a sampling function $s(x)$, which consists of a train of Dirac impulses $\Delta x$ apart
 Its FT $S(u)$ is also a train of Dirac impulses with a distance inversely proportional to $\Delta x$, namely $1/\Delta x$ apart:
+
+---
 
 ![](FTA15.png)
 
 By the convolution theorem multiplication in the image domain is equivalent to convolution in the frequency domain. The transform is periodic, with period $1/\Delta x$, and the individual repetitions of $F(u)$ can overlap → **aliasing**!!! The centre of the overlap occurs at $u=1/(2\Delta x)$
 
+---
+
 ![](FTA16.png)
+
+---
 
 To avoid these problems, the sampling interval $\Delta x$ has to be selected so that $1/(2\Delta x)\ge\omega$, or
 
@@ -430,17 +454,29 @@ $$
 \Delta x \leq \frac{1}{2 \omega}
 $$
 
+---
+
 ![](FTA17.png)
+
+---
 
 Once the individual $F(u)$ are separated a multiplication with the window function $G(u)$ yields a completely isolated $F(u)$:
 
+---
+
 ![](FTA19.png)
+
+---
 
 The inverse FT then yields the original continuous function $f(x)$. Such a complete recovery of a band-limited function $f(x)$ that satisfies the above inequality is known as the **Whittaker-Shannon Sampling Theorem**.
 
+---
+
 ![](FTA18.png)
 
-Mathematically, since multiplying in the fourier domain is same as doing convolution in the image domain, we can write this as:
+---
+
+Mathematically, since the fourier transform of a `sinc` function is same as the rectangular function and convolving in the signal domain is same as multiplying in the frequency (fourier) domain, we can write this as:
 
 $$
 f(x) = \Big [ \sum_{n=-\infty}^{\infty} f(n) . \delta(x-n\omega) \Big ] * \text{sinc}\Big(\frac{x}{\omega}\Big)
@@ -457,6 +493,13 @@ $$
 ##### Example of good reconstruction
 
 ![](FTA21.png)
+
+---
+
+#### Image enhancement
+
+The principal objective of the enhancements techniques is to process the images so that the results are more suitable than the original images for a specific application. The approaches discussed in this chapter fall mainly the categoriy of geometrical image corrections.
+
 
 ---
 
