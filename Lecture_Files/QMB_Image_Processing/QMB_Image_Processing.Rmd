@@ -171,7 +171,7 @@ Thus,
 
 ##### Connectivity
 
-Connectivity between pixels is important in several areas of image processing where we need to identify regions of interest, segment etc. Important to the idea of connectivity is esatblishing boundaries around objects and extract connected components in images.
+Connectivity between pixels is important in several areas of image processing where we need to identify regions of interest, segment etc. Important to the idea of connectivity is establishing boundaries around objects and extract connected components in images.
 
 Two pixels $p,q$ are connected if:
 
@@ -237,7 +237,7 @@ Non-periodic functions can also be represented as the integral of sines/cosines 
 
 ---
 
-We will now see an example of a function and its fourier transform. The function is defined by,
+We will now see an example of a function and its Fourier transform. The function is defined by,
 
 $$
 f(x) = \begin{cases} A, & \mbox{if } 0 \leq x \leq X \\ 0, & \mbox{otherwise} \end{cases}
@@ -265,7 +265,7 @@ $$
 
 ---
 
-Discrete Fourier Transform (DFT) is the discrete analog of the fourier transform. Since an image is a two-dimensional quantity, we need DFT in two dimensions. DFT is defined by,
+Discrete Fourier Transform (DFT) is the discrete analog of the Fourier transform. Since an image is a two-dimensional quantity, we need DFT in two dimensions. DFT is defined by,
 
 $$
 \mathcal{F}\{ f(x,y)\} = F(u,v) = \frac{1}{MN}\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}f(x,y)e^{-j2\pi (ux/M+vy/N)}
@@ -423,9 +423,9 @@ By the way, notice the single bright dot in the middle of the noise FT image. Wh
 
 #### Image sampling 
 
-Sampling is the process of measuring the brightness information only at a discrete number of locations. This is modelled as a multiplication with a 1D or 2D pattern (train) of Dirac impulses at these discrete positions.
+Sampling is the process of measuring the brightness information only at a discrete number of locations. This is modeled as a multiplication with a 1D or 2D pattern (train) of Dirac impulses at these discrete positions.
 
-Consider the real neighbourhood function filtered $f(x)$. Suppose its FT vanishes outside the interval $u\in[-\omega,\omega]$:
+Consider the real neighborhood function filtered $f(x)$. Suppose its FT vanishes outside the interval $u\in[-\omega,\omega]$:
 
 ---
 
@@ -440,7 +440,7 @@ Its FT $S(u)$ is also a train of Dirac impulses with a distance inversely propor
 
 ![](FTA15.png)
 
-By the convolution theorem multiplication in the image domain is equivalent to convolution in the frequency domain. The transform is periodic, with period $1/\Delta x$, and the individual repetitions of $F(u)$ can overlap → **aliasing**!!! The centre of the overlap occurs at $u=1/(2\Delta x)$
+By the convolution theorem multiplication in the image domain is equivalent to convolution in the frequency domain. The transform is periodic, with period $1/\Delta x$, and the individual repetitions of $F(u)$ can overlap → **aliasing**!!! The center of the overlap occurs at $u=1/(2\Delta x)$
 
 ---
 
@@ -476,7 +476,7 @@ The inverse FT then yields the original continuous function $f(x)$. Such a compl
 
 ---
 
-Mathematically, since the fourier transform of a `sinc` function is same as the rectangular function and convolving in the signal domain is same as multiplying in the frequency (fourier) domain, we can write this as:
+Mathematically, since the Fourier transform of a `sinc` function is same as the rectangular function and convolving in the signal domain is same as multiplying in the frequency (Fourier) domain, we can write this as:
 
 $$
 f(x) = \Big [ \sum_{n=-\infty}^{\infty} f(n) . \delta(x-n\omega) \Big ] * \text{sinc}\Big(\frac{x}{\omega}\Big)
@@ -498,7 +498,7 @@ $$
 
 #### Image enhancement
 
-The principal objective of the enhancements techniques is to process the images so that the results are more suitable than the original images for a specific application. The approaches discussed in this chapter fall mainly the categoriy of geometrical image corrections. A geometric transform is a vector function $H$ that maps all the pixels $(x,y)$ in the source image to a new position $(x',y')$ in the rectified coordinate system with $(x',y')^\intercal=H(x,y)^\intercal$. The transformation H is either known in advance or can be determined from several known pixel correspondences in an original and transformed image pair. Depending on the geometrical distortion one has to select the most appropriate geometrical transformation $H$ from a class of transformations.
+The principal objective of the enhancements techniques is to process the images so that the results are more suitable than the original images for a specific application. The approaches discussed in this chapter fall mainly the category of geometrical image corrections. A geometric transform is a vector function $H$ that maps all the pixels $(x,y)$ in the source image to a new position $(x',y')$ in the rectified coordinate system with $(x',y')^\intercal=H(x,y)^\intercal$. The transformation H is either known in advance or can be determined from several known pixel correspondences in an original and transformed image pair. Depending on the geometrical distortion one has to select the most appropriate geometrical transformation $H$ from a class of transformations.
 
 ---
 
@@ -511,8 +511,8 @@ Such geometric transforms consist of two basic steps
 1. Determining the pixel coordinates in the transformed image
     a. Mapping of the coordinates $(x,y)$ in the input image to the point $(x',y')$ in the output image. The output coordinates generally don't fall onto exact pixel coordinates
 
-2.  Determining the point in the digital raster which matches the transformed point and determining its brightness/colour
-    a. Brightness/colour is usually computed as an interpolation of several points in the neighbourhood
+2.  Determining the point in the digital raster which matches the transformed point and determining its brightness/color
+    a. Brightness/color is usually computed as an interpolation of several points in the neighborhood
     
     
 The projective transformations form in a mathematical sense a group known as the _projective linear group_. This group can be split into various sub-groups with special properties and increasing complexity (degrees-of-freedom DOF).
@@ -545,7 +545,7 @@ where $\mathcal{R(\theta)}$ is a $2\times 2$ (orthogonal) rotation matrix, $\mat
 
 ---
 
-Isometries have 3 degrees-of-freedom (DOF): one for rotation $(\theta)$ and two for translation $t_x,t_y$ and can be computed from two point correspondences. The invariants of isometries are lengths (distance between two points), angles (between two lines) and area.
+Isometries have 3 degrees-of-freedom (DOF): one for rotation $(\theta)$ and two for translation $t_x,t_y$ and can be computed from two point correspondences. The invariant of isometries are lengths (distance between two points), angles (between two lines) and area.
 
 For example, if $\theta = 45^{o}$ and $\mathbf{t} = [-100,-100]$ gives the transformation:
 
@@ -582,7 +582,7 @@ where $\mathcal{R(\theta)}$ is a $2\times 2$ (orthogonal) rotation matrix, $s$ i
 
 ---
 
-Similarity transformations have $4$ DOF: one for rotation $\theta$, two for translation $t_x,t_y$, and one for scaling $s$. A similarity can be computed from two point correspondences just like we did for isometry. The invariants for similarity transformations are: angles (angle between two lines) and parallel lines (are mapped to parallel lines). The length between to points is not invariant, but the ratio of two lengths is. Similarly the ratio of areas is invariant (because the squared scaling cancels out).
+Similarity transformations have $4$ DOF: one for rotation $\theta$, two for translation $t_x,t_y$, and one for scaling $s$. A similarity can be computed from two point correspondences just like we did for isometry. The invariant for similarity transformations are: angles (angle between two lines) and parallel lines (are mapped to parallel lines). The length between to points is not invariant, but the ratio of two lengths is. Similarly the ratio of areas is invariant (because the squared scaling cancels out).
 
 For example, if $\theta = 45^{o}$ and $\mathbf{t} = [-100,-100]$ and $s = 0.5$, gives the transformation:
 
@@ -621,7 +621,7 @@ where $\mathcal{A}$ is a $2\times 2$ non-singular matrix, $\mathbf{t} = [t_{x},t
 
 ---
 
-Affine transformations have $6$ DOF: four for the non-singular matrix $\mathcal{A}$, and two for translation $t_x,t_y$ and can be computed from three point correspondences. The invariants are a. parallel lines are mapped to parallel lines, 2. ratio of lengths of parallel line segments and 3. ratio of areas.
+Affine transformations have $6$ DOF: four for the non-singular matrix $\mathcal{A}$, and two for translation $t_x,t_y$ and can be computed from three point correspondences. The invariant are a. parallel lines are mapped to parallel lines, 2. ratio of lengths of parallel line segments and 3. ratio of areas.
 
 An affine transformation with:
 
@@ -656,7 +656,7 @@ where $\mathcal{A}$ is a $2\times 2$ non-singular matrix, $\mathbf{v^{T}}$ is a 
 
 ---
 
-Projective transformations have $8$ DOF. A projective transformation can be computed from four point correspondences (with no three collinear on either plane) and the invariants the cross ratio (ratio of ratio) of four collinear points. A projective transformation:
+Projective transformations have $8$ DOF. A projective transformation can be computed from four point correspondences (with no three collinear on either plane) and the invariant the cross ratio (ratio of ratio) of four collinear points. A projective transformation:
 
 $$
 x' = H_{PRO}x =
@@ -683,6 +683,81 @@ Once the spatial transformation ${H}$ is known, the input image has to be mapped
 
 2. Backward mapping: $x=\mbox{H}^{-1}x'$
 
+During forward mapping each pixel from the input image is transformed $x'=\mbox{H}x$ and copied to the output image. Problems with this approach are:
+
+1. Pixel coordinates x' generally do not fall onto exact pixel locations
+
+2. Two or more input pixels could be mapped to the very same output pixel
+
+3. Some output pixels might not get a value assigned at all (gaps)
+
+During backward mapping for each output pixel the coordinates in the input image are calculated $x=\mbox{H}^{-1}x'$ and copied over. Problem with this approach is that the pixel coordinate $x$ generally does not fall onto an exact pixel location. Efficient forward mapping is complex and computationally expensive to implement.
+
+---
+
+##### Backward mapping
+
+In backward mapping for each output pixel the corresponding location in the input image is calculated using $\mbox{H}^{-1}$. As the pixel coordinates in the input image generally do not fall onto exact pixel locations, the pixel intensity/color is interpolated among the nearest input image pixels. Backward mapping is easier to implement and computationally faster than forward mapping. The problem, however is, how to interpolate (resample) the image pixels?
+
+Three approaches:
+
+1. Nearest-Neighbor interpolation
+
+2. Bilinear interpolation
+
+3. Cubic convolution methods
+
+
+_Nearest-Neighbor (NN) interpolation_: Set the intensity equal to the intensity of the closest pixel. There are advantages and disadvantaes of NN interpolation. Nearest Neighbour (NN) interpolation is very fast
+NN interpolation does not introduce new grey values! although NN interpolation shows heavy artefacts. 
+
+---
+
+![](IE10.png)
+
+---
+
+_Bilinear interpolation_: Bilinear interpolation determines the grey level from the weighted average of the four closest pixels and can be defined as,
+
+$$
+I_{x,y} = w_4I_{u,v}+w_2I_{u,v+1}+w_3I_{u+1,v}+w_1I_{u+1,v+1}
+$$
+where
+
+$$
+\begin{align}
+w_1 & = (x-u)(y-v) \\
+w_2 & = (u+1-x)(y-v) \\
+w_3 & = (x-u)(v+1-y) \\
+w_4 & = (u+1-x)(v+1-y)
+\end{align}
+$$
+
+Bilinear Interpolation has the following properties:
+
+1. Better than nearest-neighbour interpolation
+
+2. Computationally efficient to implement (about five times slower then NN, though)
+
+But it smooths and blurs the image and thus reduces spatial resolution
+
+---
+
+![](IE11.png)
+
+---
+
+_Cubic convolution methods_: This is similar to bilinear interpolation where the resampled image data are computed using $4 \times 4 = 16$ surrounding original image data.
+
+![](IE12.gif)
+
+---
+
+Cubic convolution is better at retaining the original grey values than NN and bilinear interpolation but the computational requirement is up to $10$ times higher than NN interpolation and $2$ times higher than bi-linear interpolation. The following images shows the results of applying these interpolation techniques.
+
+---
+
+![](IE13.png)![](IE14.png)![](IE15.png)
 
 ---
 
