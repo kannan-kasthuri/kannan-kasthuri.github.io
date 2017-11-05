@@ -24,7 +24,7 @@ We will study some specific ideas in the following general topics in image proce
     - FT applied to primitive images
     - FT applied to real images
 - Image sampling 
-    - Limits in reconstruction
+    - Limits in reconstruction 
 - Image enhancement
     - Various filters
     - Interpolation methods
@@ -409,12 +409,56 @@ By the way, notice the single bright dot in the middle of the noise FT image. Wh
 
 #### Image sampling 
 
-Sampling is the process of measuring the brightness information only at a discrete number of locations. The sampling process can be modeled in a 2-step scheme:
+Sampling is the process of measuring the brightness information only at a discrete number of locations. This is modelled as a multiplication with a 1D or 2D pattern (train) of Dirac impulses at these discrete positions.
 
-1. Integrate brightness over regions of the pixel size, 
+Consider the real neighbourhood function filtered $f(x)$. Suppose its FT vanishes outside the interval $u\in[-\omega,\omega]$:
 
-2. Read out values only at the pixel positions.
+![](FTA14.png)
 
+To obtain a sampled version of $f(x)$ simply involves multiplying it by a sampling function $s(x)$, which consists of a train of Dirac impulses $\Delta x$ apart
+Its FT $S(u)$ is also a train of Dirac impulses with a distance inversely proportional to $\Delta x$, namely $1/\Delta x$ apart:
+
+![](FTA15.png)
+
+By the convolution theorem multiplication in the image domain is equivalent to convolution in the frequency domain. The transform is periodic, with period $1/\Delta x$, and the individual repetitions of $F(u)$ can overlap → **aliasing**!!! The centre of the overlap occurs at $u=1/(2\Delta x)$
+
+![](FTA16.png)
+
+To avoid these problems, the sampling interval $\Delta x$ has to be selected so that $1/(2\Delta x)\ge\omega$, or
+
+$$
+\Delta x \leq \frac{1}{2 \omega}
+$$
+
+![](FTA17.png)
+
+Once the individual $F(u)$ are separated a multiplication with the window function $G(u)$ yields a completely isolated $F(u)$:
+
+![](FTA19.png)
+
+The inverse FT then yields the original continuous function $f(x)$. Such a complete recovery of a band-limited function $f(x)$ that satisfies the above inequality is known as the **Whittaker-Shannon Sampling Theorem**.
+
+![](FTA18.png)
+
+Mathematically, since multiplying in the fourier domain is same as doing convolution in the image domain, we can write this as:
+
+$$
+f(x) = \Big [ \sum_{n=-\infty}^{\infty} f(n) . \delta(x-n\omega) \Big ] * \text{sinc}\Big(\frac{x}{\omega}\Big)
+$$
+
+---
+
+##### Example of aliasing
+
+![](FTA20.png)
+
+---
+
+##### Example of good reconstruction
+
+![](FTA21.png)
+
+---
 
 #### References
 
