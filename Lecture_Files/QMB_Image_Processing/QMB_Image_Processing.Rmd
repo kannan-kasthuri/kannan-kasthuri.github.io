@@ -13,7 +13,7 @@ text-align: justify}
 
 ---
 
-We will study some specific ideas in the following general topics in image processing.
+Again, image processing is a semester long course in EE/Comp. Sci. departments. Therefore, we will study some important ideas in the following general topics in image processing.
 
 - Digital image fundamentals
     - Relationship between pixels
@@ -26,7 +26,7 @@ We will study some specific ideas in the following general topics in image proce
 - Image sampling 
     - Limits in reconstruction (Whittaker-Shannon Sampling Theorem)
 - Image enhancement
-    - Various filters
+    - Geometrical image transformations
     - Interpolation methods
 - Image restoration
     - Noise models
@@ -498,7 +498,190 @@ $$
 
 #### Image enhancement
 
-The principal objective of the enhancements techniques is to process the images so that the results are more suitable than the original images for a specific application. The approaches discussed in this chapter fall mainly the categoriy of geometrical image corrections.
+The principal objective of the enhancements techniques is to process the images so that the results are more suitable than the original images for a specific application. The approaches discussed in this chapter fall mainly the categoriy of geometrical image corrections. A geometric transform is a vector function $H$ that maps all the pixels $(x,y)$ in the source image to a new position $(x',y')$ in the rectified coordinate system with $(x',y')^\intercal=H(x,y)^\intercal$. The transformation H is either known in advance or can be determined from several known pixel correspondences in an original and transformed image pair. Depending on the geometrical distortion one has to select the most appropriate geometrical transformation $H$ from a class of transformations.
+
+---
+
+![](IE01.png)
+
+---
+
+Such geometric transforms consist of two basic steps
+
+1. Determining the pixel coordinates in the transformed image
+    a. Mapping of the coordinates $(x,y)$ in the input image to the point $(x',y')$ in the output image. The output coordinates generally don't fall onto exact pixel coordinates
+
+2.  Determining the point in the digital raster which matches the transformed point and determining its brightness/colour
+    a. Brightness/colour is usually computed as an interpolation of several points in the neighbourhood
+    
+    
+The projective transformations form in a mathematical sense a group known as the _projective linear group_. This group can be split into various sub-groups with special properties and increasing complexity (degrees-of-freedom DOF).
+
+1. Class I: Isometries (translation, rotation, rigid)
+
+2. Class II: Similarity transformations
+
+3. Class III: Affine transformations
+
+4. Class IV: Projective transformations
+
+The most general case of geometric transformation is the Free-form or curved transformation which we will not cover.
+
+---
+
+#####  Class I: Isometries (translation, rotation, rigid)
+
+Isometries are transformations of the plane $\mathbb{R}^2$ that preserve Euclidean distance thus the term isometry (from iso = same, metric = measure). The general form of isometries is given by,
+
+$$
+x' = H_{ISM}x =
+\begin{bmatrix}
+    \mathcal{R(\theta)} & \mathbf{t} \\
+    \mathbf{0^{T}}      & 1 \\
+\end{bmatrix}x
+$$
+
+where $\mathcal{R(\theta)}$ is a $2\times 2$ (orthogonal) rotation matrix, $\mathbf{t} = [t_{x},t_{y}]$ a translation vector, and $\mathbf{0}$ a null vector.
+
+---
+
+Isometries have 3 degrees-of-freedom (DOF): one for rotation $(\theta)$ and two for translation $t_x,t_y$ and can be computed from two point correspondences. The invariants of isometries are lengths (distance between two points), angles (between two lines) and area.
+
+For example, if $\theta = 45^{o}$ and $\mathbf{t} = [-100,-100]$ gives the transformation:
+
+$$
+x' = H_{ISM}x =
+  \begin{bmatrix}
+    0.7071 & -0.7071 & -100 \\
+    0.7071 & 0.7071 & -100 \\
+    0 & 0 & 1
+  \end{bmatrix}x
+$$
+
+We can see the effect of the transformation:
+
+---
+
+![](IE02.png) ![](IE03.png)
+
+---
+
+##### Class II: Similarity transformations
+
+A similarity transformation is an isometry composed with an isotropic scaling (i.e, scaling equally in all directions). In matrix terms,
+
+$$
+x' = H_{IST}x =
+\begin{bmatrix}
+    \mathcal{sR(\theta)} & \mathbf{t} \\
+    \mathbf{0^{T}}      & 1 \\
+\end{bmatrix}x
+$$
+
+where $\mathcal{R(\theta)}$ is a $2\times 2$ (orthogonal) rotation matrix, $s$ is an isotropic scaling factor, $\mathbf{t} = [t_{x},t_{y}]$ a translation vector, and $\mathbf{0}$ a null vector.
+
+---
+
+Similarity transformations have $4$ DOF: one for rotation $\theta$, two for translation $t_x,t_y$, and one for scaling $s$. A similarity can be computed from two point correspondences just like we did for isometry. The invariants for similarity transformations are: angles (angle between two lines) and parallel lines (are mapped to parallel lines). The length between to points is not invariant, but the ratio of two lengths is. Similarly the ratio of areas is invariant (because the squared scaling cancels out).
+
+For example, if $\theta = 45^{o}$ and $\mathbf{t} = [-100,-100]$ and $s = 0.5$, gives the transformation:
+
+$$
+x' = H_{IST}x =
+  \begin{bmatrix}
+    0.3536 & -0.3536 & -100 \\
+    0.3536 & 0.3536 & -100 \\
+    0 & 0 & 1
+  \end{bmatrix}x
+$$
+
+We can see the effect of the transformation:
+
+---
+
+![](IE04.png) ![](IE05.png)
+
+---
+
+
+##### Class III: Affine transformations
+
+An affine transformation is a non-singular linear transformation (rotation, scaling and skewing) followed by a translation.
+
+
+$$
+x' = H_{AFF}x =
+\begin{bmatrix}
+    \mathcal{A} & \mathbf{t} \\
+    \mathbf{0^{T}}      & 1 \\
+\end{bmatrix}x
+$$
+
+where $\mathcal{A}$ is a $2\times 2$ non-singular matrix, $\mathbf{t} = [t_{x},t_{y}]$ a translation vector, and $\mathbf{0}$ a null vector. An affine transformation is _orientation-preserving_ or _-reversing_ if $det(\mathcal{A})$ is positive or negative respectively.
+
+---
+
+Affine transformations have $6$ DOF: four for the non-singular matrix $\mathcal{A}$, and two for translation $t_x,t_y$ and can be computed from three point correspondences. The invariants are a. parallel lines are mapped to parallel lines, 2. ratio of lengths of parallel line segments and 3. ratio of areas.
+
+An affine transformation with:
+
+$$
+\mathcal{A} =
+  \begin{bmatrix}
+    0.5305 & -0.2652 \\
+    0.5305 & 0.5305 
+  \end{bmatrix}
+$$
+and $\mathbf{t} = [-100,-100]$, gives,
+
+---
+
+![](IE06.png) ![](IE07.png)
+
+---
+
+##### Class IV: Projective transformations
+
+A projective transformation is a general non-singular linear transformation of homogeneous coordinates.
+
+$$
+x' = H_{PRO}x =
+\begin{bmatrix}
+    \mathcal{A} & \mathbf{t} \\
+    \mathbf{v^{T}}      & v \\
+\end{bmatrix}x
+$$
+
+where $\mathcal{A}$ is a $2\times 2$ non-singular matrix, $\mathbf{v^{T}}$ is a vector, $\mathbf{t} = [t_{x},t_{y}]$ a translation vector, and $v$ a scaling parameter.
+
+---
+
+Projective transformations have $8$ DOF. A projective transformation can be computed from four point correspondences (with no three collinear on either plane) and the invariants the cross ratio (ratio of ratio) of four collinear points. A projective transformation:
+
+$$
+x' = H_{PRO}x =
+  \begin{bmatrix}
+    0.5305 & -0.2652 & -100 \\
+    0.5305 & 0.5305 & -100 \\
+    0.001 & 0 & 1
+  \end{bmatrix}x
+$$
+
+results in the following transformation of the image.
+
+---
+
+![](IE08.png) ![](IE09.png)
+
+---
+
+#### Interpolation
+
+Once the spatial transformation ${H}$ is known, the input image has to be mapped into the output image. Two approaches are common:
+
+1. Forward mapping: $x'=\mbox{H}x$
+
+2. Backward mapping: $x=\mbox{H}^{-1}x'$
 
 
 ---
