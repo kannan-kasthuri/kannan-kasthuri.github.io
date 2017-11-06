@@ -910,6 +910,22 @@ Periodic noise typically arises from electrical or electromechanical interferenc
 
 ---
 
+In the image model when noise is the only image degradation present in an image, $H(u,v)=1$, and hence,
+
+$$
+g(x,y) =f(x,y)+\eta(x,y)
+$$
+and so in the fourier domain,
+
+$$
+G(u,v) = F(u,v)+N(u,v)
+$$
+
+In case of periodic noise, it is usually possible to estimate $N(u,v)$ from the spectrum of $G(u,v)$ and subtract it to obtain an estimate of the original image $f(x,y)$. 
+
+But, in general, estimating the noise terms $\eta(x,y)$ is unreasonable, so subtracting them from $g(x,y)$ is impossible. _Spatial filtering_ is the method of choice in situations when only additive noise is present.
+
+
 #### References
 
 1. [Introduction to Signal and Image Processing](https://miac.unibas.ch/SIP/)
