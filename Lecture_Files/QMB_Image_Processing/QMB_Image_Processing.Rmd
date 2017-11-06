@@ -763,6 +763,32 @@ Cubic convolution is better at retaining the original grey values than NN and bi
 
 In contrast to image enhancement that was subjective and largely based on heuristics, restoration attempts to reconstruct or recover an image that has been distorted by a known degradation phenomenon. Restoration techniques thus try to model the degradation process and apply the inverse process in order to reconstruct the original image.
 
+The degradation process is generally modelled as a degradation function $H$ and the additive noise term $\eta(x,y)$ together they yield $g(x,y)$.
+Given $g(x,y)$, some knowledge about $H$, and $\eta(x,y)$ it is the objective of restoration to estimate $\hat{f}(x,y)$. Of course this estimate should be as close as possible to $f(x,y)$. 
+
+---
+
+![](ID01.png)
+
+---
+
+If the degradation function $H$ is a linear, shift-invariant process, then the degraded image is given in the spatial domain by
+
+$$
+g(x,y) = h(x,y)*f(x,y)+\eta(x,y)
+$$
+By convolution theorem this means in the fourier domain,
+
+$$
+G(u,v) = H(u,v)F(u,v)+N(u,v)
+$$
+
+where $H,F$ and $N$ are FTs of the original functions.
+
+---
+
+##### Various noise models
+
 The principle sources of noise in digital images arise during image acquisition and/or transmission. The performance of imaging sensors are affected by a variety of factors during acquisition, such as,
 
 1. Environmental conditions during the acquisition
@@ -771,11 +797,9 @@ The principle sources of noise in digital images arise during image acquisition 
 
 3. Sensor temperature (higher temp implies more amplification noise)
 
-Images can also be corrupted during transmission due to interference in the channel for example due to lightning or other atmospheric disturbances. Depending on the specific noise source, a different model must be selected that accurately reproduces the spatial characteristics of the noise.
+Images can also be corrupted during transmission due to interference in the channel for example due to lightning or other atmospheric disturbances. Depending on the specific noise source, a different model must be selected that accurately reproduces the spatial characteristics of the noise. 
 
 ---
-
-##### Various noise models
 
 _Gaussian noise_
 
@@ -784,6 +808,8 @@ Because of its mathematical tractability in both the spatial and frequency domai
 $$
 p_{G}(z) = \frac{1}{\sqrt{2\pi \sigma}}\exp \Big(\frac{-(z-\mu)^2}{2\sigma ^2} \Big) 
 $$
+
+---
 
 _Rayleigh noise_
 
@@ -803,6 +829,7 @@ $$
 \end{align}
 $$
 
+---
 
 _Erlang noise_
 
@@ -820,6 +847,8 @@ $$
 \sigma ^2 & = \frac{b}{a^2}
 \end{align}
 $$
+
+---
 
 _Exponential noise_
 
@@ -839,6 +868,8 @@ $$
 \end{align}
 $$
 
+---
+
 _Uniform noise_
 
 Typically, when a real value $x$ from a sensor is discretized $(x_Q)$ with a uniform quantizer, the error $x−x_Q$ is likely to be uniformly distributed.
@@ -846,6 +877,7 @@ Typically, when a real value $x$ from a sensor is discretized $(x_Q)$ with a uni
 $$
 p_{U}(z) = \begin{cases} \frac{1}{b-a} , & \mbox{if } a \leq z \leq b \\ 0, & \mbox{otherwise} \end{cases}
 $$
+
 where the mean and variance are given by,
 
 $$
@@ -854,6 +886,8 @@ $$
 \sigma ^2 & = \frac{(b-a)^2}{12}
 \end{align}
 $$
+
+---
 
 _Impulse (Salt-and-Pepper) noise_
 
@@ -866,11 +900,13 @@ P_b, & \mbox{if } z = b \\
 0 & \mbox{otherwise} \end{cases}
 $$
 
+---
+
 _Periodic noise_
 
 Periodic noise typically arises from electrical or electromechanical interference during image acquisition and is spatial dependent. The parameters of periodic noise are typically estimated by inspection of the Fourier spectrum. The frequency spikes can often be detected by visual analysis. Automatic analysis is possible if the noise spikes are either exceptionally pronounced or a priori knowledge about their location is known.
 
-![](IE16.jpg)![](IE17.png)
+![](IE16.jpg) ![](IE17.png)
 
 ---
 
