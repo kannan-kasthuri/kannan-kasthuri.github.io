@@ -921,10 +921,59 @@ $$
 G(u,v) = F(u,v)+N(u,v)
 $$
 
-In case of periodic noise, it is usually possible to estimate $N(u,v)$ from the spectrum of $G(u,v)$ and subtract it to obtain an estimate of the original image $f(x,y)$. 
+In general, estimating the noise terms $\eta(x,y)$ is unreasonable, so subtracting them from $g(x,y)$ is impossible. _Spatial filtering_ is the method of choice in situations when only additive noise is present.
 
-But, in general, estimating the noise terms $\eta(x,y)$ is unreasonable, so subtracting them from $g(x,y)$ is impossible. _Spatial filtering_ is the method of choice in situations when only additive noise is present.
+In case of periodic noise, it is usually possible to estimate $N(u,v)$ from the spectrum of $G(u,v)$ and subtract it to obtain an estimate of the original image $f(x,y)$. This is done by using filters.
 
+We will see three main filters:
+
+---
+
+_Ideal Bandreject Filter_
+
+$$
+H(u,v) = \begin{cases} 1 , & \mbox{if } D(u,v) < D_0-\frac{W}{2} \\ 
+0, & \mbox{otherwise}  \\
+1, & \mbox{if } D(u,v) > D_0+\frac{W}{2} \end{cases}
+$$
+
+![](ID02.png)
+
+---
+
+_Butterworth Bandreject Filter_
+
+$$
+H(u,v) = \frac{1}{1+\Big[\frac{D(u,v)W}{D^2(u,v)-D_{0}^2}\Big]^{2n}}
+$$
+
+![](ID03.png)
+
+---
+
+_Gaussian Bandreject Filter_
+
+$$
+H(u,v) = 1-\exp\Bigg(-\frac{1}{2}\Bigg[\frac{D^2(u,v)-D_{0}^2}{D(u,v)W}\Bigg]^{2}\Bigg)
+$$
+
+![](ID04.png)
+
+---
+
+Here is the result of applying these filters on the above image.
+
+![](ID05.png) ![](ID06.png)
+
+![](ID07.png) ![](ID08.png)
+
+
+Top left: Aerial image of Pompeii with periodic noise
+Top right: Ideal bandreject filter $D0=100,W=6$
+Bottom left: Butterworth bandreject filter $D0=100,W=6$
+Bottom right: Gaussian bandreject filter $D0=100,W=6$
+
+---
 
 #### References
 
