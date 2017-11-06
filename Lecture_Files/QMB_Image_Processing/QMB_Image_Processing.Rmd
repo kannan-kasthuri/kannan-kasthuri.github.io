@@ -313,7 +313,7 @@ First we will investigate the "basis" functions for the Fourier Transform (FT). 
 
 ---
 
-The images are a pure horizontal cosine of 8 cycles and a pure vertical cosine of 32 cycles. Notice that the FT for each just has a single component, represented by 2 bright spots symmetrically placed about the center of the FT image. The center of the image is the origin of the frequency coordinate system. The u-axis runs left to right through the center and represents the horizontal component of frequency. The v-axis runs bottom to top through the center and represents the vertical component of frequency. In both cases there is a dot at the center that represents the (0,0) frequency term or average value of the image. Images usually have a large average value (like 128) and lots of low frequency information so FT images usually have a bright blob of components near the center. Notice that high frequencies in the vertical direction will cause bright dots away from the center in the vertical direction. And that high frequencies in the horizontal direction will cause bright dots away from the center in the horizontal direction.
+The images are a pure horizontal cosine of 8 cycles and a pure vertical cosine of 32 cycles. Notice that the FT for each just has a single component, represented by 2 bright spots symmetrically placed about the center of the FT image. The center of the image is the origin of the frequency coordinate system. The u-axis runs left to right through the center and represents the horizontal component of frequency. The v-axis runs bottom to top through the center and represents the vertical component of frequency. In both cases there is a dot at the center that represents the (0,0) frequency term or average value of the image. Images usually have a large average value (like 128) and lots of low frequency information so FT images usually have a bright blob of components near the center. Notice that high frequencies in the vertical direction will cause bright dots away from the center in the horizontal direction. And that high frequencies in the horizontal direction will cause bright dots away from the center in the vertical direction.
 
 ---
 
@@ -321,7 +321,7 @@ The images are a pure horizontal cosine of 8 cycles and a pure vertical cosine o
 
 ---
 
-Here are 2 images of more general Fourier components. They are images of 2D cosines with both horizontal and vertical components. The one on the left has 4 cycles horizontally and 16 cycles vertically. The one on the right has 32 cycles horizontally and 2 cycles vertically. (Note: You see a gray band when the function goes through gray = 128 which happens twice/cycle.) You may begin to notice there is a lot of symmetry. For all REAL (as opposed to IMAGINARY or COMPLEX) images, the FT is symmetrical about the origin so the 1st and 3rd quadrants are the same and the 2nd and 4th quadrants are the same. If the image is symmetrical about the x-axis (as the cosine images are) 4-fold symmetry results.
+Here are 2 images of more general Fourier components. They are images of 2D cosines with both horizontal and vertical components. The one on the left has 4 cycles horizontally and 16 cycles vertically. The one on the right has 32 cycles horizontally and 2 cycles vertically. (Note: we see a gray band when the function goes through gray = 128 which happens twice/cycle.) we may begin to notice there is a lot of symmetry. For all REAL (as opposed to IMAGINARY or COMPLEX) images, the FT is symmetrical about the origin so the 1st and 3rd quadrants are the same and the 2nd and 4th quadrants are the same. If the image is symmetrical about the x-axis (as the cosine images are) 4-fold symmetry results.
 
 ---
 
@@ -355,7 +355,7 @@ Now, with the above introduction, the best way to become familiar with Fourier T
 
 ---
 
-There are 2 images, goofy and the degraded goofy, with FTs below each. Notice that both suffer from edge effects as evidenced by the strong vertical line through the center. The major effect to notice is that in the transform of the degraded goofy the high frequencies in the horizontal direction have been significantly attenuated. This is due to the fact that the degraded image was formed by smoothing only in the horizontal direction. Also, if you look carefully you can see that the degraded goofy has a slightly larger background noise level at high frequencies. This is difficult to see and perhaps not even meaningful because the images are scaled differently, but if really there, it is due to the random noise added to the degraded goofy. Notice also that it is difficult to make much sense out of the low frequency information. This is typical of real life images.
+There are 2 images, goofy and the degraded goofy, with FTs below each. Notice that both suffer from edge effects as evidenced by the strong vertical line through the center. The major effect to notice is that in the transform of the degraded goofy the high frequencies in the horizontal direction have been significantly attenuated. This is due to the fact that the degraded image was formed by smoothing only in the horizontal direction. Also, if we look carefully we can see that the degraded goofy has a slightly larger background noise level at high frequencies. This is difficult to see and perhaps not even meaningful because the images are scaled differently, but if really there, it is due to the random noise added to the degraded goofy. Notice also that it is difficult to make much sense out of the low frequency information. This is typical of real life images.
 
 ---
 
@@ -385,7 +385,7 @@ Now lets look at some collections of similar objects:
 
 ---
 
-Notice the concentric ring structure in the FT of the white pellets image. It is due to each individual pellet. That is, if we took the FT of just one pellet, we would still get this pattern. Remember, we are looking only at the magnitude spectrum. The fact that there are many pellets and information about exactly where each one is is contained mostly in the phase. The coffee beans have less symmetry and are more variably colored so they do not show the same ring structure. You may be able to detect a faint "halo" in the coffee FT. What do you think this is from?
+Notice the concentric ring structure in the FT of the white pellets image. It is due to each individual pellet. That is, if we took the FT of just one pellet, we would still get this pattern. Remember, we are looking only at the magnitude spectrum. The fact that there are many pellets and information about exactly where each one is is contained mostly in the phase. The coffee beans have less symmetry and are more variably colored so they do not show the same ring structure. we may be able to detect a faint "halo" in the coffee FT. 
 
 ---
 
@@ -393,7 +393,7 @@ Notice the concentric ring structure in the FT of the white pellets image. It is
 
 ---
 
-Here are our first truly general images. Notice there is very little structure. You can see a top left to bottom right slanting line in the girl image FT. It is probably due to the edge between her hat and her hair. There are also some small edge effects in both images. The mandril image appears to have more high frequency power, probably due to the hair.
+Here are our first truly general images. Notice there is very little structure. we can see a top left to bottom right slanting line in the girl image FT. It is probably due to the edge between her hat and her hair. There are also some small edge effects in both images. The mandril image appears to have more high frequency power, probably due to the hair.
 
 ---
 
@@ -405,7 +405,7 @@ The seafan image has a lot of little holes that are about the same size and some
 
 ---
 
-Now, here is your first quiz. Consider an image that is totally random. That is, every pixel is some random value, independent of all other pixels. What is its FT?
+Consider an image that is totally random. That is, every pixel is some random value, independent of all other pixels. What is its FT?
 
 ![](FTA12.png)
 
