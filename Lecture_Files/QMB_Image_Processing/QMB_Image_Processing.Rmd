@@ -13,6 +13,14 @@ text-align: justify}
 
 ---
 
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MCfF6Idcq5E" frameborder="0" allowfullscreen></iframe>
+
+---
+
 Again, image processing is a semester long course in EE/Comp. Sci. departments. Therefore, we will study some important ideas in the following general topics in image processing.
 
 - Digital image fundamentals
