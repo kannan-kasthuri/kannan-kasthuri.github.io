@@ -23,7 +23,7 @@ figure figcaption {
 
 ---
 
-<center> <h3>Collected Informatics Lectures</h3> </center>
+<center> <h3>Welcome to my collected informatics works</h3> </center>
 
 ---
 
@@ -33,20 +33,17 @@ If you need more information about the course content, like homeworks, projects 
 
 **A Note:** Although I have separate sections on informatics topics, I don't mean to distinguish data science from other topics. To be a good data scientist, several aspects of informatics are necessary, including linear algebra, statistics, signal/image processing etc. Therefore, this entire collection should come under the ambit of data science. This is precisely the reason why topics such as algorithms, optimization, linear algebra etc., follow data science series and I will use these words interchangeably.
 
-Why data science now? After all data analysis has been there from the days of Galileo Galilei when he measured gravity. And the normal distribution was discovered by Carl Fredrich Gauss in $1809$. So to see why data science is more useful now, you may want to watch the following stream.
+Why data science now? After all data analysis has been there from the days of Galileo when he measured gravity. And the normal distribution was discovered by Carl Fredrich Gauss in $1809$. So to see why data science is more useful now, you may want to watch the following stream.
 
 ---
 
-#### Why data science/informatics is flourishing now?
+#### Why data science/informatics now?
 
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/U36GaGt35p0" frameborder="0" allowfullscreen></iframe>
 
 ---
-
-
-<span style="color:purple"> _**Happy working!**_ </span>
 
 ---
 
