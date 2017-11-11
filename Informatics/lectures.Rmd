@@ -18,7 +18,7 @@ figure figcaption {
 
 <div style="text-align:center" markdown="1">
 
-![](informatics.jpg)
+![](informatics.png)
 </div>
 
 ---
@@ -27,13 +27,26 @@ figure figcaption {
 
 ---
 
-Over the past few months I had a good opportunity to direct and teach courses in informatics. I felt it will be best to compile and have them in a central location for easier access and information. Almost all (excecpt for one or two) have video recordings. So, feel free to browse the series and in case you spot any errors (both of ommision and commision), please feel free to report. I can be apprached at my first name at gmail dot com.
+Over the past few months I had a good opportunity to direct and teach courses in informatics. Isn't it a good idea to compile and have them in a central location for easier access and information? Almost all (except for one or two) have video recordings. So, feel free to browse the series and in case you spot any errors (both of omission and commission), please feel free to report. I can be approached at my first name at gmail dot com.
 
-If you need more information about the course content, you can look into the course home pages which can be accessed from [here](https://kannan-kasthuri.github.io/Teaching/teaching.html).
+If you need more information about the course content, like homeworks, projects etc., you can look into the course home pages which can be accessed from my  [teaching](https://kannan-kasthuri.github.io/Teaching/teaching.html) page.
 
-**A Note:** Although I have a separate section for data science, I don't mean to distingush data science from other informatics topics. To be a good data scientist, several aspects of informatics are necessary, including linear algebra, statistics, signal/image processing etc. Therefore, this entire collection should come under the ambit of data science. That is precisely the reason why topics such as algorithms, optimization, linear algebra etc., follow data science series.
+**A Note:** Although I have separate sections on informatics topics, I don't mean to distinguish data science from other topics. To be a good data scientist, several aspects of informatics are necessary, including linear algebra, statistics, signal/image processing etc. Therefore, this entire collection should come under the ambit of data science. This is precisely the reason why topics such as algorithms, optimization, linear algebra etc., follow data science series and I will use these words interchangeably.
 
-<span style="color:purple"> _**Happy reading!**_ </span>
+Why data science now? After all data analysis has been there from the days of Galileo Galilei when he measured gravity. And the normal distribution was discovered by Carl Fredrich Gauss in $1809$. So to see why data science is more useful now, you may want to watch the following stream.
+
+---
+
+#### Why data science/informatics is flourishing now?
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U36GaGt35p0" frameborder="0" allowfullscreen></iframe>
+
+---
+
+
+<span style="color:purple"> _**Happy working!**_ </span>
 
 ---
 
@@ -45,11 +58,11 @@ If you need more information about the course content, you can look into the cou
   <img alt="R Basics" src="r_basics.png" height = 120; width = 100; hspace="20" />
 </figure>
 
-Jane Cullis is a postdoctoral fellow in the laboratory of Dr. Dafna Bar-Sagi in the Biochemistry and Molecular Pharmacology department at NYU. She has a BSc in Biochemistry from McGill University and PhD in Medical Biophysics from the University of Toronto. Jane’s research focuses on lipid metabolism in pancreatic cancer, with specific interest on how altered lipid utilization by tumor cells affects immune cells in the tumor microenvironment. When she isn’t at the lab, Jane enjoys getting biophysical over beers and metaphysical over martinis. Jane is known for thinking up her experimental designs over such bar banter or during her long meditative runs down the East river. If she wasn’t a scientist, she’d be a punmaster and a fisherman. 
+
 
 ---
 
-#### Data science basics
+#### Data analysis basics
 
 ---
 
@@ -57,7 +70,7 @@ Jane Cullis is a postdoctoral fellow in the laboratory of Dr. Dafna Bar-Sagi in 
   <img alt="Data Science" src="data_science.png"  height = 120; width = 100; hspace="20" />
 </figure>
 
-Emily Vucic is a postdoctoral fellow in Dafna Bar-Sagi’s lab at NYU in the Department of Biochemistry and Molecular Pharmacology. She has a BSc in Cell Biology and Genetics and a PhD in Cancer Genetics and Developmental Biology, both from the University of British Columbia in Vancouver, Canada—a beautiful place, replete with what she considers “real trees”. Emily’s research focuses on understanding how tumors evolve, and how tumor cells interact with each other and cells in their environment. Her only other interests include chatting and beer. 
+
 
 ---
 
@@ -69,7 +82,6 @@ Emily Vucic is a postdoctoral fellow in Dafna Bar-Sagi’s lab at NYU in the Dep
   <img alt="Algorithms" src="algorithms.jpeg"  height = 120; width = 100; hspace="20" />
 </figure>
 
-Bryce Janssens is a musician, composer, photographer, videographer and all around technically savvy dude with a witty penchant for incorporating Doors lyrics into most conversations. He hails from Vancouver, Canada by way of Saskatoon, Saskatchewan (which is a funny thing to say in America!). His interests outside of art and music, include contemplating the space time continuum over a beer or two. 
 
 ---
 
@@ -77,7 +89,6 @@ Bryce Janssens is a musician, composer, photographer, videographer and all aroun
   <img alt="Linear Algebra" src="la.png"  height = 120; width = 100; hspace="20" />
 </figure>
 
-Kasthuri Kannan, when not drinking beer, is an Assistant Professor of Pathology at NYU. He is trained in mathematics and computer science with postdoctoral training at MSKCC, where he contributed to cancer genomics efforts. He is interested in evolutionary biology and data-driven genomic analysis that leads to verifiable and useful hypotheses. His contributions to genomics include a comprehensive report of molecular alterations in adenoid cystic carcinoma (a salivary glad tumor) and high-frequency ATRX mutations in astrocytoma (a low grade brain tumor). He is actively co-advising and collaborating with several scientists and physician-scientists, translating research findings to clinical care, and is passionate about teaching and science communication.
 
 ---
 
@@ -85,7 +96,6 @@ Kasthuri Kannan, when not drinking beer, is an Assistant Professor of Pathology 
   <img alt="Optimization" src="optim.png" height = 120; width = 100; hspace="10" />
 </figure>
 
-Zach Mack is the owner of Alphabet City Beer Co., a craft beer store and beer in Manhattan’s East Village that opened in 2012, and Governors Island Beer Co., a seasonal beer garden in New York City located (surprise) on Governors Island. He is a contributing writer to Thrillist, where he covers food and beverage, travel, and New York City interests, and has had his writing appear in myriad publications including GQ and Forbes. A graduate of McGill University, he has always appreciated a healthy discourse between the curious and the informed, and strongly believes that most of the world’s problems could be solved over beers. He is helplessly addicted to ramen, puns, and portmanteaus. <br> <br>
 
 ---
 
