@@ -45,8 +45,6 @@ Why data science now? After all data analysis has been there from the days of Ga
 
 ---
 
----
-
 #### R programming basics
 
 ---
