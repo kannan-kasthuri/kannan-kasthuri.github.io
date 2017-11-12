@@ -18,7 +18,7 @@ figure figcaption {
 
 <div style="text-align:center" markdown="1">
 
-![](info.png)
+![](DataScience.png)
 </div>
 
 ---
@@ -27,21 +27,15 @@ figure figcaption {
 
 ---
 
-Over the past few months I had a good opportunity to direct and teach courses in informatics. Isn't it a good idea to compile and have them in a central location for easier access and information? Almost all (except for one or two) have video recordings. So, feel free to browse the series and in case you spot any errors (both of omission and commission), please feel free to report. I can be approached at my first name at gmail dot com.
+Over the past few months I had a good opportunity to direct and teach courses in informatics. Isn't it a good idea to compile and have them in a central location for easier access and information? Almost all lectures have video recordings, except for one or two. So, feel free to browse the series and in case you spot any errors (both of omission and commission), please feel free to report. You can contact me at _my first name_ at _gmail_ dot _com_
 
 If you need more information about the course content, like homeworks, projects etc., you can look into the course home pages which can be accessed from my  [teaching](https://kannan-kasthuri.github.io/Teaching/teaching.html) page.
 
-**A Note:** Although I have separate sections on informatics topics, I don't mean to distinguish data science from other topics. To be a good data scientist, several aspects of informatics are necessary, including linear algebra, statistics, signal/image processing etc. Therefore, this entire collection should come under the ambit of data science. This is precisely the reason why topics such as algorithms, optimization, linear algebra etc., follow data science series and I will use these words interchangeably.
+**A Note:** Although I have separate sections which probably would come under the broad theme of informatics, I don't mean to distinguish data science from informatics. To be a good data scientist, several topics in informatics are necessary, including linear algebra, statistics, signal/image processing etc. Therefore, this entire collection should come under the ambit of data science (and even more such as machine learning that I currently don't have). This is precisely the reason why the page is named "Data Science" and topics such as programming fundamentals, algorithms, optimization, linear algebra etc., have data science series. I will use the words "informatics" and "data science" interchangeably.
 
-Why data science now? After all data analysis has been there from the days of Galileo when he measured gravity. And the normal distribution was discovered by Carl Fredrich Gauss in $1809$. So to see why data science is more useful now, you may want to watch the following stream.
+Why data science now? After all data analysis has been there from the days of Galileo when he measured gravity. Talking about statistics, the normal distribution was discovered by Carl Fredrich Gauss in $1809$. To see why data science is more useful now, you may want to watch the [introductory lecture](https://kannan-kasthuri.github.io/Lecture_Files/PDA_Lecture_01/Lecture_01.html) in my course. 
 
----
-
-#### Why data science/informatics now?
-
----
-
-You may want to watch the [introductory lecture](https://kannan-kasthuri.github.io/Lecture_Files/PDA_Lecture_01/Lecture_01.html) on my course. It will be really worth while to learn Git, at least the basic operations like push, pull and commits.
+If you are seriously pursuing data science, it goes without saying that it will be extremely useful to learn Git. If you don't have the time to learn advanced stuffs, get the basic operations working, like, push, pull and commits. Remember, learning Git is an investment and you will be attractive to future employers.
 
 ---
 
