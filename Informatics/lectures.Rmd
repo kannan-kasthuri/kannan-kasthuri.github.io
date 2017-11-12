@@ -53,7 +53,7 @@ Why data science now? After all data analysis has been there from the days of Ga
   <img alt="R Basics" src="r_basics.png" height = 120; width = 100; hspace="20" />
 </figure>
 
-[Data Science 01](presetations/DS01.html)
+[Data Science 01](https://kannan-kasthuri.github.io/Informatics/presentations/DS01.html): 
 
 ---
 
