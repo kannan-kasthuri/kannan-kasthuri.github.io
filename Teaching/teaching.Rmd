@@ -10,17 +10,23 @@ knitr::opts_chunk$set(echo = TRUE)
 <style>
 body {
 text-align: justify}
+figure figcaption {
+    text-align: center;}
 </style>
 
 ---
 
-### Teaching
+<center>
+
+![](teaching.png){width=70% }
+
+</center>
 
 ---
 
-<img style="float: left;" src="teaching.jpg" alt="teaching" hspace="10"> I have beeen quite happy to teach while actively being engaged in research, working on genomics. I feel teaching should be a critical component of any active researcher. There are several ways to transmit the knowledge we have acquired - writing research articles addressed to enlightned science community, writing review articles in journals, maintaining a blog etc. But teaching facilitates direct human-human interaction, which by its very design conveys lot more information compared to other mediums. In any case, what is the fun when we acquire knowledge but don't transmit enthusiastically to students? 
+I have beeen quite happy to teach while actively being engaged in research, working on genomics. I feel teaching should be a critical component of any active researcher. There are several ways to transmit the knowledge we have acquired - writing research articles addressed to enlightned science community, writing review articles in journals, maintaining a blog etc. But teaching facilitates direct human-human interaction, which by its very design conveys lot more information compared to other mediums. In any case, what is the fun when we acquire knowledge but don't transmit enthusiastically to students? 
 
-Several researchers and scientists I have encountered (especially in research institutions) find teaching cumbersome. Part of the problem is how the academic system is structured. NIH doesn't award grants based on teaching records. We have very limited time and teaching requires considrable effort at least in the initial stages. Let's not go into all those issues and if you want to disuss these things, please feel to write to me and we can meet and discuss.
+Several researchers and scientists I have encountered (especially in research institutions) find teaching cumbersome. Part of the problem is how the academic system is structured. NIH doesn't award grants based on teaching records. We have very limited time and teaching requires considrable effort at least in the initial stages. Let's not go into all those issues and if you want to disuss these things, please feel to write to me and we can meet and chat over a coffee.
 
 I am a director of three informatics courses. To know the content, click on the pages and follow the links. Happy reading!
 
