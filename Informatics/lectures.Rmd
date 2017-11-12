@@ -16,10 +16,10 @@ figure figcaption {
 
 ---
 
-<div style="text-align:center" markdown="1">
+<center>
 
-![](DataScience.png)
-</div>
+![](DataScience.png){width=70%}
+</center>
 
 ---
 
