@@ -59,12 +59,12 @@ And finally, these are based on R than on any other programming language. While 
 
 ---
 
-#### Data manipulation basics
+#### Data handling basics
 
 ---
 
 <figure style="float:right;">
-  <img alt="Data Science" src="data_science.png"  height = 120; width = 100; hspace="20" />
+  <img alt="Data Science" src="dh.jpg"  height = 120; width = 100; hspace="20" />
 </figure>
 
 [Data Science 04](https://kannan-kasthuri.github.io/Informatics/DS04/DS04.html): What do you do as soon as you are given data? Where do you go from there? If these are your questions, you may want to nose dive into this lecture. This deals with what is known as _warngling_ the data. This means fighting with the data and manipulating it, which may include _gathering_, _spreading_ the variables, _joining_ different tables like databases etc. Be brave! Find out how you wrestle with the data.
