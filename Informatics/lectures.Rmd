@@ -59,7 +59,7 @@ And finally, these are based on R than on any other programming language. While 
 
 ---
 
-#### Data handling basics
+#### Data handling & visualization basics
 
 ---
 
@@ -69,7 +69,7 @@ And finally, these are based on R than on any other programming language. While 
 
 [Data Science 04](https://kannan-kasthuri.github.io/Informatics/DS04/DS04.html): What do you do as soon as you are given data? Where do you go from there? If these are your questions, you may want to nose dive into this lecture. This deals with what is known as _warngling_ the data. This means fighting with the data and manipulating it, which may include _gathering_, _spreading_ the variables, _joining_ different tables like databases etc. Be brave! Find out how you wrestle with the data.
 
-[Data Science 05](https://kannan-kasthuri.github.io/Informatics/DS05/DS05.html): Visualization is a deep aspect of psychology and we humans are primarily visual in nature. There are several ways we can convey information and in fact add "layers" to plots that adds information. Just like sentences have parts of speech, graphics has a grammar too. This  [Grammar of Graphics](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf) framework in R is efficiently implemented as `ggplot`. R produces amazing graphics with ggplot as the main engine. You may want to work on this lecture, if you want to be a data scientist.
+[Data Science 06](https://kannan-kasthuri.github.io/Informatics/DS06/DS06.html): Visualization is a deep aspect of psychology and we humans are primarily visual in nature. There are several ways we can convey information and in fact add "layers" to plots that adds information. Just like sentences have parts of speech, graphics has a grammar too. This  [Grammar of Graphics](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf) framework in R is efficiently implemented as `ggplot`. R produces amazing graphics with ggplot as the main engine. You may want to work on this lecture, if you want to be a data scientist.
 
 ---
 
