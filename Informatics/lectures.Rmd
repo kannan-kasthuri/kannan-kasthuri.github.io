@@ -41,7 +41,7 @@ Why data science now? After all data analysis has been there from the days of Ga
 
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/U36GaGt35p0" frameborder="0" allowfullscreen></iframe>
+You may want to watch the [introductory lecture](https://kannan-kasthuri.github.io/Lecture_Files/PDA_Lecture_01/Lecture_01.html) on my course. It will be really worth while to learn Git, at least the basic operations like push, pull and commits.
 
 ---
 
@@ -53,7 +53,9 @@ Why data science now? After all data analysis has been there from the days of Ga
   <img alt="R Basics" src="r_basics.png" height = 120; width = 100; hspace="20" />
 </figure>
 
-[Data Science 01](https://kannan-kasthuri.github.io/Informatics/presentations/DS01.html): 
+[Data Science 01](https://kannan-kasthuri.github.io/Informatics/DS01/DS01.html): In this lecture we introduce the basics of R programming language and introduce key concepts. Most of the time as you import data sets in R, by default, R would convert some of the factor variables into basic data types, and therefore it is important to know the underlying idea behind this such as coercion which are covered here.
+
+[Data Science 02](https://kannan-kasthuri.github.io/Informatics/DS02/DS02.html): Linked lists form the heart of R programming language. Data frames are constructed out of lists. We study lists and basic graphics. Although `ggplot` is a better framework for plots in R, knowing basic plots is important to better appreciate the plots produced through grammar of graphics. These are presented here.
 
 ---
 
