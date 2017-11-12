@@ -51,6 +51,8 @@ If you are seriously pursuing data science, it goes without saying that it will 
 
 [Data Science 02](https://kannan-kasthuri.github.io/Informatics/DS02/DS02.html): Linked lists form the heart of R programming language. Data frames are constructed out of lists. We study lists and basic graphics. Although `ggplot` is a better framework for plots in R, knowing basic plots is important to better appreciate the plots produced through grammar of graphics. These are presented here.
 
+[Data Science 03](https://kannan-kasthuri.github.io/Informatics/DS03/DS03.html): This topic starts with defining conditional statements in R, functions and scope. More importantly, we introduce R markdown. Communcation and reproducability are cornerstones of science and analysis. R markdown is an excellent framework for these. It is pretty easy to get going with `Rmd`. Check it out -
+
 ---
 
 #### Data analysis basics
