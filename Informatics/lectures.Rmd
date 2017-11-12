@@ -39,6 +39,8 @@ If you are seriously pursuing data science, it goes without saying that it will 
 
 The lectures are arranged in a manner that a typical data science projects would require analysis, although data science is an iterative process. For instance, the _wrangle_ portion will most often be required as soon as we start messing with the data and so it is in the beginning of data analysis section. The informatics basics are not necessary for manipulating data but a thorough understanding is important to master data analytics. And hence they appear at the end. 
 
+And finally, these are based on R than on any other programming language. While the topic of data science is agnostic to the language of choice, due to teaching responsibilities that emphasized R than any other language, most of them are built on R. If one understands the general principles underneath the lectures he/she may be able to do it in any other language.
+
 ---
 
 #### R programming basics
@@ -57,7 +59,7 @@ The lectures are arranged in a manner that a typical data science projects would
 
 ---
 
-#### Data analysis basics
+#### Data manipulation basics
 
 ---
 
