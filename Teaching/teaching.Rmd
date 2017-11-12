@@ -18,7 +18,7 @@ figure figcaption {
 
 <center>
 
-![](teaching.png){width=70% }
+![](teaching.png){width=70%}
 
 </center>
 
