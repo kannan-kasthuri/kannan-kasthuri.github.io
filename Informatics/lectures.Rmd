@@ -80,7 +80,7 @@ And finally, these are based on R than on any other programming language. While 
 ---
 
 <figure style="float:left;">
-  <img alt="Algorithms" src="algorithms.jpeg"  height = 120; width = 100; hspace="20" />
+  <img alt="analytics" src="regression.png"  height = 120; width = 100; hspace="20" />
 </figure>
 
 
