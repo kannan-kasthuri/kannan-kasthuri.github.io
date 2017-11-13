@@ -55,7 +55,7 @@ And finally, these are based on R than on any other programming language. While 
 
 [Data Science 02 - R fundamentals](https://kannan-kasthuri.github.io/Informatics/DS02/DS02.html): Linked lists form the heart of R programming language. Data frames are constructed out of lists. We study lists and basic graphics. Although `ggplot` is a better framework for plots in R, knowing basic plots is important to better appreciate the plots produced through grammar of graphics. These are presented here.
 
-[Data Science 03 - R fundamentals, R markdown](https://kannan-kasthuri.github.io/Informatics/DS03/DS03.html): This topic starts with defining conditional statements in R, functions and scope. More importantly, we introduce R markdown. Communcation and reproducability are cornerstones of science and analysis. R markdown is an excellent framework for these. It is pretty easy to get going with `Rmd`. Check it out -
+[Data Science 03 - R fundamentals, R markdown](https://kannan-kasthuri.github.io/Informatics/DS03/DS03.html): This topic starts with defining conditional statements in R, functions and scope. More importantly, we introduce R markdown. Communication and reproducibility are cornerstones of science and analysis. R markdown is an excellent framework for these. It is pretty easy to get going with `Rmd`. Check it out -
 
 ---
 
@@ -87,7 +87,7 @@ And finally, these are based on R than on any other programming language. While 
 
 [Data Science 08 - Basic inference, Linear regression](https://kannan-kasthuri.github.io/Informatics/DS08/DS08.html): The next logical step after you do EDA is basic statistical inference or linear regression. This topic deals with these analytics plus gives the conditions when such inference and regression are applicable. For instance, one of the key assumptions for linear regression is the normality of the residuals. It is important to know when linear regression is applicable and not applicable when dealing with complicated data sets.
 
-[Data Science 09 - Advanced modeling](https://kannan-kasthuri.github.io/Informatics/DS09/DS09.html): If you have two continous variables that are correlated to a good degree, you may want to apply linear regression. What if you have categorical variables? Logistic regression is a powerful technique to solve some of these problems. In this chapter, we go into the nuts and bolts of how these algorithms work. We review "behind the scenes" method of maximum likelihood and principles of convex optimization. We see how stochastic gradient descent may help working with big data problems. This is slightly mathematically sophesticated, but all efforts are made to make it accessible to general audience.
+[Data Science 09 - Advanced modeling](https://kannan-kasthuri.github.io/Informatics/DS09/DS09.html): If you have two continuous variables that are correlated to a good degree, you may want to apply linear regression. What if you have categorical variables? Logistic regression is a powerful technique to solve some of these problems. In this chapter, we go into the nuts and bolts of how these algorithms work. We review "behind the scenes" method of maximum likelihood and principles of convex optimization. We see how stochastic gradient descent may help working with big data problems. This is slightly mathematically sophisticated, but all efforts are made to make it accessible to general audience.
 
 ---
 
@@ -95,5 +95,14 @@ And finally, these are based on R than on any other programming language. While 
 
 ---
 
+<figure style="float:right;">
+  <img alt="Informatics" src="informatics.jpg"  height = 120; width = 100; hspace="20" />
+</figure>
 
+[Data Science 10 - Image processing](https://kannan-kasthuri.github.io/Informatics/DS10/DS10.html): A picture is worth 1000 words, and ImageNet contains 14 million pictures - that makes its repository worth 14 billion words! How does tech giants deal with such heavy data? Or how about diagnosing a disease from a MRI scan - is that brain portion we see a disease or a bunch of dead pixels? Image processing is ubiquitous and thanks to algorithms such as Fast Fourier Transforms and mathematical models that allow us to grab a popcorn and watch any movie of choice, in seconds. Knowing image processing can go a long way in your informatics career, and can distinguish you from other data scientists. Learn some image processing. 
 
+[Data Science 11 - Linear Algebra](https://kannan-kasthuri.github.io/Informatics/DS11/DS11.html): Let's admit it - Linear Algebra is intimidating. We can still recall those hours and hours of agony when our high school teacher made us manipulate matrices. And we made a promise that we won't touch the subject again. But Jean Dieudonné, one of the pioneering mathematician claimed "There is hardly any theory which is more elementary than linear algebra, in spite of the fact that generations of professors and textbook writers have obscured its simplicity by preposterous calculations with matrices". And there is truth to it. Why don't we find it out by watching this lecture? 
+
+[Data Science 12 - Algorithms](https://kannan-kasthuri.github.io/Informatics/DS12/DS12.html): It wouldn't be far from truth if we say none of the above topics would make any sense without this - _Algorithms_. It is this engine that propels the whole of informatics. We make an online purchase through our credit card hoping that it is secure enough - thanks to the million dollar question that is still unanswered - _does P equals NP_? We take Google for granted because sorting and searching can be quickly executed on a machine. It is the world of algorithms we live in. Why not understand it?
+
+---
