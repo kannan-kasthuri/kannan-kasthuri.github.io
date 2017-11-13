@@ -51,11 +51,11 @@ And finally, these are based on R than on any other programming language. While 
   <img alt="R Basics" src="r_basics.png" height = 120; width = 100; hspace="20" />
 </figure>
 
-[Data Science 01](https://kannan-kasthuri.github.io/Informatics/DS01/DS01.html): In this lecture we introduce the basics of R programming language and introduce key concepts. Most of the time as you import data sets in R, by default, R would convert some of the factor variables into basic data types, and therefore it is important to know the underlying idea behind this such as coercion which are covered here.
+[Data Science 01 - R fundamentals](https://kannan-kasthuri.github.io/Informatics/DS01/DS01.html): In this lecture we introduce the basics of R programming language and introduce key concepts. Most of the time as you import data sets in R, by default, R would convert some of the factor variables into basic data types, and therefore it is important to know the underlying idea behind this such as coercion which are covered here.
 
-[Data Science 02](https://kannan-kasthuri.github.io/Informatics/DS02/DS02.html): Linked lists form the heart of R programming language. Data frames are constructed out of lists. We study lists and basic graphics. Although `ggplot` is a better framework for plots in R, knowing basic plots is important to better appreciate the plots produced through grammar of graphics. These are presented here.
+[Data Science 02 - R fundamentals](https://kannan-kasthuri.github.io/Informatics/DS02/DS02.html): Linked lists form the heart of R programming language. Data frames are constructed out of lists. We study lists and basic graphics. Although `ggplot` is a better framework for plots in R, knowing basic plots is important to better appreciate the plots produced through grammar of graphics. These are presented here.
 
-[Data Science 03](https://kannan-kasthuri.github.io/Informatics/DS03/DS03.html): This topic starts with defining conditional statements in R, functions and scope. More importantly, we introduce R markdown. Communcation and reproducability are cornerstones of science and analysis. R markdown is an excellent framework for these. It is pretty easy to get going with `Rmd`. Check it out -
+[Data Science 03 - R fundamentals, R markdown](https://kannan-kasthuri.github.io/Informatics/DS03/DS03.html): This topic starts with defining conditional statements in R, functions and scope. More importantly, we introduce R markdown. Communcation and reproducability are cornerstones of science and analysis. R markdown is an excellent framework for these. It is pretty easy to get going with `Rmd`. Check it out -
 
 ---
 
@@ -67,11 +67,11 @@ And finally, these are based on R than on any other programming language. While 
   <img alt="Data Science" src="dh.jpg"  height = 120; width = 100; hspace="20" />
 </figure>
 
-[Data Science 04](https://kannan-kasthuri.github.io/Informatics/DS04/DS04.html): What do you do as soon as you are given data? Where do you go from there? If these are your questions, you may want to nose dive into this lecture. This deals with what is known as _warngling_ the data. This means fighting with the data and manipulating it, which may include _gathering_, _spreading_ the variables, _joining_ different tables like databases etc. Be brave! Find out how you wrestle with the data.
+[Data Science 04 - Wrangle and explore](https://kannan-kasthuri.github.io/Informatics/DS04/DS04.html): What do you do as soon as you are given data? Where do you go from there? If these are your questions, you may want to nose dive into this lecture. This deals with what is known as _warngling_ the data. This means fighting with the data and manipulating it, which may include _gathering_, _spreading_ the variables, _joining_ different tables like databases etc. Be brave! Find out how you wrestle with the data.
 
-[Data Science 05](https://kannan-kasthuri.github.io/Informatics/DS05/DS05.html): Let us assume you have fought hard with the data, wrangled quite a bit, and finally made it into a format you'd use. What would you do if you want to select only certain rows or columns? What if you want to make a new variable or get some statistics for a certain category? This is where data transformation becomes really important. Data transformation, and especially the `group by` operation along with `summarise` is one of the fundamental utilities and essential to learn. 
+[Data Science 05 - Transform and explore](https://kannan-kasthuri.github.io/Informatics/DS05/DS05.html): Let us assume you have fought hard with the data, wrangled quite a bit, and finally made it into a format you'd use. What would you do if you want to select only certain rows or columns? What if you want to make a new variable or get some statistics for a certain category? This is where data transformation becomes really important. Data transformation, and especially the `group by` operation along with `summarise` is one of the fundamental utilities and essential to learn. 
 
-[Data Science 06](https://kannan-kasthuri.github.io/Informatics/DS06/DS06.html): Visualization is a deep aspect of psychology and we humans are primarily visual in nature. There are several ways we can convey information and in fact add "layers" to plots that adds information. Just like sentences have parts of speech, graphics has a grammar too. This  [Grammar of Graphics](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf) framework in R is efficiently implemented as `ggplot`. R produces amazing graphics with ggplot as the main engine. You may want to work on this lecture, if you want to be a data scientist.
+[Data Science 06 - Visualize and explore](https://kannan-kasthuri.github.io/Informatics/DS06/DS06.html): Visualization is a deep aspect of psychology and we humans are primarily visual in nature. There are several ways we can convey information and in fact add "layers" to plots that adds information. Just like sentences have parts of speech, graphics has a grammar too. This  [Grammar of Graphics](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf) framework in R is efficiently implemented as `ggplot`. R produces amazing graphics with ggplot as the main engine. You may want to work on this lecture, if you want to be a data scientist.
 
 ---
 
@@ -83,23 +83,15 @@ And finally, these are based on R than on any other programming language. While 
   <img alt="analytics" src="regression.png"  height = 120; width = 100; hspace="20" />
 </figure>
 
+[Data Science 07 - Exploratory Data Analysis](https://kannan-kasthuri.github.io/Informatics/DS07/DS07.html): This lecture of data science deals with Exploratory Data Analysis, or EDA for short. Before we work with data modeling, it is important to have an idea how the variables relate to each other. Finding correlations, covariations are all important part of this analysis. This part of analysis will help determine, say, if linear regression is applicable to variables in the first place. Skipping EDA can lead to unreasonable assumptions on data modeling down the line. Therefore, this shouldn't be skipped. 
+
+[Data Science 08 - Basic inference, Linear regression](https://kannan-kasthuri.github.io/Informatics/DS08/DS08.html): The next logical step after you do EDA is basic statistical inference or linear regression. This topic deals with these analytics plus gives the conditions when such inference and regression are applicable. For instance, one of the key assumptions for linear regression is the normality of the residuals. It is important to know when linear regression is applicable and not applicable when dealing with complicated data sets.
+
+[Data Science 09 - Advanced modeling](https://kannan-kasthuri.github.io/Informatics/DS09/DS09.html): If you have two continous variables that are correlated to a good degree, you may want to apply linear regression. What if you have categorical variables? Logistic regression is a powerful technique to solve some of these problems. In this chapter, we go into the nuts and bolts of how these algorithms work. We review "behind the scenes" method of maximum likelihood and principles of convex optimization. We see how stochastic gradient descent may help working with big data problems. This is slightly mathematically sophesticated, but all efforts are made to make it accessible to general audience.
 
 ---
 
-<figure style="float:right;">
-  <img alt="Linear Algebra" src="la.png"  height = 120; width = 100; hspace="20" />
-</figure>
-
+#### Informatics basics
 
 ---
 
-<figure style="float:left;">
-  <img alt="Optimization" src="optim.png" height = 120; width = 100; hspace="10" />
-</figure>
-
-
----
-
-<figure style="float:left;">
-  <img alt="IP" src="lena.jpeg" height = 120; width = 100; hspace="10" />
-</figure>
