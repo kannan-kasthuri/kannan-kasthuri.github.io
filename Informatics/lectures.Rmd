@@ -23,7 +23,7 @@ figure figcaption {
 
 ---
 
-<center> <h3>Welcome to my collected informatics works</h3> </center>
+<center> <h3>Welcome to Data Science Lectures</h3> </center>
 
 ---
 
