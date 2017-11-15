@@ -156,7 +156,7 @@ The results of the summary is interpreted as follows:
 
 2. The coefficient for UCREATININE = `r round(summary(logistic_model.UCREATININE)$coefficients[2,1],2)` which is interpreted as the expected change in log odds for a one-unit increase in the UCREATININE variable. The odds ratio can be calculated by exponentiating this value to get `r round(exp(summary(logistic_model.UCREATININE)$coefficients[2,1]),2)` which means we expect to see about `r (round(exp(summary(logistic_model.UCREATININE)$coefficients[2,1]),2)-1)*100`% increase in the odds of being in cluster 0, for a one-unit increase in UCREATININE variable.
 
-The negative intercept in UALBUMIN means that the clusters are less likely seperated by UALBUMIN. Coupled with the statistically significant coeffcient of the UCREATININE variable (which rejects the null hypothesis that the UCREATININE variable is not related to the clusters), we can say UCREATININE distingushes the cluster better.
+The negative intercept in UALBUMIN means that the log odds are negative and so the probability of separation is non-optimal. Coupled with the statistically significant coeffcient of the UCREATININE variable (which rejects the null hypothesis that the UCREATININE variable is not related to the clusters), we can say UCREATININE distingushes the cluster better.
 
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: Perform logistic regression on diabetic vs. non-diabetic populations and report which variable(s) distingush the populations.
