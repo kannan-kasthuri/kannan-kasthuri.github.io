@@ -216,7 +216,7 @@ The odds ratio can be calculated by exponentiating this value to get `r round(ex
 
 ##
 
-The negative intercept in UALBUMIN means that the clusters are less likely seperated by UALBUMIN. 
+The negative intercept in UALBUMIN means that the log odds are negative and so the probability of separation is non-optimal. 
 
 Coupled with the statistically significant coeffcient of the UCREATININE variable (which rejects the null hypothesis that the UCREATININE variable is not related to the clusters), we can say UCREATININE distingushes the cluster better.
 
