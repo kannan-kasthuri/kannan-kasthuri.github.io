@@ -23,9 +23,9 @@ figure figcaption {
 
 ---
 
-If you are quickly looking for my pulication record - please click [here](https://kannan-kasthuri.github.io/Publications/publications.html). 
+If you are quickly looking for my publication record - please click [here](https://kannan-kasthuri.github.io/Publications/publications.html). 
 
-Research excites me as much as teaching. I have diverse academic interests - cancer biology, formal logic, physical theories, computing and mathematics. My contributions in science can be broadly classifed in the areas of genomics and numerical algorithms (with applications to computational physics).
+Research excites me as much as teaching. I have diverse academic interests - cancer biology, formal logic, physical theories, computing and mathematics. My contributions in science can be broadly classified in the areas of genomics and numerical algorithms (with applications to computational physics).
 
 ---
 
@@ -43,14 +43,14 @@ Research excites me as much as teaching. I have diverse academic interests - can
 
 As a genomics scientist, my work focuses on developing and implementing bioinformatics algorithms as well as analyzing and interpreting biological data sets facilitating researcher’s experiments and hypothesis. I have extensive research experience analyzing and interpreting data from genomics/epigenetics experiments and have made vital contributions to several studies, especially in cancer genomics. One of my landmark discoveries, after I joined NYU is in pediatric brain cancer known as Pineoblastoma. I discovered significant number of copy number variations in a gene called PDE4DIP that holds an ancestral protein domain DUF1220 which is responsible for brain growth and function. 
 
-Another study of mine reveals key signaling pathways and genes responsible for Sudden Unexpected Death in Epilepsy (also known as SUDEP). Currently as an investigator at Genome Technology Center (GTC) in NYU, my research experience has widened to encompass cancer epigenetics and I have developed algorithms to analyze ATAC-seq and ChIP-seq data. These pipleines are being extensively applied in several studies as I continue to collaborate with physician-scientists interpreting the results of the analysis.
+Another study of mine reveals key signaling pathways and genes responsible for Sudden Unexpected Death in Epilepsy (also known as SUDEP). Currently as an investigator at Genome Technology Center (GTC) in NYU, my research experience has widened to encompass cancer epigenetics and I have developed algorithms to analyze ATAC-seq and ChIP-seq data. These pipelines are being extensively applied in several studies as I continue to collaborate with physician-scientists interpreting the results of the analysis.
 
 <figure style="float:right;">
   <img alt="Subgroups in astrocytoma" src="astro.png" width="250" height="250" hspace="10" />
   <figcaption> Subgroups in astrocytoma </figcaption>
 </figure>
 
-My tenure at Memorial Sloan-Kettering Cancer Center (between 2011-2013), shaped me to perform critical roles in several genomics studies. My expertise in cancer genomics has been primarily focussed on brain tumors. One of my contributions (published in _Oncotarget_) in low-grade brain cancer called astrocytoma, identifies mutations in a gene called ATRX in 70% of the patients. This gene plays a critical role in lengthening of telomere, an important mechanism for tumor growth. In another study I helped in identifying three distinct gene expression groups of patients who contract astrocytoma, two of which harbors mutations in the gene called _Isocitrate dehydrogenase 1_ (_IDH1_), which is responsible for glucose metabolism . 
+My tenure at Memorial Sloan-Kettering Cancer Center (between 2011-2013), shaped me to perform critical roles in several genomics studies. My expertise in cancer genomics has been primarily focused on brain tumors. One of my contributions (published in _Oncotarget_) in low-grade brain cancer called astrocytoma, identifies mutations in a gene called ATRX in 70% of the patients. This gene plays a critical role in lengthening of telomere, an important mechanism for tumor growth. In another study I helped in identifying three distinct gene expression groups of patients who contract astrocytoma, two of which harbors mutations in the gene called _Isocitrate dehydrogenase 1_ (_IDH1_), which is responsible for glucose metabolism . 
 
 
 Also, I was instrumental in identifying two melanoma patient subgroups who were treated with immunotherapy and this finding was published in _New England Journal of Medicine_. Further, my work on Adenoid Cystic Carcinoma in _Nature Genetics_ identifies clinically significant mutations and pathways through robust mutation calling and pathway analysis algorithms.
@@ -63,7 +63,7 @@ Further, I have developed a keen interest on tumor evolution and population gene
 
 ---
 
-I started with mathematics, moved into computer science, writing a dissertation in multipole algorithms. [Fast Multipole Method](https://en.wikipedia.org/wiki/Fast_multipole_method) is one of the top 10 algorithms of the 20th century introduced by [Prof. Greengard](https://en.wikipedia.org/wiki/Leslie_Greengard) of the Courant institute at NYU. My work focussed on generalizing the algorithm for higher order potentials/forces and when the particles are in motion. This has applications in molecular dynamics simulations.
+I started with mathematics, moved into computer science, writing a dissertation in multipole algorithms. [Fast Multipole Method](https://en.wikipedia.org/wiki/Fast_multipole_method) is one of the top 10 algorithms of the 20th century introduced by [Prof. Greengard](https://en.wikipedia.org/wiki/Leslie_Greengard) of the Courant institute at NYU. My work focused on generalizing the algorithm for higher order potentials/forces and when the particles are in motion. This has applications in molecular dynamics simulations.
 
 ---
 
