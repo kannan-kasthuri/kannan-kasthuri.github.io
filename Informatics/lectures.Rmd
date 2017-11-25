@@ -1,6 +1,12 @@
 ---
-# title: "Publications"
-output: html_document
+output: 
+  html_document:
+    toc: true # table of content true
+    toc_depth: 4  # upto three depths of headings (specified by #, ## and ###)
+    theme: default # united  # many options for theme, this one is my favorite.
+    highlight: # tango  # specifies the syntax highlighting style
+    toc_float:
+      collapsed: false
 ---
 
 ```{r setup, include=FALSE}
@@ -12,7 +18,10 @@ body {
 text-align: justify}
 figure figcaption {
     text-align: center;}
+}
 </style>
+
+
 
 ---
 
@@ -23,7 +32,7 @@ figure figcaption {
 
 ---
 
-<center> <h3>Welcome to Data Science Lectures</h3> </center>
+<center> <h4>Welcome to Data Science Lectures</h4> </center>
 
 ---
 
@@ -33,7 +42,7 @@ If you need more information about the course content, like homeworks, projects 
 
 ---
 
-#### A Note
+##### A Note
 
 ---
 
@@ -53,7 +62,7 @@ And finally, these are based on R than on any other programming language. While 
 
 ---
 
-#### R programming basics
+#### R programming basics 
 
 ---
 
