@@ -7,6 +7,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<style>
+body {
+text-align: justify}
+figure figcaption {
+    text-align: center;}
+</style>
+
 ---
 
 ### Publications 
@@ -19,32 +26,34 @@ Check out my preprints [here](http://library.med.nyu.edu/api/publications/?perso
 
 ---
 
-1.	**Kasthuri Kannan** and Adriana Heguy. Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? _Letters In Biomathematics_. Vol. 3, Issue 1, Sept. 2016.
+01. Fanok, Melania H; Sun, Amy; Fogli, Laura K; Narendran, Vijay; Eckstein, Miriam; **Kannan, Kasthuri**; Dolgalev, Igor; Lazaris, Charalampos; Heguy, Adriana; Laird, Mary E; Sundrud, Mark S; Liu, Cynthia; Kutok, Jeff; Lacruz, Rodrigo S; Latkowski, Jo-Ann; Aifantis, Iannis; Odum, Niels; Hymes, Kenneth B; Goel, Swati; Koralov, Sergei B. Role of dysregulated cytokine signaling and bacterial triggers in the pathogenesis of Cutaneous T Cell Lymphoma. _Journal of Investigative Dermatology_. S0022-202X(17)33144-52017, Nov. 2017.
 
-2.	Snyder A, Makarov V, Merghoub T, Yuan J, Zaretsky JM, Desrichard A, Walsh LA, Postow MA, Wong P, Ho TS, Hollmann TJ, Bruggeman C, **Kasthuri Kannan**, Li Y, Elipenahli C, Liu C, Harbison CT, Wang L, Ribas A, Wolchok JD, Chan TA. Genetic basis for clinical response to CTLA-4 blockade in melanoma. _N Engl. J Med_. 371(23), 2189-99, Dec. 2014.
+02.	**Kasthuri Kannan** and Adriana Heguy. Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? _Letters In Biomathematics_. Vol. 3, Issue 1, Sept. 2016.
 
-3.	Marsha Reyngold, Sevin Turcan, Dilip Giri, **Kasthuri Kannan**, Logan A. Walsh et al. Remodeling of the Methylation Landscape in Breast Cancer Metastasis. _PLoS One_. 9(8), Aug. 2014.
+03.	Snyder A, Makarov V, Merghoub T, Yuan J, Zaretsky JM, Desrichard A, Walsh LA, Postow MA, Wong P, Ho TS, Hollmann TJ, Bruggeman C, **Kasthuri Kannan**, Li Y, Elipenahli C, Liu C, Harbison CT, Wang L, Ribas A, Wolchok JD, Chan TA. Genetic basis for clinical response to CTLA-4 blockade in melanoma. _N Engl. J Med_. 371(23), 2189-99, Dec. 2014.
 
-4.	Gerber NK,  Goenka A,  Turcan S,  Reyngold M,  Makarov V,  **Kasthuri Kannan**,  Beal K,  Omuro A,  Yamada Y,  Gutin P,  Brennan CW,  Huse JT, Chan TA. Transcriptional diversity of long-term glioblastoma survivors. _Neuro Oncol_. 16(9), Sep. 2014.
+04.	Marsha Reyngold, Sevin Turcan, Dilip Giri, **Kasthuri Kannan**, Logan A. Walsh et al. Remodeling of the Methylation Landscape in Breast Cancer Metastasis. _PLoS One_. 9(8), Aug. 2014.
 
-5.	<span style="color:blue"> <b> Allen S. Ho, Kasthuri Kannan</b></span>, David Roy, Luc G.T. Morris, Nora Katabi, Stephanie Eng, et al. The Mutational Landscape of Adenoid Cystic Carcinoma. _Nature Genetics_. 45, 791-798, July 2013.
+05.	Gerber NK,  Goenka A,  Turcan S,  Reyngold M,  Makarov V,  **Kasthuri Kannan**,  Beal K,  Omuro A,  Yamada Y,  Gutin P,  Brennan CW,  Huse JT, Chan TA. Transcriptional diversity of long-term glioblastoma survivors. _Neuro Oncol_. 16(9), Sep. 2014.
 
-6.	Ian Ganly, Julio Ricarte Filho, Stephanie Eng, Ronald Ghossein, Luc G. T. Morris, Yupu Liang, Nicholas Socci, **Kasthuri Kannan**, Qianxing Mo, James A. Fagin, and Timothy A. Chan, Genomic Dissection of Hurthle Cell Carcinoma Reveals a Unique Class of Thyroid Malignancy. _The Journal of Clinical Endocrinology & Metabolism_. 98(5), E962-E972, May 2013.
+06.	<span style="color:blue"> <b> Allen S. Ho, Kasthuri Kannan</b></span>, David Roy, Luc G.T. Morris, Nora Katabi, Stephanie Eng, et al. The Mutational Landscape of Adenoid Cystic Carcinoma. _Nature Genetics_. 45, 791-798, July 2013.
 
-7.	Luc G.T. Morris, Andrew M. Kaufman, Yongxing Gong, Deepa Ramaswami, Logan A. Walsh, Sevin Turcan, Stephanie Eng, **Kasthuri Kannan**, Yilong Zou, et al., Frequent mutation of the Drosophila tumor suppressor-related gene FAT1 in multiple human cancers leads to aberrant Wnt activation. _Nature Genetics_. 45, 253-261, Mar. 2013.
+07.	Ian Ganly, Julio Ricarte Filho, Stephanie Eng, Ronald Ghossein, Luc G. T. Morris, Yupu Liang, Nicholas Socci, **Kasthuri Kannan**, Qianxing Mo, James A. Fagin, and Timothy A. Chan, Genomic Dissection of Hurthle Cell Carcinoma Reveals a Unique Class of Thyroid Malignancy. _The Journal of Clinical Endocrinology & Metabolism_. 98(5), E962-E972, May 2013.
 
-8.	**Kasthuri Kannan**, Akiko Inagaki, Joachim Silber, Daniel Gorovets, Jianan Zhang, et al. Whole exome sequencing identifies ATRX mutation as a key molecular determinant in lower-grade glioma. _Oncotarget_. 3-10, 1194-1203, Oct. 2012.
+08.	Luc G.T. Morris, Andrew M. Kaufman, Yongxing Gong, Deepa Ramaswami, Logan A. Walsh, Sevin Turcan, Stephanie Eng, **Kasthuri Kannan**, Yilong Zou, et al., Frequent mutation of the Drosophila tumor suppressor-related gene FAT1 in multiple human cancers leads to aberrant Wnt activation. _Nature Genetics_. 45, 253-261, Mar. 2013.
 
-9.	<span style="color:blue"><b> Daniel Gorovets, Kasthuri Kannan</b></span>, Edward R Kastenhuber, Nasrin Islam- doust, Carl Campos, et al. IDH Mutation and Neuroglial Developmental Features Define Clinically Distinct Subclasses of Lower-Grade Dif- fuse Astrocytic Glioma. _Clinical Cancer Research_. 18-9, 2490-2501, May 2012.
+09.	**Kasthuri Kannan**, Akiko Inagaki, Joachim Silber, Daniel Gorovets, Jianan Zhang, et al. Whole exome sequencing identifies ATRX mutation as a key molecular determinant in lower-grade glioma. _Oncotarget_. 3-10, 1194-1203, Oct. 2012.
 
-10.	Amitabha Majumdar, Wanda  Colón Cesario, Erica White-Grindley, Huoqing Jiang, Fengzhen Ren, Mohammed  “Repon” Khan, Liying Li, Edward Man-Lik Choi, **Kasthuri Kannan**, Fengli Guo, Jay Unruh, Brian Slaughter, Kausik Si.  Critical Role of Amyloid-like Oligomers of Drosophila Orb2 in the Persistence of Memory. _Cell_. 148-3, 515-529, Feb. 2012.
+10.	<span style="color:blue"><b> Daniel Gorovets, Kasthuri Kannan</b></span>, Edward R Kastenhuber, Nasrin Islam- doust, Carl Campos, et al. IDH Mutation and Neuroglial Developmental Features Define Clinically Distinct Subclasses of Lower-Grade Dif- fuse Astrocytic Glioma. _Clinical Cancer Research_. 18-9, 2490-2501, May 2012.
 
-11.	Yan Hao, Ningyi Xu, Andrew Box, Laura Schaefer, **Kasthuri Kannan**, et al. Nuclear cGMP-Dependent Kinase Regulates Gene Expression via Activity-Dependent Recruitment of a Conserved Histone Deacetylase Complex. _PLoS Genetics_. 7-5, May 2011.
+11.	Amitabha Majumdar, Wanda  Colón Cesario, Erica White-Grindley, Huoqing Jiang, Fengzhen Ren, Mohammed  “Repon” Khan, Liying Li, Edward Man-Lik Choi, **Kasthuri Kannan**, Fengli Guo, Jay Unruh, Brian Slaughter, Kausik Si.  Critical Role of Amyloid-like Oligomers of Drosophila Orb2 in the Persistence of Memory. _Cell_. 148-3, 515-529, Feb. 2012.
 
-12.	**Kasthuri Kannan** and Vivek Sarin, A Treecode for Potentials of the Form $r^{-\lambda}$, _International Journal of Computer Mathematics_. 84, 1249-1260, Jan. 2007.
+12.	Yan Hao, Ningyi Xu, Andrew Box, Laura Schaefer, **Kasthuri Kannan**, et al. Nuclear cGMP-Dependent Kinase Regulates Gene Expression via Activity-Dependent Recruitment of a Conserved Histone Deacetylase Complex. _PLoS Genetics_. 7-5, May 2011.
 
-13.	**Kasthuri Kannan** and Vivek Sarin, A Treecode for Accurate Force Calculations. _Lecture Notes in Computer Science_. 3991, pp. 92-99, May 2006.
+13.	**Kasthuri Kannan** and Vivek Sarin, A Treecode for Potentials of the Form $r^{-\lambda}$, _International Journal of Computer Mathematics_. 84, 1249-1260, Jan. 2007.
 
-14.	**Kasthuri Kannan**, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. _Lecture Notes in Computer Science_. 3514, pp. 107-114, May 2005.
+14.	**Kasthuri Kannan** and Vivek Sarin, A Treecode for Accurate Force Calculations. _Lecture Notes in Computer Science_. 3991, pp. 92-99, May 2006.
+
+15.	**Kasthuri Kannan**, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. _Lecture Notes in Computer Science_. 3514, pp. 107-114, May 2005.
 
 ---
