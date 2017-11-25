@@ -26,7 +26,7 @@ Check out my preprints [here](http://library.med.nyu.edu/api/publications/?perso
 
 ---
 
-01. Fanok, Melania H; Sun, Amy; Fogli, Laura K; Narendran, Vijay; Eckstein, Miriam; **Kannan, Kasthuri**; Dolgalev, Igor; Lazaris, Charalampos; Heguy, Adriana; Laird, Mary E; Sundrud, Mark S; Liu, Cynthia; Kutok, Jeff; Lacruz, Rodrigo S; Latkowski, Jo-Ann; Aifantis, Iannis; Odum, Niels; Hymes, Kenneth B; Goel, Swati; Koralov, Sergei B. Role of dysregulated cytokine signaling and bacterial triggers in the pathogenesis of Cutaneous T Cell Lymphoma. _Journal of Investigative Dermatology_. S0022-202X(17)33144-52017, Nov. 2017.
+01. Fanok, Melania H; Sun, Amy; Fogli, Laura K; Narendran, Vijay; Eckstein, Miriam; **Kannan, Kasthuri**; Dolgalev, Igor; Lazaris, Charalampos; Heguy, Adriana; Laird, Mary E; Sundrud, Mark S; Liu, Cynthia; Kutok, Jeff; Lacruz, Rodrigo S; Latkowski, Jo-Ann; Aifantis, Iannis; Odum, Niels; Hymes, Kenneth B; Goel, Swati; Koralov, Sergei B. Role of dysregulated cytokine signaling and bacterial triggers in the pathogenesis of Cutaneous T Cell Lymphoma. _Journal of Investigative Dermatology_. S0022-202X(17) 33144-52017, Nov. 2017.
 
 02.	**Kasthuri Kannan** and Adriana Heguy. Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? _Letters In Biomathematics_. Vol. 3, Issue 1, Sept. 2016.
 
