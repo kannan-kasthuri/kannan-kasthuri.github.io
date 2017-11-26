@@ -88,7 +88,7 @@ This topic starts with defining conditional statements in R, functions and scope
   <img alt="Data Science" src="dh.jpg"  height = 100; width = 100; hspace="20" />
 </figure>
 
-Recently someone said data science is 80% messing and transforming data bringing it into proper format, 20% is coding not related to machine learning and 10% is analytics. Although the percentages are crude estimates, by and large, this is true. As you learn data science, you'll see most of the time goes in manipulating data sets than doing analytics on them. These three lectures deal with structuring data which in my opinion forms the core of data science.
+Recently someone said data science is 80% messing and transforming data bringing it into proper format, 10% is coding not related to machine learning and 10% is analytics. Although the percentages are crude estimates, by and large, this is true. As you learn data science, you'll see most of the time goes in manipulating data sets than doing analytics on them. These three lectures deal with structuring data which in my opinion forms the core of data science.
 
 ### DS 04 - Wrangle and explore {-}
 
