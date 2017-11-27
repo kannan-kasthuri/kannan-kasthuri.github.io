@@ -471,7 +471,7 @@ There are other tests (than qqplots) to check if a sample/variable is drawn from
 
 **Shapiro test**
 
-Shapiro test can be use to test if a variable is drawn from a normal distribution. We will check if the TRIGLYCERIDE variable has a normal distribution.
+Shapiro test can be use to test if a variable is drawn from a normal distribution. The null hypothesis, $H_{0}$, here is that the data is drawn from a normal distribution. So a low p-value would mean we need to reject $H_{0}$. We will check if the TRIGLYCERIDE variable has a normal distribution.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
 
@@ -489,11 +489,11 @@ Shapiro test can be use to test if a variable is drawn from a normal distributio
   shapiro.test(unlist(HANES_TRIGLYCERIDE))
 ```
 
-The extremely low p-value suggests that the TRIGLYCERIDE variable has a normal distribution.
+The extremely low p-value suggests that the TRIGLYCERIDE variable *does not* have a normal distribution.
 
 **Kolmogorov And Smirnov test**
 
-Kolmogorov And Smirnov test can be applied to test if two samples/variables are drawn from the same disrtibution. We can check if two variables TRIGLYCERIDE and COTININE have same distribution.
+Kolmogorov And Smirnov test can be applied to test if two samples/variables are drawn from the same disrtibution. The null hypothesis here is that two variables are drawn from the same distribution. We can check if the two variables TRIGLYCERIDE and COTININE have the same distribution.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE, na.rm=FALSE}
 
@@ -515,7 +515,7 @@ Kolmogorov And Smirnov test can be applied to test if two samples/variables are 
   ks.test(unlist(HANES_TRIGLYCERIDE), unlist(HANES_COTININE))
 ```
 
-The result suggests that they are indeed drawn from the same distribution. Since we saw that TRIGLYCERIDE is drawn from a normal distribution, COTININE should be drawn from it as well.
+According to this test, the difference between the two variables, TRIGLYCERIDE and COTININE, is significant enough (< 0.05) to say that they have different distributions. 
 
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: Perform ks-test on three different variable-pairs in the HANES dataset. Report the findings.

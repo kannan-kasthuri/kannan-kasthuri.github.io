@@ -1038,6 +1038,7 @@ R = \frac{\mu_{Z}-\mu_{V}}{\sqrt{\frac{\sigma_Z^2}{N} + \frac{\sigma_V^2}{N}}}
 <p>There are other tests (than qqplots) to check if a sample/variable is drawn from a normal distribution or if two samples/variables are drawn from the same distribution.</p>
 <p><strong>Shapiro test</strong></p>
 <p>Shapiro test can be use to test if a variable is drawn from a normal distribution.</p>
+<p>The null hypothesis, <span class="math inline">\(H_{0}\)</span>, here is that the data is drawn from a normal distribution. So a low p-value would mean we need to reject <span class="math inline">\(H_{0}\)</span>.</p>
 <p>We will check if the TRIGLYCERIDE variable has a normal distribution.</p>
 </section>
 <section id="section-37" class="slide level2">
@@ -1051,7 +1052,8 @@ R = \frac{\mu_{Z}-\mu_{V}}{\sqrt{\frac{\sigma_Z^2}{N} + \frac{\sigma_V^2}{N}}}
 ## 
 ## data:  unlist(HANES_TRIGLYCERIDE)
 ## W = 0.85149, p-value &lt; 2.2e-16</code></pre>
-<p>The extremely low p-value suggests that the TRIGLYCERIDE variable has a normal distribution.</p>
+<p>The extremely low p-value suggests that the TRIGLYCERIDE variable <em>does not</em> have a normal distribution.</p>
+<p>The null hypothesis here is that two variables are drawn from the same distribution.</p>
 </section>
 <section id="section-38" class="slide level2">
 <h1></h1>
@@ -1073,7 +1075,7 @@ R = \frac{\mu_{Z}-\mu_{V}}{\sqrt{\frac{\sigma_Z^2}{N} + \frac{\sigma_V^2}{N}}}
 ## data:  unlist(HANES_TRIGLYCERIDE) and unlist(HANES_COTININE)
 ## D = 0.80845, p-value &lt; 2.2e-16
 ## alternative hypothesis: two-sided</code></pre>
-<p>The result suggests that they are indeed drawn from the same distribution. Since we saw that TRIGLYCERIDE is drawn from a normal distribution, COTININE should be drawn from it as well.</p>
+<p>According to this test, the difference between the two variables, TRIGLYCERIDE and COTININE, is significant enough (&lt; 0.05) to say that they have different distributions.</p>
 <p><br> <span style="color:blue"><strong>Classwork/Homework</strong></span>: Perform ks-test on three different variable-pairs in the HANES dataset. Report the findings.</p>
 </section>
 <section id="section-40" class="slide level2">
