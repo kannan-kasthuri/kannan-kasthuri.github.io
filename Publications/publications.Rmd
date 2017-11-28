@@ -52,6 +52,13 @@ Check out my preprints [here](http://library.med.nyu.edu/api/publications/?perso
 
 13.	**Kasthuri Kannan** and Vivek Sarin, A Treecode for Potentials of the Form $r^{-\lambda}$, _International Journal of Computer Mathematics_. 84, 1249-1260, Jan. 2007.
 
+---
+
+##### Conference proceedings
+
+---
+
+
 14.	**Kasthuri Kannan** and Vivek Sarin, A Treecode for Accurate Force Calculations. _Lecture Notes in Computer Science_. 3991, pp. 92-99, May 2006.
 
 15.	**Kasthuri Kannan**, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. _Lecture Notes in Computer Science_. 3514, pp. 107-114, May 2005.
