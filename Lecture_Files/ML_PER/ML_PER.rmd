@@ -20,9 +20,19 @@ figure figcaption {
 
 ---
 
-### Classification, Performance Estimation and Regularization by Sofia Nomikou
+## Classification, Performance Estimation and Regularization 
 
 ---
+
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mdOiY1YLMC8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+---
+
+## Tutorials by Sofia Nomikou
 
 In this lab we are going to explore Classification techiques and apply them on biomedical data. We will study Logistic Regression and K-Nearest Neighbors. Let's begin!
 
