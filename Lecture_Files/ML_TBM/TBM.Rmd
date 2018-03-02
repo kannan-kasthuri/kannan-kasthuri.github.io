@@ -114,6 +114,29 @@ where $n_{mk}$ is the number of observations in the $m$th terminal node that bel
   text(tree.HANES, use.n=TRUE, all=TRUE, cex=.6)
 ```
 
+We should technically use the test error instead of the training error. We will split the observations into a training set and a test set, build the tree using the training set, and evaluate its performance on the test data. The `predict()` function can be used for this purpose. In the case of a classification tree, the argument `type="class"` instructs R to return the actual class prediction. 
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # We will set seed and do a training on 700 data points
+  set.seed (2)
+  train <- sample(1:nrow(mydata), 700)
+  # Form the test data by subtracting the training data indices
+  test <- setdiff(seq(1,nrow(mydata)), train)
+  # Make HANES test data
+  HANES.test <- mydata[test, ]
+  # Form the cluster data for tabulating the accuracy
+  Cluster.test <- select(mydata, Cluster) 
+  Cluster.test <- Cluster.test[test, ]
+  Cluster.test <- as.character(t(Cluster.test))
+  # Make the tree on the training data 
+  tree.mydata <- tree(Cluster~.-UACR-UALBUMIN-UCREATININE, mydata, subset=train)
+  # Use predict() function to make a prediction
+  tree.pred <- predict(tree.mydata, HANES.test, type="class")
+  # Form the accuracy table/confusion matrix
+  table(tree.pred,Cluster.test)
+```
+
+We see the accuracy is `(227+5)/277 = 83%`.
 
 ---
 
