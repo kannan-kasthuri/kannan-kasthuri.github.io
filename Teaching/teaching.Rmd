@@ -50,8 +50,8 @@ This course provides an overview of foundational knowledge and essential methods
 
 ---
 
-[Machine Learning](http://fenyolab.org/presentations/Machine_Learning_2017/)
+[Machine Learning](https://kannan-kasthuri.github.io/machine_learning.html)
 
-Course description and webpage: TBA
+Data science is incomplete without machine learning. This course is designed in such a way that the student will learn, understand and work on the most commonly used machine learning methods. The lectures encompass a wide-variety of topics, including ensemble schemes, support vector machines etc. Several topics have lab sessions/tutorials where students learn how these methods are applied and used in R programming language.
 
 ---
