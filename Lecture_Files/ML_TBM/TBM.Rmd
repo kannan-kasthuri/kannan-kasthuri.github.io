@@ -83,8 +83,13 @@ These two clusters are primarily composed of non-diabetic people. In the set of 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
   # We can use the mutate function to make this class label and remove non-necessary variables
   mydata <- HANES_TIB %>% filter(DX_DBTS == "NO DIAB") %>% 
-    mutate(Cluster = ifelse(log(UACR) <= -2, 'LOW-UACR', 'HIGH-UACR')) %>%
+    mutate(Cluster = ifelse(log(UACR) <= -2, 'LU', 'HU')) %>%
     select(everything(), -KEY, -GENDER, -AGEGROUP, -HSQ_1, -DX_DBTS)
+  # Change names to smaller ones for tree labling purposes
+  library(data.table)
+  setnames(mydata, old = c('MERCURYTOTALBLOOD','CREATININESI', 'CHOLESTEROLTOTAL', 
+                           'LDLESTIMATE', 'CADMIUM', 'MERCURYU', 'TRIGLYCERIDE'), 
+           new=c('MERTOTBLD','CREATSI', 'CHOLTOT', 'LDLE', 'CAD', 'MERU', 'TRIG'))
 ```
 
 The `tree` library can be used to construct classification and regression trees. We can use the `tree()` function to fit a classification tree in order to predict the **Cluster** variable:
@@ -136,7 +141,35 @@ We should technically use the test error instead of the training error. We will 
   table(tree.pred,Cluster.test)
 ```
 
-We see the accuracy is `(227+5)/277 = 83%`.
+We see the accuracy is `(227+5)/277 = 0.83` or 83%.
+
+Next we will verify pruning the tree improves the accuracy. We can use the function `cv.tree()` that will perform cross-validation to determine the optimal tree complexity. The function reports the number of terminal nodes of each tree considered (size) as well as the corresponding error rate and the value of the cost-complexity parameter.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Set the seed
+  set.seed(3)
+  # Use cv.tree() function to do cross-validation to prune and find the optimal tree
+  cv.mydata <- cv.tree(tree.mydata, FUN=prune.misclass)
+  # List and show the cross-validated data frame returned by the cv.tree() function
+  names(cv.mydata)
+  cv.mydata
+  # Plot the deviance vs. the size of the tree and the pruning parameter k/alpha 
+  par(mfrow=c(1,2))
+  plot(cv.mydata$size, cv.mydata$dev, type="b")
+  plot(cv.mydata$k, cv.mydata$dev, type="b")
+  # We can use this data to find the misclassification rate
+  prune.mydata=prune.misclass(tree.mydata,best=6)
+  # Plot the pruned tree
+  plot(prune.mydata)
+  text(prune.mydata,cex=.6)
+  # Verify if the accuracy increases on the pruned tree by applying the test data
+  tree.pred=predict(prune.mydata, HANES.test, type="class")
+  table(tree.pred,Cluster.test)
+```
+
+---
+
+We see the test accuracy with the pruned tree is `(239+4)/277 = 0.87` which is 87%. Not only the optimization through cross-validation has increased the accuracy but also made a more interpretatble tree.
 
 ---
 
