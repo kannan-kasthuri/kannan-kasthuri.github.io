@@ -50,7 +50,7 @@ Check out my preprints [here](http://library.med.nyu.edu/api/publications/?perso
 
 12.	<span style="color:blue"><b>Kasthuri Kannan</b></span>, Akiko Inagaki, Joachim Silber, Daniel Gorovets, Jianan Zhang, et al. Whole exome sequencing identifies ATRX mutation as a key molecular determinant in lower-grade glioma. <span style="color:#e80c7a"> _Oncotarget_</span>. 3-10, 1194-1203, Oct. 2012.
 
-13.	<span style="color:blue"><b> Daniel Gorovets, Kasthuri Kannan</b></span>, Edward R Kastenhuber, Nasrin Islam- doust, Carl Campos, et al. IDH Mutation and Neuroglial Developmental Features Define Clinically Distinct Subclasses of Lower-Grade Dif- fuse Astrocytic Glioma. <span style="color:#e80c7a"> _Clinical Cancer Research_</span>. 18-9, 2490-2501, May 2012.
+13.	<span style="color:blue"><b> Daniel Gorovets, Kasthuri Kannan</b></span>, Edward R Kastenhuber, Nasrin Islam- doust, Carl Campos, et al. IDH Mutation and Neuroglial Developmental Features Define Clinically Distinct Subclasses of Lower-Grade Diffuse Astrocytic Glioma. <span style="color:#e80c7a"> _Clinical Cancer Research_</span>. 18-9, 2490-2501, May 2012.
 
 14.	Amitabha Majumdar, Wanda  Colón Cesario, Erica White-Grindley, Huoqing Jiang, Fengzhen Ren, Mohammed  “Repon” Khan, Liying Li, Edward Man-Lik Choi, **Kasthuri Kannan**, Fengli Guo, Jay Unruh, Brian Slaughter, Kausik Si.  Critical Role of Amyloid-like Oligomers of Drosophila Orb2 in the Persistence of Memory. <span style="color:#e80c7a"> _Cell_</span>. 148-3, 515-529, Feb. 2012.
 
