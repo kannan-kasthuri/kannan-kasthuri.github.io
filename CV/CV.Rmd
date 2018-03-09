@@ -1,0 +1,72 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style>
+body {
+text-align: justify}
+figure figcaption {
+    text-align: center;}
+</style>
+
+---
+
+<center>
+
+### Kasthuri Kannan 
+[https://kannan-kasthuri.github.io/](https://kannan-kasthuri.github.io/) 
+
+</center>
+
+---
+
+<p style="text-align:left;"> TRB 737, 550 First Ave. New York. NY 10016 
+<span style="float:right;"> kasthuri.kannan@nyumc.org </span>
+</p>
+
+---
+
+##### Professional Interests
+
+Genomics/Epigenetics (cancer) 
+
+Mathematical Modeling
+
+Teaching ([Data science & Machine learning](https://kannan-kasthuri.github.io/Informatics/lectures.html))
+
+---
+
+##### Appointments
+
+_Current_
+
+```{r echo=FALSE}
+# Make a data frame for the positions
+current <- data.frame("Start" = c("Nov. 2013",""), "End" = c("-",""), "Position" = c("Assistant Professor of Pathology","Investigator, Genome Technology Center"), "Employer" = c("New York University, New York","New York University, New York"))
+```
+
+``` {r echo=FALSE}
+# Create a table
+library("knitr")
+kable(current)
+```
+
+_Previous_
+
+```{r echo=FALSE}
+# Make a data frame for the positions
+past <- data.frame("Start" = c("Apr. 2011","Oct. 2010","Jan. 2008","Jan. 2007"), "End" = c("Nov. 2013","Apr. 2011","Oct. 2010","Dec. 2007"), "Position" = c("Research Fellow/Associate","Research Associate","Research Specialist","Internship"), "Employer" = c("Memorial Sloan-Kettering Cancer Center, New York","Pennsylvania State University, State College","Stowers Institute for Medical Research, Kansas City","Knowledge Based Systems, Inc. College Station"))
+```
+
+``` {r echo=FALSE}
+# Create a table
+kable(past)
+```
+
+---
+
+##### Education
