@@ -16,14 +16,21 @@ figure figcaption {
 
 ---
 
-<center>
-<h1> SIRPI Data Science Week
-</center>
-
+#### SIRPI's Successful 3-day Workshop
 
 ---
 
-<center> <h3> ![](logo.png){width=20px} Click [here](https://goo.gl/forms/7PmMHrOdSIYhAJOz1) to register ![](logo.png){width=20px}</h3> </center>
+Conducted a successful workshop at Indian Institute of Science, Bangalore between Jan. 29-31 (details can be found below). Thanks to Anand Lakshmanan and SIRPI's dedicated folks who made it all possible. It was a terrific experience to see enthusiastic students who were tuned to lectures all the three days. Was such a treat to teach the kids data science.
+
+---
+
+<figure>
+  <img alt="WS" src="IISc_Workshop.jpg" height = 200; width = 400; hspace="20" />
+</figure>
+
+---
+
+#### Workshop Details
 
 ---
 
@@ -53,6 +60,8 @@ A 3-day intensive and immersive data science workshop. You will get trained in t
     + Advanced modeling
     + Next steps in analytics     
 
+<!-- 
+
 ---
 
 #### Instructors
@@ -75,6 +84,8 @@ Dr. Kannan's webpage: https://kannan-kasthuri.github.io
 </figure>
 
 Dr. Anand Lakshmanan, is the Founder and CEO of Bangalore based SIRPI (http://www.sirpi.co.in) which provides training, consulting, and outsourcing in areas of data science and engineering research. He has helped academic institutions and corporates deep dive into their data and make better decisions. He has designed experiments and analyzed data in areas across domains including hardware-software interfacing, electrophysiology, computational neuroscience, microstrip antenna research, mobile phone antenna design, streamlining factory processes, and quality control in hardware testing. Most recently he worked at Apple in Cupertino, California as an Antenna Design Engineer. He has published or co-published several papers and holds 7 patents. He believes that all scientists and professionals need to be data-savvy to make decisions and persuade actions. To enable that, he travels across India and around the world giving talks on data science and R programming. So far, he has trained 350 professionals on R Programming for data science. He has 17+ years experience across academia and industry.
+
+-->
 
 ---
 
