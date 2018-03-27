@@ -26,7 +26,7 @@ Check out my preprints [here](http://library.med.nyu.edu/api/publications/?perso
 
 ---
 
-[18] <span style="color:blue"><b>Daniel Friedman, Kasthuri Kannan</b></span>, Arline Faustin, Seema Shroff, Cheddhi Thomas,  Adriana Heguy, Jonathan Serrano, Matija Snuderl, Orrin Devinsky. Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. <span style="color:#e80c7a"> _Nature Genomic Medicine_</span>. Mar. 2018. (to appear).
+[18] <span style="color:blue"><b>Daniel Friedman, Kasthuri Kannan</b></span>, Arline Faustin, Seema Shroff, Cheddhi Thomas,  Adriana Heguy, Jonathan Serrano, Matija Snuderl, Orrin Devinsky. Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. <span style="color:#e80c7a"> _Nature Genomic Medicine_</span>. Mar. 2018 (_to appear_).
 
 [17] Carla Danussi, Promita Bose, Prasanna Parthasarathy, Pedro Silberman, John Van Arnam, Mark Vitucci, Oliver Tang, Adriana Heguy, Yuxiang Wang, Timothy Chan, Gregory Riggins, Erik Sulman, Frederick Lang, Chad Creighton, Benjamin Deneen, C Miller, David Picketts, <span style="color:blue"><b>Kasthuri Kannan</b></span>, and Jason Huse. Atrx inactivation drives disease-defining phenotypes in glioma cells of origin through global epigenomic remodeling. <span style="color:#e80c7a"> _Nature Communications_</span>. Mar. 2018. [[PMID: 29535300]](https://www.ncbi.nlm.nih.gov/pubmed/29535300)
 
