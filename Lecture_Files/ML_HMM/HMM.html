@@ -136,6 +136,9 @@ figure figcaption {
 <div id="recorded-stream" class="section level4">
 <h4>Recorded Stream</h4>
 <hr />
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G3hYlwO-M_8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+<hr />
 </div>
 <div id="a-multinomial-model-of-dna-sequence-evolution" class="section level4">
 <h4>A multinomial model of DNA sequence evolution</h4>
@@ -159,8 +162,8 @@ figure figcaption {
  seqlength &lt;- 30
  # Generate a sequence
  sample(nucleotides, seqlength, rep=TRUE, prob=probabilities1)</code></pre>
-<pre><code>##  [1] &quot;G&quot; &quot;G&quot; &quot;T&quot; &quot;C&quot; &quot;C&quot; &quot;G&quot; &quot;G&quot; &quot;T&quot; &quot;G&quot; &quot;C&quot; &quot;A&quot; &quot;C&quot; &quot;C&quot; &quot;T&quot; &quot;A&quot; &quot;A&quot; &quot;G&quot;
-## [18] &quot;A&quot; &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;T&quot; &quot;A&quot; &quot;G&quot; &quot;G&quot; &quot;G&quot; &quot;C&quot; &quot;T&quot; &quot;T&quot; &quot;G&quot;</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;G&quot; &quot;T&quot; &quot;A&quot; &quot;G&quot; &quot;A&quot; &quot;G&quot; &quot;G&quot; &quot;G&quot; &quot;C&quot; &quot;T&quot; &quot;G&quot; &quot;G&quot; &quot;C&quot; &quot;T&quot; &quot;G&quot; &quot;G&quot;
+## [18] &quot;T&quot; &quot;G&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;C&quot; &quot;C&quot; &quot;G&quot; &quot;G&quot; &quot;C&quot; &quot;C&quot; &quot;T&quot; &quot;G&quot;</code></pre>
 <p>The multinomial model is a good model in several cases but also has limitations.</p>
 <ol style="list-style-type: decimal">
 <li>It assumes the frequency of the nucleotides is the same for all streches of DNA, i.e., pA, pC, PT and pG is the same throughout.</li>
@@ -228,8 +231,8 @@ figure figcaption {
   myinitialprobs &lt;- c(0.25, 0.25, 0.25, 0.25)
   # Generate the sequence
   generatemarkovseq(mytransitionmatrix, myinitialprobs, 30)</code></pre>
-<pre><code>##  [1] &quot;A&quot; &quot;C&quot; &quot;C&quot; &quot;A&quot; &quot;C&quot; &quot;T&quot; &quot;T&quot; &quot;T&quot; &quot;A&quot; &quot;T&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;G&quot; &quot;G&quot; &quot;T&quot; &quot;C&quot;
-## [18] &quot;T&quot; &quot;T&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;G&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot;</code></pre>
+<pre><code>##  [1] &quot;C&quot; &quot;C&quot; &quot;G&quot; &quot;C&quot; &quot;G&quot; &quot;A&quot; &quot;T&quot; &quot;G&quot; &quot;T&quot; &quot;C&quot; &quot;G&quot; &quot;G&quot; &quot;A&quot; &quot;T&quot; &quot;T&quot; &quot;C&quot; &quot;C&quot;
+## [18] &quot;C&quot; &quot;G&quot; &quot;A&quot; &quot;C&quot; &quot;G&quot; &quot;G&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;G&quot; &quot;A&quot; &quot;G&quot;</code></pre>
 <p>As we can see, there are many “A”s after “T”s in the sequence. This is because pTA has a high value (0.5) in the Markov transition matrix <em>mytransitionmatrix</em>. Similarly, there are few “A”s or “T”s after “C”s, which is because pCA and pCT have low values (0.1) in this transition matrix.</p>
 <hr />
 </div>
@@ -315,36 +318,36 @@ figure figcaption {
   theinitialprobs &lt;- c(0.5, 0.5)
   # Generate a HMM DNA sequence
   generatehmmseq(thetransitionmatrix, theemissionmatrix, theinitialprobs, 30)</code></pre>
-<pre><code>## [1] &quot;Position 1 , State AT-rich , Nucleotide =  T&quot;
-## [1] &quot;Position 2 , State GC-rich , Nucleotide =  G&quot;
-## [1] &quot;Position 3 , State AT-rich , Nucleotide =  T&quot;
-## [1] &quot;Position 4 , State AT-rich , Nucleotide =  A&quot;
-## [1] &quot;Position 5 , State GC-rich , Nucleotide =  C&quot;
-## [1] &quot;Position 6 , State GC-rich , Nucleotide =  A&quot;
-## [1] &quot;Position 7 , State AT-rich , Nucleotide =  A&quot;
-## [1] &quot;Position 8 , State AT-rich , Nucleotide =  A&quot;
+<pre><code>## [1] &quot;Position 1 , State AT-rich , Nucleotide =  A&quot;
+## [1] &quot;Position 2 , State AT-rich , Nucleotide =  T&quot;
+## [1] &quot;Position 3 , State GC-rich , Nucleotide =  C&quot;
+## [1] &quot;Position 4 , State GC-rich , Nucleotide =  C&quot;
+## [1] &quot;Position 5 , State GC-rich , Nucleotide =  G&quot;
+## [1] &quot;Position 6 , State GC-rich , Nucleotide =  G&quot;
+## [1] &quot;Position 7 , State GC-rich , Nucleotide =  C&quot;
+## [1] &quot;Position 8 , State GC-rich , Nucleotide =  C&quot;
 ## [1] &quot;Position 9 , State AT-rich , Nucleotide =  T&quot;
-## [1] &quot;Position 10 , State GC-rich , Nucleotide =  C&quot;
-## [1] &quot;Position 11 , State GC-rich , Nucleotide =  T&quot;
-## [1] &quot;Position 12 , State GC-rich , Nucleotide =  C&quot;
+## [1] &quot;Position 10 , State AT-rich , Nucleotide =  A&quot;
+## [1] &quot;Position 11 , State AT-rich , Nucleotide =  T&quot;
+## [1] &quot;Position 12 , State AT-rich , Nucleotide =  T&quot;
 ## [1] &quot;Position 13 , State GC-rich , Nucleotide =  G&quot;
-## [1] &quot;Position 14 , State GC-rich , Nucleotide =  G&quot;
+## [1] &quot;Position 14 , State GC-rich , Nucleotide =  A&quot;
 ## [1] &quot;Position 15 , State GC-rich , Nucleotide =  G&quot;
-## [1] &quot;Position 16 , State GC-rich , Nucleotide =  C&quot;
-## [1] &quot;Position 17 , State GC-rich , Nucleotide =  G&quot;
-## [1] &quot;Position 18 , State AT-rich , Nucleotide =  T&quot;
-## [1] &quot;Position 19 , State AT-rich , Nucleotide =  A&quot;
+## [1] &quot;Position 16 , State GC-rich , Nucleotide =  G&quot;
+## [1] &quot;Position 17 , State GC-rich , Nucleotide =  A&quot;
+## [1] &quot;Position 18 , State GC-rich , Nucleotide =  C&quot;
+## [1] &quot;Position 19 , State GC-rich , Nucleotide =  G&quot;
 ## [1] &quot;Position 20 , State GC-rich , Nucleotide =  C&quot;
 ## [1] &quot;Position 21 , State GC-rich , Nucleotide =  C&quot;
-## [1] &quot;Position 22 , State GC-rich , Nucleotide =  C&quot;
-## [1] &quot;Position 23 , State GC-rich , Nucleotide =  T&quot;
+## [1] &quot;Position 22 , State GC-rich , Nucleotide =  G&quot;
+## [1] &quot;Position 23 , State GC-rich , Nucleotide =  A&quot;
 ## [1] &quot;Position 24 , State GC-rich , Nucleotide =  C&quot;
 ## [1] &quot;Position 25 , State GC-rich , Nucleotide =  C&quot;
-## [1] &quot;Position 26 , State AT-rich , Nucleotide =  T&quot;
-## [1] &quot;Position 27 , State GC-rich , Nucleotide =  C&quot;
+## [1] &quot;Position 26 , State GC-rich , Nucleotide =  G&quot;
+## [1] &quot;Position 27 , State GC-rich , Nucleotide =  T&quot;
 ## [1] &quot;Position 28 , State GC-rich , Nucleotide =  C&quot;
-## [1] &quot;Position 29 , State GC-rich , Nucleotide =  A&quot;
-## [1] &quot;Position 30 , State GC-rich , Nucleotide =  G&quot;</code></pre>
+## [1] &quot;Position 29 , State GC-rich , Nucleotide =  T&quot;
+## [1] &quot;Position 30 , State GC-rich , Nucleotide =  C&quot;</code></pre>
 <p>As we can see, the nucleotides generated by the GC-rich state are mostly but not all “G”s and “C”s (because of the high values of pG and pC for the GC-rich state in the HMM emission matrix), while the nucleotides generated by the AT-rich state are mostly but not all “A”s and “T”s (because of the high values of pT and pA for the AT-rics state in the HMM emission matrix).</p>
 <p>Furthermore, there tends to be runs of nucleotides that are either all in the GC-rich state or all in the AT-rich state, as the transition matrix specifies that the probabilities of switching from the AT-rich to GC-rich state (probability 0.3), or GC-rich to AT-rich state (probability 0.1) are relatively low.</p>
 <hr />

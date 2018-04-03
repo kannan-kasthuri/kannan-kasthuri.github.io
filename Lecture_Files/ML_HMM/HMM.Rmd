@@ -26,6 +26,10 @@ figure figcaption {
 
 ---
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G3hYlwO-M_8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+---
+
 #### A multinomial model of DNA sequence evolution
 
 ---
