@@ -15,11 +15,17 @@ https://kannan-kasthuri.github.io/
 \end{center}
 TRB 737, 550 First Ave. New York. NY 10016 \hfill kasthuri.kannan@nyumc.org
 
-\textbf{\textcolor{black}{Professional Interests}}
+\vspace{2mm}
+
+\hrule
+
+\vspace{2mm}
+
+\textbf{\textcolor{purple}{Professional Interests}}
 
 Genomics/epigenomics (especially cancer), Mathematical modeling, Teaching (Data science)
 
-\textbf{\textcolor{black}{Successful Collaborations (representative \& recent)}}
+\textbf{\textcolor{purple}{Successful Collaborations (representative \& recent)}}
 
 \begin{flushleft}
 
@@ -40,7 +46,7 @@ Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue
 
 \end{flushleft}
 
-\textbf{\textcolor{black}{Emerging Collaborations}}
+\textbf{\textcolor{purple}{Emerging Collaborations}}
 
 \begin{flushleft}
 
@@ -55,7 +61,7 @@ Indian Institute of Science, Manipal Academy of Higher Education, Cancer Researc
 
 \end{flushleft}
 
-\textbf{\textcolor{black}{Invited Talks}}
+\textbf{\textcolor{purple}{Invited Talks}}
 
 \begin{flushleft}
 
@@ -73,7 +79,7 @@ Indian Institute of Science, Manipal Academy of Higher Education, Cancer Researc
 
 \end{flushleft}
 
-\textbf{\textcolor{black}{Publications (\textcolor{blue}{blue - equal contribution/senior/first author)}}}
+\textbf{\textcolor{purple}{Publications \textcolor{blue}{(blue - equal contribution/senior/first author)}}}
 
 [19] \textbf{\textcolor{blue} {Matija Snuderl, Kasthuri Kannan}} et al. (corresponding author: Matthias A. Karajannis). Recurrent homozygous deletion of DROSHA and microduplication of PDE4DIP containing the ancestral DUF1220 domain in pineoblastoma. \textbf{\textit{\textcolor{violet}{Nature Communications}}} (_accepted_, _to appear_).
 
@@ -114,7 +120,7 @@ Indian Institute of Science, Manipal Academy of Higher Education, Cancer Researc
 [01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, pp. 107-114, May 2005.
 
 
-\textbf{\textcolor{black}{Teaching Responsibilities}}
+\textbf{\textcolor{purple}{Teaching Responsibilities}}
 
 Course director for the following graduate (MS Biomedical Informatics) courses:
 
@@ -126,7 +132,7 @@ Course director for the following graduate (MS Biomedical Informatics) courses:
 
 \vspace{3mm}
 
-\textbf{\textcolor{black}{Skills Summary}}
+\textbf{\textcolor{purple}{Skills Summary}}
 
 ```{r echo=FALSE}
 library(kableExtra)
@@ -141,7 +147,7 @@ kable(skills, format = "latex", booktabs = T) %>% kable_styling(full_width = T) 
 
 \vspace{3mm}
 
-\textbf{\textcolor{black}{Employment History}}
+\textbf{\textcolor{purple}{Employment History}}
 
 \begin{flushleft}
 Assistant Professor (Pathology) \hfill Dec 2013 - \linebreak
@@ -162,7 +168,7 @@ d. Development of next generation sequencing pipelines and integrated study of a
 
 \begin{flushleft}
 Research Associate \hfill Oct 2010 – Apr 2011 \linebreak
-Pennsylvania State University, State College.				         	       
+Pennsylvania State University, State College				         	       
 \end{flushleft}
 a. Responsible for the development of computational infrastructure for high throughput sequencing data from next-generation platforms [SOLiD and Illumina].
 b. Organized the existing data analysis pipeline (genome alignment, motif discovery to biological interpretation) and provided consultation to the researchers on core computational issues.
@@ -191,13 +197,13 @@ a. Offered significant ideas for logistics management in Oklahoma Air Logistics 
 b. Proposed several cost and time saving measures from directed insights obtained via predictive modeling.
 c. Initiated business intelligence for aircraft movement operations at the Tinker Air Force Base.
 
-\textbf{\textcolor{black}{Professional Training}}
+\textbf{\textcolor{purple}{Professional Training}}
 
 Automated Image and Data Analysis, Sep. 15-17, 2009, Carl Zeiss, Thornwood, New York.
 
 \vspace{3mm}
 
-\textbf{\textcolor{black}{Education}}
+\textbf{\textcolor{purple}{Education}}
 
 ```{r echo=FALSE}
 # Make a data frame for the positions
@@ -211,6 +217,6 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \vspace{3mm}
 
-\textbf{\textcolor{black}{References will be provided upon request}}
+\textbf{\textcolor{purple}{References will be provided upon request}}
 
 
