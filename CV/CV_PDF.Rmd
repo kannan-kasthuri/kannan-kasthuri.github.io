@@ -150,34 +150,46 @@ kable(skills, format = "latex", booktabs = T) %>% kable_styling(full_width = T) 
 \textbf{\textcolor{purple}{Employment History}}
 
 \begin{flushleft}
-Assistant Professor (Pathology) \hfill Dec 2013 - \linebreak
+
+\textbf{Assistant Professor (Pathology)} \hfill Dec 2013 - \linebreak
 Investigator, Genome Technology Center \linebreak
 New York University, School of Medicine	
+
 \end{flushleft}
+
 a. Research and studies in genomics/epigenomics, especially in cancer.
 b. Educational responsibilities include teaching informatics courses.
 
 \begin{flushleft}
-Research Associate/Fellow	\hfill Apr 2011 – Nov 2013 \linebreak
+
+\textbf{Research Associate/Fellow}	\hfill Apr 2011 – Nov 2013 \linebreak
 Memorial Sloan-Kettering Cancer Center, New York	
+
 \end{flushleft}
+
 a. Comprehensive genomic and epigenomic analysis of the impact of first-line therapy in the molecular evolution of malignant glioma. DNA and RNA extraction from tumor specimens. 
 b. Examination and discovery of genetic diversity in low grade glioma such as astrocytoma and oligodendroglioma.
 c. Analysis of genomic sequencing data (mutation discovery, copy number alterations) in glioma, head and neck and thyroid neoplasms. 
 d. Development of next generation sequencing pipelines and integrated study of array (gene expression, methylation, copy number) and genetic alterations (mutations and translocations) in cancers.
 
 \begin{flushleft}
-Research Associate \hfill Oct 2010 – Apr 2011 \linebreak
+
+\textbf{Research Associate} \hfill Oct 2010 – Apr 2011 \linebreak
 Pennsylvania State University, State College				         	       
+
 \end{flushleft}
+
 a. Responsible for the development of computational infrastructure for high throughput sequencing data from next-generation platforms [SOLiD and Illumina].
 b. Organized the existing data analysis pipeline (genome alignment, motif discovery to biological interpretation) and provided consultation to the researchers on core computational issues.
 c. Managed sequencing tasks at the Bioinformatics Consulting Center, Institute for Genomics, Proteomics and Bioinformatics.
 
 \begin{flushleft}
-Research Specialist \hfill Jan 2008 – Sep 2010 \linebreak
+
+\textbf{Research Specialist} \hfill Jan 2008 – Sep 2010 \linebreak
 Stowers Institute for Medical Research, Kansas City			     		       
+
 \end{flushleft}
+
 a. Team leader for ChIP-seq data analysis project in the Stowers Microscopy Center. 
     + Developed and implemented an analytical strategy (in particular, a deconvolution model) to predict protein-binding sites in ChIP-seq data. 
 b. Implemented an automated data workflow to study the growth phases of budding S. Cerevisiae cells.
@@ -190,9 +202,12 @@ f. Developed a dynamic web-site (PHP + MySQL) that would query and process yeast
 g. Responsible for high quality image acquisition and microscope maintenance in the institute.
 
 \begin{flushleft}
-Research Intern \hfill Jan 2007 – Dec 2007 \linebreak
+
+\textbf{Research Intern} \hfill Jan 2007 – Dec 2007 \linebreak
 Knowledge Based Systems, Inc., College Station			                                 
+
 \end{flushleft}
+
 a. Offered significant ideas for logistics management in Oklahoma Air Logistics Center through data mining.
 b. Proposed several cost and time saving measures from directed insights obtained via predictive modeling.
 c. Initiated business intelligence for aircraft movement operations at the Tinker Air Force Base.
