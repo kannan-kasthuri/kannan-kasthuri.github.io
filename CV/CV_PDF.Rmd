@@ -1,0 +1,216 @@
+---
+output: pdf_document
+header-includes: \usepackage{xcolor}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\begin{center}
+\textbf{Kasthuri Kannan} \linebreak
+Assistant Professor, New York University \linebreak
+https://kannan-kasthuri.github.io/
+\end{center}
+TRB 737, 550 First Ave. New York. NY 10016 \hfill kasthuri.kannan@nyumc.org
+
+\textbf{\textcolor{black}{Professional Interests}}
+
+Genomics/epigenomics (especially cancer), Mathematical modeling, Teaching (Data science)
+
+\textbf{\textcolor{black}{Successful Collaborations (representative \& recent)}}
+
+\begin{flushleft}
+
+1. Adriana Heguy, PhD, Assistant Dean, Division of Advanced Research Technologies, NYU. \linebreak
+\hangindent=0.4cm Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? \textit{Letters in Biomathematics}. Sept. 2016. 
+
+2. Jason Huse, MD, PhD, Associate Professor \& Director, MD Anderson Cancer Center. \linebreak
+Atrx inactivation drives disease-defining phenotypes in glioma cells of origin through global epigenomic remodeling. \textit{Nature Communications}. Mar. 2018.
+
+3. Matthias Karajannis, MD, MS, Chief, Pediatric Neuro-Oncology, MSKCC. \linebreak
+Recurrent homozygous deletion of DROSHA and microduplication of PDE4DIP containing the ancestral DUF1220 domain in pineoblastoma. \textit{Nature Communications} (accepted, to appear).
+
+4. Matija Snuderl, MD, Director, Molecular Pathology, NYU. \linebreak
+DNA methylation-based classification of human central nervous system tumors. \textit{Nature}. Mar. 2018.
+
+5. Orrin Devinsky, MD, Director, Comprehensive Epilepsy Center, NYU. \linebreak
+Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textit{Nature Genomic Medicine}. Mar. 2018. 
+
+\end{flushleft}
+
+\textbf{\textcolor{black}{Emerging Collaborations}}
+
+\begin{flushleft}
+
+1. Dean Felsher, MD, PhD, Professor \& Director, Stanford University. \linebreak
+\hangindent=0.4cm MYC liver cancer project.
+
+2. Rama Natarajan, PhD, Professor and Chair, Dept. of Diabetes Complications, City of Hope. LA. \linebreak
+Epigenomics of diabetes
+
+3. Institutions in India. \linebreak
+Indian Institute of Science, Manipal Academy of Higher Education, Cancer Research and Relief Trust.
+
+\end{flushleft}
+
+\textbf{\textcolor{black}{Invited Talks}}
+
+\begin{flushleft}
+
+1. CancerCon 2018. Chennai, India. [Feb. 01-03, 2018]
+
+2. Manipal Academy of Higher Education, Manipal, India. [Feb. 06, 2018]
+
+3. Institute of Mathematical Sciences, Chennai. India. [Feb. 8, 2018, with honorarium]
+
+4. MedGenome symposium. Foster City, CA. [Mar. 20, 2018]
+
+5. \textit{Beer with a Scientist Sundays}, (Audio link: https://goo.gl/eoJ8Do) New York, NY. [Apr. 01, 2018]
+
+6. MD Anderson Cancer Center, Houston, TX. [Apr. 19, 2018]
+
+\end{flushleft}
+
+\textbf{\textcolor{black}{Publications (\textcolor{blue}{blue - equal contribution/senior/first author)}}}
+
+[19] \textbf{\textcolor{blue} {Matija Snuderl, Kasthuri Kannan}} et al. (corresponding author: Matthias A. Karajannis). Recurrent homozygous deletion of DROSHA and microduplication of PDE4DIP containing the ancestral DUF1220 domain in pineoblastoma. \textbf{\textit{\textcolor{violet}{Nature Communications}}} (_accepted_, _to appear_).
+
+[18] \textbf{\textcolor{blue} {Daniel Friedman, Kasthuri Kannan}}, Arline Faustin, Seema Shroff, Cheddhi Thomas,  Adriana Heguy, Jonathan Serrano, Matija Snuderl, Orrin Devinsky. Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textbf{\textit{\textcolor{violet}{Nature Genomic Medicine}}}. Mar. 2018.
+
+[17] Carla Danussi, Promita Bose, Prasanna Parthasarathy, Pedro Silberman, John Van Arnam, Mark Vitucci, Oliver Tang, Adriana Heguy, Yuxiang Wang, Timothy Chan, Gregory Riggins, Erik Sulman, Frederick Lang, Chad Creighton, Benjamin Deneen, C Miller, David Picketts, \textbf{\textcolor{blue} {Kasthuri Kannan}}, and Jason Huse. Atrx inactivation drives disease-defining phenotypes in glioma cells of origin through global epigenomic remodeling. \textbf{\textit{\textcolor{violet}{Nature Communications}}}. Mar. 2018. [PMID: 29535300]
+
+[16]	David Capper et al. _somewhere in the middle_ **Kasthuri Kannan**, (corresponding author: Stefan M. Pfister). DNA methylation-based classification of human central nervous system tumors. \textbf{\textit{\textcolor{violet}{Nature}}}. Mar. 2018. [PMID: 29539639]
+
+[15] Fanok, Melania H; Sun, Amy; Fogli, Laura K; Narendran, Vijay; Eckstein, Miriam; **Kannan, Kasthuri**; Dolgalev, Igor; Lazaris, Charalampos; Heguy, Adriana; Laird, Mary E; Sundrud, Mark S; Liu, Cynthia; Kutok, Jeff; Lacruz, Rodrigo S; Latkowski, Jo-Ann; Aifantis, Iannis; Odum, Niels; Hymes, Kenneth B; Goel, Swati; Koralov, Sergei B. Role of dysregulated cytokine signaling and bacterial triggers in the pathogenesis of Cutaneous T Cell Lymphoma. \textbf{\textit{\textcolor{violet}{Journal of Investigative Dermatology}}}. Nov. 2017. [PMID: 29128259]
+
+[14]	\textbf{\textcolor{blue} {Kasthuri Kannan}} and Adriana Heguy. Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? \textbf{\textit{\textcolor{violet}{Letters In Biomathematics}}}. Sept. 2016. 
+
+[13]	Snyder A, Makarov V, Merghoub T, Yuan J, Zaretsky JM, Desrichard A, Walsh LA, Postow MA, Wong P, Ho TS, Hollmann TJ, Bruggeman C, **Kasthuri Kannan**, Li Y, Elipenahli C, Liu C, Harbison CT, Wang L, Ribas A, Wolchok JD, Chan TA. Genetic basis for clinical response to CTLA-4 blockade in melanoma. \textbf{\textit{\textcolor{violet}{N Engl. J Med}}}. Dec. 2014. [PMID: 25409260]
+
+[12]	Marsha Reyngold, Sevin Turcan, Dilip Giri, **Kasthuri Kannan**, Logan A. Walsh et al. Remodeling of the Methylation Landscape in Breast Cancer Metastasis. \textbf{\textit{\textcolor{violet}{PLoS One}}}. Aug. 2014. [PMID: 25083786]
+
+[11]	Gerber NK,  Goenka A,  Turcan S,  Reyngold M,  Makarov V,  **Kasthuri Kannan**,  Beal K,  Omuro A,  Yamada Y,  Gutin P,  Brennan CW,  Huse JT, Chan TA. Transcriptional diversity of long-term glioblastoma survivors. \textbf{\textit{\textcolor{violet}{Neuro Oncol}}}. Sept. 2014. [PMID: 24662514]
+
+[10]	\textbf{\textcolor{blue} {Allen S. Ho, Kasthuri Kannan}}, David Roy, Luc G.T. Morris, Nora Katabi, Stephanie Eng, et al. The Mutational Landscape of Adenoid Cystic Carcinoma. \textbf{\textit{\textcolor{violet}{Nature Genetics}}}. July 2013. [PMID: 23685749]
+
+[09]	Ian Ganly, Julio Ricarte Filho, Stephanie Eng, Ronald Ghossein, Luc G. T. Morris, Yupu Liang, Nicholas Socci, **Kasthuri Kannan**, Qianxing Mo, James A. Fagin, and Timothy A. Chan, Genomic Dissection of Hurthle Cell Carcinoma Reveals a Unique Class of Thyroid Malignancy. \textbf{\textit{\textcolor{violet}{The Journal of Clinical Endocrinology \& Metabolism}}}. May 2013. [PMID: 23543667]
+
+[08]	Luc G.T. Morris, Andrew M. Kaufman, Yongxing Gong, Deepa Ramaswami, Logan A. Walsh, Sevin Turcan, Stephanie Eng, **Kasthuri Kannan**, Yilong Zou, et al., Frequent mutation of the Drosophila tumor suppressor-related gene FAT1 in multiple human cancers leads to aberrant Wnt activation. \textbf{\textit{\textcolor{violet}{Nature Genetics}}}. Mar. 2013. [PMID: 23354438]
+
+[07] \textbf{\textcolor{blue} {Kasthuri Kannan}}, Akiko Inagaki, Joachim Silber, Daniel Gorovets, Jianan Zhang, et al. Whole exome sequencing identifies ATRX mutation as a key molecular determinant in lower-grade glioma. \textbf{\textit{\textcolor{violet}{Oncotarget}}}. Oct. 2012. [PMID: 23104868]
+
+[06]	\textbf{\textcolor{blue} {Daniel Gorovets, Kasthuri Kannan}}, Edward R Kastenhuber, Nasrin Islam- doust, Carl Campos, et al. IDH Mutation and Neuroglial Developmental Features Define Clinically Distinct Subclasses of Lower-Grade Diffuse Astrocytic Glioma. \textbf{\textit{\textcolor{violet}{Clinical Cancer Research}}}. May 2012. [PMID: 22415316]
+
+[05]	Amitabha Majumdar, Wanda  Colón Cesario, Erica White-Grindley, Huoqing Jiang, Fengzhen Ren, Mohammed  “Repon” Khan, Liying Li, Edward Man-Lik Choi, **Kasthuri Kannan**, Fengli Guo, Jay Unruh, Brian Slaughter, Kausik Si.  Critical Role of Amyloid-like Oligomers of Drosophila Orb2 in the Persistence of Memory. \textbf{\textit{\textcolor{violet}{Cell}}}. Feb. 2012. [PMID: 22284910]
+
+[04]	Yan Hao, Ningyi Xu, Andrew Box, Laura Schaefer, **Kasthuri Kannan**, et al. Nuclear cGMP-Dependent Kinase Regulates Gene Expression via Activity-Dependent Recruitment of a Conserved Histone Deacetylase Complex. \textbf{\textit{\textcolor{violet}{PLoS Genetics}}}. May 2011. [PMID: 21573134]
+
+[03] \textbf{\textcolor{blue} {Kasthuri Kannan}} and Vivek Sarin, A Treecode for Potentials of the Form $r^{-\lambda}$, \textbf{\textit{\textcolor{violet}{International Journal of Computer Mathematics}}}. 84, 1249-1260, Jan. 2007.
+
+[02] 	\textbf{\textcolor{blue} {Kasthuri Kannan}} and Vivek Sarin, A Treecode for Accurate Force Calculations. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3991, pp. 92-99, May 2006.
+
+[01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, pp. 107-114, May 2005.
+
+
+\textbf{\textcolor{black}{Teaching Responsibilities}}
+
+Course director for the following graduate (MS Biomedical Informatics) courses:
+
+1. Programming for Data Analysis: https://kannan-kasthuri.github.io/pda.html
+
+2. Methods in Quantitative Biology: https://kannan-kasthuri.github.io/qmb.html
+
+3. Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
+
+\vspace{3mm}
+
+\textbf{\textcolor{black}{Skills Summary}}
+
+```{r echo=FALSE}
+library(kableExtra)
+# Make a data frame for the positions
+skills <- data.frame("Applied Skills" = c("Genomics, Computational Biology","Algorithms, Programming","Mathematical Modeling, Statistics","Image Processing, Data Science"), "Software" = c("Python, R, Scripts(Perl/Bash), C++, PHP, HTML","Matlab, IDL, OpenOffice, Visual Studio","MySQL, PostgreSQL, MS Access","Unix, Linux variants, Windows (all versions)"))
+```
+
+``` {r echo=FALSE}
+# Create a table
+kable(skills, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped")  
+```
+
+\vspace{3mm}
+
+\textbf{\textcolor{black}{Employment History}}
+
+\begin{flushleft}
+Assistant Professor (Pathology) \hfill Dec 2013 - \linebreak
+Investigator, Genome Technology Center \linebreak
+New York University, School of Medicine	
+\end{flushleft}
+a. Research and studies in genomics/epigenomics, especially in cancer.
+b. Educational responsibilities include teaching informatics courses.
+
+\begin{flushleft}
+Research Associate/Fellow	\hfill Apr 2011 – Nov 2013 \linebreak
+Memorial Sloan-Kettering Cancer Center, New York	
+\end{flushleft}
+a. Comprehensive genomic and epigenomic analysis of the impact of first-line therapy in the molecular evolution of malignant glioma. DNA and RNA extraction from tumor specimens. 
+b. Examination and discovery of genetic diversity in low grade glioma such as astrocytoma and oligodendroglioma.
+c. Analysis of genomic sequencing data (mutation discovery, copy number alterations) in glioma, head and neck and thyroid neoplasms. 
+d. Development of next generation sequencing pipelines and integrated study of array (gene expression, methylation, copy number) and genetic alterations (mutations and translocations) in cancers.
+
+\begin{flushleft}
+Research Associate \hfill Oct 2010 – Apr 2011 \linebreak
+Pennsylvania State University, State College.				         	       
+\end{flushleft}
+a. Responsible for the development of computational infrastructure for high throughput sequencing data from next-generation platforms [SOLiD and Illumina].
+b. Organized the existing data analysis pipeline (genome alignment, motif discovery to biological interpretation) and provided consultation to the researchers on core computational issues.
+c. Managed sequencing tasks at the Bioinformatics Consulting Center, Institute for Genomics, Proteomics and Bioinformatics.
+
+\begin{flushleft}
+Research Specialist \hfill Jan 2008 – Sep 2010 \linebreak
+Stowers Institute for Medical Research, Kansas City			     		       
+\end{flushleft}
+a. Team leader for ChIP-seq data analysis project in the Stowers Microscopy Center. 
+    + Developed and implemented an analytical strategy (in particular, a deconvolution model) to predict protein-binding sites in ChIP-seq data. 
+b. Implemented an automated data workflow to study the growth phases of budding S. Cerevisiae cells.
+c. Designed image processing algorithms and software’s for tracking C. Elegans and Drosophila to:
+    + study the foraging behavior of C. Elegans [please see PLoS Genet. publication].
+    + analyze the mating behavior of Drosophila [please see Cell publication].
+d. Statistical analysis of Fluorescence Correlation Spectroscopy data, a method that characterizes proteins.
+e. Data analysis of point spread functions in widefield and confocal microscopes using R.
+f. Developed a dynamic web-site (PHP + MySQL) that would query and process yeast cell images.
+g. Responsible for high quality image acquisition and microscope maintenance in the institute.
+
+\begin{flushleft}
+Research Intern \hfill Jan 2007 – Dec 2007 \linebreak
+Knowledge Based Systems, Inc., College Station			                                 
+\end{flushleft}
+a. Offered significant ideas for logistics management in Oklahoma Air Logistics Center through data mining.
+b. Proposed several cost and time saving measures from directed insights obtained via predictive modeling.
+c. Initiated business intelligence for aircraft movement operations at the Tinker Air Force Base.
+
+\textbf{\textcolor{black}{Professional Training}}
+
+Automated Image and Data Analysis, Sep. 15-17, 2009, Carl Zeiss, Thornwood, New York.
+
+\vspace{3mm}
+
+\textbf{\textcolor{black}{Education}}
+
+```{r echo=FALSE}
+# Make a data frame for the positions
+education <- data.frame("Period" = c("2002-2008","2000-2002","1998-2000","1995-1998"), "Degree" = c("PhD Computer Science","MS Mathematics","MSc Mathematics","BSc Mathematics"), "Institution" = c("Texas A&M University, College Station","Texas A&M University, College Station","Indian Institute of Technology, Madras","University of Madras, Chennai"))
+```
+
+``` {r echo=FALSE}
+# Create a table
+kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped") %>% column_spec(1, width = "2cm")
+```
+
+\vspace{3mm}
+
+\textbf{\textcolor{black}{References will be provided upon request}}
+
+
