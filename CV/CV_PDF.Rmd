@@ -56,13 +56,13 @@ Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrea
 
 \begin{flushleft}
 
-1. Dean Felsher, MD, PhD, Professor \& Director, Stanford University. \linebreak
+1. Dean Felsher, MD, PhD, Professor \& Director, Stanford University. CA \linebreak
 \hangindent=0.4cm MYC liver cancer project.
 
-2. Rama Natarajan, PhD, Professor and Chair, Dept. of Diabetes Complications, City of Hope. LA. \linebreak
+2. Rama Natarajan, PhD, Professor and Chair, City of Hope National Medical Center. CA. \linebreak
 Epigenomics of diabetes.
 
-3. Institutions in India. \linebreak
+3. Several institutions in India. \linebreak
 Indian Institute of Science, Manipal Academy of Higher Education, Cancer Research and Relief Trust.
 
 \end{flushleft}
