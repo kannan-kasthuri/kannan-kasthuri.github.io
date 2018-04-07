@@ -246,5 +246,3 @@ kable(skills, format = "latex", booktabs = T) %>% kable_styling(full_width = T) 
 \vspace{2mm}
 
 \textbf{\textcolor{purple}{References will be provided upon request}}
-
-
