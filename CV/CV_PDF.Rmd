@@ -13,38 +13,44 @@ knitr::opts_chunk$set(echo = TRUE)
 Assistant Professor, New York University \linebreak
 https://kannan-kasthuri.github.io/
 \end{center}
-TRB 737, 550 First Ave. New York. NY 10016 \hfill kasthuri.kannan@nyumc.org
+TRB 737, 227 E30th St. New York. NY 10016 \hfill kasthuri.kannan@nyumc.org
 
 \vspace{2mm}
 
 \hrule
 
-\vspace{2mm}
-
 \textbf{\textcolor{purple}{Professional Interests}}
 
-Genomics/epigenomics (especially cancer), Mathematical modeling, Teaching (Data science)
+Genomics/epigenomics (especially cancer), Mathematical Modeling, and Teaching. 
 
-\textbf{\textcolor{purple}{Successful Collaborations (representative \& recent)}}
+\vspace{2mm}
+
+\hrule
+
+\textbf{\textcolor{purple}{Successful Collaborations (representative)}}
 
 \begin{flushleft}
 
-1. Adriana Heguy, PhD, Assistant Dean, Division of Advanced Research Technologies, NYU. \linebreak
-\hangindent=0.4cm Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? \textit{Letters in Biomathematics}. Sept. 2016. 
+1. Jason Huse, MD, PhD, Associate Professor \& Director, MD Anderson Cancer Center. \linebreak
+\hangindent=0.4cm Atrx inactivation drives disease-defining phenotypes in glioma cells of origin through global epigenomic remodeling. \textit{Nature Communications}. Mar. 2018.
 
-2. Jason Huse, MD, PhD, Associate Professor \& Director, MD Anderson Cancer Center. \linebreak
-Atrx inactivation drives disease-defining phenotypes in glioma cells of origin through global epigenomic remodeling. \textit{Nature Communications}. Mar. 2018.
-
-3. Matthias Karajannis, MD, MS, Chief, Pediatric Neuro-Oncology, MSKCC. \linebreak
+2. Matthias Karajannis, MD, MS, Chief, Pediatric Neuro-Oncology, MSKCC. \linebreak
 Recurrent homozygous deletion of DROSHA and microduplication of PDE4DIP containing the ancestral DUF1220 domain in pineoblastoma. \textit{Nature Communications} (accepted, to appear).
 
-4. Matija Snuderl, MD, Director, Molecular Pathology, NYU. \linebreak
+3. Matija Snuderl, MD, Director, Molecular Pathology, NYU. \linebreak
 DNA methylation-based classification of human central nervous system tumors. \textit{Nature}. Mar. 2018.
 
-5. Orrin Devinsky, MD, Director, Comprehensive Epilepsy Center, NYU. \linebreak
-Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textit{Nature Genomic Medicine}. Mar. 2018. 
+4. Orrin Devinsky, MD, Director, Comprehensive Epilepsy Center, NYU. \linebreak
+Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textit{Nature Genomic Medicine}. Mar. 2018.
+
+5. Adriana Heguy, PhD, Assistant Dean, Division of Advanced Research Technologies, NYU. \linebreak
+Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? \textit{Letters in Biomathematics}. Sept. 2016. 
 
 \end{flushleft}
+
+\vspace{2mm}
+
+\hrule
 
 \textbf{\textcolor{purple}{Emerging Collaborations}}
 
@@ -54,36 +60,46 @@ Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue
 \hangindent=0.4cm MYC liver cancer project.
 
 2. Rama Natarajan, PhD, Professor and Chair, Dept. of Diabetes Complications, City of Hope. LA. \linebreak
-Epigenomics of diabetes
+Epigenomics of diabetes.
 
 3. Institutions in India. \linebreak
 Indian Institute of Science, Manipal Academy of Higher Education, Cancer Research and Relief Trust.
 
 \end{flushleft}
 
+\vspace{2mm}
+
+\hrule
+
 \textbf{\textcolor{purple}{Invited Talks}}
 
 \begin{flushleft}
 
-1. CancerCon 2018. Chennai, India. [Feb. 01-03, 2018]
+1. CancerCon 2018. Chennai, India. Feb. 01-03, 2018
 
-2. Manipal Academy of Higher Education, Manipal, India. [Feb. 06, 2018]
+2. Manipal Academy of Higher Education, Manipal, India. Feb. 06, 2018
 
-3. Institute of Mathematical Sciences, Chennai. India. [Feb. 8, 2018, with honorarium]
+3. Institute of Mathematical Sciences, Chennai. India. Feb. 8, 2018, with honorarium
 
-4. MedGenome symposium. Foster City, CA. [Mar. 20, 2018]
+4. MedGenome symposium. Foster City, CA. Mar. 20, 2018
 
-5. \textit{Beer with a Scientist Sundays}, (Audio link: https://goo.gl/eoJ8Do) New York, NY. [Apr. 01, 2018]
+5. \textit{Beer with a Scientist Sundays}, New York, NY. Apr. 01, 2018
 
-6. MD Anderson Cancer Center, Houston, TX. [Apr. 19, 2018]
+6. MD Anderson Cancer Center, Houston, TX. Apr. 19, 2018
+
+7. Sanford Burnham Prebys Medical Discovery Institute, San Diego, CA. TBD
 
 \end{flushleft}
+
+\vspace{2mm}
+
+\hrule
 
 \textbf{\textcolor{purple}{Publications \textcolor{blue}{(blue - equal contribution/senior/first author)}}}
 
 [19] \textbf{\textcolor{blue} {Matija Snuderl, Kasthuri Kannan}} et al. (corresponding author: Matthias A. Karajannis). Recurrent homozygous deletion of DROSHA and microduplication of PDE4DIP containing the ancestral DUF1220 domain in pineoblastoma. \textbf{\textit{\textcolor{violet}{Nature Communications}}} (_accepted_, _to appear_).
 
-[18] \textbf{\textcolor{blue} {Daniel Friedman, Kasthuri Kannan}}, Arline Faustin, Seema Shroff, Cheddhi Thomas,  Adriana Heguy, Jonathan Serrano, Matija Snuderl, Orrin Devinsky. Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textbf{\textit{\textcolor{violet}{Nature Genomic Medicine}}}. Mar. 2018.
+[18] \textbf{\textcolor{blue} {Daniel Friedman, Kasthuri Kannan}}, Arline Faustin, Seema Shroff, Cheddhi Thomas,  Adriana Heguy, Jonathan Serrano, Matija Snuderl, Orrin Devinsky. Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textbf{\textit{\textcolor{violet}{Nature Genomic Medicine}}}. Mar. 2018. [PMID: 29619247]
 
 [17] Carla Danussi, Promita Bose, Prasanna Parthasarathy, Pedro Silberman, John Van Arnam, Mark Vitucci, Oliver Tang, Adriana Heguy, Yuxiang Wang, Timothy Chan, Gregory Riggins, Erik Sulman, Frederick Lang, Chad Creighton, Benjamin Deneen, C Miller, David Picketts, \textbf{\textcolor{blue} {Kasthuri Kannan}}, and Jason Huse. Atrx inactivation drives disease-defining phenotypes in glioma cells of origin through global epigenomic remodeling. \textbf{\textit{\textcolor{violet}{Nature Communications}}}. Mar. 2018. [PMID: 29535300]
 
@@ -119,108 +135,22 @@ Indian Institute of Science, Manipal Academy of Higher Education, Cancer Researc
 
 [01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, pp. 107-114, May 2005.
 
+\vspace{2mm}
 
-\textbf{\textcolor{purple}{Teaching Responsibilities}}
+\hrule
 
-Course director for the following graduate (MS Biomedical Informatics) courses:
+\textbf{\textcolor{purple}{Teaching \& Education}}
 
-1. Programming for Data Analysis: https://kannan-kasthuri.github.io/pda.html
+Course director for the following graduate level courses:
 
-2. Methods in Quantitative Biology: https://kannan-kasthuri.github.io/qmb.html
+a) Programming for Data Analysis: https://kannan-kasthuri.github.io/pda.html
 
-3. Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
+b) Methods in Quantitative Biology: https://kannan-kasthuri.github.io/qmb.html
 
-\vspace{3mm}
+c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
-\textbf{\textcolor{purple}{Skills Summary}}
-
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 library(kableExtra)
-# Make a data frame for the positions
-skills <- data.frame("Applied Skills" = c("Genomics, Computational Biology","Algorithms, Programming","Mathematical Modeling, Statistics","Image Processing, Data Science"), "Software" = c("Python, R, Scripts(Perl/Bash), C++, PHP, HTML","Matlab, IDL, OpenOffice, Visual Studio","MySQL, PostgreSQL, MS Access","Unix, Linux variants, Windows (all versions)"))
-```
-
-``` {r echo=FALSE}
-# Create a table
-kable(skills, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped")  
-```
-
-\vspace{3mm}
-
-\textbf{\textcolor{purple}{Employment History}}
-
-\begin{flushleft}
-
-\textbf{Assistant Professor (Pathology)} \hfill Dec 2013 - \linebreak
-Investigator, Genome Technology Center \linebreak
-New York University, School of Medicine	
-
-\end{flushleft}
-
-a. Research and studies in genomics/epigenomics, especially in cancer.
-b. Educational responsibilities include teaching informatics courses.
-
-\begin{flushleft}
-
-\textbf{Research Associate/Fellow}	\hfill Apr 2011 – Nov 2013 \linebreak
-Memorial Sloan-Kettering Cancer Center, New York	
-
-\end{flushleft}
-
-a. Comprehensive genomic and epigenomic analysis of the impact of first-line therapy in the molecular evolution of malignant glioma. DNA and RNA extraction from tumor specimens. 
-b. Examination and discovery of genetic diversity in low grade glioma such as astrocytoma and oligodendroglioma.
-c. Analysis of genomic sequencing data (mutation discovery, copy number alterations) in glioma, head and neck and thyroid neoplasms. 
-d. Development of next generation sequencing pipelines and integrated study of array (gene expression, methylation, copy number) and genetic alterations (mutations and translocations) in cancers.
-
-\begin{flushleft}
-
-\textbf{Research Associate} \hfill Oct 2010 – Apr 2011 \linebreak
-Pennsylvania State University, State College				         	       
-
-\end{flushleft}
-
-a. Responsible for the development of computational infrastructure for high throughput sequencing data from next-generation platforms [SOLiD and Illumina].
-b. Organized the existing data analysis pipeline (genome alignment, motif discovery to biological interpretation) and provided consultation to the researchers on core computational issues.
-c. Managed sequencing tasks at the Bioinformatics Consulting Center, Institute for Genomics, Proteomics and Bioinformatics.
-
-\begin{flushleft}
-
-\textbf{Research Specialist} \hfill Jan 2008 – Sep 2010 \linebreak
-Stowers Institute for Medical Research, Kansas City			     		       
-
-\end{flushleft}
-
-a. Team leader for ChIP-seq data analysis project in the Stowers Microscopy Center. 
-    + Developed and implemented an analytical strategy (in particular, a deconvolution model) to predict protein-binding sites in ChIP-seq data. 
-b. Implemented an automated data workflow to study the growth phases of budding S. Cerevisiae cells.
-c. Designed image processing algorithms and software’s for tracking C. Elegans and Drosophila to:
-    + study the foraging behavior of C. Elegans [please see PLoS Genet. publication].
-    + analyze the mating behavior of Drosophila [please see Cell publication].
-d. Statistical analysis of Fluorescence Correlation Spectroscopy data, a method that characterizes proteins.
-e. Data analysis of point spread functions in widefield and confocal microscopes using R.
-f. Developed a dynamic web-site (PHP + MySQL) that would query and process yeast cell images.
-g. Responsible for high quality image acquisition and microscope maintenance in the institute.
-
-\begin{flushleft}
-
-\textbf{Research Intern} \hfill Jan 2007 – Dec 2007 \linebreak
-Knowledge Based Systems, Inc., College Station			                                 
-
-\end{flushleft}
-
-a. Offered significant ideas for logistics management in Oklahoma Air Logistics Center through data mining.
-b. Proposed several cost and time saving measures from directed insights obtained via predictive modeling.
-c. Initiated business intelligence for aircraft movement operations at the Tinker Air Force Base.
-
-\textbf{\textcolor{purple}{Professional Training}}
-
-Automated Image and Data Analysis, Sep. 15-17, 2009, Carl Zeiss, Thornwood, New York.
-
-\vspace{3mm}
-
-\textbf{\textcolor{purple}{Education}}
-
-```{r echo=FALSE}
 # Make a data frame for the positions
 education <- data.frame("Period" = c("2002-2008","2000-2002","1998-2000","1995-1998"), "Degree" = c("PhD Computer Science","MS Mathematics","MSc Mathematics","BSc Mathematics"), "Institution" = c("Texas A&M University, College Station","Texas A&M University, College Station","Indian Institute of Technology, Madras","University of Madras, Chennai"))
 ```
@@ -230,7 +160,90 @@ education <- data.frame("Period" = c("2002-2008","2000-2002","1998-2000","1995-1
 kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped") %>% column_spec(1, width = "2cm")
 ```
 
-\vspace{3mm}
+\textbf{\textcolor{purple}{Employment History}}
+
+\begin{flushleft}
+
+\textbf{Assistant Professor (Pathology)} \hfill \textbf{Dec 2013} - \linebreak
+Investigator, Genome Technology Center \linebreak
+New York University, School of Medicine	
+
+\end{flushleft}
+
+a) Research and studies in genomics/epigenomics, especially in cancer.
+b) Educational responsibilities include teaching informatics courses.
+
+\begin{flushleft}
+
+\textbf{Research Associate/Fellow}	\hfill \textbf{Apr 2011 – Nov 2013} \linebreak
+Memorial Sloan-Kettering Cancer Center, New York	
+
+\end{flushleft}
+
+a) Comprehensive genomic and epigenomic analysis of the impact of first-line therapy in the molecular evolution of malignant glioma. DNA and RNA extraction from tumor specimens. 
+b) Examination and discovery of genetic diversity in low grade glioma such as astrocytoma and oligodendroglioma.
+c) Analysis of genomic sequencing data (mutation discovery, copy number alterations) in glioma, head and neck and thyroid neoplasms. 
+d) Development of next generation sequencing pipelines and integrated study of array (gene expression, methylation, copy number) and genetic alterations (mutations and translocations) in cancers.
+
+\begin{flushleft}
+
+\textbf{Research Associate} \hfill \textbf{Oct 2010 – Apr 2011} \linebreak
+Pennsylvania State University, State College				         	       
+
+\end{flushleft}
+
+a) Responsible for the development of computational infrastructure for high throughput sequencing data from next-generation platforms [SOLiD and Illumina].
+b) Organized the existing data analysis pipeline (genome alignment, motif discovery to biological interpretation) and provided consultation to the researchers on core computational issues.
+c) Managed sequencing tasks at the Bioinformatics Consulting Center, Institute for Genomics, Proteomics and Bioinformatics.
+
+\begin{flushleft}
+
+\textbf{Research Specialist} \hfill \textbf{Jan 2008 – Sep 2010} \linebreak
+Stowers Institute for Medical Research, Kansas City			     		       
+
+\end{flushleft}
+
+a) Team leader for ChIP-seq data analysis project in the Stowers Microscopy Center. 
+    + Developed and implemented an analytical strategy (in particular, a deconvolution model) to predict protein-binding sites in ChIP-seq data. 
+b) Implemented an automated data workflow to study the growth phases of budding \textit{S. Cerevisiae} cells.
+c) Designed image processing algorithms and software’s for tracking \textit{C. Elegans} and \textit{Drosophila} to:
+    + study the foraging behavior of C. Elegans [please refer to \textit{PLoS Genet.} publication].
+    + analyze the mating behavior of Drosophila [please refer to \textit{Cell} publication].
+d) Statistical analysis of Fluorescence Correlation Spectroscopy data, a method that characterizes proteins.
+e) Data analysis of point spread functions in widefield and confocal microscopes using R.
+f) Developed a dynamic web-site (PHP + MySQL) that would query and process yeast cell images.
+g) Responsible for high quality image acquisition and microscope maintenance in the institute.
+
+\begin{flushleft}
+
+\textbf{Research Intern} \hfill \textbf{Jan 2007 – Dec 2007} \linebreak
+Knowledge Based Systems, Inc., College Station			                                 
+
+\end{flushleft}
+
+a) Offered significant ideas for logistics management in Oklahoma Air Logistics Center through data mining.
+b) Proposed several cost and time saving measures from directed insights obtained via predictive modeling.
+c) Initiated business intelligence for aircraft movement operations at the Tinker Air Force Base.
+
+\vspace{2mm}
+
+\hrule
+
+\textbf{\textcolor{purple}{Training \& Skills Summary}}
+
+Automated Image and Data Analysis, Sep. 15-17, 2009, Carl Zeiss, Thornwood, New York.
+
+```{r echo=FALSE, warning=FALSE}
+# Make a data frame for the positions
+skills <- data.frame("Proficiency" = c("Genomics, Computational Biology","Algorithms, Programming","Mathematical Modeling, Statistics","Image Processing, Data Science"), "Software" = c("Python, R, Scripts(Perl/Bash), C++, PHP, HTML","Matlab, IDL, OpenOffice, Visual Studio","MySQL, PostgreSQL, MS Access","Unix, Linux variants, Windows (all versions)"))
+```
+
+``` {r echo=FALSE}
+# Create a table
+kable(skills, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped")  
+```
+
+\vspace{2mm}
 
 \textbf{\textcolor{purple}{References will be provided upon request}}
 
