@@ -62,7 +62,7 @@ Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrea
 2. Rama Natarajan, PhD, Professor and Chair, City of Hope National Medical Center. CA. \linebreak
 Epigenomics of diabetes.
 
-3. Several institutions in India. \linebreak
+3. Institutions in India. \linebreak
 Indian Institute of Science, Manipal Academy of Higher Education, Cancer Research and Relief Trust.
 
 \end{flushleft}
@@ -85,7 +85,7 @@ Indian Institute of Science, Manipal Academy of Higher Education, Cancer Researc
 
 5. \textit{Beer with a Scientist Sundays}, New York, NY. Apr. 01, 2018
 
-6. MD Anderson Cancer Center, Houston, TX. Apr. 19, 2018
+6. \textit{Distingushed Lecture Series}, MD Anderson Cancer Center, Houston, TX. Apr. 19, 2018
 
 7. Sanford Burnham Prebys Medical Discovery Institute, San Diego, CA. TBD
 
