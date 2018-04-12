@@ -27,7 +27,7 @@ Genomics/epigenomics (especially cancer), Mathematical Modeling, and Teaching.
 
 \hrule
 
-\textbf{\textcolor{purple}{Successful Collaborations (representative)}}
+\textbf{\textcolor{purple}{Successful Collaborations (selected)}}
 
 \begin{flushleft}
 
@@ -56,11 +56,11 @@ Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrea
 
 \begin{flushleft}
 
-1. Dean Felsher, MD, PhD, Professor \& Director, Stanford University. CA \linebreak
+1. Dean Felsher, MD, PhD, Professor \& Director, Stanford University. CA. \linebreak
 \hangindent=0.4cm MYC liver cancer project.
 
-2. Rama Natarajan, PhD, Professor and Chair, City of Hope National Medical Center. CA. \linebreak
-Epigenomics of diabetes.
+2. David Zagzag, MD, PhD, Chief, Neuropathology, NYU. \linebreak
+Genomics of Hemangioblastoma.
 
 3. Institutions in India. \linebreak
 Indian Institute of Science, Manipal Academy of Higher Education, Cancer Research and Relief Trust.
