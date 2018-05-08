@@ -48,10 +48,26 @@ We will first import the curated HANES data set in RStudio:
   # (Please note this readability aspect very carefully)
   URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
   URL_text_2 <- "/master/Workshops/DS_Transcriptomics/Data/marked_data_7000_genes.txt"
-  # Paste it to constitute a single URL 
+  # Paste it to constitute a single URL and import the data
   URL <- paste(URL_text_1,URL_text_2, sep="")
-  imported.RNA.seq.7000 <- read.table(text=getURL(URL), sep="\t", header = TRUE, stringsAsFactors = FALSE)
-  row.names(imported.RNA.seq.7000)
+  imported.RNA.seq.7000 <- read.csv(text=getURL(URL), sep="\t", header = TRUE, stringsAsFactors = FALSE, row.names = 1)
+  # Get the gene names
+  gene.names <- row.names(imported.RNA.seq.7000)
+  # Append "Patiend ID (PID)" variable to make "our" data frame
+  column.names <- append("PID",gene.names)
+  # Get only the gene expression matrix
+  expression <- as.numeric(t(imported.RNA.seq.7000[c(2:6917),c(1:52)]))
+  # Get the group values
+  group <- t(imported.RNA.seq.7000[1,])
+
+  # Make our data frame - the first column is the patient id
+  df <- data.frame(matrix(ncol = 6918, nrow = 52))
+  df[,1] <- row.names(group)
+  # The columns are the gene names with PID and Group
+  colnames(df) <- column.names
+  df[,2] <- group[,1]
+  # The rest of the matrices are expression values
+  df[c(1:52),c(3:6918)] <- expression
 ```
 
 We create a `ggplot` as follows:
