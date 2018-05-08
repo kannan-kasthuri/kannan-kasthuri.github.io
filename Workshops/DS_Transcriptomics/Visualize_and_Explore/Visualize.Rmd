@@ -51,6 +51,7 @@ We will first import the curated HANES data set in RStudio:
   # Paste it to constitute a single URL 
   URL <- paste(URL_text_1,URL_text_2, sep="")
   imported.RNA.seq.7000 <- read.table(text=getURL(URL), sep="\t", header = TRUE, stringsAsFactors = FALSE)
+  row.names(imported.RNA.seq.7000)
 ```
 
 We create a `ggplot` as follows:
