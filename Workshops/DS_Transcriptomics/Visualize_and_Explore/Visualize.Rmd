@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-Data exploration is the art of looking at the data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again. The goal of data exploration is to generate many promising leads that we can later explore in more depth. Visualization is key for data exploration, but not sufficient. We need data transformation and exploratory data analysis which we will cover in this section. Modeling is important too but we will explore it later.
+Data exploration is the art of looking at the data, rapidly generating hypotheses, quickly testing them, then repeating again and again, and again. The goal of data exploration is to generate many promising leads that we can later explore in more depth. Visualization is key for data exploration, but not sufficient. We need data transformation and exploratory data analysis which we will cover in this section. Modeling is important too but we will explore it later.
 
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: Get familiar with the RNA-seq data - we will be extensively using them.
@@ -39,7 +39,7 @@ Recall data frames. Data frames are lists of lists. We will first import the RNA
 
 #### Creating a `ggplot`
 
-We will first import the curated HANES data set in RStudio:
+We will first import the RNA-seq data set in RStudio:
 
 ```{r eval=TRUE, message=FALSE}
   # Load the package RCurl
@@ -50,24 +50,15 @@ We will first import the curated HANES data set in RStudio:
   URL_text_2 <- "/master/Workshops/DS_Transcriptomics/Data/marked_data_7000_genes.txt"
   # Paste it to constitute a single URL and import the data
   URL <- paste(URL_text_1,URL_text_2, sep="")
-  imported.RNA.seq.7000 <- read.csv(text=getURL(URL), sep="\t", header = TRUE, stringsAsFactors = FALSE, row.names = 1)
+  imported.RNA.seq <- read.csv(text=getURL(URL), sep="\t", header = TRUE, stringsAsFactors = FALSE, row.names = 1)
   # Get the gene names
-  gene.names <- row.names(imported.RNA.seq.7000)
+  gene.names <- row.names(imported.RNA.seq)
   # Append "Patiend ID (PID)" variable to make "our" data frame
   column.names <- append("PID",gene.names)
   # Get only the gene expression matrix
-  expression <- as.numeric(t(imported.RNA.seq.7000[c(2:6917),c(1:52)]))
+  expression <- as.numeric(t(imported.RNA.seq[c(2:6917),c(1:52)]))
   # Get the group values
-  group <- t(imported.RNA.seq.7000[1,])
-
-  # Make our data frame - the first column is the patient id
-  df <- data.frame(matrix(ncol = 6918, nrow = 52))
-  df[,1] <- row.names(group)
-  # The columns are the gene names with PID and Group
-  colnames(df) <- column.names
-  df[,2] <- group[,1]
-  # The rest of the matrices are expression values
-  df[c(1:52),c(3:6918)] <- expression
+  group <- t(imported.RNA.seq[1,])
 ```
 
 We may want to convert the Ensembl gene names to official gene names. The package `org.Hs.eg.db` can help us here. First lets install this library.
@@ -82,9 +73,32 @@ my_official_ids <- select(org.Hs.eg.db,
                           keys = ensembl.names,
                           columns=c("ENSEMBL","SYMBOL"),
                           keytype="ENSEMBL")
+# We add the ensemble id to the existing data set to merge with official symbols
+imported.RNA.seq$ENSEMBL <- row.names(imported.RNA.seq)
+merged.data <- merge(imported.RNA.seq,my_official_ids,by=c("ENSEMBL"), no.dups = 1, all = TRUE)
+# Omit the NA rows in the merged data
+merged.data <- na.omit(merged.data)
 ```
 
-We can now use these official symbol for pathway analysis etc.
+We will now make our own data frame with official gene names which we will use.
+
+```{r eval=TRUE, message=FALSE}
+# Make our data frame - note - merged data has 52 patients and 6531 genes
+df <- data.frame(matrix(ncol = 6533, nrow = 52))
+# The first column are the patient ids
+df[,1] <- colnames(merged.data)[2:53]
+# The next two columns are Patient ID (PID) and Group. The rest are official gene names
+column.names <- append(c("PID","Group"),merged.data$SYMBOL)
+colnames(df) <- column.names
+# Assign the group information
+df[,2] <- group[,1]
+# The rest of the matrices are expression values
+expression <- as.numeric(t(merged.data[c(1:6531),c(2:53)]))
+df[c(1:52),c(3:6533)] <- expression
+```
+
+
+We can now use these official symbol for the rest of the analysis.
 
 We create a `ggplot` as follows:
 
@@ -93,13 +107,12 @@ We create a `ggplot` as follows:
   library(tidyverse)
   # Make a ggplot
   ggplot(data = df) + 
-  geom_point(mapping = aes(x = log(ENSG00000001617), y = log(ENSG00000004897)))
+  geom_point(mapping = aes(x = log(TP53), y = log(STAT3)))
 ```
 
 With ggplot2, we plot with the function `ggplot()`. `ggplot()` creates a coordinate system that we can add layers to. The first argument of `ggplot()` is the dataset to use in the graph. So `ggplot(data = df)` creates an empty graph.
 
 We add one or more layers to `ggplot()`. The function `geom_point()` adds a layer of points to the plot, which creates a scatterplot. ggplot2 comes with many geom functions that each add a different type of layer to a plot.  
-
 Each geom function in ggplot2 takes a mapping argument. This defines how variables in our dataset are mapped to visual properties. The mapping argument is always paired with `aes()`, and the x and y arguments of `aes()` specify which variables to map to the x and y axes. ggplot2 looks for the mapped variable in the data argument, in this case, our dataframe `df`.
 
 The general graphing template is given by
@@ -113,9 +126,9 @@ The general graphing template is given by
 <span style="color:blue">**Classwork/Homework**</span>: 
 
 1. Run `ggplot(data = df)`. What do you see?
-2. How many rows are in HANES? How many columns?
-3. What does the ENSG00000001617 variable describe? 
-4. Make a scatterplot of ENSG00000002933 vs ENSG00000002919.
+2. How many rows are in df? How many columns?
+3. What are the expression values for IDH1 in the dataset? 
+4. Make a scatterplot of IDH1 vs PTEN.
 
 ---
 
@@ -123,19 +136,35 @@ The general graphing template is given by
 
 We can add a third variable, like DX_DBTS, to a two dimensional scatterplot by mapping it to an **aesthetic**. An aesthetic is a visual property of the objects in the plot. Aesthetics include things like the size, the shape, or the color of the points. We can display a point in different ways by changing the values of its aesthetic properties. 
 
-We can convey information about the data by mapping the aesthetics in the plot to the variables in df dataset. For example, we can map the colors of our points to the ENSG00000002933 variable to reveal the group status of each person.
+We can convey information about the data by mapping the aesthetics in the plot to the variables in df dataset. For example, we can map the colors of our points to reveal the group status of each person.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
   # Make a ggplot with asthetic color for the variable DX_DBTS
   ggplot(data = df) + 
-  geom_point(mapping = aes(x = log(ENSG00000001617), y = log(ENSG00000004897), color=Group))
+  geom_point(mapping = aes(x = log(TP53), y = log(FGFR4), color=Group))
 ```
 
-To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside `aes()`. ggplot2 will automatically assign a unique level of the aesthetic (here a unique color) to each unique value of the variable, a process known as scaling. ggplot2 will also add a legend that explains which levels correspond to which values.
+To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside `aes()`. ggplot2 will automatically assign a unique level of the aesthetic (here a unique color) to each unique value of the variable, a process known as _scaling_. ggplot2 will also add a legend that explains which levels correspond to which values.
 
-The colors reveal many things about this data set. We see that the two clusters are entirely made up of people who don't have diabetes. More, importantly, it reveals people who are diagnosed with diabetes or have one, but not diagnosed. 
+The colors reveal many things about this data set. We see that the _Luminal_ group has relatively high expression for _FGFR4_ compared to _Normal-like_ group.
 
-In the above example, we mapped DX_DBTS to the color aesthetic, but we could have mapped AGEGROUP to the size aesthetic in the same way. In this case, the exact size of each point would reveal its AGEGROUP affiliation. We get a warning here, because mapping an unordered variable (class) to an ordered aesthetic (size) is not a good idea.
+This data set does not have other categorical variables. To demonstrate the power of `ggplot2` we create another table with categories 'Age-group' and 'Chemo' status, that shows the age group of the patient and whether they underwent chemotherapy. We import the data set just like how we did previously.
+
+```{r eval=TRUE, message=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the RNAseq data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Workshops/DS_Transcriptomics/Data/marked_data_7000_genes_other_attributes.txt"
+  # Paste it to constitute a single URL and import the data
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  imported.RNA.seq_other_factors <- read.csv(text=getURL(URL), sep="\t", header = TRUE, stringsAsFactors = FALSE, row.names = 1)
+```
+
+
+
+In the above example, we mapped `Group` to the color aesthetic, but we could have mapped Age-group/Chemo variables to the size aesthetic in the same way. In this case, the exact size of each point would reveal its Age-group affiliation. We get a warning here, because mapping an unordered variable (class) to an ordered aesthetic (size) is not a good idea.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
   # Make a ggplot with asthetic size for the variable DX_DBTS
