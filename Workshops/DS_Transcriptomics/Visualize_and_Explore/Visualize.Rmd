@@ -27,7 +27,7 @@ Data exploration is the art of looking at the data, rapidly generating hypothese
 Install package tidyverse and load it.
 
 ```{r eval=FALSE}
-  install.packages("tidyverse")
+  # install.packages("tidyverse")
   library(tidyverse)
 ```
 
@@ -70,21 +70,37 @@ We will first import the curated HANES data set in RStudio:
   df[c(1:52),c(3:6918)] <- expression
 ```
 
+We may want to convert the Ensembl gene names to official gene names. The package `org.Hs.eg.db` can help us here. First lets install this library.
+
+```{r eval=TRUE, message=FALSE}
+# Load the library
+library(org.Hs.eg.db)
+# Define ensemble gene ids
+ensembl.names <- gene.names[c(2:6918)]
+# Convert using the select function
+my_official_ids <- select(org.Hs.eg.db,
+                          keys = ensembl.names,
+                          columns=c("ENSEMBL","SYMBOL"),
+                          keytype="ENSEMBL")
+```
+
+We can now use these official symbol for pathway analysis etc.
+
 We create a `ggplot` as follows:
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
   # Load the tidyverse library
   library(tidyverse)
   # Make a ggplot
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR)))
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(ENSG00000001617), y = log(ENSG00000004897)))
 ```
 
-With ggplot2, we plot with the function `ggplot()`. `ggplot()` creates a coordinate system that we can add layers to. The first argument of `ggplot()` is the dataset to use in the graph. So `ggplot(data = HANES)` creates an empty graph.
+With ggplot2, we plot with the function `ggplot()`. `ggplot()` creates a coordinate system that we can add layers to. The first argument of `ggplot()` is the dataset to use in the graph. So `ggplot(data = df)` creates an empty graph.
 
 We add one or more layers to `ggplot()`. The function `geom_point()` adds a layer of points to the plot, which creates a scatterplot. ggplot2 comes with many geom functions that each add a different type of layer to a plot.  
 
-Each geom function in ggplot2 takes a mapping argument. This defines how variables in our dataset are mapped to visual properties. The mapping argument is always paired with `aes()`, and the x and y arguments of `aes()` specify which variables to map to the x and y axes. ggplot2 looks for the mapped variable in the data argument, in this case, HANES.
+Each geom function in ggplot2 takes a mapping argument. This defines how variables in our dataset are mapped to visual properties. The mapping argument is always paired with `aes()`, and the x and y arguments of `aes()` specify which variables to map to the x and y axes. ggplot2 looks for the mapped variable in the data argument, in this case, our dataframe `df`.
 
 The general graphing template is given by
 
@@ -96,10 +112,10 @@ The general graphing template is given by
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: 
 
-1. Run `ggplot(data = HANES)`. What do you see?
+1. Run `ggplot(data = df)`. What do you see?
 2. How many rows are in HANES? How many columns?
-3. What does the DX_DBTS variable describe? 
-4. Make a scatterplot of HDL vs A1C.
+3. What does the ENSG00000001617 variable describe? 
+4. Make a scatterplot of ENSG00000002933 vs ENSG00000002919.
 
 ---
 
@@ -107,12 +123,12 @@ The general graphing template is given by
 
 We can add a third variable, like DX_DBTS, to a two dimensional scatterplot by mapping it to an **aesthetic**. An aesthetic is a visual property of the objects in the plot. Aesthetics include things like the size, the shape, or the color of the points. We can display a point in different ways by changing the values of its aesthetic properties. 
 
-We can convey information about the data by mapping the aesthetics in the plot to the variables in HANES dataset. For example, we can map the colors of our points to the DX_DBTS variable to reveal the diabetes status of each person.
+We can convey information about the data by mapping the aesthetics in the plot to the variables in df dataset. For example, we can map the colors of our points to the ENSG00000002933 variable to reveal the group status of each person.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
   # Make a ggplot with asthetic color for the variable DX_DBTS
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR), color=DX_DBTS))
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(ENSG00000001617), y = log(ENSG00000004897), color=Group))
 ```
 
 To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside `aes()`. ggplot2 will automatically assign a unique level of the aesthetic (here a unique color) to each unique value of the variable, a process known as scaling. ggplot2 will also add a legend that explains which levels correspond to which values.
