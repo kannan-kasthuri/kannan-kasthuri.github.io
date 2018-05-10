@@ -59,8 +59,8 @@ merged.data <- na.omit(merged.data)
 We will now make our own data frame with official gene names which we will use.
 
 ```{r eval=TRUE, message=FALSE}
-# Make our data frame - note - merged data has 52 patients and 6531 genes
-df <- data.frame(matrix(ncol = 6533, nrow = 52))
+# Make our data frame - note - merged data has 52 patients and 6678 genes
+df <- data.frame(matrix(ncol = 6680, nrow = 52))
 # The first column are the patient ids
 df[,1] <- colnames(merged.data)[2:53]
 # The next two columns are Patient ID (PID) and Group. The rest are official gene names
@@ -69,8 +69,8 @@ colnames(df) <- column.names
 # Assign the group information
 df[,2] <- group[,1]
 # The rest of the matrices are expression values
-expression <- as.numeric(t(merged.data[c(1:6531),c(2:53)]))
-df[c(1:52),c(3:6533)] <- expression
+expression <- as.numeric(t(merged.data[c(1:6678),c(2:53)]))
+df[c(1:52),c(3:6680)] <- expression
 ```
 
 We can now use these official symbol for the rest of the analysis.
@@ -94,8 +94,8 @@ Thus, we get an error. All `dplyr()` functions require unique names for the colu
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
 # Get only the unique values for the gene symbol
 merged.data.unique <- merged.data[!duplicated(merged.data$SYMBOL),]
-# Make our data frame - note - merged data has 52 patients and 6500 genes
-df.uniq <- data.frame(matrix(ncol = 6502, nrow = 52))
+# Make our data frame - note - merged data has 52 patients and 6644 genes
+df.uniq <- data.frame(matrix(ncol = 6646, nrow = 52))
 # The first column are the patient ids
 df.uniq[,1] <- colnames(merged.data)[2:53]
 # The next two columns are Patient ID (PID) and Group. The rest are official gene names
@@ -104,8 +104,8 @@ colnames(df.uniq) <- column.names.uniq
 # Assign the group information
 df.uniq[,2] <- group[,1]
 # The rest of the matrices are expression values
-expression <- as.numeric(t(merged.data[c(1:6500),c(2:53)]))
-df.uniq[c(1:52),c(3:6500)] <- expression
+expression <- as.numeric(t(merged.data[c(1:6644),c(2:53)]))
+df.uniq[c(1:52),c(3:6646)] <- expression
 ```
 
 We can now see the tibble doesn't give any errors
@@ -172,16 +172,16 @@ The filter function allows us to pick a subset of information (or rows) from our
 We can also use comparison and logical operators. For instance,
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Pick all the records of patients who are between 45 and 46 and HDL value of 50
-  filter(HANES, SPAGE >= 45 & SPAGE <= 46, HDL == 50)
+  # Pick all the records of patients with AGEGROUP == 31-40 and ATM values between 2-4
+  filter(df.uniq, ATM >= 2 & ATM <= 4, AGEGROUP == '31-40')
 ```
   
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Pick all the records of patients who are between 45 and 46 and HDL value of 50
-  filter(HANES, SPAGE >= 45 & SPAGE <= 46, HDL == 50)
+  # Pick all the records of patients who are given Chemo and their TP53 levels >= 2 and ATM levels <= 5
+  filter(df.uniq, TP53 >= 2 & ATM <= 5, CHEMO == "Y")
 ```
 
-will list all the records for patients with age between $45$ and $46$ and who have the HDL value of $50$.
+will list all the records for patients wwho are given chemotherapy and their TP53 expression levels are greater than $2$ and ATM levels are less than or equal to $5$.
 
 **Note**: `filter()` only includes rows where the condition is TRUE; it excludes both FALSE **and** NA values. 
 
@@ -189,17 +189,17 @@ will list all the records for patients with age between $45$ and $46$ and who ha
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: 
 
-* Find all patients who
+* Find all patients who were not given chemotherapy
 
-1. Are females and in between ages $45$ and $60$
-2. Are in excellent or good health status
-3. Who have diabetes but not yet diagnosed
-4. Have total cholesterol between $150$ and $200$
-5. Have glucose levels greater than $75$
-6. Who had poor health status but with more than median HDL values
-7. High content of mercury (more than median) in their urine
+1. and have TP53 levels greater than $5$
+2. are in age group 41-50 or have luminal type
+3. who are in 60+ and are 'Normal-Like'
+4. have TP53 levels between 4 and 6
+5. have FGFR4 greater than 2
+6. have log of STAT3 values greater than 0.2
+7. High expression of ATM (more than median) 
 
-* How many patients have a missing UACR value in the HANES dataset? 
+* How many patients have a missing ATM value in the df.uniq dataset? 
 
 ---
 
@@ -209,15 +209,17 @@ will list all the records for patients with age between $45$ and $46$ and who ha
 `arrange(`) works similar to filter function except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If we provide more than one column name, each additional column will be used to break ties in the values of preceding columns:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Arrange the data frame arranging GENDER and AGE with descending order of the variable UCREATININE
-  a <- arrange(HANES, GENDER, SPAGE, desc(UCREATININE))
+  # Arrange the data frame arranging Group with descending order of the variable DPM1
+  a <- arrange(df.uniq, Group, desc(DPM1))
   atib <- as.tibble(a)
   atib
 ```
   
+For sorting in ascending order we just specify the variable name.
+
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Arrange the data frame arranging GENDER and AGE with descending order of the variable UCREATININE
-  a <- arrange(HANES, GENDER, SPAGE, desc(UCREATININE))
+  # Arrange the data frame arranging Group with ascending order of the variable FUCA2
+  a <- arrange(df.uniq, Group, FUCA2)
   atib <- as.tibble(a)
   atib
 ```
@@ -238,25 +240,29 @@ To view the last few entries of the data frame/tibble, one can use the `tail()` 
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: 
 
-1. Sort HANES to find patients with highest cholesterol. Do the same to find patients with least cholesterol.
+1. Sort df.uniq to find pateints with high expression in GCLC gene.
 
-2. Sort HANES to find pateints with high A1C.
+2. Sort df.uniq to find patients with highest ATM expression. Do the same to find patients with least ATM expression.
+
+3. For the above question, how do you verify your result?
 
 ---
 
 #### The `select()` function
 
-The orginal HANES data set has $704$ variables/columns. It is common for real world data sets to be large and we may want to quickly zoom into the variables of interest. The `select()` function allows us to do that. Here is a code to select only A1C and GLUCOSE variables:
+The orginal RNA-seq data set has $6917$ variables/rows. It is common for real world data sets to be large and we may want to quickly zoom into the variables of interest. Also, as the above homework shows, once we arrange the data that has tons of variables, it is difficult to verify the results. The `select()` function allows us to do that. Here is a code to select only the ATM variable:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Select only the A1C and GLUCOSE variables from the HANES data
-  s <- select(HANES, A1C, GLUCOSE)
+  # Arrange df.uniq to find highest ATM expression
+  a <- arrange(df.uniq, Group, desc(ATM))
+  # Select only the PID, Group and ATM variables from the above data
+  s <- select(a, PID, Group, ATM)
   as.tibble(s)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Select only the A1C and GLUCOSE variables from the HANES data
-  s <- select(HANES, A1C, GLUCOSE)
+  # Select only the PID, Group and TP53 variables
+  s <- select(df.uniq, PID, Group, TP53)
   as.tibble(s)
 ```
 
@@ -264,14 +270,8 @@ An useful helper arument is the `everything()` function that allows keeping all 
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Push the A1C and GLUCOSE variables to the front keeping everything
-  s <- select(HANES, A1C, GLUCOSE, everything())
-  as.tibble(s)
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Push the A1C and GLUCOSE variables to the front keeping everything
-  s <- select(HANES, A1C, GLUCOSE, everything())
+  # Push the AGEGROUP and CHEMO variables to the front keeping everything
+  s <- select(df.uniq, PID, Group, AGEGROUP, CHEMO, everything())
   as.tibble(s)
 ```
 
@@ -279,39 +279,39 @@ An useful helper arument is the `everything()` function that allows keeping all 
 
 #### The `mutate()` function
 
-We can add new columns to the data set using the `mutate()` function. For example, this code makes a new variable that is the sum of HDL and LDL estimate, stores it in a variable "H_L" to find the ratio between cholesterol and this new variable, H_L:
+We can add new columns to the data set using the `mutate()` function. For example, this code makes a new variable that is the ratio of TP53 and ATM estimate, stores it in a variable "TP53_ATM":
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-   # Select only the variables LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE
-   HANES_sub <- select(HANES,LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE)
+   # Select only the variables PID, Group, TP53 and ATM variables
+   df_sub <- select(df.uniq,PID,Group,TP53,ATM)
    # Add a new variable H_L that is a sum of HDL and LDL
-   m <- mutate(HANES_sub, H_L = HDL+LDLESTIMATE, ratio=CHOLESTEROLTOTAL/H_L)
+   m <- mutate(df_sub, TP53_ATM = TP53/ATM)
    as.tibble(m)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-   # Select only the variables LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE
-   HANES_sub <- select(HANES,LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE)
+   # Select only the variables PID, Group, TP53 and ATM variables
+   df_sub <- select(df.uniq,PID,Group,TP53,ATM)
    # Add a new variable H_L that is a sum of HDL and LDL
-   m <- mutate(HANES_sub, H_L = HDL+LDLESTIMATE, ratio=CHOLESTEROLTOTAL/H_L)
+   m <- mutate(df_sub, TP53_ATM = TP53/ATM)
    as.tibble(m)
 ```
 
 The `transmute()` function retains only the created variables.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-   # Select only the variables LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE
-   HANES_sub <- select(HANES,LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE)
+   # Select only the variables PID, Group, TP53 and ATM variables
+   df_sub <- select(df.uniq,PID,Group,TP53,ATM)
    # Add a new variable H_L that is a sum of HDL and LDL
-   m <- transmute(HANES_sub, H_L = HDL+LDLESTIMATE, ratio=CHOLESTEROLTOTAL/H_L)
+   m <- transmute(df_sub, TP53_ATM = TP53/ATM)
    as.tibble(m)
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-   # Select only the variables LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE
-   HANES_sub <- select(HANES,LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE)
+   # Select only the variables PID, Group, TP53 and ATM variables
+   df_sub <- select(df.uniq,PID,Group,TP53,ATM)
    # Add a new variable H_L that is a sum of HDL and LDL
-   m <- transmute(HANES_sub, H_L = HDL+LDLESTIMATE, ratio=CHOLESTEROLTOTAL/H_L)
+   m <- transmute(df_sub, TP53_ATM = TP53/ATM)
    as.tibble(m)
 ```
 
@@ -319,13 +319,13 @@ There are several useful functions for data manipulation such as `lag()`, `lead(
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Select the top 5 ratios in the above transmuted data frame m
-  top_5_ratio <-  top_n(m, 5, ratio)
+  top_5_ratio <-  top_n(m, 5, TP53_ATM)
   top_5_ratio
 ```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
   # Select the top 5 ratios in the above transmuted data frame m
-  top_5_ratio <-  top_n(m, 5, ratio)
+  top_5_ratio <-  top_n(m, 5, TP53_ATM)
   top_5_ratio
 ```
 
