@@ -139,7 +139,7 @@ We can add a third variable, like DX_DBTS, to a two dimensional scatterplot by m
 We can convey information about the data by mapping the aesthetics in the plot to the variables in df dataset. For example, we can map the colors of our points to reveal the group status of each person.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
-  # Make a ggplot with asthetic color for the variable DX_DBTS
+  # Make a ggplot with asthetic color for the variable Group
   ggplot(data = df) + 
   geom_point(mapping = aes(x = log(TP53), y = log(FGFR4), color=Group))
 ```
@@ -160,33 +160,36 @@ This data set does not have other categorical variables. To demonstrate the powe
   # Paste it to constitute a single URL and import the data
   URL <- paste(URL_text_1,URL_text_2, sep="")
   imported.RNA.seq_other_factors <- read.csv(text=getURL(URL), sep="\t", header = TRUE, stringsAsFactors = FALSE, row.names = 1)
+  # Get the Age Group and Chemo status info
+  Age_group <- imported.RNA.seq_other_factors[2,]
+  Chemo_status <- imported.RNA.seq_other_factors[3,]
+  df$AGEGROUP <- t(Age_group)
+  df$CHEMO <- t(Chemo_status)
 ```
 
-
-
-In the above example, we mapped `Group` to the color aesthetic, but we could have mapped Age-group/Chemo variables to the size aesthetic in the same way. In this case, the exact size of each point would reveal its Age-group affiliation. We get a warning here, because mapping an unordered variable (class) to an ordered aesthetic (size) is not a good idea.
+In the above example, we mapped `Group` to the color aesthetic, but we could have mapped AGEGROUP/CHEMO variables to the size aesthetic in the same way. In this case, the exact size of each point would reveal its AGEGROUP affiliation. We get a warning here, because mapping an unordered variable (class) to an ordered aesthetic (size) is not a good idea.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
-  # Make a ggplot with asthetic size for the variable DX_DBTS
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR), size=AGEGROUP))
+  # Make a ggplot with asthetic size for the variable AGEGROUP
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(TP53), y = log(FGFR4), size=AGEGROUP))
 ```
 
-Or we could have mapped DX_DBTS to the alpha aesthetic, which controls the transparency of the points: 
+Or we could have mapped AGEGROUP to the alpha aesthetic, which controls the transparency of the points: 
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
-  # Make a ggplot with asthetic alpha for the variable DX_DBTS
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR), alpha=DX_DBTS))
+  # Make a ggplot with asthetic alpha for the variable AGEGROUP
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(FGFR4), y = log(IDH1), alpha=AGEGROUP))
 ```
 
 
 or the shape of the points:
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
-  # Make a ggplot with asthetic shape for the variable DX_DBTS
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR), shape=DX_DBTS))
+  # Make a ggplot with asthetic shape for the variable AGEGROUP
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(TP53), y = log(PDE4DIP), shape=AGEGROUP))
 ```
 
 **Note**: ggplot2 will only use six shapes at a time. By default, additional groups will go unplotted when we use the shape aesthetic.
@@ -198,9 +201,9 @@ Once we map an aesthetic, ggplot2 takes care of the rest. It selects a reasonabl
 We can also set the aesthetic properties of our geom manually. For example, we can make all of the points in our plot red:
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
-  # Make a ggplot with asthetic shape for the variable DX_DBTS
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR)), color="blue")
+  # Make a ggplot with color red
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(DROSHA), y = log(SARS)), color="red")
 ```
 
 
@@ -210,12 +213,12 @@ We can also set the aesthetic properties of our geom manually. For example, we c
 1. What’s gone wrong with this code? Why are the points not blue?
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
-  # Make a ggplot with asthetic shape for the variable DX_DBTS
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR), color="blue"))
+  # Make a ggplot with color blue
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(DROSHA), y = log(SARS), color="blue"))
 ```
 
-2. Which variables in HANES are categorical? Which variables are continuous? How can we see this information?
+2. Which variables in df are categorical? Which variables are continuous? How can we see this information?
 3. Map a continuous variable to color, size, and shape. How do these aesthetics behave differently for categorical vs. continuous variables?
 4. What happens if we map the same variable to multiple aesthetics?
 5. What does the stroke aesthetic do? What shapes does it work with? 
@@ -232,32 +235,32 @@ To facet a plot by a single variable, the function `facet_wrap()` is useful. The
 
 ```{r eval=TRUE, warning=FALSE}
   # Make a ggplot with facets
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR))) + 
-  facet_wrap(~ DX_DBTS, nrow = 2)
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(FGFR4), y = log(IDH1))) + 
+  facet_wrap(~ Group, nrow = 2)
 ```
 
 To facet our plot on the combination of two variables, we should add `facet_grid()` to our plot call. The first argument of `facet_grid()` is also a formula. This time the formula should contain two variable names separated by a ~.
 
 ```{r eval=TRUE, warning=FALSE}
-  # Make a ggplot with facet grid - GENDER vs DX_DBTS
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR))) + 
-  facet_grid(GENDER ~ DX_DBTS)
+  # Make a ggplot with facet grid - Group vs AGEGROUP
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(DROSHA), y = log(PDE4DIP))) + 
+  facet_grid(Group ~ as.vector(AGEGROUP))
 ```
 
-We see that both males and females have almost the same distribution. However, plotting the facet grid with AGEGROUP vs DX_DBTS, reveals,
+We see that there are no _Normal-like_ in the age group 51-60, 31-40 etc. However, plotting the facet grid with AGEGROUP vs CHEMO, reveals,
 
 ```{r eval=TRUE, warning=FALSE}
-  # Make a ggplot with facet grid - AGEGROUP vs DX_DBTS
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR))) + 
-  facet_grid(AGEGROUP ~ DX_DBTS)
+  # Make a ggplot with facet grid - AGEGROUP vs CHEMO
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(TP53), y = log(FGFR4))) + 
+  facet_grid(as.vector(AGEGROUP) ~ as.vector(CHEMO))
 ```
 
-there are hardly people with diabetes in the age group 20-39, while there are lots of them with no diabetes who have small UACR values. 
+there are hardly people in the age group 51-60 who had chemo, while there are lots of them in 41-50 group who did not receive chemo.
 
-However, inspecting the age group 60+, we see plenty of them with diabetes and the population with no diabetes and small UACR values had seem to diminish, suggesting, low UACR may contribute to diabetes more than A1C. This is an example of **directed insight** obtained through visualization. 
+However, inspecting the age group 41-50, we see the P53 expressions are larger in this group who did not have chemo. This is an example of **directed insight** obtained through visualization. 
 
 <br>
 <span style="color:blue">**Classwork/Homework**</span>: 
@@ -266,22 +269,22 @@ However, inspecting the age group 60+, we see plenty of them with diabetes and t
 2. What plots does the following code make? What does `.` do?
 
 ```{r eval=FALSE}
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(HDL), y = log(CHOLESTEROLTOTAL))) +
-  facet_grid(AGEGROUP ~ .)
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(TP53), y = log(FGFR4))) +
+  facet_grid(as.vector(AGEGROUP) ~ .)
 
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(UALBUMIN), y = log(GLUCOSE))) +
-  facet_grid(. ~ DX_DBTS)
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(PTEN), y = log(IDH1))) +
+  facet_grid(. ~ as.vector(chemo))
 ```
 
 3. Derive directed insights from the above plots.
 4. Take the first faceted plot in this section:
 ```{r eval=FALSE, warning=FALSE}
   # Make a ggplot with facets
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = log(A1C), y = log(UACR))) + 
-  facet_wrap(~ DX_DBTS, nrow = 2)
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = log(FGFR4), y = log(IDH1))) + 
+  facet_wrap(~ Group, nrow = 2)
 ```
 
 What are the advantages to using faceting instead of the colour aesthetic? What are the disadvantages? How might the balance change if you had a larger dataset?
@@ -296,17 +299,17 @@ What are the advantages to using faceting instead of the colour aesthetic? What 
 How are these two plots similar?
 
 ```{r eval=TRUE, warning=FALSE, message=FALSE, echo=FALSE}
-  # Plot UCREATININE vs UALBUMIN, coloring GENDER
-  ggplot(data = HANES) + 
-    geom_point(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
-    xlim(c(0,100)) + ylim(c(0,10))
+  # Plot FGFR4 vs TP53, coloring Group
+  ggplot(data = df) + 
+    geom_point(mapping = aes(x = FGFR4, y = TP53, color=Group)) + 
+    xlim(c(0,13)) + ylim(c(0,10))
 ```
 
 ```{r eval=TRUE, warning=FALSE, message=FALSE, echo=FALSE}
-  # Smooth UCREATININE vs UALBUMIN, coloring GENDER
-  ggplot(data = HANES) + 
-    geom_smooth(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
-    xlim(c(0,100)) + ylim(c(0,10))
+  # Smooth FGFR4 vs TP53, coloring Group
+  ggplot(data = df) + 
+    geom_smooth(mapping = aes(x = FGFR4, y = TP53, color=Group)) + 
+    xlim(c(0,13)) + ylim(c(0,10))
 ```
 
 Both plots contain the same x variable, the same y variable, and both describe the same data. But the plots are not identical. Each plot uses a different visual object to represent the data. In ggplot2 syntax, they're called **geoms**.
@@ -318,23 +321,23 @@ Plots are often described by the type of geom that the plot uses. For example, b
 Here is the point geom code:
 
 ```{r eval=FALSE, warning=FALSE, message=FALSE, echo=TRUE, results="hide"}
-  # Plot point geom (scatter plot) UCREATININE vs UALBUMIN, coloring GENDER
-  ggplot(data = HANES) + 
-  geom_point(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
-  xlim(c(0,100)) + ylim(c(0,10))
+  # Plot point geom (scatter plot) FGFR4 vs TP53, coloring Group
+  ggplot(data = df) + 
+  geom_point(mapping = aes(x = FGFR4, y = TP53, color=Group)) + 
+  xlim(c(0,13)) + ylim(c(0,10))
 ```
 
 And here is the line geom code:
 
 ```{r eval=FALSE, warning=FALSE, message=FALSE, echo=TRUE, results="hide"}
-  # Plot smooth geom UCREATININE vs UALBUMIN, coloring GENDER
-  ggplot(data = HANES) + 
-  geom_smooth(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
-  xlim(c(0,100)) + ylim(c(0,10))
+  # Plot smooth geom FGFR4 vs TP53, coloring Group
+  ggplot(data = df) + 
+  geom_smooth(mapping = aes(x = FGFR4, y = TP53, color=Group)) + 
+  xlim(c(0,13)) + ylim(c(0,10))
 ```
 
 <br>
-<span style="color:blue">**Classwork/Homework**</span>: Try `geom_smmoth` on different variables in HANES and MIMIC3 data frames.
+<span style="color:blue">**Classwork/Homework**</span>: Try `geom_smmoth` on different variables in df data frame.
 
 Every geom function in ggplot2 takes a mapping argument. 
 
@@ -348,18 +351,18 @@ In fact, we can over lay two geoms on the **same** plot - super cool, isn't it (
 
 ```{r eval=TRUE, warning=FALSE, message=FALSE, echo=TRUE}
   # Plot smooth and point geom in the same plot 
-  ggplot(data = HANES) + 
-  geom_smooth(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
-  xlim(c(0,100)) + ylim(c(0,10)) +
-  geom_point(mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER))
+  ggplot(data = df) + 
+  geom_smooth(mapping = aes(x = FGFR4, y = TP53, color=Group)) + 
+  xlim(c(0,13)) + ylim(c(0,10)) +
+  geom_point(mapping = aes(x = FGFR4, y = TP53, color=Group))
 ```
 
-**Note**: This introduces some duplication in our code. Imagine if we wanted to change the y-axis to display UACR values instead of UALBUMIN. We need to change the variable in two places, and we might forget to update one. We can avoid this type of repetition by passing a set of mappings to the `ggplot()` function. ggplot2 will treat these mappings as global mappings that apply to each geom in the graph. In other words, this code will produce the same plot as the previous code:
+**Note**: This introduces some duplication in our code. Imagine if we wanted to change the y-axis to display IDH1 values instead of TP53. We need to change the variable in two places, and we might forget to update one. We can avoid this type of repetition by passing a set of mappings to the `ggplot()` function. ggplot2 will treat these mappings as global mappings that apply to each geom in the graph. In other words, this code will produce the same plot as the previous code:
 
 ```{r eval=TRUE, warning=FALSE, message=FALSE, echo=TRUE}
   # Plot smooth and point geom in the same plot 
-  ggplot(data = HANES, mapping = aes(x = UCREATININE, y = UALBUMIN, color=GENDER)) + 
-  xlim(c(0,100)) + ylim(c(0,10)) +
+  ggplot(data = df, mapping = aes(x = FGFR4, y = TP53, color=Group)) + 
+  xlim(c(0,13)) + ylim(c(0,10)) +
   geom_smooth() + 
   geom_point()
 ```
@@ -372,9 +375,9 @@ This makes it possible to display different aesthetics in different layers.
 
 ```{r eval=TRUE, warning=FALSE, message=FALSE, echo=TRUE}
   # Plot smooth and point geom in the same plot 
-  ggplot(data = HANES, mapping = aes(x = UCREATININE, y = UALBUMIN)) + 
-  xlim(c(0,100)) + ylim(c(0,10)) +
-  geom_smooth(mapping = aes(color = AGEGROUP)) + 
+  ggplot(data = df, mapping = aes(x = FGFR4, y = TP53)) + 
+  xlim(c(0,13)) + ylim(c(0,10)) +
+  geom_smooth(mapping = aes(color = Group)) + 
   geom_point() 
 ```
 
@@ -389,7 +392,7 @@ ggplot2 provides over 30 geoms, and extension packages provide even more (see ht
 2. What geom would you use to draw a line chart? A boxplot? A histogram? An area chart?
 3. What does `show.legend = FALSE` do? What happens if you remove it?
 4. What does the `se` argument to `geom_smooth()` do?
-5. Read sections 3.7, 3.8 in the book [R for Data Science](http://r4ds.had.co.nz/). For each code example (ignore code in exercises) given in these sections, you need to provide similar examples using HANES/MIMIC3 data sets. Also, change the documentation to reflect your demo.
+5. Read sections 3.7, 3.8 in the book [R for Data Science](http://r4ds.had.co.nz/). For each code example (ignore code in exercises) given in these sections, you need to provide similar examples using `df` data sets. Also, change the documentation to reflect your demo.
 
 <br>
 
