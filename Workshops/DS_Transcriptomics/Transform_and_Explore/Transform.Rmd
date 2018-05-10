@@ -1,5 +1,5 @@
 ---
-# title: "Lecture 03"
+# title: "Transform"
 # author: "Kasthuri Kannan"
 # date: "Sept 07, 2017"
 output: html_document
@@ -11,56 +11,93 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Data science fundamentals 02: Transform and explore  (Sept. 26, 2017)
+### Data science fundamentals 02: Transform and explore  
 
 ---
 
-#### Recorded Stream
-
----
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mh23_ZPU1Z8" frameborder="0" allowfullscreen></iframe>
-
----
-
-We will work with HANES data set. In the spirit of the data transformation section in R for Data Science, we will look into `dplyr()` functions. As usual, we will first import the curated HANES data set in RStudio:
+We will work with RNA-seq data set. In the spirit of the data transformation section in R for Data Science, we will look into `dplyr()` functions. As usual, we will first import the RNA-seq data set in RStudio:
 
 ```{r eval=TRUE, message=FALSE}
   # Load the package RCurl
   library(RCurl)
-  # Import the HANES data set from GitHub; break the string into two for readability
+  # Import the RNAseq data set from GitHub; break the string into two for readability
   # (Please note this readability aspect very carefully)
   URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
-  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
-  # Paste it to constitute a single URL 
+  URL_text_2 <- "/master/Workshops/DS_Transcriptomics/Data/marked_data_7000_genes.txt"
+  # Paste it to constitute a single URL and import the data
   URL <- paste(URL_text_1,URL_text_2, sep="")
-  HANES <- read.csv(text=getURL(URL))
-  # Rename the GENDER factor for identification
-  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
-  # Rename the AGEGROUP factor for identification
-  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
-  # Rename the HSQ_1 factor for identification
-  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
-  # Rename the DX_DBTS as a factor
-  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
-  # Omit all NA from the data frame
-  HANES <- na.omit(HANES)
-  # Observe the structure
-  str(HANES)
+  imported.RNA.seq <- read.csv(text=getURL(URL), sep="\t", header = TRUE, stringsAsFactors = FALSE, row.names = 1)
+  # Get the gene names
+  gene.names <- row.names(imported.RNA.seq)
+  # Append "Patiend ID (PID)" variable to make "our" data frame
+  column.names <- append("PID",gene.names)
+  # Get only the gene expression matrix
+  expression <- as.numeric(t(imported.RNA.seq[c(2:6917),c(1:52)]))
+  # Get the group values
+  group <- t(imported.RNA.seq[1,])
 ```
 
-We will see more about tibbles in the wrangle section but we will make a short note of it now.
+We may want to convert the Ensembl gene names to official gene names. The package `org.Hs.eg.db` can help us here. First lets install this library.
+
+```{r eval=TRUE, message=FALSE}
+# Load the library
+library(org.Hs.eg.db)
+# Define ensemble gene ids
+ensembl.names <- gene.names[c(2:6918)]
+# Convert using the select function
+my_official_ids <- select(org.Hs.eg.db,
+                          keys = ensembl.names,
+                          columns=c("ENSEMBL","SYMBOL"),
+                          keytype="ENSEMBL")
+# We add the ensemble id to the existing data set to merge with official symbols
+imported.RNA.seq$ENSEMBL <- row.names(imported.RNA.seq)
+merged.data <- merge(imported.RNA.seq,my_official_ids,by=c("ENSEMBL"), no.dups = 1, all = TRUE)
+# Omit the NA rows in the merged data
+merged.data <- na.omit(merged.data)
+```
+
+We will now make our own data frame with official gene names which we will use.
+
+```{r eval=TRUE, message=FALSE}
+# Make our data frame - note - merged data has 52 patients and 6531 genes
+df <- data.frame(matrix(ncol = 6533, nrow = 52))
+# The first column are the patient ids
+df[,1] <- colnames(merged.data)[2:53]
+# The next two columns are Patient ID (PID) and Group. The rest are official gene names
+column.names <- append(c("PID","Group"),merged.data$SYMBOL)
+colnames(df) <- column.names
+# Assign the group information
+df[,2] <- group[,1]
+# The rest of the matrices are expression values
+expression <- as.numeric(t(merged.data[c(1:6531),c(2:53)]))
+df[c(1:52),c(3:6533)] <- expression
+```
+
+We can now use these official symbol for the rest of the analysis.
+
+We will see more about tibbles later but we will make a short note of it now.
 
 A tibble, or `tbl_df`, is a modern reimagining of the data frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces one to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced `print method()` which makes them easier to use with large datasets containing complex objects.
 
-To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on.
+To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the `df` data frame into tibble and use the tibble from now on.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
   # Load the tidyverse library
   library(tidyverse)
   # Convert HANES data frame into a tibble and observe it
-  HANES_TIB <- as.tibble(HANES)
-  HANES_TIB
+  df_TIB <- as.tibble(df)
+  df_TIB
+```
+
+Thus, we get an error. All `dplyr()` functions require unique names for the columns. We will see the below tutorial how this situation can be handled. But first, we need to sort this out - we will see about this in detail later...
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+# Collect only the expression values and official gene symbol
+merged.data.official <- merged.data[,c(2:54)]
+# Group by official gene name taking the average
+merged.data.averaged <- merged.data.official %>% group_by(SYMBOL) %>% summarise_all(funs(mean))
+
+
 ```
 
 
@@ -86,8 +123,8 @@ Tranformation basics are six key `dplyr` library functions that will allow us to
 The filter function allows us to pick a subset of information (or rows) from our dataset.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Pick all the records of patients with age == 45 and HDL value of 50
-  filter(HANES, SPAGE == 45, HDL == 50)
+  # Pick all the records of patients with Group = Luminal and FGFR4 value < 5
+  filter(df, Group == 'Luminal', FGFR4 < 5)
 ```
   
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
