@@ -67,7 +67,7 @@ We may want to convert the Ensembl gene names to official gene names. The packag
 # Load the library
 library(org.Hs.eg.db)
 # Define ensemble gene ids
-ensembl.names <- gene.names[c(2:6918)]
+ensembl.names <- gene.names[c(2:6919)]
 # Convert using the select function
 my_official_ids <- select(org.Hs.eg.db,
                           keys = ensembl.names,
@@ -83,8 +83,8 @@ merged.data <- na.omit(merged.data)
 We will now make our own data frame with official gene names which we will use.
 
 ```{r eval=TRUE, message=FALSE}
-# Make our data frame - note - merged data has 52 patients and 6531 genes
-df <- data.frame(matrix(ncol = 6533, nrow = 52))
+# Make our data frame - note - merged data has 52 patients and 6678 genes
+df <- data.frame(matrix(ncol = 6680, nrow = 52))
 # The first column are the patient ids
 df[,1] <- colnames(merged.data)[2:53]
 # The next two columns are Patient ID (PID) and Group. The rest are official gene names
@@ -93,8 +93,8 @@ colnames(df) <- column.names
 # Assign the group information
 df[,2] <- group[,1]
 # The rest of the matrices are expression values
-expression <- as.numeric(t(merged.data[c(1:6531),c(2:53)]))
-df[c(1:52),c(3:6533)] <- expression
+expression <- as.numeric(t(merged.data[c(1:6678),c(2:53)]))
+df[c(1:52),c(3:6680)] <- expression
 ```
 
 
@@ -107,7 +107,7 @@ We create a `ggplot` as follows:
   library(tidyverse)
   # Make a ggplot
   ggplot(data = df) + 
-  geom_point(mapping = aes(x = log(TP53), y = log(STAT3)))
+  geom_point(mapping = aes(x = log(DCN), y = log(EPCAM)))
 ```
 
 With ggplot2, we plot with the function `ggplot()`. `ggplot()` creates a coordinate system that we can add layers to. The first argument of `ggplot()` is the dataset to use in the graph. So `ggplot(data = df)` creates an empty graph.
@@ -134,14 +134,14 @@ The general graphing template is given by
 
 #### Aesthetic mappings
 
-We can add a third variable, like DX_DBTS, to a two dimensional scatterplot by mapping it to an **aesthetic**. An aesthetic is a visual property of the objects in the plot. Aesthetics include things like the size, the shape, or the color of the points. We can display a point in different ways by changing the values of its aesthetic properties. 
+We can add a third variable, like Group, to a two dimensional scatterplot by mapping it to an **aesthetic**. An aesthetic is a visual property of the objects in the plot. Aesthetics include things like the size, the shape, or the color of the points. We can display a point in different ways by changing the values of its aesthetic properties. 
 
 We can convey information about the data by mapping the aesthetics in the plot to the variables in df dataset. For example, we can map the colors of our points to reveal the group status of each person.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
   # Make a ggplot with asthetic color for the variable Group
   ggplot(data = df) + 
-  geom_point(mapping = aes(x = log(TP53), y = log(FGFR4), color=Group))
+  geom_point(mapping = aes(x = log(DCN), y = log(EPCAM), color=Group))
 ```
 
 To map an aesthetic to a variable, associate the name of the aesthetic to the name of the variable inside `aes()`. ggplot2 will automatically assign a unique level of the aesthetic (here a unique color) to each unique value of the variable, a process known as _scaling_. ggplot2 will also add a legend that explains which levels correspond to which values.
@@ -381,7 +381,7 @@ This makes it possible to display different aesthetics in different layers.
   geom_point() 
 ```
 
-**Note**: One can use this idea for plotting _different_ data to different layers. For example, the geom `geom_point` can be specified to select DX_DBTS variable consisting only diabetic people, for instance.
+**Note**: One can use this idea for plotting _different_ data to different layers. For example, the geom `geom_point` can be specified to select AGEGROUP variable consisting only people given chemo, for instance.
 
 ggplot2 provides over 30 geoms, and extension packages provide even more (see https://www.ggplot2-exts.org for a sampling). The best way to get a comprehensive overview is the ggplot2 cheatsheet, which you can find at http://rstudio.com/cheatsheets. To learn more about any single geom, use help: ?geom_smooth.
 
