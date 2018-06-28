@@ -81,7 +81,7 @@ A tibble, or `tbl_df`, is a modern reimagining of the data frame, keeping what t
 
 To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the `df` data frame into tibble and use the tibble from now on.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Load the tidyverse library
   library(tidyverse)
   # Convert df data frame into a tibble and observe it
@@ -110,7 +110,7 @@ df.uniq[c(1:52),c(3:6646)] <- expression
 
 We can now see the tibble doesn't give any errors
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
   # Load the tidyverse library
   library(tidyverse)
   # Convert df.uniq data frame into a tibble and observe it
@@ -159,12 +159,12 @@ Tranformation basics are six key `dplyr` library functions that will allow us to
 
 The filter function allows us to pick a subset of information (or rows) from our dataset.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pick all the records of patients with Group = Luminal and FGFR4 value < 5
-  filter(df.uniq, Group == 'Luminal', FGFR4 < 5)
+  filter(df.uniq, Group == 'Luminal', FGFR4 < 5) %>% head()
 ```
   
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pick all the records of patients with AGEGROUP == 41-50 and TP53 value of >= 5
   filter(df.uniq, AGEGROUP == '41-50', TP53 >= 1)
 ```
@@ -173,12 +173,12 @@ The filter function allows us to pick a subset of information (or rows) from our
 
 We can also use comparison and logical operators. For instance,
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pick all the records of patients with AGEGROUP == 31-40 and ATM values between 2-4
   filter(df.uniq, ATM >= 2 & ATM <= 4, AGEGROUP == '31-40')
 ```
   
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pick all the records of patients who are given Chemo and their TP53 levels >= 2 and ATM levels <= 5
   filter(df.uniq, TP53 >= 2 & ATM <= 5, CHEMO == "Y")
 ```
@@ -210,7 +210,7 @@ will list all the records for patients wwho are given chemotherapy and their TP5
 
 `arrange(`) works similar to filter function except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If we provide more than one column name, each additional column will be used to break ties in the values of preceding columns:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Arrange the data frame arranging Group with descending order of the gene DPM1
   a <- arrange(df.uniq, Group, desc(DPM1))
   atib <- as.tibble(a)
@@ -219,7 +219,7 @@ will list all the records for patients wwho are given chemotherapy and their TP5
   
 For sorting in ascending order we just specify the variable name.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Arrange the data frame arranging Group with ascending order of the gene FUCA2
   a <- arrange(df.uniq, Group, FUCA2)
   atib <- as.tibble(a)
@@ -230,7 +230,7 @@ For sorting in ascending order we just specify the variable name.
 
 To view the last few entries of the data frame/tibble, one can use the `tail()` function.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
   # Show the last few entries
   tail(atib)
 ```
@@ -250,7 +250,7 @@ To view the last few entries of the data frame/tibble, one can use the `tail()` 
 
 The orginal RNA-seq data set has $6917$ variables/rows. It is common for real world data sets to be large and we may want to quickly zoom into the variables of interest. Also, as the above homework shows, once we arrange the data that has tons of variables, it is difficult to verify the results. The `select()` function allows us to do that. Here is a code to select only the ATM variable:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Arrange df.uniq to find highest ATM expression
   a <- arrange(df.uniq, Group, desc(ATM))
   # Select only the PID, Group and ATM genes from the above data
@@ -267,7 +267,7 @@ The orginal RNA-seq data set has $6917$ variables/rows. It is common for real wo
 An useful helper arument is the `everything()` function that allows keeping all the variables and pushing the variables of interest in the front.
 
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Push the AGEGROUP and CHEMO variables to the front keeping everything
   s <- select(df.uniq, PID, Group, AGEGROUP, CHEMO, everything())
   as.tibble(s)
@@ -327,7 +327,7 @@ The `summarise()` has a useful function called the `count()` that will count the
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # First group the patients by age
   df_by_subtype <- group_by(df.uniq, Group)
-  # Summarize by counting the number of people in that age, and finding the mean HDL and LDL values
+  # Summarize by counting the number of people in that subtype, and finding the mean FGFR4 and TP53 values
   DL <- summarise(df_by_subtype,
                    count = n(),
                    F = mean(FGFR4),
@@ -345,7 +345,7 @@ We see that several people in Luminal subtype have high FGFR4 and low TP53 level
 
 The big disadvantage in the above code is the necessity to re-type the variables again and again, which can be eliminated through the use of `%>%` symbol. As the analysis becomes complicated, piping becomes extremely useful. The following code is the piped version of the above code producing the exact same output.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pipe the expression data to the group_by function, grouping by subtype
   df_by_subtype <- df.uniq %>% group_by(Group) %>%
   # and pipe this to summarize function
@@ -364,227 +364,149 @@ The big disadvantage in the above code is the necessity to re-type the variables
 
 The use of the function `na.rm()` inside summarise can be extremely useful as this example shows:
 
-(_Note: Since we already removed 'NA' from our dataset, we import the new data with NA in it_)
+(_Note: Since we already removed 'NA' from our dataset, we import the new data set with NA in it_)
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Load the package RCurl
   library(RCurl)
-  # Import the HANES data set from GitHub; break the string into two for readability
+  # Import the cell line  data set from GitHub; break the string into two for readability
   # (Please note this readability aspect very carefully)
   URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
-  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  URL_text_2 <- "/master/Workshops/DS_Transcriptomics/Data/cell_line_drug_type_statistical_methods.txt"
   # Paste it to constitute a single URL 
   URL <- paste(URL_text_1,URL_text_2, sep="")
-  HANES_with_NA <- read.csv(text=getURL(URL))
+  cell_line_data <- read.csv(text=getURL(URL), sep = '\t')
+  cell_line_data
 ```
 
 **Without removing NA**
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Group by AGE and GENDER and
-  HANES_with_NA %>% 
-  group_by(SPAGE,GENDER) %>% 
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by cell line and transcriptional subtype and
+  cell_line_data %>% 
+  group_by(Cell.line,Transcriptional.subtype) %>% 
   # summarize the mean of cholesterol for each group without removing NA
-  summarise(mean = mean(CHOLESTEROLTOTAL))
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
- # Group by AGE and GENDER and
-  HANES_with_NA %>% 
-  group_by(SPAGE,GENDER) %>% 
-  # summarize the mean of cholesterol for each group without removing NA
-  summarise(mean = mean(CHOLESTEROLTOTAL))
+  summarise(mean = mean(Doxorubicin))
 ```
 
 **Removing NA**
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Group by AGE and GENDER and 
-  HANES_with_NA %>% 
-  group_by(SPAGE,GENDER) %>% 
-  # summarize the mean of cholesterol for each group by removing NA
-  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Group by AGE and GENDER and 
-  HANES_with_NA %>% 
-  group_by(SPAGE,GENDER) %>% 
-  # summarize the mean of cholesterol for each group by removing NA
-  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by cell line and transcriptional subtype and
+  cell_line_data %>% 
+  group_by(Cell.line,Transcriptional.subtype) %>% 
+  # summarize the mean of cholesterol for each group without removing NA
+  summarise(mean = mean(Doxorubicin, na.rm = TRUE)) %>%
+  na.omit()
 ```
 
 We can also filter through the missing values first -
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Filter the data and get no NA values 
-  HANES_with_NA %>% filter(!is.na(CHOLESTEROLTOTAL)) %>%
-  # group by AGE and GENDER 
-  group_by(SPAGE,GENDER) %>% 
-  # and find the mean of cholesterol for each group
-  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Filter the data and get no NA values 
-  HANES_with_NA %>% filter(!is.na(CHOLESTEROLTOTAL)) %>%
-  # group by AGE and GENDER
-  group_by(SPAGE,GENDER) %>% 
-  # and find the mean of cholesterol for each group
-  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
+  cell_line_data %>% filter(!is.na(Doxorubicin)) %>%
+  # group by Cell.line and Transcriptional subtype 
+  group_by(Cell.line,Transcriptional.subtype) %>% 
+  # and find the mean of Doxorubicin for each group
+  summarise(mean = mean(Doxorubicin, na.rm=TRUE))
 ```
 
 Whenever we do aggregations using `group_by()` it is good to include count information that will give the information on the distribution and extreme values.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Group by AGE, GENDER
-  cholesterol <- HANES %>% 
-  group_by(SPAGE,GENDER) %>%
-  # and summarise mean cholesterol
-  summarise(mean_cholesterol = mean(CHOLESTEROLTOTAL))
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # group by Cell.line and Transcriptional subtype
+  GSK2141795 <- cell_line_data %>% 
+  group_by(Cell.line,Transcriptional.subtype) %>%
+  # and summarise mean GSK2141795
+  summarise(mean_GSK2141795 = mean(GSK2141795))
 
   # We can then plot the count information
-  ggplot(data = cholesterol, mapping = aes(x = mean_cholesterol)) + 
-  geom_freqpoly(binwidth = 10)
+  ggplot(data = GSK2141795, mapping = aes(x = mean_GSK2141795)) + 
+  geom_freqpoly(binwidth = 0.5)
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Group by AGE, GENDER
-  cholesterol <- HANES %>% 
-  group_by(SPAGE,GENDER) %>%
-  # and summarise mean cholesterol
-  summarise(mg_cholesterol = mean(CHOLESTEROLTOTAL))
 
-  # We can then plot the count information
-  ggplot(data = cholesterol, mapping = aes(x = mg_cholesterol)) + 
-  geom_freqpoly(binwidth = 10)
-```
+This reveals that there are drugs with extremely low counts ($2$ or less). 
 
-This reveals that there are patients with extremely high cholesterol ($300$ or more). How does the cholesterol vary over the age group? We can get more insight if we draw a plot of the ratio HDL/LDL and cholesterol for each agegroup:
+How does the GSK2141795 and Doxorubicin vary over the Transcriptional.subtype...ERBB2.status? We can get more insight if we draw a plot of GSK2141795 and Doxorubicin for each agegroup:
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # For each AGEGROUP find the mean H_L ratio and cholesterol information
-  CHO_L_D <- HANES %>% 
-  group_by(AGEGROUP) %>% 
-  summarise(H_L = mean(HDL) / mean(LDLESTIMATE),
-            CHO = mean(CHOLESTEROLTOTAL))
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # For each Transcriptional.subtype...ERBB2.status find the mean of SK2141795 and Doxorubicin
+  GSK_Dox <- cell_line_data %>% 
+  group_by(Transcriptional.subtype...ERBB2.status) %>% 
+  summarise(GSK = mean(GSK2141795, na.rm = TRUE),
+            DOX = mean(Doxorubicin, na.rm = TRUE)) %>% 
+  na.omit()
 
   # Plot this information 
-  CHO_L_D %>% 
-  ggplot(mapping = aes(x = H_L, y = CHO)) +
-  geom_point() + 
+  GSK_Dox %>% 
+  ggplot(mapping = aes(x = GSK, y = DOX)) +
+  geom_point(aes(size = Transcriptional.subtype...ERBB2.status)) + 
   geom_smooth(se = FALSE)
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # For each AGEGROUP find the mean H_L ratio and cholesterol information
-  CHO_L_D <- HANES %>% 
-  group_by(AGEGROUP) %>% 
-  summarise(H_L = mean(HDL) / mean(LDLESTIMATE),
-            CHO = mean(CHOLESTEROLTOTAL))
-  
-  # Plot this information 
-  CHO_L_D %>% 
-  ggplot(mapping = aes(x = H_L, y = CHO)) +
-  geom_point(mapping = aes(color=AGEGROUP)) + 
-  geom_smooth(se = FALSE)
-```
-
-This reveals the cholesterol peaks at the age group $40-59$ and remains almost stable, while the age group $20-39$ has the least cholesterol.
+This reveals the Dox peaks for the normal like and GSK is high for the luminal.
 
 There are several useful summary functions:
 
-**Example 1**: Finding the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL if GLUCOSE >100 for each age group.
+**Example 1**: Finding the mean of IKK.16 and the mean of Imatinib if GSK1070916 >5 for each Transcriptional.subtype.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  DL <- HANES %>% 
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- cell_line_data %>% 
     # For each AGEGROUP,
-    group_by(AGEGROUP) %>%
-    # find the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL when GLUCOSE content is > 100
+    group_by(Transcriptional.subtype) %>%
+    # find the mean of IKK.16 and the mean of Imatinib if GSK1070916 >5 for each Transcriptional.subtype
     summarise(count = n(),
-              H = mean(CHOLESTEROLTOTAL),
-              H_glu = mean(CHOLESTEROLTOTAL[GLUCOSE>100])) 
+              mean_IKK.16 = mean(IKK.16, na.rm=TRUE),
+              mean_Imatinib = mean(Imatinib[GSK1120212>5])) %>% na.omit
   # And print it
   DL
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  DL <- HANES %>% 
-    # For each AGEGROUP,
-    group_by(AGEGROUP) %>%
-    # find the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL when GLUCOSE content is > 100
-    summarise(count = n(),
-              H = mean(CHOLESTEROLTOTAL),
-              H_glu = mean(CHOLESTEROLTOTAL[GLUCOSE>100])) 
+**Example 2**: Finding the standard deviation of Imatinib by Transcriptional.subtype
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- cell_line_data %>%
+  # For each Transcriptional.subtype
+  group_by(Transcriptional.subtype) %>% 
+  # sumamarise the standard deviation of Imatinib and arrange in descending order
+  summarise(IM_sd = sd(Imatinib, na.rm = TRUE)) %>% 
+            arrange(desc(IM_sd)) %>% na.omit()
   # and print it
   DL
 ```
 
-**Example 2**: Finding the standard deviation of CHOLESTEROLTOTAL by age group
+**Example 3**: Finding largest and smallest Imatinib value for each Transcriptional.subtype.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  DL <- HANES %>% 
-  # For each AGEGROUP,
-  group_by(AGEGROUP) %>% 
-  # sumamarise the standard deviation of CHOLESTEROLTOTAL and arrange in descending order
-  summarise(CHO_sd = sd(CHOLESTEROLTOTAL)) %>% 
-            arrange(desc(CHO_sd))
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- cell_line_data %>% na.omit() %>%
+  # For each Transcriptional.subtype,
+  group_by(Transcriptional.subtype...ERBB2.status) %>% 
+  # find the largest and smallest Imatinib value
+  summarise(Lartgest_IM = max(Imatinib), Smallest_IM=min(Imatinib)) 
   # and print it
   DL
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  DL <- HANES %>% 
-  # For each AGEGROUP,
-  group_by(AGEGROUP) %>% 
-  # sumamarise the standard deviation of CHOLESTEROLTOTAL and arrange in descending order
-  summarise(CHO_sd = sd(CHOLESTEROLTOTAL)) %>% 
-            arrange(desc(CHO_sd))
+
+**Example 4**: Finding largest and smallest Imatinib value for each Transcriptional.subtype and by Transcriptional.subtype...ERBB2.status.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- cell_line_data %>% na.omit() %>%
+  # For each Transcriptional.subtype and Transcriptional.subtype...ERBB2.status,
+  group_by(Transcriptional.subtype, Transcriptional.subtype...ERBB2.status) %>% 
+  # find the largest and smallest Imatinib value
+  summarise(Lartgest_IM = max(Imatinib), Smallest_IM=min(Imatinib)) 
   # and print it
   DL
 ```
 
-**Example 3**: Finding largest and smallest CHOLESTEROLTOTAL for each diabetes diagnosis group.
+**Example 5**: How many exomes are available in each subtype where there is all data?
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  DL <- HANES %>% 
-  # For each DX_DBTS,
-  group_by(DX_DBTS) %>% 
-  # find the largest and smallest CHOLESTEROLTOTAL value
-  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
-  # and print it
-  DL
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  DL <- HANES %>% 
-  # For each DX_DBTS,
-  group_by(DX_DBTS) %>% 
-  # find the largest and smallest CHOLESTEROLTOTAL value
-  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
-  # and print it
-  DL
-```
-
-**Example 4**: Finding largest and smallest CHOLESTEROLTOTAL for each diabetes diagnosis group and by age group.
-
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  DL <- HANES %>% 
-  # For each DX_DBTS and AGEGROUP,
-  group_by(DX_DBTS, AGEGROUP) %>% 
-  # find the largest and smallest CHOLESTEROLTOTAL value
-  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
-  # and print it
-  DL
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  DL <- HANES %>% 
-  # For each DX_DBTS and AGEGROUP
-  group_by(DX_DBTS, AGEGROUP) %>% 
-  # find the largest and smallest CHOLESTEROLTOTAL value
-  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
-  # and print it
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # First group the patients by Transcriptional.subtype
+  DL <- cell_line_data %>% na.omit() %>% group_by(Transcriptional.subtype) %>%
+        summarise(exomes = sum(ExomeSeq.availability))
   DL
 ```
 
@@ -594,57 +516,33 @@ Grouping variables is extremely useful when used with the `summarise()` function
 
 **Examples**:
 
-Among the diabetes diagnostic within age groups, find the members (top 3 ranks) with high glucose levels.
+Among the Transcriptional.subtype, find the members (top 3 ranks) with high Imatinib levels.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Group by diabetes status and age group,
-   HANES %>% group_by(DX_DBTS, AGEGROUP) %>% 
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by Transcriptional.subtype,
+   cell_line_data %>% na.omit() %>% group_by(Transcriptional.subtype) %>% 
   # filter for the top 3 ranks
-   filter(rank(desc(GLUCOSE)) < 3) %>% 
+   filter(rank(desc(Imatinib)) < 3) %>% 
   # select only the relevant variables
-  select(DX_DBTS,AGEGROUP,GLUCOSE) %>% 
-  # and arrange in descending order of glucose levels
-  arrange(desc(GLUCOSE))
+  select(Transcriptional.subtype,Imatinib) %>% 
+  # and arrange in descending order of Imatinib levels
+  arrange(desc(Imatinib))
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Group by diabetes status and age group,
-   HANES %>% group_by(DX_DBTS, AGEGROUP) %>% 
-  # filter for the top 3 ranks
-   filter(rank(desc(GLUCOSE)) < 3) %>% 
-  # select only the relevant variables
-  select(DX_DBTS,AGEGROUP,GLUCOSE) %>% 
-  # and arrange in descending order of glucose levels
-  arrange(desc(GLUCOSE))
-```
+Standardise Oxamflatin to compute per Transcriptional.subtype metric.
 
-Find age group (not the AGEGROUP variable) greater than a threshold (say, $30$) and standardise A1C to compute per group metric.
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Group by SPAGE and filter groups that contain more than 30 individuals
-  AG_GT_30 <- HANES %>% group_by(SPAGE) %>%
-                        filter(n() > 30)
-
-  # Filter for all records with A1C variable > 0 to avoid NaNs,
-  AG_GT_30 %>% filter(A1C > 0) %>%
-  # standardise A1C dividing by the total sum of A1C in the group
-  mutate(standardised_A1C = A1C / sum(A1C)) %>%
-  # and seelct only A1C and standardised A1C
-  select(A1C,standardised_A1C)
-```
-
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Group by SPAGE and filter groups that contain more than 30 individuals
-  AG_GT_30 <- HANES %>% group_by(SPAGE) %>%
-                        filter(n() > 30)
-
-  # Filter for all records with A1C variable > 0 to avoid NaNs,
-  AG_GT_30 %>% filter(A1C > 0) %>%
-  # standardise A1C dividing by the total sum of A1C in the group
-  mutate(standardised_A1C = A1C / sum(A1C)) %>%
-  # and seelct only A1C and standardised A1C
-  select(A1C,standardised_A1C)
+  # Group by Transcriptional.subtype,
+   OX <- cell_line_data %>% na.omit() %>% group_by(Transcriptional.subtype) %>% 
+   summarise(S_OX = sum(Oxamflatin))
+   OX
+  # Filter for all records with Oxamflatin variable > 0 to avoid NaNs,
+   cell_line_data %>%
+  # standardise Oxamflatin dividing by the total sum of Oxamflatin in the group
+   mutate(standardised_OX = Oxamflatin / OX$S_OX) %>%
+  # and select only Transcriptional.subtype and standardised_OX
+   select(Transcriptional.subtype,standardised_OX) %>% na.omit()
 ```
 
 ---
