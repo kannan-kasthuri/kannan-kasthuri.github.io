@@ -345,41 +345,6 @@ df.uniq[c(1:52),c(3:6646)] &lt;- expression</code></pre>
 <pre class="r"><code>  # Push the AGEGROUP and CHEMO variables to the front keeping everything
   s &lt;- select(df.uniq, PID, Group, AGEGROUP, CHEMO, everything())
   as.tibble(s)</code></pre>
-<pre><code>## # A tibble: 52 x 6,648
-##    PID   Group AGEGROUP CHEMO  DPM1 FUCA2  GCLC LAS1L SEMA3F CYP51A1 KRIT1
-##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-##  1 X184… Norm… 15-30    Y      6.06  4.47  4.47  5.27   6.05    6.24  4.17
-##  2 X184… Norm… 15-30    Y      5.25  5.39  6     4.27   7.31    5.26  3.51
-##  3 X21M… Basal 41-50    N      5.15  5.28  5.77  6.58   3.99    5.67  3.86
-##  4 X21NT Basal 61+      N      5.36  5.82  5.76  5.54   5.93    6.11  5.12
-##  5 X21PT Basal 51-60    N      5.22  5.75  5.76  5.57   5.98    5.77  4.75
-##  6 X600… Lumi… 31-40    Y      5.32  6.11  5.78  4.93   4.06    6.74  4.8 
-##  7 AU565 Lumi… 31-40    Y      5.3   4.8   4.01  6.16   7.53    5.15  3.56
-##  8 BT474 Lumi… 41-50    Y      6.64  4.47  5.14  5.36   4.7     6.14  4.14
-##  9 BT483 Lumi… 61+      N      5.6   4.99  5.11  5.1    6.69    5.27  4.47
-## 10 BT549 Clau… 51-60    N      6.61  6.94  3.63  6.16   3.3     3.88  3.14
-## # ... with 42 more rows, and 6,637 more variables: BAD &lt;dbl&gt;, LAP3 &lt;dbl&gt;,
-## #   CD99 &lt;dbl&gt;, MAD1L1 &lt;dbl&gt;, LASP1 &lt;dbl&gt;, SNX11 &lt;dbl&gt;, TMEM176A &lt;dbl&gt;,
-## #   M6PR &lt;dbl&gt;, ICA1 &lt;dbl&gt;, DBNDD1 &lt;dbl&gt;, CFLAR &lt;dbl&gt;, TFPI &lt;dbl&gt;,
-## #   RBM5 &lt;dbl&gt;, SLC7A2 &lt;dbl&gt;, ARF5 &lt;dbl&gt;, POLDIP2 &lt;dbl&gt;, PLXND1 &lt;dbl&gt;,
-## #   AK2 &lt;dbl&gt;, FKBP4 &lt;dbl&gt;, KDM1A &lt;dbl&gt;, RBM6 &lt;dbl&gt;, RECQL &lt;dbl&gt;,
-## #   ARHGAP33 &lt;dbl&gt;, NDUFAB1 &lt;dbl&gt;, SLC25A13 &lt;dbl&gt;, CDC27 &lt;dbl&gt;,
-## #   HCCS &lt;dbl&gt;, DVL2 &lt;dbl&gt;, PRSS22 &lt;dbl&gt;, UPF1 &lt;dbl&gt;, SLC25A5 &lt;dbl&gt;,
-## #   POLR2J &lt;dbl&gt;, LIG3 &lt;dbl&gt;, CIAPIN1 &lt;dbl&gt;, SPPL2B &lt;dbl&gt;, WDR54 &lt;dbl&gt;,
-## #   KMT2E &lt;dbl&gt;, RHBDD2 &lt;dbl&gt;, PDK2 &lt;dbl&gt;, ITGA3 &lt;dbl&gt;, LAMP2 &lt;dbl&gt;,
-## #   GDE1 &lt;dbl&gt;, C19orf60 &lt;dbl&gt;, CRLF1 &lt;dbl&gt;, TMEM98 &lt;dbl&gt;, YBX2 &lt;dbl&gt;,
-## #   ABCC8 &lt;dbl&gt;, TMEM132A &lt;dbl&gt;, AP2B1 &lt;dbl&gt;, CX3CL1 &lt;dbl&gt;, SPATA20 &lt;dbl&gt;,
-## #   TNFRSF12A &lt;dbl&gt;, BAIAP2L1 &lt;dbl&gt;, ALDH3B1 &lt;dbl&gt;, GGCT &lt;dbl&gt;,
-## #   IFRD1 &lt;dbl&gt;, PAF1 &lt;dbl&gt;, ELAC2 &lt;dbl&gt;, SCIN &lt;dbl&gt;, ARSD &lt;dbl&gt;,
-## #   ADIPOR2 &lt;dbl&gt;, PRSS21 &lt;dbl&gt;, MARK4 &lt;dbl&gt;, PROM1 &lt;dbl&gt;, CCDC124 &lt;dbl&gt;,
-## #   PAFAH1B1 &lt;dbl&gt;, KIAA0100 &lt;dbl&gt;, TRAPPC6A &lt;dbl&gt;, MATK &lt;dbl&gt;,
-## #   RPUSD1 &lt;dbl&gt;, RHBDF1 &lt;dbl&gt;, LUC7L &lt;dbl&gt;, TSR3 &lt;dbl&gt;, PIGQ &lt;dbl&gt;,
-## #   TEAD3 &lt;dbl&gt;, SELE &lt;dbl&gt;, DNAJC11 &lt;dbl&gt;, PSMB1 &lt;dbl&gt;, CDK11A &lt;dbl&gt;,
-## #   NADK &lt;dbl&gt;, TFAP2B &lt;dbl&gt;, SYPL1 &lt;dbl&gt;, CYB561 &lt;dbl&gt;, SPAG9 &lt;dbl&gt;,
-## #   MGST1 &lt;dbl&gt;, NFIX &lt;dbl&gt;, ST3GAL1 &lt;dbl&gt;, IL32 &lt;dbl&gt;, MIR6511B1 &lt;dbl&gt;,
-## #   PKD1 &lt;dbl&gt;, MED24 &lt;dbl&gt;, MIR6884 &lt;dbl&gt;, RHOBTB2 &lt;dbl&gt;, SEC62 &lt;dbl&gt;,
-## #   RPS20 &lt;dbl&gt;, CSDE1 &lt;dbl&gt;, UBE3C &lt;dbl&gt;, MLXIPL &lt;dbl&gt;, BAZ1B &lt;dbl&gt;,
-## #   METTL13 &lt;dbl&gt;, …</code></pre>
 <hr />
 </div>
 <div id="the-mutate-function" class="section level4">

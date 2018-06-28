@@ -110,7 +110,7 @@ df.uniq[c(1:52),c(3:6646)] <- expression
 
 We can now see the tibble doesn't give any errors
 
-```{r eval=FALSE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE}
   # Load the tidyverse library
   library(tidyverse)
   # Convert df.uniq data frame into a tibble and observe it
@@ -366,7 +366,7 @@ The use of the function `na.rm()` inside summarise can be extremely useful as th
 
 (_Note: Since we already removed 'NA' from our dataset, we import the new data set with NA in it_)
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Load the package RCurl
   library(RCurl)
   # Import the cell line  data set from GitHub; break the string into two for readability
@@ -381,7 +381,7 @@ The use of the function `na.rm()` inside summarise can be extremely useful as th
 
 **Without removing NA**
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Group by cell line and transcriptional subtype and
   cell_line_data %>% 
   group_by(Cell.line,Transcriptional.subtype) %>% 
@@ -391,7 +391,7 @@ The use of the function `na.rm()` inside summarise can be extremely useful as th
 
 **Removing NA**
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
   # Group by cell line and transcriptional subtype and
   cell_line_data %>% 
   group_by(Cell.line,Transcriptional.subtype) %>% 
