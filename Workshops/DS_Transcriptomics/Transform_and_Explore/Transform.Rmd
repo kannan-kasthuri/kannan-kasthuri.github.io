@@ -81,7 +81,7 @@ A tibble, or `tbl_df`, is a modern reimagining of the data frame, keeping what t
 
 To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the `df` data frame into tibble and use the tibble from now on.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
   # Load the tidyverse library
   library(tidyverse)
   # Convert df data frame into a tibble and observe it
@@ -111,6 +111,8 @@ df.uniq[c(1:52),c(3:6646)] <- expression
 We can now see the tibble doesn't give any errors
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Load the tidyverse library
+  library(tidyverse)
   # Convert df.uniq data frame into a tibble and observe it
   df_TIB <- as.tibble(df.uniq)
   df_TIB
@@ -157,12 +159,12 @@ Tranformation basics are six key `dplyr` library functions that will allow us to
 
 The filter function allows us to pick a subset of information (or rows) from our dataset.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pick all the records of patients with Group = Luminal and FGFR4 value < 5
   filter(df.uniq, Group == 'Luminal', FGFR4 < 5)
 ```
   
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pick all the records of patients with AGEGROUP == 41-50 and TP53 value of >= 5
   filter(df.uniq, AGEGROUP == '41-50', TP53 >= 1)
 ```
@@ -171,12 +173,12 @@ The filter function allows us to pick a subset of information (or rows) from our
 
 We can also use comparison and logical operators. For instance,
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pick all the records of patients with AGEGROUP == 31-40 and ATM values between 2-4
   filter(df.uniq, ATM >= 2 & ATM <= 4, AGEGROUP == '31-40')
 ```
   
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Pick all the records of patients who are given Chemo and their TP53 levels >= 2 and ATM levels <= 5
   filter(df.uniq, TP53 >= 2 & ATM <= 5, CHEMO == "Y")
 ```
@@ -208,8 +210,8 @@ will list all the records for patients wwho are given chemotherapy and their TP5
 
 `arrange(`) works similar to filter function except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If we provide more than one column name, each additional column will be used to break ties in the values of preceding columns:
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Arrange the data frame arranging Group with descending order of the variable DPM1
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Arrange the data frame arranging Group with descending order of the gene DPM1
   a <- arrange(df.uniq, Group, desc(DPM1))
   atib <- as.tibble(a)
   atib
@@ -217,8 +219,8 @@ will list all the records for patients wwho are given chemotherapy and their TP5
   
 For sorting in ascending order we just specify the variable name.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Arrange the data frame arranging Group with ascending order of the variable FUCA2
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Arrange the data frame arranging Group with ascending order of the gene FUCA2
   a <- arrange(df.uniq, Group, FUCA2)
   atib <- as.tibble(a)
   atib
@@ -227,10 +229,6 @@ For sorting in ascending order we just specify the variable name.
 **Note**: Missing values are always sorted at the end.
 
 To view the last few entries of the data frame/tibble, one can use the `tail()` function.
-
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  tail(atib)
-```
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
   # Show the last few entries
@@ -252,15 +250,15 @@ To view the last few entries of the data frame/tibble, one can use the `tail()` 
 
 The orginal RNA-seq data set has $6917$ variables/rows. It is common for real world data sets to be large and we may want to quickly zoom into the variables of interest. Also, as the above homework shows, once we arrange the data that has tons of variables, it is difficult to verify the results. The `select()` function allows us to do that. Here is a code to select only the ATM variable:
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Arrange df.uniq to find highest ATM expression
   a <- arrange(df.uniq, Group, desc(ATM))
-  # Select only the PID, Group and ATM variables from the above data
+  # Select only the PID, Group and ATM genes from the above data
   s <- select(a, PID, Group, ATM)
   as.tibble(s)
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Select only the PID, Group and TP53 variables
   s <- select(df.uniq, PID, Group, TP53)
   as.tibble(s)
@@ -269,7 +267,7 @@ The orginal RNA-seq data set has $6917$ variables/rows. It is common for real wo
 An useful helper arument is the `everything()` function that allows keeping all the variables and pushing the variables of interest in the front.
 
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Push the AGEGROUP and CHEMO variables to the front keeping everything
   s <- select(df.uniq, PID, Group, AGEGROUP, CHEMO, everything())
   as.tibble(s)
@@ -281,49 +279,29 @@ An useful helper arument is the `everything()` function that allows keeping all 
 
 We can add new columns to the data set using the `mutate()` function. For example, this code makes a new variable that is the ratio of TP53 and ATM estimate, stores it in a variable "TP53_ATM":
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
    # Select only the variables PID, Group, TP53 and ATM variables
    df_sub <- select(df.uniq,PID,Group,TP53,ATM)
-   # Add a new variable H_L that is a sum of HDL and LDL
+   # Add a new variable TP53_ATM that is a ratio of gene expression in TP53 and ATM
    m <- mutate(df_sub, TP53_ATM = TP53/ATM)
    as.tibble(m)
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-   # Select only the variables PID, Group, TP53 and ATM variables
-   df_sub <- select(df.uniq,PID,Group,TP53,ATM)
-   # Add a new variable H_L that is a sum of HDL and LDL
-   m <- mutate(df_sub, TP53_ATM = TP53/ATM)
-   as.tibble(m)
-```
 
 The `transmute()` function retains only the created variables.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
    # Select only the variables PID, Group, TP53 and ATM variables
    df_sub <- select(df.uniq,PID,Group,TP53,ATM)
-   # Add a new variable H_L that is a sum of HDL and LDL
+   # Add a new variable TP53_ATM that is a ratio of gene expression in TP53 and ATM
    m <- transmute(df_sub, TP53_ATM = TP53/ATM)
    as.tibble(m)
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-   # Select only the variables PID, Group, TP53 and ATM variables
-   df_sub <- select(df.uniq,PID,Group,TP53,ATM)
-   # Add a new variable H_L that is a sum of HDL and LDL
-   m <- transmute(df_sub, TP53_ATM = TP53/ATM)
-   as.tibble(m)
-```
 
 There are several useful functions for data manipulation such as `lag()`, `lead()`, `cumsum()`, `min_rank()` etc. and wrappers around them. One of them is the `top_n()` function that is made out of the `filter()` and `min_rank()` functions that would list the top $n$ values from the data. For example, here is a code to select the top $5$ values in the above ratio.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Select the top 5 ratios in the above transmuted data frame m
-  top_5_ratio <-  top_n(m, 5, TP53_ATM)
-  top_5_ratio
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # Select the top 5 ratios in the above transmuted data frame m
   top_5_ratio <-  top_n(m, 5, TP53_ATM)
   top_5_ratio
@@ -333,89 +311,52 @@ There are several useful functions for data manipulation such as `lag()`, `lead(
 
 #### The `group_by()` and `summarise()` functions
 
+The `group_by()` is an extremely useful function that facililates grouped analysis and along with `summarise()` they can provide vital statistics for a group. Let us say we want to find the mean expression level for TP53 each subtype (Basal, Luminal etc.), the `group_by()` and `summarise()` operation can be extremely handy.
 
-The `group_by()` is an extremely useful function that facililates grouped analysis and along with `summarise()` they can provide vital statistics for a group. Let us say we want to find the mean cholesterol level for each gender, the `group_by()` and `summarise()` operation can be extremely handy.
-
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Group the HANES data by GENDER 
-  HANES_by_gender <- group_by(HANES, GENDER)
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group the table by the subgroup 
+  df_by_subtype <- group_by(df.uniq, Group)
   # Find the mean cholesterol level for the two GENDERS
-  summarise(HANES_by_gender, mean_cholesterol = mean(CHOLESTEROLTOTAL))
+  summarise(df_by_subtype, mean_TP53_expression = mean(TP53))
 ```
 
+We find the mean TP53 expression levels for Claudin-low are little higher than say Luninal subtype.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Group the HANES data by GENDER 
-  HANES_by_gender <- group_by(HANES, GENDER)
-  # Find the mean cholesterol level for the two GENDERS
-  summarise(HANES_by_gender, mean_cholesterol = mean(CHOLESTEROLTOTAL))
-```
+The `summarise()` has a useful function called the `count()` that will count the number of items appearing in a group. For example, here is an analysis that shows the relationship between FGFR4 and TP53 for each subtype, grouped by the number of patients with the particular subtype.
 
-We find the mean cholesterol levels for females are little higher than males.
-
-The `summarise()` has a useful function called the `count()` that will count the number of items appearing in a group. For example, here is an analysis that shows the relationship between HDL and LDL for each age, grouped by the number of patients with the particular age.
-
-```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
   # First group the patients by age
-  by_AGE <- group_by(HANES, SPAGE)
+  df_by_subtype <- group_by(df.uniq, Group)
   # Summarize by counting the number of people in that age, and finding the mean HDL and LDL values
-  DL <- summarise(by_AGE,
+  DL <- summarise(df_by_subtype,
                    count = n(),
-                   H = mean(HDL),
-                   L = mean(LDLESTIMATE))
-  # We remove the groups with five people or less
-  DL <- filter(DL,count > 5)
+                   F = mean(FGFR4),
+                   T = mean(TP53))
+  
+  # We remove the groups with just one person
+  DL <- filter(DL,count > 1)
   # Plot this data, with point for count estimates and smoothing it by line
-  ggplot(data = DL, mapping = aes(x = H, y = L)) +
-    geom_point(aes(size = count), alpha = 1/3) +
+  ggplot(data = DL, mapping = aes(x = F, y = T)) +
+    geom_point(aes(size = count, color = DL$Group), alpha = 1) +
     geom_smooth(se = FALSE)
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # First group the patients by age
-  by_AGE <- group_by(HANES, SPAGE)
-  # Summarize by counting the number of people in that age, and finding the mean HDL and LDL values
-  DL <- summarise(by_AGE,
-                   count = n(),
-                   H = mean(HDL),
-                   L = mean(LDLESTIMATE))
-  # We remove the groups with five people or less
-  DL <- filter(DL,count > 5)
-  # Plot this data, with point for count estimates and smoothing it by line
-  ggplot(data = DL, mapping = aes(x = H, y = L)) +
-    geom_point(aes(size = count), alpha = 1/3) +
-    geom_smooth(se = FALSE)
-```
+We see that several people in Luminal subtype have high FGFR4 and low TP53 levels. 
 
 The big disadvantage in the above code is the necessity to re-type the variables again and again, which can be eliminated through the use of `%>%` symbol. As the analysis becomes complicated, piping becomes extremely useful. The following code is the piped version of the above code producing the exact same output.
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
-  # Pipe the HANES data to the group_by function, grouping by age
-  DL <- HANES %>% group_by(SPAGE) %>% 
+  # Pipe the expression data to the group_by function, grouping by subtype
+  df_by_subtype <- df.uniq %>% group_by(Group) %>%
   # and pipe this to summarize function
   summarise(count = n(),
-            H = mean(HDL),
-            L = mean(LDLESTIMATE)) %>% 
-  # And pipe this result to filter the count < 5
-  filter(count > 5)
+            F = mean(FGFR4),
+            T = mean(TP53)) %>%
+  # And pipe this result to filter the count > 1
+  filter(count > 1)
   # Plot this data, with point for count estimates and smoothing it by line
-  ggplot(data = DL, mapping = aes(x = H, y = L)) +
-    geom_point(aes(size = count), alpha = 1/3) +
-    geom_smooth(se = FALSE)
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
-  # Pipe the HANES data to the group_by function, grouping by age
-  DL <- HANES %>% group_by(SPAGE) %>% 
-  # and pipe this to summarize function
-  summarise(count = n(),
-            H = mean(HDL),
-            L = mean(LDLESTIMATE)) %>% 
-  # And pipe this result to filter the count < 5
-  filter(count > 5)
-  # Plot this data, with point for count estimates and smoothing it by line
-  ggplot(data = DL, mapping = aes(x = H, y = L)) +
-    geom_point(aes(size = count), alpha = 1/3) +
+  ggplot(data = DL, mapping = aes(x = F, y = T)) +
+    geom_point(aes(size = count, color = DL$Group), alpha = 1) +
     geom_smooth(se = FALSE)
 ```
 
