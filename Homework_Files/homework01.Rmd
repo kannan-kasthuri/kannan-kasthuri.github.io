@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Homework 01 (due Sept. 27,2017, 5pm)
+### Homework 01 (due July,23, 2018, 5pm)
 
 ---
 
