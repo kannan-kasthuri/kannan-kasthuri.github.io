@@ -519,7 +519,7 @@ The R code in R markdown document is written in chunks
 
 This division allows to set specific processing preferences for each chunk
 
-
+![](codeChunkExm.PNG)
 
 ##
 
