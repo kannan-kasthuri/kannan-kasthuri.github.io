@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Homework 02 (due Oct. 05,2017, 5pm)
+### Homework 02 (due July 30, 2018, 5pm)
 
 ---
 
@@ -61,7 +61,7 @@ Now answer the following questions:
 
 **Note**: You need to write a README.txt and submit **both* .Rmd and html files as given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html) 
 
-The due date is Oct. 05, 2017, 5pm. If you have any questions about this homework, feel free to contact Yuhan, yuhan.hao at nyumc.org
+The due date is July 30, 2018 5pm. If you have any questions about this homework, feel free to contact Emily, Emily.Dube at nyumc.org
 
 
 ---
