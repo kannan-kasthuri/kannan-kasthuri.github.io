@@ -21,42 +21,7 @@ General guidelines for homeworks and how to submit them is given [here](https://
 
 2. There are two parts to this homework: 
 
-##### Part I
-
 Finish classwork/homework sections of Lectures 04 (R fundamentals 03: Elements of prog., R Markdown) and Lecture 05 (Data science fundamentals 01: Visualize and explore) and push it through git (using the terminal or through RStudio). 
-
-
-##### Part II 
-
-The following code is an estimation of $\pi$ using Monte Carlo.
-
-```{r eval=FALSE, echo=TRUE}
-pi_calculation = function(iteration){
-  a0 = rep(0,iteration)
-  Nin = 0
-  for(j in 1:iteration){
-    x = runif(2,-5,5)
-    if(sqrt(x[1]^2 + x[2]^2) <= 5){
-      Nin = Nin + 1
-    }
-    ratio = Nin / j
-    pi_c = ratio *4
-    a0[j] = pi_c
-  }
-  return(a0)
-}
-num = 100
-tmp = pi_calculation(num)
-start = 1
-plot(tmp[start:num], type = 'l',xlab= "number of simulation", ylab='',main = expression(paste("Calculated vs True ", pi)),ylim=c(2,4))
-lines(rep(pi, num)[start:num], col = 'red')
-```
-
-Now answer the following questions:
-
-1. What is the purpose of the `if` statement in the function?
-2. Why is pi_c equal to `ratio*4`?
-3. How can you get more accurate $\pi$ (write the code)?
 
 
 **Note**: You need to write a README.txt and submit **both* .Rmd and html files as given [here](https://kannan-kasthuri.github.io/Homework_Files/guidelines.html) 
