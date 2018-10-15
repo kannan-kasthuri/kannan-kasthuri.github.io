@@ -26,7 +26,7 @@ p { text-align: left; }
 </style>
 
 
-### Data science fundamentals 01: Visualize and explore  (Sept. 21, 2017)
+### Data science fundamentals 01: Visualize and explore  (Aug., 2018)
 
 ---
 
@@ -346,8 +346,8 @@ We can also set the aesthetic properties of our geom manually. For example, we c
 ##
 
 4. What happens if we map the same variable to multiple aesthetics?
-5. What does the stroke aesthetic do? What shapes does it work with? 
-6.What happens if we map an aesthetic to something other than a variable name, like aes(colour = A1C < 5)?
+5. What does the stroke aesthetic do? What shapes does it work with?
+6. What happens if we map an aesthetic to something other than a variable name, like aes(colour = A1C < 5)?
 
 ---
 
@@ -361,7 +361,7 @@ Another way, particularly useful for categorical variables, is to split plots in
 
 To facet a plot by a single variable, the function `facet_wrap()` is useful. 
 
-The first argument of `facet_wrap()` should be a formula, which we create with ~ followed by a variable name (here “formula” is the name of a data structure in R, not a synonym for “equation”). 
+The first argument of `facet_wrap()` should be a formula, which we create with **~** sign followed by a variable name (here “formula” is the name of a data structure in R, not a synonym for “equation”). 
 
 The variable that we pass to `facet_wrap()` should be **discrete**.
 
@@ -656,7 +656,7 @@ ggplot2 provides over 30 geoms, and extension packages provide even more (see ht
 1. What does the `group` argument in aesthetics in the line geom do? Try it in an example and report the result.
 2. What geom would you use to draw a line chart? A boxplot? A histogram? An area chart?
 3. What does `show.legend = FALSE` do? What happens if you remove it?
-4. What does the `se` argument to `geom_smooth()` do?
+4. What does the **`se`** argument to `geom_smooth()` do?
 5. Read sections 3.7, 3.8 in the book [R for Data Science](http://r4ds.had.co.nz/). For each code example (ignore code in exercises) given in these sections, you need to provide similar examples using HANES/MIMIC3 data sets. Also, change the documentation to reflect your demo.
 
 <br>
