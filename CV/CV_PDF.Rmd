@@ -97,6 +97,10 @@ Indian Institute of Science, Manipal Academy of Higher Education, Cancer Researc
 
 \textbf{\textcolor{purple}{Publications \textcolor{blue}{(blue - equal contribution/senior/first author)}}}
 
+[21] Martin Vaeth, Yin-Hu Wang, Miriam Eckstein, Jun Yang, Gregg Silverman, Rodrigo Lacruz,  \textbf{\textcolor{blue} {Kasthuri Kannan}}, and Stefan Feske. Tissue resident and follicular Treg cell differentiation is regulated by CRAC channels. \textbf{\textit{\textcolor{violet}{Nature Communications}}} (accepted and to be published).
+
+[20] Yuxiang Wang, Jie Yang, Aaron Wild, Wei Wu, Rachna Shah, Carla Danussi, Gregory Riggins, **Kasthuri Kannan**, Erik Sulman, Timothy Chan, and Jason Huse. G-quadruplex DNA drives genomic instability and represents a targetable molecular abnormality in ATRX-deficient malignant glioma. \textbf{\textit{\textcolor{violet}{Nature Communications}}} (accepted and to be published).
+
 [19] \textbf{\textcolor{blue} {Matija Snuderl, Kasthuri Kannan}} et al. (corresponding author: Matthias A. Karajannis). Recurrent homozygous deletion of DROSHA and microduplication of PDE4DIP containing the ancestral DUF1220 domain in pineoblastoma. \textbf{\textit{\textcolor{violet}{Nature Communications}}}. July 2018. [PMID: 30030436]
 
 [18] \textbf{\textcolor{blue} {Daniel Friedman, Kasthuri Kannan}}, Arline Faustin, Seema Shroff, Cheddhi Thomas,  Adriana Heguy, Jonathan Serrano, Matija Snuderl, Orrin Devinsky. Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textbf{\textit{\textcolor{violet}{Nature Genomic Medicine}}}. Mar. 2018. [PMID: 29619247]
