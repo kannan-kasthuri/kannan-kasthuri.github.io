@@ -52,25 +52,6 @@ Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrea
 
 \hrule
 
-\textbf{\textcolor{purple}{Emerging Collaborations}}
-
-\begin{flushleft}
-
-1. Dean Felsher, MD, PhD, Professor \& Director, Stanford University. CA. \linebreak
-\hangindent=0.4cm MYC liver cancer project.
-
-2. David Zagzag, MD, PhD, Chief, Neuropathology, NYU. \linebreak
-Genomics of Hemangioblastoma.
-
-3. Institutions in India. \linebreak
-Indian Institute of Science, Manipal Academy of Higher Education, Cancer Research and Relief Trust.
-
-\end{flushleft}
-
-\vspace{2mm}
-
-\hrule
-
 \textbf{\textcolor{purple}{Invited Talks}}
 
 \begin{flushleft}
@@ -87,7 +68,7 @@ Indian Institute of Science, Manipal Academy of Higher Education, Cancer Researc
 
 6. \textit{Distingushed Lecture Series}, MD Anderson Cancer Center, Houston, TX. Apr. 19, 2018
 
-7. Sanford Burnham Prebys Medical Discovery Institute, San Diego, CA. TBD
+7. Sanford Burnham Prebys Medical Discovery Institute, San Diego, CA. May 29, 2018
 
 \end{flushleft}
 
