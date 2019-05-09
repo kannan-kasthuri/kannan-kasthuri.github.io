@@ -21,13 +21,13 @@ TRB 737, 227 E30th St. New York. NY 10016 \hfill kasthuri.kannan@nyumc.org
 
 \textbf{\textcolor{purple}{Professional Interests}}
 
-Omics, systems biology, and teaching. 
+Omics, Systems biology, and Teaching. 
 
 \vspace{2mm}
 
 \hrule
 
-\textbf{\textcolor{purple}{Successful Collaborations (selected)}}
+\textbf{\textcolor{purple}{Successful Collaborations (representative)}}
 
 \begin{flushleft}
 
@@ -78,7 +78,7 @@ Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrea
 
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
-[22] Lavanya Kannan, Tarjani Agarwal, Matija Snuderl, David Zagzag, Erik Sulman, Jason Huse,  and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Determines Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. bioRxiv 608414; doi: https://doi.org/10.1101/608414
+[22] Lavanya Kannan, Tarjani Agarwal, Matija Snuderl, David Zagzag, Erik Sulman, Jason Huse,  and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Determines Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. Apr. 2019. bioRxiv 608414; doi: https://doi.org/10.1101/608414
 
 [21] Martin Vaeth, Yin-Hu Wang, Miriam Eckstein, Jun Yang, Gregg Silverman, Rodrigo Lacruz,  \textbf{\textcolor{blue} {Kasthuri Kannan}}, and Stefan Feske. Tissue resident and follicular Treg cell differentiation is regulated by CRAC channels. \textbf{\textit{\textcolor{violet}{Nature Communications}}}. Mar. 2019. [PMID: 30862784]
 
