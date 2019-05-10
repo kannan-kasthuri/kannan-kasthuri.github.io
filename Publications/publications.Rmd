@@ -16,13 +16,13 @@ figure figcaption {
 
 ---
 
-### Publications 
+### Publications and Preprints 
 
 ---
 
-##### Journal articles and preprints (blue - equal contribution/senior/last/first author)
+Check out NYU's archive [here](http://library.med.nyu.edu/api/publications/?person=kannak01&sort=display_rank&in-biosketch=yes)
 
-Check out my preprints [here](http://library.med.nyu.edu/api/publications/?person=kannak01&sort=display_rank&in-biosketch=yes)
+Also, **blue** font means equal/senior/last/first author contribution
 
 ---
 
