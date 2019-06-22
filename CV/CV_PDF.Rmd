@@ -21,7 +21,7 @@ TRB 737, 227 E30th St. New York. NY 10016 \hfill kasthuri.kannan@nyumc.org
 
 \textbf{\textcolor{purple}{Professional Interests}}
 
-Omics, Systems biology, and Teaching. 
+Data science and Teaching. 
 
 \vspace{2mm}
 
