@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-### Homework 03 (due Aug. 7, 2018 12am)
+### Homework 03 
 
 ---
 
