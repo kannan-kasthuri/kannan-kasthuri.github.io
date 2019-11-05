@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \begin{center}
 \textbf{Kasthuri Kannan} \linebreak
-Data Scientist \linebreak
+Computational Biologist \linebreak
 https://kannan-kasthuri.github.io/
 \end{center}
 8-16 Susan Place. Fair Lawn. NJ 07410 \hfill kasthuri[at]gmail[dot]com
@@ -247,5 +247,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 \hrule
 
 \hrule
+
+Last Updated: Nov.5, 2019
 
 
