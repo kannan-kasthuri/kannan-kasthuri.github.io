@@ -80,6 +80,8 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
+[24] Dhanasekaran R, Baylot V, Kim M, Kuruvilla S, Bellovin D, Adeniji N, Rajan K A, Lai I, Gabay M, Tong L, Krishnan M, Park J, Hu T, Barbhuiya M A, Gentles A J, **Kannan, K**, Tran P T and Felsher D W. MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textbf{\textit{\textcolor{violet}{eLife}}}. Jan. 2020. [PMID: 31933479]
+
 [23] Hao Y, Ruiz R, Yang L, Neto AG, Amin MR, Kelly D, Achlatis S, Roof S, Bing R, **Kasthuri Kannan**, Brown SM, Pei Z, & Branski RC. Mitochondrial somatic mutations and lack of viral genomic variation in recurrent respiratory papillomatosis. \textbf{\textit{\textcolor{violet}{Scientific Reports}}}. Oct. 2019. [PMID: 31719597]
 
 [22] Lavanya Kannan, Tarjani Agarwal, Matija Snuderl, David Zagzag, Erik Sulman, Jason Huse,  and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Determines Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. Apr. 2019. bioRxiv 608414; doi: https://doi.org/10.1101/608414
@@ -248,6 +250,6 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Nov.18, 2019
+Last Updated: Jan.15, 2020
 
 

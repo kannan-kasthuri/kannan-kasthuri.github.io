@@ -17,6 +17,7 @@ figure figcaption {
 ---
 
 ### Publications and Preprints 
+Last Updated: Jan 15, 2020
 
 ---
 
@@ -25,6 +26,8 @@ Check out NYU's archive [here](http://library.med.nyu.edu/api/publications/?pers
 Also, **blue** font means equal/senior/last/first author contribution
 
 ---
+
+[24] Dhanasekaran R, Baylot V, Kim M, Kuruvilla S, Bellovin D, Adeniji N, Rajan K A, Lai I, Gabay M, Tong L, Krishnan M, Park J, Hu T, Barbhuiya M A, Gentles A J, **Kannan, K**, Tran P T and Felsher D W. MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. <span style="color:#e80c7a"> _eLife_</span>. Jan. 2020. [PMID: 31933479](https://pubmed.ncbi.nlm.nih.gov/31933479-myc-and-twist1-cooperate-to-drive-metastasis-by-eliciting-crosstalk-between-cancer-and-innate-immunity/?from_term=kasthuri+kannan&from_size=10&from_page=2&from_pos=8)
 
 [23] Hao Y, Ruiz R, Yang L, Neto AG, Amin MR, Kelly D, Achlatis S, Roof S, Bing R, **Kasthuri Kannan**, Brown SM, Pei Z, & Branski RC. Mitochondrial somatic mutations and lack of viral genomic variation in recurrent respiratory papillomatosis. <span style="color:#e80c7a"> _Scientific Reports_</span>. Oct. 2019. [PMID: 31719597](https://www.ncbi.nlm.nih.gov/pubmed/31719597)
 
