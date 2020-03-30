@@ -10,10 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \begin{center}
 \textbf{Kasthuri Kannan} \linebreak
-Computational Biologist \linebreak
-https://kannan-kasthuri.github.io/
+Associate Professor \linebreak
+https://kannan-kasthuri.github.io/ \linebreak
+\flushleft{Departments of Translational Molecular Pathology,Neurosurgery}
+\hfill{UT MD Anderson Cancer Center} 
 \end{center}
-8-16 Susan Place. Fair Lawn. NJ 07410 \hfill kasthuri[at]gmail[dot]com
 
 \vspace{2mm}
 
@@ -21,29 +22,32 @@ https://kannan-kasthuri.github.io/
 
 \textbf{\textcolor{purple}{Professional Interests}}
 
-Cancer Genomics and Biomedical Informatics/Data Science
+Genomics, Biomedical Informatics, Data Science, Imaging
 
 \vspace{2mm}
 
 \hrule
 
-\textbf{\textcolor{purple}{Data Science Collaborations (representative)}}
+\textbf{\textcolor{purple}{Collaborations (representative)}}
 
 \begin{flushleft}
 
-1. Jason Huse, MD, PhD, Associate Professor \& Director, MD Anderson Cancer Center. \linebreak
+1. Dean Felsher, Professor, Stanford University. \linebreak
+\hangindent=0.4cm MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textit{eLife}. Jan. 2020.
+
+2. Jason Huse, MD, PhD, Associate Professor \& Director, MD Anderson Cancer Center. \linebreak
 \hangindent=0.4cm Atrx inactivation drives disease-defining phenotypes in glioma cells of origin through global epigenomic remodeling. \textit{Nature Communications}. Mar. 2018.
 
-2. Matthias Karajannis, MD, MS, Chief, Pediatric Neuro-Oncology, MSKCC. \linebreak
+3. Matthias Karajannis, MD, MS, Chief, Pediatric Neuro-Oncology, MSKCC. \linebreak
 Recurrent homozygous deletion of DROSHA and microduplication of PDE4DIP containing the ancestral DUF1220 domain in pineoblastoma. \textit{Nature Communications}. July 2018.
 
-3. Matija Snuderl, MD, Director, Molecular Pathology, NYU. \linebreak
+4. Matija Snuderl, MD, Director, Molecular Pathology, NYU. \linebreak
 DNA methylation-based classification of human central nervous system tumors. \textit{Nature}. Mar. 2018.
 
-4. Orrin Devinsky, MD, Director, Comprehensive Epilepsy Center, NYU. \linebreak
+5. Orrin Devinsky, MD, Director, Comprehensive Epilepsy Center, NYU. \linebreak
 Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textit{Nature Genomic Medicine}. Mar. 2018.
 
-5. Adriana Heguy, PhD, Assistant Dean, Division of Advanced Research Technologies, NYU. \linebreak
+6. Adriana Heguy, PhD, Assistant Dean, Division of Advanced Research Technologies, NYU. \linebreak
 Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? \textit{Letters in Biomathematics}. Sept. 2016. 
 
 \end{flushleft}
@@ -166,24 +170,35 @@ Courant Institute of Mathematical Sciences, Manhattan, NY. Sept. 24, 2019
 
 \hrule
 
+\newpage
+
 \textbf{\textcolor{purple}{Employment History}}
 
 \begin{flushleft}
 
+\textbf{Associate Professor (Translational Molecular Pathology, Neurosurgery)} \hfill \textbf{Feb 2020} - \textbf{present} \linebreak
+University of Texas MD Anderson Cancer Center, Houston, TX
+\end{flushleft}
+
+a) Systems biology of gliomas - GLioma AnalySiS (GLASS) consortium studies.
+b) Image analytics at immuno profiling laboratory in the Department of Translational Molecular Pathology.
+
+\begin{flushleft}
+
 \textbf{Assistant Professor (Pathology)} \hfill \textbf{Dec 2013} - \textbf{Aug 2019} \linebreak
-New York University Langone Health
+New York University Langone Health, New York. NY
 
 \end{flushleft}
 
-a) Directed insights through data science applied to Next Generation Sequencing data (see publications)
-b) Software and pipeline development
-c) Statistical and mathematical modeling
-d) Director - Data science and Machine learning courses
+a) Directed insights through data science applied to Next Generation Sequencing data (see publications).
+b) Software and pipeline development.
+c) Statistical and mathematical modeling.
+d) Director - Data science and Machine learning courses.
 
 \begin{flushleft}
 
 \textbf{Research Associate/Fellow}	\hfill \textbf{Apr 2011 – Nov 2013} \linebreak
-Memorial Sloan-Kettering Cancer Center, New York	
+Memorial Sloan-Kettering Cancer Center, New York, NY	
 
 \end{flushleft}
 
@@ -195,7 +210,7 @@ d) Development of next generation sequencing pipelines and integrated study of a
 \begin{flushleft}
 
 \textbf{Research Associate} \hfill \textbf{Oct 2010 – Apr 2011} \linebreak
-Pennsylvania State University, State College				         	       
+Pennsylvania State University, State College, PA				         	       
 
 \end{flushleft}
 
@@ -206,7 +221,7 @@ c) Managed sequencing tasks at the Bioinformatics Consulting Center, Institute f
 \begin{flushleft}
 
 \textbf{Research Specialist} \hfill \textbf{Jan 2008 – Sep 2010} \linebreak
-Stowers Institute for Medical Research, Kansas City			     		       
+Stowers Institute for Medical Research, Kansas City, MO		     		       
 
 \end{flushleft}
 
@@ -224,7 +239,7 @@ g) Responsible for high quality image acquisition and microscope maintenance in 
 \begin{flushleft}
 
 \textbf{Research Intern} \hfill \textbf{Jan 2007 – Dec 2007} \linebreak
-Knowledge Based Systems, Inc., College Station			                                 
+Knowledge Based Systems, Inc., College Station, TX		                                 
 
 \end{flushleft}
 
@@ -250,6 +265,6 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Jan.15, 2020
+Last Updated: Mar.30, 2020
 
 
