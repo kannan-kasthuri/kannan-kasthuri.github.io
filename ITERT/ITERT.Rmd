@@ -1,57 +1,81 @@
 ---
 output:
-  html_document: default
+  bookdown::gitbook:
+    lib_dir: assets
+    split_by: chapter
+    config:
+      toolbar:
+        position: static
+    sharing: 
+      facebook: yes
+      twitter: yes
+      google: no
+      weibo: no
+      instapper: no
+      vk: no
+      all: ['facebook', 'google', 'twitter', 'weibo', 'instapaper']
+  bookdown::pdf_book:
+    keep_tex: yes
+  bookdown::html_book:
+    css: toc.css
+documentclass: book
 ---
+
+<style>
+body {
+text-align: justify}
+figure figcaption {
+    text-align: center;}
+}
+</style>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<style>
-
-body {
-text-align: justify;}
-
-figure figcaption {
-    text-align: center;}
-</style>
-
----
-
 <div style="text-align:center" markdown="1">
 
-![](BDS_NYU.png)
+![](image001.png)
 
 </div>
 
 ---
 
-<center> _Without data you are just another person with an opinion_ <br> - W. Edwards Deming </center>
-
-#### About the workshop
-
-Biomedical Data Science workshop @ NYU Langone Health is a five-day (intensive) data science program, where a team of professionals learns fundamentals of data science. The workshop is designed to demystify data science and to empower people perform data analytics using the R programming language. We will study and practice a wide range of topics, including R fundamentals, visualization, data manipulation and modeling. 
-
-#### Expectations
-
-The workshop **does not** have any pre-requisites, although a little programming experince will be a huge plus. There will be both hands-on sessions and lectures, and the trainees are encouraged (but not required) to bring their own data sets. Towards the end of this workshop the student will exhibit in-depth understanding of data science and analysis methods as well as proficiency in R. He/she will be encouraged to produce a portfolio that demonstrates mastery of analysis and visualization methods. 
-
-#### Agenda
-
-Each day the session will begin at 9 am and end at 4.30 pm with on-your-own lunch break between 12 noon and 1.30 pm. Lectures will be held between 9-10 am and 1.30-2.30 pm followed by hands-on sessions. The lecture agenda are as follows:
-
-Day 1: R fundamentals
-
-Day 2: R Markdown, Visualize and explore
-
-Day 3: Transform, Exploratory data analysis
-
-Day 4: Wrangle data 
-
-Day 5: Basic and advanced data modeling
-
-#### Where to apply and fees
-
-Fill out an application [here]() by _TBD_ at 11:59 pm. Due to volume restrictions, late applications will not be considered. Applicants will be notified at the end of _TBD_ with instructions to pay the fees. If you miss the deadline, you can sign up for the [general workshop form]() to be notified of future opportunities. The fee for the entire workshop is US $TBD/-
+<center> 
+<h2 class="w3-xxxlarge" style="font-weight:bold"> Programming for Data Analysis </h2> </center>
 
 ---
+
+### <span style="color: blue;"> Learning Objectives </span> {-}
+
+Towards the end of this course the student will exhibit in-depth understanding of data science and analysis methods as well as proficiency in R. The student will produce a portfolio of data analysis projects from the course that demonstrates mastery of analysis and visualization methods. He /She will be equipped for analysis of biomedical and genomic data sets. Another main objective of the course is to communicate statistical results correctly and effectively.
+
+### <span style="color: blue;"> Course Overview </span> {-}
+
+This course is designed to empower students to learn R programming language to conduct data science. We will study a wide range of topics, including, handing and querying databases, exploratory/confirmatory analysis and visualization in R. We will closely follow the book R for Data Science, however the emphasis will be given to working with biomedical data than datasets illustrated and used in the textbook.
+
+This course **does not** have any pre-requisites.
+
+### <span style="color: blue;"> Office Hours </span> {-}
+
+Through appointment and WebEx
+
+### <span style="color: blue;"> Course Assessment </span> {-}
+
+1. Programming Assignments (40%)
+2. Directed Insights (25%)
+3. Final Project (35%)
+
+### <span style="color: blue;"> Recommended Reading </span> {-}
+
+1. R for Data Science by Garrett Grolemund & Hadley Wickham - available [here](http://r4ds.had.co.nz/)
+2. R in Action by Robert I. Kabacoff
+3. Several online tutorials (just type "R tutorial" in google and follow the lead)
+
+### <span style="color: blue;"> Lecture 01 </span> {-}
+
+[PDF](https://kannan-kasthuri.github.io/Lecture_Files/PDA_Lecture_01/introduction.pdf)
+
+
+
