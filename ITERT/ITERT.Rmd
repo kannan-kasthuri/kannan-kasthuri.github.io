@@ -1,0 +1,57 @@
+---
+output:
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style>
+
+body {
+text-align: justify;}
+
+figure figcaption {
+    text-align: center;}
+</style>
+
+---
+
+<div style="text-align:center" markdown="1">
+
+![](BDS_NYU.png)
+
+</div>
+
+---
+
+<center> _Without data you are just another person with an opinion_ <br> - W. Edwards Deming </center>
+
+#### About the workshop
+
+Biomedical Data Science workshop @ NYU Langone Health is a five-day (intensive) data science program, where a team of professionals learns fundamentals of data science. The workshop is designed to demystify data science and to empower people perform data analytics using the R programming language. We will study and practice a wide range of topics, including R fundamentals, visualization, data manipulation and modeling. 
+
+#### Expectations
+
+The workshop **does not** have any pre-requisites, although a little programming experince will be a huge plus. There will be both hands-on sessions and lectures, and the trainees are encouraged (but not required) to bring their own data sets. Towards the end of this workshop the student will exhibit in-depth understanding of data science and analysis methods as well as proficiency in R. He/she will be encouraged to produce a portfolio that demonstrates mastery of analysis and visualization methods. 
+
+#### Agenda
+
+Each day the session will begin at 9 am and end at 4.30 pm with on-your-own lunch break between 12 noon and 1.30 pm. Lectures will be held between 9-10 am and 1.30-2.30 pm followed by hands-on sessions. The lecture agenda are as follows:
+
+Day 1: R fundamentals
+
+Day 2: R Markdown, Visualize and explore
+
+Day 3: Transform, Exploratory data analysis
+
+Day 4: Wrangle data 
+
+Day 5: Basic and advanced data modeling
+
+#### Where to apply and fees
+
+Fill out an application [here]() by _TBD_ at 11:59 pm. Due to volume restrictions, late applications will not be considered. Applicants will be notified at the end of _TBD_ with instructions to pay the fees. If you miss the deadline, you can sign up for the [general workshop form]() to be notified of future opportunities. The fee for the entire workshop is US $TBD/-
+
+---
