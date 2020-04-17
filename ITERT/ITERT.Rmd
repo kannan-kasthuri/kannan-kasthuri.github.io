@@ -61,12 +61,6 @@ This course **does not** have any pre-requisites.
 
 Through appointment and WebEx
 
-### <span style="color: blue;"> Course Assessment </span> {-}
-
-1. Programming Assignments (40%)
-2. Directed Insights (25%)
-3. Final Project (35%)
-
 ### <span style="color: blue;"> Recommended Reading </span> {-}
 
 1. R for Data Science by Garrett Grolemund & Hadley Wickham - available [here](http://r4ds.had.co.nz/)
