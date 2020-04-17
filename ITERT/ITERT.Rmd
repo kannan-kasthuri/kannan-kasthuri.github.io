@@ -75,7 +75,8 @@ Through appointment and WebEx
 
 ### <span style="color: blue;"> Lecture 01 </span> {-}
 
-[PDF](https://kannan-kasthuri.github.io/Lecture_Files/PDA_Lecture_01/introduction.pdf)
+[[PDF](introduction.pdf)]
+[[Link](Lecture_01_ITERT.html)]
 
 
 
