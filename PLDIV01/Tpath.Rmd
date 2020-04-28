@@ -74,11 +74,11 @@ Loss of contact inhibition of locomotion and loss of contact inhibition of proli
 
 ## H&E, single staining
 
-Inflammatory areas in cells can be identified through H&E staining, and spatial analysis can identify if there is clustering that happens in those areas. The following H&E shows [[1]](#references-and-credits) non-inflammatory (left) and inflammatory (right) regions on a diaphragm section of an MDX mouse. 
+Inflammatory areas in cells can be identified through H&E staining, and spatial analysis can identify if there is clustering that happens in those areas. The following microphotographs shows H&E sections of lung  adenocarcinoma  with different levels of inflammation; A, absence or rare lymphoid infiltrates; B, mild, C, moderate and D, intense lymphoid infiltrate. Red arrows indicate lymphoid cells, black head arrows indicates malignant cells 
 
 <div style="text-align:center" markdown="1">
 
-![H&E identifying inflammation in a diaphragm section of an MDX mouse](HE01.png){width=100%}
+![H&E identifying different levels of inflammation in lung adenocarcinoma](HE01.png){width=70%}
 
 </div>
 
@@ -105,11 +105,12 @@ These questions can be readily answered through spatial point pattern analysis.
 
 ## H&E, dual staining 
 
-Epithelial to Messenchymal Transition (EMT) is an important phenomena by which epithelial cells lose their cell polarity and adhesion, to gain migratory and invasive properties and become mesenchymal stem cells. The dual H&E staining below shows TTF1, the nuclear marker for epithelial cells (red), and Vimentin, the messenchymal marker (yellow) in a mouse lung tissue, resurrected from central (above) and peripheral regions (below).
+Epithelial to Messenchymal Transition (EMT) is an important phenomena by which epithelial cells lose their cell polarity and adhesion, to gain migratory and invasive properties and become mesenchymal stem cells. The dual H&E staining below shows histological sections of a mouse model with lung adenocarcinoma stained with chromogenic immunohistochemistry with 2 biomarkers: red, TTF-1; and brown, Vimentin, to study epithelial and mesenchymal transition. No cell were positive for both biomarkers by standard microscopy. Digital image analysis was performed to quantify the amount of positive Vimentin cells in relation to epithelial  cells. XY coordinates were extracted for further analysis.
+
 
 <div style="text-align:center" markdown="1">
 
-![H&E dual staining, Mouse Lung, Central (top) and Peripheral (bottom)](HE02.jpg){width=100%}
+![H&E dual staining, Mouse lung adenocarcinoma, Central (top) and Peripheral (bottom)](HE02.jpg){width=100%}
 
 </div>
 
@@ -133,11 +134,13 @@ Needless to say, these types of directed insights can be integrated with clinica
 
 ## Immunohistochemistry, Tumor
 
-Several studies have revealed elevated CD8 positive T cells in the tumor micro-environment as an indicator of good prognosis in cancers. A recent <a href="https://jitc.biomedcentral.com/articles/10.1186/s40425-019-0797-4" target="_blank"> study </a> has shown the density and spatial tissue distribution of CD8+ immune cells predict response and outcome in melanoma patients who receive MAPK inhibitors. The following figure shows chromogenic IHC staining of a melanoma tissue for CD8 marker. 
+Several studies have revealed elevated CD8 positive T cells in the tumor micro-environment as an indicator of good prognosis in cancers. A recent <a href="https://jitc.biomedcentral.com/articles/10.1186/s40425-019-0797-4" target="_blank"> study </a> has shown the density and spatial tissue distribution of CD8+ immune cells predict response and outcome in melanoma patients who receive MAPK inhibitors. Here is a microphotograph showing a lung adenocarcinoma stained with CD8 by immunohistochemistry  to quantify the amount of CD8+ cells in the whole tumor tissue using Digital image analysis (Halo software, Indica Labs). Results were reported as cell densities (n/mm2). XY coordinates were extracted for further analysis.
+
+
 
 <div style="text-align:center" markdown="1">
 
-![IHC identifying CD8 positive cells in melenoma tissue](CD8WT.jpg){width=100%}
+![IHC identifying CD8 positive cells in lung adenocarcinoma](CD8WT.jpg){width=100%}
 
 </div>
 
@@ -158,11 +161,12 @@ Note that these types of analysis could be conducted for several clinical variab
 
 ## Immunohistochemistry, Tumor+Stroma
 
-Both tumor and stroma can be stained for markers in IHC which can be useful for identifying antibodies specific to these tissue types. Here is an example of identifying CD8 positive cells (red) in both tumor and stroma in a lung tissue biopsy.
+Both tumor and stroma can be stained for markers in IHC which can be useful for identifying antibodies specific to these tissue types. The following is a microphotograph showing a lung adenocarcinoma stained with CD8 by immunohistochemistry  to quantify the amount of CD8+ cells in tumor and Stroma using Digital image analysis (Halo software, Indica Labs) . For segmentation, a classifier (Random Forest) was trained to create annotation with Tumor (red) and Stroma (yellow) followed for a QC by a pathologist. Mark-up images show positive cells in red in the area of interest. Results were reported as cell densities (n/mm2). XY coordinates were extracted for further analysis.
+
 
 <div style="text-align:center" markdown="1">
 
-![IHC identifying CD8 positive cells in tumor and stroma in a lung cancer tissue](CD8TumorStroma.jpg){width=100%}
+![IHC identifying CD8 positive cells in tumor and stroma in a lung adenocarcinoma](CD8TumorStroma.jpg){width=100%}
 
 </div>
 
@@ -190,11 +194,11 @@ The analyses above in H&E and IHC staining highlight the fact that spatial stati
 
 ## In situ hybridization, RNAscope
 
-Spatial analysis can provide valuable information even if the point objects are not cells, since the points themselves are a representation of cells (and all analysis needs to be corrected for these artifacts and account for cell sizes and other biological variables). An highlight of this would be an in situ hybridization using RNAscope, an image analysis platform by Advanced Cell Diagnostics. We have here, an in situ hybridization of certain probes in melanoma tissue in two regions of interest to understand the RNA-seq patterns of the genes SLC45A, PPIB and DapB.
+Spatial analysis can provide valuable information even if the point objects are not cells, since the points themselves are a representation of cells (and all analysis needs to be corrected for these artifacts and account for cell sizes and other biological variables). An highlight of this would be an in situ hybridization using RNAscope, an image analysis platform by Advanced Cell Diagnostics. We have here, microphotographs of melanoma sections stained with RNAScope for the following probes: SCLC45A (target probe), PPIB (Positive control) and DapB (negative control), showing heterogeneity of RNA expression (red dots indicated by an arrow. Digital image analysis was used for a better assessment of the level of expression.
 
 <div style="text-align:center" markdown="1">
 
-![ISH (RNAscope) image for SLC45A, PPIB and DapB in two regions in melanoma tissue](ISH01.png){width=100%}
+![ISH (RNAscope) meleoma sections for SLC45A, PPIB and DapB probes in two regions](ISH01.png){width=100%}
 
 </div>
 
@@ -320,12 +324,9 @@ Coming soon -
 
 ## References and credits
 
-1. H&E staining of diaphragm section of an MDX mouse:
-http://www.agadabio.com/services/inflammation-hematoxylin-and-eosin/
+1. Janis M. Taube, Geoffrey D. Young, Tracee L. McMiller, Shuming Chen, January T. Salas, Theresa S. Pritchard, Haiying Xu, Alan K. Meeker, Jinshui Fan, Chris Cheadle, Alan E. Berger, Drew M. Pardoll and Suzanne L. Topalian. Differential Expression of Immune-Regulatory Genes Associated with PD-L1 Display in Melanoma: Implications for PD-1 Pathway Blockade. _Clin. Cancer Res._ 21(17); 3969-76. [[Link to the article]](https://clincancerres.aacrjournals.org/content/21/17/3969)
 
-2. Janis M. Taube, Geoffrey D. Young, Tracee L. McMiller, Shuming Chen, January T. Salas, Theresa S. Pritchard, Haiying Xu, Alan K. Meeker, Jinshui Fan, Chris Cheadle, Alan E. Berger, Drew M. Pardoll and Suzanne L. Topalian. Differential Expression of Immune-Regulatory Genes Associated with PD-L1 Display in Melanoma: Implications for PD-1 Pathway Blockade. _Clin. Cancer Res._ 21(17); 3969-76. [[Link to the article]](https://clincancerres.aacrjournals.org/content/21/17/3969)
-
-3. We acknowledge and thank the following faculty and members for providing the images and the data:
+2. We acknowledge and thank the following faculty and members for providing the images and the data:
 
   * Dr. Solis Soto, Luisa Maren, for providing the H&E single & dual staining, IHC Tumor, IHC Tumor & Stroma and ISH RNAscope images and the processed data.
   
