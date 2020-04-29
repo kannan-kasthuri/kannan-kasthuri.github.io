@@ -47,6 +47,9 @@ where "package_name" is the name of the package you want to install. For instanc
 
 in the console and you should have it.
 
+
+I changed this.
+
 ---
 
 #### Further resources/support
