@@ -78,7 +78,7 @@ Inflammatory areas in cells can be identified through H&E staining, and spatial 
 
 <div style="text-align:center" markdown="1">
 
-![H&E identifying different levels of inflammation in lung adenocarcinoma](HE01.png){width=70%}
+![H&E identifying different levels of inflammation in lung adenocarcinoma. Image courtesy:  Dr. Solis Soto](HE01.png){width=70%}
 
 </div>
 
@@ -110,7 +110,7 @@ Epithelial to Messenchymal Transition (EMT) is an important phenomena by which e
 
 <div style="text-align:center" markdown="1">
 
-![H&E dual staining, Mouse lung adenocarcinoma, Central (top) and Peripheral (bottom)](HE02.jpg){width=100%}
+![H&E dual staining, Mouse lung adenocarcinoma, Central (top) and Peripheral (bottom). Image courtesy: Dr. Solis Soto](HE02.jpg){width=100%}
 
 </div>
 
@@ -140,7 +140,7 @@ Several studies have revealed elevated CD8 positive T cells in the tumor micro-e
 
 <div style="text-align:center" markdown="1">
 
-![IHC identifying CD8 positive cells in lung adenocarcinoma](CD8WT.jpg){width=100%}
+![IHC identifying CD8 positive cells in lung adenocarcinoma. Image courtesy: Dr. Solis Soto](CD8WT.jpg){width=100%}
 
 </div>
 
@@ -166,7 +166,7 @@ Both tumor and stroma can be stained for markers in IHC which can be useful for 
 
 <div style="text-align:center" markdown="1">
 
-![IHC identifying CD8 positive cells in tumor and stroma in a lung adenocarcinoma](CD8TumorStroma.jpg){width=100%}
+![IHC identifying CD8 positive cells in tumor and stroma in a lung adenocarcinoma. Image courtesy: Dr. Solis Soto](CD8TumorStroma.jpg){width=100%}
 
 </div>
 
@@ -198,7 +198,7 @@ Spatial analysis can provide valuable information even if the point objects are 
 
 <div style="text-align:center" markdown="1">
 
-![ISH (RNAscope) meleoma sections for SLC45A, PPIB and DapB probes in two regions](ISH01.png){width=100%}
+![ISH (RNAscope) meleoma sections for SLC45A, PPIB and DapB probes in two regions. Image courtesy: Dr. Solis Soto](ISH01.png){width=100%}
 
 </div>
 
@@ -222,7 +222,7 @@ Multiplexed immunofluorescence (mIF) enables imaging of FFPE tissue and tumor sp
 
 <div style="text-align:center" markdown="1">
 
-![mIF image of non-small cell lung carcinoma (left) and an example of a processed mIF image (right) ](MIF01.png){width=100%}
+![mIF image of non-small cell lung carcinoma (left) and an example of a processed mIF image (right). Image courtesy: Dr. Francisco Cruz, Dr. Yang](MIF01.png){width=100%}
 
 </div>
 
@@ -230,7 +230,7 @@ The processed data in the right would allow us to identify various kinds of immu
 
 <div style="text-align:center" markdown="1">
 
-![T-cell types and corresponding markers that are expressed in the tissue](MIF02.png){width=100%}
+![T-cell types and corresponding markers that are expressed in the tissue. Image courtesy: Dr. Francisco Cruz](MIF02.png){width=100%}
 
 </div>
 
@@ -254,7 +254,7 @@ The department of translational molecular pathology is currently offering Imagin
 
 <div style="text-align:center" markdown="1">
 
-![Imaging mass cytometry cell segmented image in breast adenocarcinoma](IMC01.png){width=100%}
+![Imaging mass cytometry cell segmented image in breast adenocarcinoma. Image courtesy: Dr. Francisco Cruz](IMC01.png){width=100%}
 
 </div>
 
