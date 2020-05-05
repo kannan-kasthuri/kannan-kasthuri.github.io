@@ -77,3 +77,8 @@ Through appointment and WebEx
 [[Link]](CopyOfLecture_02.html)
 [[Presentation]](CopyOfLecture_02_Presentation.html)
 
+### <span style="color: blue;"> Lecture 03 </span> {-}
+
+[[Link]](Lecture_03/Lecture_03.html)
+[[Presentation]](Lecture_03/Lecture_03_Presentation.html)
+
