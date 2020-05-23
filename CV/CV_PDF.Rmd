@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 \textbf{Kasthuri Kannan} \linebreak
 Associate Professor \linebreak
 https://kannan-kasthuri.github.io/ \linebreak
-\flushleft{Departments of Translational Molecular Pathology,Neurosurgery}
+\flushleft{Departments of Translational Molecular Pathology \& Neurosurgery}
 \hfill{UT MD Anderson Cancer Center} 
 \end{center}
 
@@ -22,7 +22,7 @@ https://kannan-kasthuri.github.io/ \linebreak
 
 \textbf{\textcolor{purple}{Professional Interests}}
 
-Genomics, Biomedical Informatics, Data Science, Imaging
+Systems Biology, Translational Pathology, Genomics
 
 \vspace{2mm}
 
@@ -83,6 +83,8 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 ```
 
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
+
+[25] Iris Scherwitzl, Silvana Opp, Alicia M. Hurtado, Christine Pampeno, Cynthia Loomis, **Kasthuri Kannan**, Minjun Yu, and Daniel Meruelo. Sindbis Virus with Anti-OX40 Overcomes the Immunosuppressive Tumor Microenvironment of Low-Immunogenic Tumors. \textbf{\textit{\textcolor{violet}{Molecular Therapy - Oncolytics}}}. Jun. 2020.
 
 [24] Dhanasekaran R, Baylot V, Kim M, Kuruvilla S, Bellovin D, Adeniji N, Rajan K A, Lai I, Gabay M, Tong L, Krishnan M, Park J, Hu T, Barbhuiya M A, Gentles A J, **Kannan, K**, Tran P T and Felsher D W. MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textbf{\textit{\textcolor{violet}{eLife}}}. Jan. 2020. [PMID: 31933479]
 
@@ -166,12 +168,6 @@ Courant Institute of Mathematical Sciences, Manhattan, NY. Sept. 24, 2019
 
 \end{flushleft}
 
-\vspace{2mm}
-
-\hrule
-
-\newpage
-
 \textbf{\textcolor{purple}{Employment History}}
 
 \begin{flushleft}
@@ -247,10 +243,6 @@ a) Offered significant ideas for logistics management in Oklahoma Air Logistics 
 b) Proposed several cost and time saving measures from directed insights obtained via predictive modeling.
 c) Initiated business intelligence for aircraft movement operations at the Tinker Air Force Base.
 
-\vspace{2mm}
-
-\hrule
-
 \textbf{\textcolor{purple}{Teaching (Course Director)}}
 
 a) Programming for Data Analysis: https://kannan-kasthuri.github.io/pda.html
@@ -265,6 +257,6 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Mar.30, 2020
+Last Updated: May.23, 2020
 
 
