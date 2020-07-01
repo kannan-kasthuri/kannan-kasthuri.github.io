@@ -70,7 +70,7 @@ Through appointment and WebEx
 ### <span style="color: blue;"> Lectures </span> {-}
 
 [[Lecture 01](introduction.pdf)] [[Lecture 02]](CopyOfLecture_02.html) [[Lecture 03]](Lecture_03/Lecture_03.html) 
-[[Lecture 04]](Lecture_04/Lecture_04.html) [[Lecture 05]](Lecture_05/DS04.html) [[Lecture 06]](Lecture_06/DS05.html) [[Lecture 07]](Lecture_07/DS06.html) [[Lecture 08]](Lecture_0/8DS07.html) [[Lecture 09]](Lecture_09/DS08.html)
+[[Lecture 04]](Lecture_04/Lecture_04.html) [[Lecture 05]](Lecture_05/DS04.html) [[Lecture 06]](Lecture_06/DS05.html) [[Lecture 07]](Lecture_07/DS06.html) [[Lecture 08]](Lecture_08/DS07.html) [[Lecture 09]](Lecture_09/DS08.html)
 
 
 
