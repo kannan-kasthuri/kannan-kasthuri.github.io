@@ -67,24 +67,10 @@ Through appointment and WebEx
 2. R in Action by Robert I. Kabacoff
 3. Several online tutorials (just type "R tutorial" in google and follow the lead)
 
-### <span style="color: blue;"> Lecture 01 </span> {-}
+### <span style="color: blue;"> Lectures </span> {-}
 
-[[PDF](introduction.pdf)]
-[[Link](Lecture_01_ITERT.html)]
+[[Lecture 01](introduction.pdf)] [[Lecture 02]](CopyOfLecture_02.html) [[Lecture 03]](Lecture_03/Lecture_03.html) 
+[[Lecture 04]](Lecture_04/Lecture_04.html) [[Lecture 05]](Lecture_05/DS04.html) [[Lecture 06]](Lecture_06/DS05.html) [[Lecture 07]](Lecture_07/DS06.html) [[Lecture 08]](Lecture_0/8DS07.html) [[Lecture 09]](Lecture_09/DS08.html)
 
-### <span style="color: blue;"> Lecture 02 </span> {-}
-
-[[Link]](CopyOfLecture_02.html)
-[[Presentation]](CopyOfLecture_02_Presentation.html)
-
-### <span style="color: blue;"> Lecture 03 </span> {-}
-
-[[Link]](Lecture_03/Lecture_03.html)
-[[Presentation]](Lecture_03/Lecture_03_Presentation.html)
-
-### <span style="color: blue;"> Lecture 04 </span> {-}
-
-[[Link]](Lecture_04/Lecture_04.html)
-[[Presentation]](Lecture_04/Lecture_04_Presentation.html)
 
 
