@@ -1,0 +1,635 @@
+---
+# title: "Lecture 03"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### Data Science: Transform and Explore
+
+---
+
+We will work with HANES data set. In the spirit of the data transformation section in R for Data Science, we will look into `dplyr()` functions. As usual, we will first import the curated HANES data set in RStudio:
+
+```{r eval=TRUE, message=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Rename the HSQ_1 factor for identification
+  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
+  # Rename the DX_DBTS as a factor
+  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
+  # Omit all NA from the data frame
+  HANES <- na.omit(HANES)
+  # Observe the structure
+  str(HANES)
+```
+
+We will see more about tibbles in the wrangle section but we will make a short note of it now.
+
+A tibble, or `tbl_df`, is a modern reimagining of the data frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces one to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced `print method()` which makes them easier to use with large datasets containing complex objects.
+
+To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Load the tidyverse library
+  library(tidyverse)
+  # Convert HANES data frame into a tibble and observe it
+  HANES_TIB <- as.tibble(HANES)
+  HANES_TIB
+```
+
+
+Tranformation basics are six key `dplyr` library functions that will allow us to solve vast majority of data manipulation challenges:
+
+1. We can pick observations by their values using the function `filter()`.
+
+2. Reorder the rows applying `arrange()` operation to a data set.
+
+3. We can choose variables by their names using `select()`.
+
+4. Create new variables through `mutate()`.
+
+5. Find the summary using `summarise()` function.
+
+6. And the most important of all which is the `group_by()` operation which can be used with any of the above five.
+
+---
+
+#### The `filter()` function
+
+
+The filter function allows us to pick a subset of information (or rows) from our dataset.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Pick all the records of patients with age == 45 and HDL value of 50
+  filter(HANES, SPAGE == 45, HDL == 50)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Pick all the records of patients with age == 45 and HDL value of 50
+  filter(HANES, SPAGE == 45, HDL == 50)
+```
+
+**Note**: All `dplyr` functions write the result to a new data frame. If we want to store the data, we need to assign the result to a variable.
+
+We can also use comparison and logical operators. For instance,
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Pick all the records of patients who are between 45 and 46 and HDL value of 50
+  filter(HANES, SPAGE >= 45 & SPAGE <= 46, HDL == 50)
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Pick all the records of patients who are between 45 and 46 and HDL value of 50
+  filter(HANES, SPAGE >= 45 & SPAGE <= 46, HDL == 50)
+```
+
+will list all the records for patients with age between $45$ and $46$ and who have the HDL value of $50$.
+
+**Note**: `filter()` only includes rows where the condition is TRUE; it excludes both FALSE **and** NA values. 
+
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+* Find all patients who
+
+1. Are females and in between ages $45$ and $60$
+2. Are in excellent or good health status
+3. Who have diabetes but not yet diagnosed
+4. Have total cholesterol between $150$ and $200$
+5. Have glucose levels greater than $75$
+6. Who had poor health status but with more than median HDL values
+7. High content of mercury (more than median) in their urine
+
+* How many patients have a missing UACR value in the HANES dataset? 
+
+---
+
+#### The `arrange()` function
+
+
+`arrange(`) works similar to filter function except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If we provide more than one column name, each additional column will be used to break ties in the values of preceding columns:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Arrange the data frame arranging GENDER and AGE with descending order of the variable UCREATININE
+  a <- arrange(HANES, GENDER, SPAGE, desc(UCREATININE))
+  atib <- as.tibble(a)
+  atib
+```
+  
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Arrange the data frame arranging GENDER and AGE with descending order of the variable UCREATININE
+  a <- arrange(HANES, GENDER, SPAGE, desc(UCREATININE))
+  atib <- as.tibble(a)
+  atib
+```
+
+**Note**: Missing values are always sorted at the end.
+
+To view the last few entries of the data frame/tibble, one can use the `tail()` function.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  tail(atib)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Show the last few entries
+  tail(atib)
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+1. Sort HANES to find patients with highest cholesterol. Do the same to find patients with least cholesterol.
+
+2. Sort HANES to find pateints with high A1C.
+
+---
+
+#### The `select()` function
+
+The orginal HANES data set has $704$ variables/columns. It is common for real world data sets to be large and we may want to quickly zoom into the variables of interest. The `select()` function allows us to do that. Here is a code to select only A1C and GLUCOSE variables:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Select only the A1C and GLUCOSE variables from the HANES data
+  s <- select(HANES, A1C, GLUCOSE)
+  as.tibble(s)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Select only the A1C and GLUCOSE variables from the HANES data
+  s <- select(HANES, A1C, GLUCOSE)
+  as.tibble(s)
+```
+
+An useful helper arument is the `everything()` function that allows keeping all the variables and pushing the variables of interest in the front.
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Push the A1C and GLUCOSE variables to the front keeping everything
+  s <- select(HANES, A1C, GLUCOSE, everything())
+  as.tibble(s)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Push the A1C and GLUCOSE variables to the front keeping everything
+  s <- select(HANES, A1C, GLUCOSE, everything())
+  as.tibble(s)
+```
+
+---
+
+#### The `mutate()` function
+
+We can add new columns to the data set using the `mutate()` function. For example, this code makes a new variable that is the sum of HDL and LDL estimate, stores it in a variable "H_L" to find the ratio between cholesterol and this new variable, H_L:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+   # Select only the variables LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE
+   HANES_sub <- select(HANES,LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE)
+   # Add a new variable H_L that is a sum of HDL and LDL
+   m <- mutate(HANES_sub, H_L = HDL+LDLESTIMATE, ratio=CHOLESTEROLTOTAL/H_L)
+   as.tibble(m)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+   # Select only the variables LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE
+   HANES_sub <- select(HANES,LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE)
+   # Add a new variable H_L that is a sum of HDL and LDL
+   m <- mutate(HANES_sub, H_L = HDL+LDLESTIMATE, ratio=CHOLESTEROLTOTAL/H_L)
+   as.tibble(m)
+```
+
+The `transmute()` function retains only the created variables.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+   # Select only the variables LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE
+   HANES_sub <- select(HANES,LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE)
+   # Add a new variable H_L that is a sum of HDL and LDL
+   m <- transmute(HANES_sub, H_L = HDL+LDLESTIMATE, ratio=CHOLESTEROLTOTAL/H_L)
+   as.tibble(m)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+   # Select only the variables LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE
+   HANES_sub <- select(HANES,LDLESTIMATE,HDL,CHOLESTEROLTOTAL,TRIGLYCERIDE)
+   # Add a new variable H_L that is a sum of HDL and LDL
+   m <- transmute(HANES_sub, H_L = HDL+LDLESTIMATE, ratio=CHOLESTEROLTOTAL/H_L)
+   as.tibble(m)
+```
+
+There are several useful functions for data manipulation such as `lag()`, `lead()`, `cumsum()`, `min_rank()` etc. and wrappers around them. One of them is the `top_n()` function that is made out of the `filter()` and `min_rank()` functions that would list the top $n$ values from the data. For example, here is a code to select the top $5$ values in the above ratio.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Select the top 5 ratios in the above transmuted data frame m
+  top_5_ratio <-  top_n(m, 5, ratio)
+  top_5_ratio
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Select the top 5 ratios in the above transmuted data frame m
+  top_5_ratio <-  top_n(m, 5, ratio)
+  top_5_ratio
+```
+
+---
+
+#### The `group_by()` and `summarise()` functions
+
+
+The `group_by()` is an extremely useful function that facililates grouped analysis and along with `summarise()` they can provide vital statistics for a group. Let us say we want to find the mean cholesterol level for each gender, the `group_by()` and `summarise()` operation can be extremely handy.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group the HANES data by GENDER 
+  HANES_by_gender <- group_by(HANES, GENDER)
+  # Find the mean cholesterol level for the two GENDERS
+  summarise(HANES_by_gender, mean_cholesterol = mean(CHOLESTEROLTOTAL))
+```
+
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Group the HANES data by GENDER 
+  HANES_by_gender <- group_by(HANES, GENDER)
+  # Find the mean cholesterol level for the two GENDERS
+  summarise(HANES_by_gender, mean_cholesterol = mean(CHOLESTEROLTOTAL))
+```
+
+We find the mean cholesterol levels for females are little higher than males.
+
+The `summarise()` has a useful function called the `count()` that will count the number of items appearing in a group. For example, here is an analysis that shows the relationship between HDL and LDL for each age, grouped by the number of patients with the particular age.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # First group the patients by age
+  by_AGE <- group_by(HANES, SPAGE)
+  # Summarize by counting the number of people in that age, and finding the mean HDL and LDL values
+  DL <- summarise(by_AGE,
+                   count = n(),
+                   H = mean(HDL),
+                   L = mean(LDLESTIMATE))
+  # We remove the groups with five people or less
+  DL <- filter(DL,count > 5)
+  # Plot this data, with point for count estimates and smoothing it by line
+  ggplot(data = DL, mapping = aes(x = H, y = L)) +
+    geom_point(aes(size = count), alpha = 1/3) +
+    geom_smooth(se = FALSE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # First group the patients by age
+  by_AGE <- group_by(HANES, SPAGE)
+  # Summarize by counting the number of people in that age, and finding the mean HDL and LDL values
+  DL <- summarise(by_AGE,
+                   count = n(),
+                   H = mean(HDL),
+                   L = mean(LDLESTIMATE))
+  # We remove the groups with five people or less
+  DL <- filter(DL,count > 5)
+  # Plot this data, with point for count estimates and smoothing it by line
+  ggplot(data = DL, mapping = aes(x = H, y = L)) +
+    geom_point(aes(size = count), alpha = 1/3) +
+    geom_smooth(se = FALSE)
+```
+
+The big disadvantage in the above code is the necessity to re-type the variables again and again, which can be eliminated through the use of `%>%` symbol. As the analysis becomes complicated, piping becomes extremely useful. The following code is the piped version of the above code producing the exact same output.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Pipe the HANES data to the group_by function, grouping by age
+  DL <- HANES %>% group_by(SPAGE) %>% 
+  # and pipe this to summarize function
+  summarise(count = n(),
+            H = mean(HDL),
+            L = mean(LDLESTIMATE)) %>% 
+  # And pipe this result to filter the count < 5
+  filter(count > 5)
+  # Plot this data, with point for count estimates and smoothing it by line
+  ggplot(data = DL, mapping = aes(x = H, y = L)) +
+    geom_point(aes(size = count), alpha = 1/3) +
+    geom_smooth(se = FALSE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Pipe the HANES data to the group_by function, grouping by age
+  DL <- HANES %>% group_by(SPAGE) %>% 
+  # and pipe this to summarize function
+  summarise(count = n(),
+            H = mean(HDL),
+            L = mean(LDLESTIMATE)) %>% 
+  # And pipe this result to filter the count < 5
+  filter(count > 5)
+  # Plot this data, with point for count estimates and smoothing it by line
+  ggplot(data = DL, mapping = aes(x = H, y = L)) +
+    geom_point(aes(size = count), alpha = 1/3) +
+    geom_smooth(se = FALSE)
+```
+
+##### Missing values
+
+The use of the function `na.rm()` inside summarise can be extremely useful as this example shows:
+
+(_Note: Since we already removed 'NA' from our dataset, we import the new data with NA in it_)
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES_with_NA <- read.csv(text=getURL(URL))
+```
+
+**Without removing NA**
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by AGE and GENDER and
+  HANES_with_NA %>% 
+  group_by(SPAGE,GENDER) %>% 
+  # summarize the mean of cholesterol for each group without removing NA
+  summarise(mean = mean(CHOLESTEROLTOTAL))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+ # Group by AGE and GENDER and
+  HANES_with_NA %>% 
+  group_by(SPAGE,GENDER) %>% 
+  # summarize the mean of cholesterol for each group without removing NA
+  summarise(mean = mean(CHOLESTEROLTOTAL))
+```
+
+**Removing NA**
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by AGE and GENDER and 
+  HANES_with_NA %>% 
+  group_by(SPAGE,GENDER) %>% 
+  # summarize the mean of cholesterol for each group by removing NA
+  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Group by AGE and GENDER and 
+  HANES_with_NA %>% 
+  group_by(SPAGE,GENDER) %>% 
+  # summarize the mean of cholesterol for each group by removing NA
+  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
+```
+
+We can also filter through the missing values first -
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Filter the data and get no NA values 
+  HANES_with_NA %>% filter(!is.na(CHOLESTEROLTOTAL)) %>%
+  # group by AGE and GENDER 
+  group_by(SPAGE,GENDER) %>% 
+  # and find the mean of cholesterol for each group
+  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Filter the data and get no NA values 
+  HANES_with_NA %>% filter(!is.na(CHOLESTEROLTOTAL)) %>%
+  # group by AGE and GENDER
+  group_by(SPAGE,GENDER) %>% 
+  # and find the mean of cholesterol for each group
+  summarise(mean = mean(CHOLESTEROLTOTAL, na.rm=TRUE))
+```
+
+Whenever we do aggregations using `group_by()` it is good to include count information that will give the information on the distribution and extreme values.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by AGE, GENDER
+  cholesterol <- HANES %>% 
+  group_by(SPAGE,GENDER) %>%
+  # and summarise mean cholesterol
+  summarise(mean_cholesterol = mean(CHOLESTEROLTOTAL))
+
+  # We can then plot the count information
+  ggplot(data = cholesterol, mapping = aes(x = mean_cholesterol)) + 
+  geom_freqpoly(binwidth = 10)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Group by AGE, GENDER
+  cholesterol <- HANES %>% 
+  group_by(SPAGE,GENDER) %>%
+  # and summarise mean cholesterol
+  summarise(mg_cholesterol = mean(CHOLESTEROLTOTAL))
+
+  # We can then plot the count information
+  ggplot(data = cholesterol, mapping = aes(x = mg_cholesterol)) + 
+  geom_freqpoly(binwidth = 10)
+```
+
+This reveals that there are patients with extremely high cholesterol ($300$ or more). How does the cholesterol vary over the age group? We can get more insight if we draw a plot of the ratio HDL/LDL and cholesterol for each agegroup:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # For each AGEGROUP find the mean H_L ratio and cholesterol information
+  CHO_L_D <- HANES %>% 
+  group_by(AGEGROUP) %>% 
+  summarise(H_L = mean(HDL) / mean(LDLESTIMATE),
+            CHO = mean(CHOLESTEROLTOTAL))
+
+  # Plot this information 
+  CHO_L_D %>% 
+  ggplot(mapping = aes(x = H_L, y = CHO)) +
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # For each AGEGROUP find the mean H_L ratio and cholesterol information
+  CHO_L_D <- HANES %>% 
+  group_by(AGEGROUP) %>% 
+  summarise(H_L = mean(HDL) / mean(LDLESTIMATE),
+            CHO = mean(CHOLESTEROLTOTAL))
+  
+  # Plot this information 
+  CHO_L_D %>% 
+  ggplot(mapping = aes(x = H_L, y = CHO)) +
+  geom_point(mapping = aes(color=AGEGROUP)) + 
+  geom_smooth(se = FALSE)
+```
+
+This reveals the cholesterol peaks at the age group $40-59$ and remains almost stable, while the age group $20-39$ has the least cholesterol.
+
+There are several useful summary functions:
+
+**Example 1**: Finding the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL if GLUCOSE >100 for each age group.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- HANES %>% 
+    # For each AGEGROUP,
+    group_by(AGEGROUP) %>%
+    # find the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL when GLUCOSE content is > 100
+    summarise(count = n(),
+              H = mean(CHOLESTEROLTOTAL),
+              H_glu = mean(CHOLESTEROLTOTAL[GLUCOSE>100])) 
+  # And print it
+  DL
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  DL <- HANES %>% 
+    # For each AGEGROUP,
+    group_by(AGEGROUP) %>%
+    # find the mean of CHOLESTEROLTOTAL and the mean of CHOLESTEROLTOTAL when GLUCOSE content is > 100
+    summarise(count = n(),
+              H = mean(CHOLESTEROLTOTAL),
+              H_glu = mean(CHOLESTEROLTOTAL[GLUCOSE>100])) 
+  # and print it
+  DL
+```
+
+**Example 2**: Finding the standard deviation of CHOLESTEROLTOTAL by age group
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- HANES %>% 
+  # For each AGEGROUP,
+  group_by(AGEGROUP) %>% 
+  # sumamarise the standard deviation of CHOLESTEROLTOTAL and arrange in descending order
+  summarise(CHO_sd = sd(CHOLESTEROLTOTAL)) %>% 
+            arrange(desc(CHO_sd))
+  # and print it
+  DL
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  DL <- HANES %>% 
+  # For each AGEGROUP,
+  group_by(AGEGROUP) %>% 
+  # sumamarise the standard deviation of CHOLESTEROLTOTAL and arrange in descending order
+  summarise(CHO_sd = sd(CHOLESTEROLTOTAL)) %>% 
+            arrange(desc(CHO_sd))
+  # and print it
+  DL
+```
+
+**Example 3**: Finding largest and smallest CHOLESTEROLTOTAL for each diabetes diagnosis group.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- HANES %>% 
+  # For each DX_DBTS,
+  group_by(DX_DBTS) %>% 
+  # find the largest and smallest CHOLESTEROLTOTAL value
+  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
+  # and print it
+  DL
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  DL <- HANES %>% 
+  # For each DX_DBTS,
+  group_by(DX_DBTS) %>% 
+  # find the largest and smallest CHOLESTEROLTOTAL value
+  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
+  # and print it
+  DL
+```
+
+**Example 4**: Finding largest and smallest CHOLESTEROLTOTAL for each diabetes diagnosis group and by age group.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  DL <- HANES %>% 
+  # For each DX_DBTS and AGEGROUP,
+  group_by(DX_DBTS, AGEGROUP) %>% 
+  # find the largest and smallest CHOLESTEROLTOTAL value
+  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
+  # and print it
+  DL
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  DL <- HANES %>% 
+  # For each DX_DBTS and AGEGROUP
+  group_by(DX_DBTS, AGEGROUP) %>% 
+  # find the largest and smallest CHOLESTEROLTOTAL value
+  summarise(Lartgest_CHO = max(CHOLESTEROLTOTAL), Smallest_CHO=min(CHOLESTEROLTOTAL)) 
+  # and print it
+  DL
+```
+
+##### Grouped transformations
+
+Grouping variables is extremely useful when used with the `summarise()` function, but it can also be used with other operations such as `mutate()` and `filter()`. 
+
+**Examples**:
+
+Among the diabetes diagnostic within age groups, find the members (top 3 ranks) with high glucose levels.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by diabetes status and age group,
+   HANES %>% group_by(DX_DBTS, AGEGROUP) %>% 
+  # filter for the top 3 ranks
+   filter(rank(desc(GLUCOSE)) < 3) %>% 
+  # select only the relevant variables
+  select(DX_DBTS,AGEGROUP,GLUCOSE) %>% 
+  # and arrange in descending order of glucose levels
+  arrange(desc(GLUCOSE))
+```
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Group by diabetes status and age group,
+   HANES %>% group_by(DX_DBTS, AGEGROUP) %>% 
+  # filter for the top 3 ranks
+   filter(rank(desc(GLUCOSE)) < 3) %>% 
+  # select only the relevant variables
+  select(DX_DBTS,AGEGROUP,GLUCOSE) %>% 
+  # and arrange in descending order of glucose levels
+  arrange(desc(GLUCOSE))
+```
+
+Find age group (not the AGEGROUP variable) greater than a threshold (say, $30$) and standardise A1C to compute per group metric.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+  # Group by SPAGE and filter groups that contain more than 30 individuals
+  AG_GT_30 <- HANES %>% group_by(SPAGE) %>%
+                        filter(n() > 30)
+
+  # Filter for all records with A1C variable > 0 to avoid NaNs,
+  AG_GT_30 %>% filter(A1C > 0) %>%
+  # standardise A1C dividing by the total sum of A1C in the group
+  mutate(standardised_A1C = A1C / sum(A1C)) %>%
+  # and seelct only A1C and standardised A1C
+  select(A1C,standardised_A1C)
+```
+
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+  # Group by SPAGE and filter groups that contain more than 30 individuals
+  AG_GT_30 <- HANES %>% group_by(SPAGE) %>%
+                        filter(n() > 30)
+
+  # Filter for all records with A1C variable > 0 to avoid NaNs,
+  AG_GT_30 %>% filter(A1C > 0) %>%
+  # standardise A1C dividing by the total sum of A1C in the group
+  mutate(standardised_A1C = A1C / sum(A1C)) %>%
+  # and seelct only A1C and standardised A1C
+  select(A1C,standardised_A1C)
+```
+
+---
+
+#### Selected materials and references
+
+[R for Data Science - Data Transformation Part](https://cran.r-project.org/doc/manuals/R-intro.pdf)
+
+---

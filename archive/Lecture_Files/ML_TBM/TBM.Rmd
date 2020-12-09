@@ -1,0 +1,180 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style>
+
+body {
+text-align: justify;}
+
+figure figcaption {
+    text-align: center;}
+</style>
+
+
+---
+
+## Tree-Based Methods/Ensemble Schemes  
+
+---
+
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/b01WTvQZ5ko" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+---
+
+### Classification Trees
+
+---
+
+We will work with HANES data set. Information on HANES can be found [here](http://nychanes.org/). We will first import the curated HANES data set in RStudio:
+
+```{r eval=TRUE, message=FALSE}
+  # Load the package RCurl
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Rename the HSQ_1 factor for identification
+  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
+  # Rename the DX_DBTS as a factor
+  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
+  # Omit all NA from the data frame
+  HANES <- na.omit(HANES)
+  # Observe the structure
+  str(HANES)
+```
+
+A tibble, or `tbl_df`, is a modern reimagining of the data frame, keeping what has been proven to be effective, and throwing out what is not. To convert a data frame to a tibble, we can use the function `as.tibble(df)` where df is a data frame. We will convert the HANES data frame into tibble and use the tibble from now on.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Load the tidyverse library
+  library(tidyverse)
+  # Convert HANES data frame into a tibble and observe it
+  HANES_TIB <- as.tibble(HANES)
+  HANES_TIB
+```
+
+When we take the logrithm of the variables A1C and UACR, we notice there are two clusters -
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Make a ggplot for the log(A1C) and log(UACR) variables with asthetic color for the variable DX_DBTS
+  ggplot(data = HANES_TIB) + 
+    geom_point(mapping = aes(x = log(A1C), y = log(UACR), color=DX_DBTS))
+```
+
+These two clusters are primarily composed of non-diabetic people. In the set of all non-diabetic people, if we call the lower cluster (i.e,  `log(UACR) <= -2`) as LOW-UACR and the upper cluster (i.e, `log(UACR) >= -2`) as HIGH-UACR, we would like to construct classification trees to predict these clusters using all variables except UACR. Therefore, we will classify them into these two classes -
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # We can use the mutate function to make this class label and remove non-necessary variables
+  mydata <- HANES_TIB %>% filter(DX_DBTS == "NO DIAB") %>% 
+    mutate(Cluster = ifelse(log(UACR) <= -2, 'LU', 'HU')) %>%
+    select(everything(), -KEY, -GENDER, -AGEGROUP, -HSQ_1, -DX_DBTS)
+  # Change names to smaller ones for tree labling purposes
+  library(data.table)
+  setnames(mydata, old = c('MERCURYTOTALBLOOD','CREATININESI', 'CHOLESTEROLTOTAL', 
+                           'LDLESTIMATE', 'CADMIUM', 'MERCURYU', 'TRIGLYCERIDE'), 
+           new=c('MERTOTBLD','CREATSI', 'CHOLTOT', 'LDLE', 'CAD', 'MERU', 'TRIG'))
+```
+
+The `tree` library can be used to construct classification and regression trees. We can use the `tree()` function to fit a classification tree in order to predict the **Cluster** variable:
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Load the tree library
+  library(tree)
+  # We need to convert the Cluster class into factor to use the tree function
+  mydata$Cluster <- as.factor(mydata$Cluster)
+  # Use the tree function to construct the classification tree removing the UACR and 
+  # variables UALBUMIN, UCREATININE that make up UACR
+  tree.HANES <-  tree(Cluster~.-UACR-UALBUMIN-UCREATININE, data = mydata)
+  # The summary() function lists the variables that are used as internal nodes 
+  # in the tree, the number of terminal nodes, and the training error rate
+  summary(tree.HANES)
+```
+
+We see that the training error is 12%. For classification trees, the reported deviance is given by,
+
+$$ -2 \sum_{m}\sum_{k}n_{mk}\log \hat{p}_{mk}$$
+
+where $n_{mk}$ is the number of observations in the $m$th terminal node that belong to the $k$th class. A small deviance indicates a good fit. The _residual mean deviance_ is simply the deviance divided by $n-|T_{0}|$, which in this case is $977-10$. The `plot()` and `text()` functions can be handy in plotting the tree and viewing it -
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Plot the tree and label it
+  plot(tree.HANES)
+  text(tree.HANES, use.n=TRUE, all=TRUE, cex=.6)
+```
+
+We should technically use the test error instead of the training error. We will split the observations into a training set and a test set, build the tree using the training set, and evaluate its performance on the test data. The `predict()` function can be used for this purpose. In the case of a classification tree, the argument `type="class"` instructs R to return the actual class prediction. 
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # We will set seed and do a training on 700 data points
+  set.seed (2)
+  train <- sample(1:nrow(mydata), 700)
+  # Form the test data by subtracting the training data indices
+  test <- setdiff(seq(1,nrow(mydata)), train)
+  # Make HANES test data
+  HANES.test <- mydata[test, ]
+  # Form the cluster data for tabulating the accuracy
+  Cluster.test <- select(mydata, Cluster) 
+  Cluster.test <- Cluster.test[test, ]
+  Cluster.test <- as.character(t(Cluster.test))
+  # Make the tree on the training data 
+  tree.mydata <- tree(Cluster~.-UACR-UALBUMIN-UCREATININE, mydata, subset=train)
+  # Use predict() function to make a prediction
+  tree.pred <- predict(tree.mydata, HANES.test, type="class")
+  # Form the accuracy table/confusion matrix
+  table(tree.pred,Cluster.test)
+```
+
+We see the accuracy is `(227+5)/277 = 0.83` or 83%.
+
+Next we will verify pruning the tree improves the accuracy. We can use the function `cv.tree()` that will perform cross-validation to determine the optimal tree complexity. The function reports the number of terminal nodes of each tree considered (size) as well as the corresponding error rate and the value of the cost-complexity parameter.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+  # Set the seed
+  set.seed(3)
+  # Use cv.tree() function to do cross-validation to prune and find the optimal tree
+  cv.mydata <- cv.tree(tree.mydata, FUN=prune.misclass)
+  # List and show the cross-validated data frame returned by the cv.tree() function
+  names(cv.mydata)
+  cv.mydata
+  # Plot the deviance vs. the size of the tree and the pruning parameter k/alpha 
+  par(mfrow=c(1,2))
+  plot(cv.mydata$size, cv.mydata$dev, type="b")
+  plot(cv.mydata$k, cv.mydata$dev, type="b")
+  # We can use this data to find the misclassification rate
+  prune.mydata=prune.misclass(tree.mydata,best=6)
+  # Plot the pruned tree
+  plot(prune.mydata)
+  text(prune.mydata,cex=.6)
+  # Verify if the accuracy increases on the pruned tree by applying the test data
+  tree.pred=predict(prune.mydata, HANES.test, type="class")
+  table(tree.pred,Cluster.test)
+```
+
+---
+
+We see the test accuracy with the pruned tree is `(239+4)/277 = 0.87` which is 87%. Not only the optimization through cross-validation has increased the accuracy but also made a more interpretatble tree.
+
+---
+
+#### Selected materials and references
+
+[R for Data Science - Data Transformation Part](https://cran.r-project.org/doc/manuals/R-intro.pdf)
+
+---

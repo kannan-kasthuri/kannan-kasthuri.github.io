@@ -1,0 +1,68 @@
+---
+# title: "Lecture 01"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+#### Final Project Instructions
+
+---
+
+*	Think about the way you communicate your results:
+  
+    + Please write a clear introduction to your project, providing a background about the field you’re studying, the questions you had in mind and the way the data of your chosen data set was collected as well as its structure.
+    
+    + When possible, show a graphical representation of the samples in your study
+    
+    + Please construct a reasonable workflow. After showing a general exploratory analysis go in depth instead of horizontally (when applicable)
+
+* Make sure you have enough data: 
+
+  + As a general rule of thumb I would suggest to have at least 50 observations for each level of categorical variable or numerical variable 
+
+* Don’t hesitate to use the web to tackle your problems
+
+* Use packages like ‘SpatStat’ to check more elegant hypotheses 
+
+* To strengthen your analysis, download another data set, merge it with your data or use it to validate your findings
+
+---
+
+#### Project Grading Rubric (20% each)
+
+---
+
+You need to document and demonstrate all aspects of data science foundations discussed in the class.
+
+1) Correctly apply tools and techniques of data preparation and wrangling 
+
+    a. Missing data handling, joining, or other transformations, removing outliers etc.
+    
+    b. Gathering, spreading data (if needed)
+
+2) Use Exploratory Data Analysis and `dplyr` transformation methods to identify structure and correlations in the data
+
+3) Formulate questions and possible ways of analysis and visualization
+
+    a. Identify appropriate visualization methods for analysis of your data set 
+    
+    b. Choose the right geoms for the questions at hand  
+  
+4) Correctly interpret results of analysis (clinical/biological significance)
+
+    a. Demonstrate domain specific knowledge of clinical data
+    
+    b. Propose an hypothesis based on visualization and results
+
+    c. Compare the usefulness of the obtained results/conclusions
+
+5) Formulate appropriate plans for validation, further analysis, or to collect additional data needed. 
+
+---

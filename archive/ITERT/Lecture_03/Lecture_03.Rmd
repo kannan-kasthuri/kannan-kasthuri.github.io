@@ -1,0 +1,629 @@
+---
+# title: "Lecture 03"
+# author: "Kasthuri Kannan"
+# date: "Sept 07, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+### R fundamentals 02: Advanced data types and graphics (Sept. 14, 2017)
+
+---
+
+In this lecture we will consider other data types such as lists, data frames as well as graphics.
+
+#### Factors
+
+Factors are determined through categorical variables. What are categorical variables?
+
+* Limited number of differing values.
+* Belong to a certain category.
+* For statistical analysis, R calls them factors.
+
+##### Creating and manipulating factors
+
+```{r eval=TRUE}
+  # Create a blood group vector
+  blood_group_vector <- c("AB", "O", "B+", "AB-", "O", "AB", "A", "A", "B", "AB-")
+  # Create fatcors from the vector
+  blood_group_factor <- factor(blood_group_vector)
+  blood_group_factor
+```
+
+**Note** 
+
+1. The levels are sorted alphabetically. 
+2. No more quotation marks.
+
+R encodes factors to integers for easier memory access and computations. This is done alphabetically. For example, A is assigned 1, AB is assigned 2 etc. This can be viewed by invoking the `str()` function:
+
+```{r eval=TRUE}
+  # Show the structure of the blood group factor
+  str(blood_group_factor)
+```
+
+This can be over-ridden by specifying the levels argument for the `factor()` function.
+
+```{r eval=TRUE}
+  # Define another set of levels over-riding default
+  blood_group_factor2 <- factor(blood_group_vector, levels = c("A", "B", "B+", "AB", "AB-", "O"))
+  str(blood_group_factor2)
+```
+
+Renaming factors can be done using the `level()` function.
+
+```{r eval=TRUE}
+  # Define blood type
+  blood_type <- c("B", "A", "AB", "A", "O")
+  # Find the factors
+  blood_type_factor <- factor(blood_type)
+  blood_type_factor
+  # Rename the factors
+  levels(blood_type_factor) <- c("BT_A", "BT_AB", "BT_B", "BT_O")
+  blood_type_factor
+```
+
+**Note** It is extremely **important** to follow the same order as the default order supplied by R. Otherwise, the result can be extremely confusing as the following exercise will show.
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Rename the blood_type_factor in the above example as follows: 
+
+`levels(blood_type_factor) <- c("BT_A", "BT_B", "BT_AB", "BT_O")` 
+
+and justify the result of outputting `blood_type_factor`.
+<br>
+
+If you want to label the levels, it is always best to define the labels along with the levels like this -
+
+```{r eval=FALSE}
+  factor(blood_type, levels=c("A","B","AB","O"), labels=c("BT_A","BT_B","BT_AB","BT_O"))
+```
+
+##### Nominal vs. Ordinal factors
+
+_Nominal factors_: Categorical variables that cannot be ordered, like blood group. For example, it doesn't make sense to say blood group A < blood group B.
+
+_Ordinal factors_: Those categorical variables that can be ordered. For instance, tumor sizes. We can say T1 (tumor size 2cm or smaller) < T2 (tumor size larger than 2cm but smaller than 5 cm).
+
+R provides us with the way to impose order on factors. Simply use the argument "ordered=TRUE" inside the factor function.
+
+```{r eval=TRUE}
+  # Specify the tumor size vectore
+  tumor_size <- c("T1","T1","T2","T3","T1")
+  # Set the order by specifying "ordered=TRUE"
+  tumor_size_factor <- factor(tumor_size, ordered=TRUE, levels=c("T1","T2","T3"))
+  # Print the results
+  tumor_size_factor
+  # Compare one factor vs the other
+  tumor_size_factor[1] < tumor_size_factor[2]
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Use the inequality operator (< or >) on a nominal category and print the output.
+<br>
+
+---
+
+#### Lists
+
+Recall vectors and matrices can hold only one data type, like integer or character. Lists can hold multiple R objects, without having to perform coercion.
+
+```{r eval=TRUE}
+  # Defining different data type as vector
+  # Note coercion takes place
+  vec <- c("Blood-sugar","High", 140, "Units", "mg/dL")
+  vec
+  # And as a list
+  lst <- list("Blood sugar","High", 140, "mg/dL")
+  lst
+  # One can use the list function to see if something is a list
+  is.list(lst)
+```
+
+Naming a list can be done through the `names()` function or specifying it in the list itself.
+
+```{r eval=TRUE}
+  # Define list
+  lst <- list("Blood sugar","High", 140, "mg/dL")
+  # Assign names and print
+  names(lst) <- c("Fluid","Category","Value","Units")
+  lst
+  # Specify within the list
+  list(Fluid="Blood sugar",Category="High", Value=140, Units="mg/dL")
+  # For compact display use the str() function
+  str(lst)
+```  
+
+**Note**: List can contain another list, or any number of nested lists.
+
+##### Aceesing and extending lists
+
+Difference between `[]` and `[[]]` is that, `[]` will return a list back and `[[]]` will return the elements in the list.
+
+```{r eval=TRUE}
+  # Define a list
+  blood_test <- list(Fluid="Blood sugar",Category="High", Value=140, Units="mg/dL")
+  # Make another list containing this list
+  patient <- list(Name="Mike",Age=36,Btest=blood_test)
+  # Access the first list
+  patient[1]
+  # Access the third "element" - which is actually a list itself.
+  patient[[3]]
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+1. What does `patient[c(1,3)]` give us? Is it a list or elements?
+2. What does `patient[[c(1,3)]` give us? Is it a list or elements? 
+3. How about `patient[[c(3,1)]`? What is the difference? ( _Hint_: `patient[[c(1,3)]` is same as `patient[[1]][[3]]`).
+<br>
+
+Subsetting by names is super easy: just supply the name within brackets. For example, `patient["Name"]` or `patient[["Name"]]`. Subsetting by logicals will work only for returning the list. For instance, `patient[c(TRUE,FALSE)]`. It doesn't make sense to return the elements through logicals, i.e., `patient[[c(TRUE,FALSE)]]`.
+
+Another cool way to access elements (just the same as using `[[]]`) is the use of `$` sign. However, to do this, the list should be named. For example, `patient$Name` will print the patient name.
+
+`$` can also be used for extending lists:
+
+```{r eval=FALSE}
+  # Extend the list to include gender
+  patient$Gender <- "Male"
+  # This is same as using double brackets
+  patient[["Gender"]] <- "Male"
+  # Extend the blood test list to include the date of the test
+  patient$Btest$Date <- "Sept.14"
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: How do you remove an element from a list?
+<br>
+
+---
+
+#### Data frames
+
+Datasets come with various shapes and sizes. Usually they constitute:
+
+* Observations (eg. each row is an observation)
+* Variables (eg. each column is a variable)
+* Matrix consitute only one data type
+* List is not practical 
+
+Data frames can contain different types for each observation/row however each variable (or a column) should have a same data type. Usually data frames are imported - through CSV, or Excel etc. However, we can create a data frame as well.
+
+```{r eval=TRUE}
+  # Create name, age and logical vectors
+  name <- c("Anne","James","Mike","Betty")
+  age <- c(20,43,27,25)
+  cancer <- c(TRUE,FALSE,FALSE,TRUE)
+  # Form a data frame
+  df <- data.frame(name,age,cancer)
+  df
+  # Create names function (like we did for vectors)
+  names(df) <- c("Name","Age","Cancer_Status")
+  df
+  # Or specify inside data frame
+  df <- data.frame(Name=name, Age=age, Cancer_Status=cancer)
+  df
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+1. Examine the structure of the data frame.
+2. What happens if one of the vectors have unequal length?
+<br>
+
+**Note**: Data frames store character vectors as factors. You can over-ride this as follows: 
+`df <- data.frame(Name=name, Age=age, Cancer_Status=cancer, stringsAsFactors = FALSE)`
+
+##### Manipulating data frames: Subsetting
+
+```{r eval=TRUE}
+  # Create name, age and logical vectors
+  name <- c("Anne","James","Mike","Betty")
+  age <- c(20,43,27,25)
+  cancer <- c(TRUE,FALSE,FALSE,TRUE)
+  # Form a data frame
+  df <- data.frame(name,age,cancer)
+  df
+  # Subsetting by indices - works just like matrices
+  df[1,2]
+  # Subsetting by indices - one can use column names as well
+  df[1,"age"]
+  # Get the entire row/column - just like matrices
+  # Get the second row
+  df[2,]
+  # Get the "cancer" column
+  df[,"cancer"]
+  # Get all 2nd and 3rd observation with "name"" and "cancer"" status
+  df[c(2,3),c("name","cancer")]
+```  
+
+The only difference is when you specify a single number as index within `[]`. For matrices you get an element corresponding to the linear index but for data frame we'll get the column vector corresponding to the index. 
+
+```{r eval=TRUE}
+  # Print the second column
+  df[2]
+```
+
+This is becuase data frames are made up of lists of vectors of equal length. Thus, single `[2]` will correspond to the second element in the list, which is a _vector_ of ages.
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: Test the operations of lists (like `[age] & [["age"]]`) to data frames.
+<br>
+
+##### Manipulating data frames: Extending
+
+Extending a column is super easy. Since data frames are list of vectors one can just append a vector to the list. For instance, if we have a column of tumor size info like this for each patient: `c("T0","T3","T2","T0")`, the following code will append the vector.
+
+```{r eval=TRUE}
+  # Append tumor size vector
+  df$tumor_size <- c("T0","T3","T2","T0")
+  df
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>: 
+
+1. Use `cbind()` to append a vector of choice.
+2. What happens if the length of the appending vector is greater than (or less than) row dimensions?
+<br>
+
+In contrast, extending a row (or observation) is not straight-forward. This is because observations may contain different data types. To add observations, make a new data frame and append:
+
+```{r eval=TRUE}
+  # Create a data frame
+  tom <- data.frame(name="Tom", age=47,cancer="TRUE",tumor_size="T2")
+  # And append
+  df <- rbind(df,tom)
+  df
+```  
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>:
+
+1. Can you use the `list()` function instead of the data frame function in the above code?
+2. What happens if you leave the arguments `name=`, `age=` etc. in the above code?
+<br>
+
+##### Manipulating data frames: Sorting
+
+We can use the `order()` function to sort the entire data frame with respect to a particular column.
+
+```{r eval=TRUE}
+  # Rank the entries of a column, say "age"
+  ranks <- order(df$age)
+  # Sort the data frame according to the rank
+  df[ranks,]
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>:
+
+1. What does `sort(df$age)` perform and how is it related to the ranks?
+2. Sort the entries in descending order of the age. _(Hint: Question the function to find out more about the function in question)_.
+<br>
+
+---
+
+#### Graphics
+
+R has very strong graphical capabilities - primary reason why both industries and academics are interested.
+
+* Create plots with code
+* Replication and modification is easy
+* Reproducibility!
+* _graphics_ package loaded bu default produces great plots
+* Excellent packages like _ggplot2_, _ggvis_ and _lattice_
+
+##### _graphics_ package
+
+This package has many functions. Primarily `plot()` and `hist()` provide essential functionalities.
+
+The `plot()` package is: 
+
+1. Generic 
+2. Different inputs gives different plots
+3. Can plot several things like vectors, linear models, kernel densities etc.
+
+Before we see how the plot function works, we will first import a public health data set. We will work with Hanes data set which is New York City's Health and Nutrition survey data set. For more info about Hanes, click [here](http://nychanes.org/about/).
+
+```{r eval=TRUE}
+  # Install RCurl package and load the package
+  library(RCurl)
+  # Import the HANES data set from GitHub; break the string into two for readability
+  # (Please note this readability aspect very carefully)
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  # Paste it to constitute a single URL 
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  # Observe the structure
+  str(HANES)
+```
+
+Note that GENDER, AGEGROUP and HSQ_1 are integers but in fact they should be factors! So, we need to convert them to factors.
+
+```{r eval=TRUE}
+  # Convert them to factors
+  HANES$GENDER <- as.factor(HANES$GENDER)
+  HANES$AGEGROUP <- as.factor(HANES$AGEGROUP)
+  HANES$HSQ_1 <- as.factor(HANES$HSQ_1)
+  # Now observe the structure
+  str(HANES)
+```
+
+Let's plot a categorical variable, for instance gender.
+
+```{r eval=TRUE}
+  # Plot the factor gender
+  plot(HANES$GENDER)
+```
+
+<br>
+<span style="color:blue">**Classwork/Homework**</span>:
+
+1. Is the above plot informative?
+2. What will you do to make it more informative?
+<br>
+
+Let's now plot a numerical variable.
+
+```{r eval=TRUE}
+  # Plot a numerical variable
+  plot(HANES$A1C)
+```
+
+Of course, we can plot two numerical variables:
+
+```{r eval=TRUE}
+  # Plot two numerical variables 
+  # A1c - Hemoglobin percentage, UACR - Urine Albumin/Creatinine Ratio
+  plot(HANES$A1C,HANES$UACR)
+```
+
+
+Note that R autamatically renders them as a scatter plot. However, this plot is unformative as the data is poorly scaled. One can scale the data using the "ylim" argument:
+
+```{r eval=TRUE}
+  # Plot two numerical variables with appropriate scaling
+  plot(HANES$A1C,HANES$UACR, ylim=c(0,10))
+```
+
+Although the scaling is okay now, the relationship is extremely complicated. One of the transformations to understand relationships between the variables is the `log()` function. We can apply logrithm to both variables -
+
+```{r eval=TRUE}
+  # Transform the data using the log function and plot the result
+  plot(log(HANES$A1C), log(HANES$UACR))
+```
+
+We note that there are two different clusters of patients - one with low UACR values and another with high UACR values, both corresponding to a mean $log(A1c)$ of about $1.7$.
+
+<!-- <br>
+<span style="color:Blue">**Project**</span>: 
+
+1. Explore these patients groups in detail and come up with explanations on why there are two groups. 
+2. Research on A1C and UACR and how they are related. 
+3. What other variables distingush these two groups?
+4. Are one group of patients more diabetic than the other?
+
+<br> -->
+
+We can also plot two categorical variables. Let us plot GENDER and AGEGROUP factors.
+
+```{r eval=TRUE}
+  # Rename the GENDER factor for identification
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  # Rename the AGEGROUP factor for identification
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  # Plot GENDER vs AGEGROUP
+  plot(HANES$GENDER,HANES$AGEGROUP)
+  # Swap AGEGROUP vs GENDER
+  plot(HANES$AGEGROUP,HANES$GENDER)
+```
+
+Note that R already prints proportion as it displays the plots. The first element is the $x$-axis and the second element is the $y$-axis.
+
+Next we will see the `hist()` function. `hist()` is a short form for histogram. The `hist()` function:
+
+* Visual representation of distribution
+* Bins all values
+* Plots frequency of bins
+
+Here is an example to find the distribution of A1C variable for the male population.
+
+```{r eval=TRUE}
+  # Form a logical vector consisting only the MALE gender
+  HANES_MALE <- HANES$GENDER == "M"
+  # Select only the records for the male population
+  MALES_DF <- HANES[HANES_MALE,]
+  # Make an historgam
+  hist(MALES_DF$A1C)
+```
+
+Observe that the Glycohemoglobin percentage lies between $5-6$ for most of the men. Note that R has also chosen the number of bins, $6$ by default. You can increase (or decrease) the number of bins using the "breaks" argument. There are other cool tools like `barplot()`, `boxplot()`, `pairs()` in the _graphics_ package. 
+
+<br>
+<span style="color:Blue">**Classwork/Homework**</span>: 
+
+1. Find the distribution of A1C for the female population in the above data set. Are they different?
+2. Find the distribution of A1C for three age groups in the above data set. Is there a difference? 
+3. Try to find the distribution of one more numeric variable (other than A1C) for the three age-groups.
+4. Increase the number of bins to $10$ in the above exercise.
+<br>
+
+##### Customizing plots
+
+How does this plot look?
+
+```{r eval=TRUE}
+  # Plot LDL values vs HDL values
+  plot(HANES$LDL, HANES$HDL)
+```
+
+compared to this -
+
+```{r eval=TRUE}
+  # Plot GLUCOSE vs GLUCOSESI with parameters
+  plot(HANES$GLUCOSE, HANES$GLUCOSESI, xlab= "Plasma Glucose", 
+         ylab = "Blood Glucose SI units", main = "Plasma vs Blood Glucose", type = "o", col="blue")
+```
+
+To do good data science, it certainly not only helps to know correlations between the variables (in the above figure, we know blood glucose levels and plasma glucose levels are the same), but how we present the data matters!
+
+Some plot function characteristics:
+
+* _xlab_: Horizontal axis label
+
+* _ylab_: Vertical axis label
+
+* _main_: Plot title
+
+* _type_: Plot type
+
+* _col_: Plot color
+
+<br>
+<span style="color:Blue">**Classwork/Homework**</span>: Change the type to "l" and report the plot type. 
+<br>
+
+Graphical parameters are not maintained throughout session. If you want to maintain graphical parameters, use the `par()` function. For example,
+
+```{r eval=TRUE}
+  # Set the graphical parameter par's so that color red is held
+  par(col="red")
+  # Plot LDL vs HDL
+  plot(HANES$LDL, HANES$HDL)
+  # Plot Hemoglobin vs HDL
+  plot(HANES$A1C, HANES$HDL)
+```
+
+More graphical parameters:
+
+* _col.main_: Color of the main title
+* _cex.axis_: Size of the axis numbers (towards 0 is more smaller). Just like "col" parameter has variants such as "main", "cex" also has other variants - "axis" is one of them.
+* _lty_: Specifies the line type - solid, dashed etc. (1 is a full line, 2 is dashed etc.)
+* _pch_: Plot symbol. More than 35 types of symbols.
+
+
+##### Multiple graphs
+
+So far we saw single plots of data, with no combinations and layers. It may be good to plot several. We can use "mfrow" with the `par()` function.
+
+```{r eval=TRUE}
+  # Set the par function with mfrow to 2x2 "grid"
+  par(mfrow = c(2,2))
+  # Plot LDL vs HDL
+  plot(HANES$LDL, HANES$HDL)
+  # Plot A1C vs HDL
+  plot(HANES$A1C, HANES$HDL)
+  # Plot GLUCOSE vs HDL
+  plot(HANES$GLUCOSE, HANES$HDL)
+  # Plot CHOLESTEROLTOTAL vs HDL
+  plot(HANES$CHOLESTEROLTOTAL, HANES$HDL)
+```
+
+<br>
+<span style="color:Blue">**Classwork/Homework**</span>: Do the above exercise with "mfcol" argument. How does it plot?
+<br>
+
+To reset the plot to 1 figure, one can use `par(mfrow = c(1,1))`, that will get us back to normal.
+
+##### The `layout()` function
+
+Facilitates more complex plot arrangements.
+
+```{r eval=TRUE}
+  # Create a grid on how our figures should appear
+  grid <- matrix(c(1,1,2,3), nrow=2,ncol=2,byrow=TRUE)
+  # Pass it to the layout function
+  layout(grid)
+  # Plot LDL vs HDL
+  plot(HANES$LDL, HANES$HDL)
+  # Plot GLUCOSE vs HDL
+  plot(HANES$GLUCOSE, HANES$HDL)
+  # Plot CHOLESTEROLTOTAL vs HDL
+  plot(HANES$CHOLESTEROLTOTAL, HANES$HDL)
+  # Reset the layout
+  layout(1)
+```
+
+**Tip**: Resetting everytime might be too tedious. A trick is to assign the old setting to an object and reuse it when necessary:
+
+```{r eval=TRUE, warning=FALSE}
+  # Assign the old parameters to an object
+  old_parameters <- par()
+  # Change to new parameters
+  par(col="red")
+  # Plot LDL vs HDL
+  plot(HANES$LDL, HANES$HDL)
+  # Reset to old parameters
+  par(old_parameters)
+  # Test the original settings
+  plot(HANES$LDL, HANES$HDL)
+```
+
+Stacking graphical elements. It's a great way of adding more information to the plots.
+
+```{r eval=TRUE, warning=FALSE}
+  # Plot A1C vs GLUCOSESI
+  plot(HANES$A1C,HANES$GLUCOSESI, xlim=c(6,8), ylim=c(3,10))
+  # Using linear fit model. 
+  # Note: `lm()` function will return a vector of coefficients for the fit
+  lm_glucose_SI <- lm(HANES$A1C ~ HANES$GLUCOSESI)
+  # Stack the linear model on top of the plot with line width 2 (specified by `lwd` argument)
+  abline(coef(lm_glucose_SI),lwd = 2)
+```
+
+---
+
+<br>
+<span style="color:Blue">**Classwork/Homework**</span>: Make a plot and add elements through the functions `points()`, `lines()`, `segments()` and `text()`.
+<br>
+
+Adding lines may not be visually appealing if you ignore the order. In fact, it can make it worse:
+
+```{r eval=TRUE, warning=FALSE}
+  # Plot A1C vs GLUCOSESI
+  plot(HANES$A1C,HANES$GLUCOSESI, xlim=c(6,8), ylim=c(3,10))
+  # Using linear fit model. 
+  # Note: `lm()` function will return a vector of coefficients for the fit
+  lm_glucose_SI <- lm(HANES$A1C ~ HANES$GLUCOSESI)
+  # Stack the linear model on top of the plot with line width 2 (specified by `lwd` argument)
+  abline(coef(lm_glucose_SI),lwd = 2)
+  # Adding lines to the plot
+  lines(HANES$GLUCOSESI,HANES$A1C)
+```
+
+However, if you order your data, it may be really informative on how the errors are distributed:
+
+```{r eval=TRUE, warning=FALSE}
+  # Plot A1C vs GLUCOSESI
+  plot(HANES$A1C,HANES$GLUCOSESI, xlim=c(6,8), ylim=c(3,10))
+  # Using linear fit model. 
+  # Note: `lm()` function will return a vector of coefficients for the fit
+  lm_glucose_SI <- lm(HANES$A1C ~ HANES$GLUCOSESI)
+  # Stack the linear model on top of the plot with line width 2 (specified by `lwd` argument)
+  abline(coef(lm_glucose_SI),lwd = 2)
+  # Order GLUCOSESI
+  ranks <- order(HANES$GLUCOSESI)
+  # And then add the lines
+  lines(HANES$GLUCOSESI[ranks],HANES$A1C[ranks])
+```
+
+
+Ordering and sorting can be really handy in data manupilation and plotting.
+
+---
+
+#### Selected materials and references
+
+[An Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf)
+
+---
