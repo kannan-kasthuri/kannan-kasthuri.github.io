@@ -1,0 +1,351 @@
+---
+# title: "Classification"
+# author: "Sofia Nomikou"
+# date: "02/12/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style>
+
+body {
+text-align: justify;}
+
+figure figcaption {
+    text-align: center;}
+</style>
+
+---
+
+## Classification, Performance Estimation and Regularization 
+
+---
+
+#### Recorded Stream
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mdOiY1YLMC8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+---
+
+## Tutorials by Sofia Nomikou
+
+In this lab we are going to explore Classification techiques and apply them on biomedical data. We will study Logistic Regression and K-Nearest Neighbors. Let's begin!
+
+---
+
+### Classification
+
+---
+
+For our lab today we are going to use the Wisconsin Breast Cancer data set. 
+
+```{r}
+library(mlbench)
+data(BreastCancer)
+str(BreastCancer)
+
+BreastCancer$Cl.thickness <- as.numeric(as.character(BreastCancer$Cl.thickness))
+BreastCancer$Cell.size <- as.numeric(as.character(BreastCancer$Cell.size))
+BreastCancer$Cell.shape <- as.numeric(as.character(BreastCancer$Cell.shape))
+BreastCancer$Marg.adhesion <- as.numeric(as.character(BreastCancer$Marg.adhesion))
+BreastCancer$Epith.c.size <- as.numeric(as.character(BreastCancer$Epith.c.size))
+BreastCancer$Bare.nuclei <- as.numeric(as.character(BreastCancer$Bare.nuclei))
+BreastCancer$Bl.cromatin <- as.numeric(as.character(BreastCancer$Bl.cromatin))
+BreastCancer$Normal.nucleoli <- as.numeric(as.character(BreastCancer$Normal.nucleoli))
+BreastCancer$Mitoses <- as.numeric(as.character(BreastCancer$Mitoses))
+
+str(BreastCancer)
+```
+
+
+```{r}
+# Separate our data to train and test set - 80% train, 20% test
+index <- sample(1:nrow(BreastCancer),round(0.80*nrow(BreastCancer)))
+train <- BreastCancer[index,]
+test <- BreastCancer[-index,]
+
+train <- train[complete.cases(train),]
+test <- test[complete.cases(test),]
+```
+
+---
+
+#### Logistic Regression
+
+---
+
+```{r}
+# Fit logistic regression on the train data
+glm.fit <- glm(Class ~ Cell.size + Cell.shape + Bare.nuclei + Cl.thickness + Marg.adhesion + Epith.c.size + Bl.cromatin + Normal.nucleoli + Mitoses , data = train, family = binomial)
+summary(glm.fit)
+# family = binomial to tell R to perform logistic regression and not some other type of 
+# generalized model
+
+# Variable importance
+library(caret)
+varImp(glm.fit)
+```
+
+```{r}
+# How well does the model perform on the test data?
+# Find probabilities for each data point in the test set
+probabilities <- predict(glm.fit, newdata = test,type = "response")
+
+# Convert to predictions
+contrasts(test$Class)
+predictions <- rep("benign", nrow(test))
+predictions[probabilities >0.5] = "malignant"
+
+# Create confusion matrix
+confusion_matrix <- table(predictions, test$Class)
+confusion_matrix
+```
+```{r}
+#AUC
+library(ROCR)
+# Compute AUC for predicting Class with the model
+prob <- predict(glm.fit, newdata=test, type="response")
+pred <- prediction(prob, test$Class)
+perf <- performance(pred, measure = "tpr", x.measure = "fpr")
+plot(perf)
+
+auc <- performance(pred, measure = "auc")
+auc <- auc@y.values[[1]]
+auc
+```
+
+---
+
+#### K-Nearest Neighbors
+
+---
+
+```{r}
+library(class)
+# Predict the labels of the test set simultaneously with the training of the model
+prediction_knn <- knn(train[,2:10], test[,2:10], train$Class, k=4)
+# Confusion matrix
+table(prediction_knn, test$Class)
+
+```
+
+---
+
+### Performance Estimation
+
+---
+
+Here we study performance estimation through sampling methods.
+
+```{r}
+# In case you do not have some of these packages installed, you should run the "install.packages()"command before the library() command the first time you want to run the code. 
+  library(RCurl)
+  library(tidyverse)
+  #install.packages("rafalib")
+  library(rafalib)
+```
+
+```{r}
+# Download data
+  URL_text_1 <- "https://raw.githubusercontent.com/kannan-kasthuri/kannan-kasthuri.github.io"
+  URL_text_2 <- "/master/Datasets/HANES/NYC_HANES_DIAB.csv"
+  URL <- paste(URL_text_1,URL_text_2, sep="")
+  HANES <- read.csv(text=getURL(URL))
+  HANES$GENDER <- factor(HANES$GENDER, labels=c("M","F"))
+  HANES$AGEGROUP <- factor(HANES$AGEGROUP, labels=c("20-39","40-59","60+"))
+  HANES$HSQ_1 <- factor(HANES$HSQ_1, labels=c("Excellent","Very Good","Good", "Fair", "Poor"))
+  HANES$DX_DBTS <- factor(HANES$DX_DBTS, labels=c("DIAB","DIAB NO_DX","NO DIAB"))
+  HANES <- na.omit(HANES)
+  str(HANES)
+  
+  
+```
+
+---
+
+#### Sampling Methods
+
+---
+
+The validation set approach
+
+```{r}
+set.seed(1) # for reproducibility
+# Choose the training set as half of the data
+train=sample(1112,556)
+
+# Train linear regression only on the train set using the "subset" option
+lm.fit = lm(CHOLESTEROLTOTAL~ LDLESTIMATE ,data=HANES,subset=train)
+
+# Predict the MSE on the test set
+# you need to run the following command before you run the following one for the first time 
+attach(HANES) 
+
+mean((CHOLESTEROLTOTAL-predict(lm.fit,HANES))[-train]^2)
+
+```
+
+```{r}
+# What it we choose a different train set?
+set.seed(2)
+train=sample(1112,556)
+lm.fit=lm(CHOLESTEROLTOTAL~ LDLESTIMATE ,data=HANES,subset=train)
+#attach(HANES)
+mean((CHOLESTEROLTOTAL-predict(lm.fit,HANES))[-train]^2)
+```
+
+It can be observed that with this method, the MSE on the test set is very variable and depends directly on the initial partition of the data in half.
+
+---
+
+#### Leave-One-Out Cross-Validation (LOOCV)
+
+---
+
+```{r}
+library(boot)
+#Fit a linear regression model using glm function this time
+glm.fit=glm(CHOLESTEROLTOTAL~ LDLESTIMATE ,data=HANES)
+# Notice that there is no need to use a train and a test set this time. Why?
+
+# Perform LOOCV 
+cv.err=cv.glm(HANES,glm.fit) #might take some time
+cv.err$delta # This parameter includes the MSE in this case for LOOCV
+```
+
+The first number is the MSE for the LOOCV and the second is the adjusted value. 
+
+---
+
+#### K-fold Cross-Validation
+
+---
+
+```{r}
+# 10-fold CV
+set.seed(17)
+cv.error.10=rep(0,10) # create an empty vector to store the error values
+for (i in 1:10){ # Try different order polynomials
+  glm.fit=glm(CHOLESTEROLTOTAL~ poly(LDLESTIMATE,i) ,data=HANES)
+  cv.error.10[i]=cv.glm(HANES,glm.fit,K=10)$delta[1] #extract the MSE error
+}
+#cv.error.10
+
+plot(seq(1,10,1),cv.error.10, xlab = "Order of polynomial",ylab = "MSE")
+```
+
+---
+
+### Regularization
+
+---
+
+We will now study regularization methods - Ridge regression and Lasso
+
+```{r}
+library(glmnet) # Library for regularization
+
+# Make sure you have removed missing values from the data
+# We have already done this at the beginning
+
+# Select train and test sets
+# Separate our data to train and test set - 90% train, 10% test
+index <- sample(1:nrow(HANES),round(0.90*nrow(HANES)))
+train <- HANES[index,]
+test <- HANES[-index,]
+```
+
+---
+
+#### Ridge Regression
+
+---
+
+```{r}
+# Special syntax - matrix x and vector y
+train$KEY <- NULL
+
+x=model.matrix(CHOLESTEROLTOTAL~.,train)[,-1] # includes the predictors
+y=train$CHOLESTEROLTOTAL # includes the variable we wish to predict
+
+# Set lambda grid to explore all the models
+grid=10^seq(10,-2,length=100)
+ridge.mod<- glmnet(x, y, alpha=0, lambda = grid) 
+# alpha = 0 -> use L2 penalty -> regularization
+# family = "binomial" 
+
+dim(coef(ridge.mod))
+```
+```{r}
+# Plot coefficients
+plot(ridge.mod, xvar="lambda",main='Ridge')
+```
+
+```{r}
+set.seed(1)
+# Perform cross validation to find the best value of lambda
+cv.ridge <- cv.glmnet(x, y, alpha=0,nfolds=10)
+plot(cv.ridge)
+bestlam=cv.ridge$lambda.min
+bestlam
+
+```
+
+```{r}
+# Predict MSE on the test set usind the best lambda
+test$KEY <- NULL
+x.test <- model.matrix(CHOLESTEROLTOTAL~.,test)[,-1] # includes the predictors
+y.test <- test$CHOLESTEROLTOTAL
+
+ridge.pred=predict(ridge.mod,s=bestlam,newx=x.test)
+mean((ridge.pred-y.test)^2)
+
+```
+
+```{r}
+# What if we used not to optimal lambda?
+ridge.pred=predict(ridge.mod,s=15,newx=x.test)
+mean((ridge.pred-y.test)^2)
+```
+
+---
+
+#### Lasso
+
+---
+
+```{r}
+lasso.mod<- glmnet(x, y, alpha=1, lambda = grid) 
+# Plot coefficients
+plot(lasso.mod, xvar="lambda",main='Lasso')
+```
+```{r}
+set.seed(1)
+# Perform cross validation to find the best value of lambda
+cv.lasso <- cv.glmnet(x, y, alpha=1,nfolds=10)
+plot(cv.lasso)
+bestlam=cv.lasso$lambda.min
+bestlam
+```
+
+```{r}
+# Predict MSE on the test set usind the best lambda
+lasso.pred=predict(lasso.mod,s=bestlam,newx=x.test)
+mean((lasso.pred-y.test)^2)
+```
+
+```{r}
+# What are the coefficients of the best model?
+lasso.coef=predict(lasso.mod,type="coefficients",s=bestlam)[1:20,] 
+lasso.coef
+lasso.coef[lasso.coef!=0]
+```
+
+In this particular example, if you calculate the mean square error using simple linear regression you will see that the regularization methods did not really improve it. This is because of the particular data we used in this lab, since the number of samples (1001 in train set) is more than enough to accurately predict the coefficients (21 variables) without overfitting the data. In more "real life" applications, regularization methods can really reduce overfitting and improve your method's performance. 
+
+
