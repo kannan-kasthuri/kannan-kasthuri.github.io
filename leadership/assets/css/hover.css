@@ -89,3 +89,46 @@ p {
     }
   }
 }
+
+#MainDiv {
+  height: 200px;
+  width: 650px;
+  display: flex;
+  /* here is a concept */
+  flex-direction: row;
+  /* you can either change it to row/columns */
+  padding: 5px;
+}
+
+#firstDiv {
+  width: 200px;
+  margin: 5px;
+  background-color: red;
+}
+
+#secondDiv {
+  width: 200px;
+  margin: 5px;
+  background-color: blue;
+}
+
+#thirdDiv {
+  width: 200px;
+  margin: 5px;
+  background-color: green;
+}
+
+#firstDiv:hover {
+  background-color: blue;
+  color: white;
+}
+
+#secondDiv:hover {
+  background-color: green;
+  color: white;
+}
+
+#thirdDiv:hover {
+  background-color: red;
+  color: white;
+}
