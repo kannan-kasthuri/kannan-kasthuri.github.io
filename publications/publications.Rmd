@@ -27,6 +27,10 @@ Also, **blue** font means equal/senior/last/first author contribution
 
 ---
 
+[27] Xiangjie Sun, Jie Zhai, Baohua Sun, Edwin Roger Parra, Mei Jiang, Wencai Ma, Jing Wang, Anthony Kang, Kasthuri Kannan, Renganayaki Pandurengan, Shanyu Zhang, Luisa Maren Solis Soto, Cara Haymaker, Maria Gabriela Raso, Julia Mendoza Perez, Aysegul Sahin, Ignacio Wistuba, Clinton Yam, Jennifer Litton, and Fei Yang. Effector memory cytotoxic CD3+/CD8+/CD45RO+ T cell predicts good survival with less risk to recurrence in triple-negative breast cancer. <span style="color:#e80c7a">_Modern Pathology_</span>. (Provisionally accepted)
+
+[26] Yam C, Yen EY, Chang JT, Bassett RL Jr, Alatrash G, Garber H, Huo L, Yang F, Philips AV, Ding QQ, Lim B, Ueno NT, **Kannan K**, Sun X, Sun B, Parra Cuentas ER, Symmans WF, White JB, Ravenberg E, Seth S, Guerriero JL, Rauch GM, Damodaran S, Litton JK, Wargo JA, Hortobagyi GN, Futreal A, Wistuba II, Sun R, Moulder SL, Mittendorf EA.Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer. <span style="color:#e80c7a">_Clin Cancer Research_</span>. Jul. 2021. [[PMID: 34253579]](https://pubmed.ncbi.nlm.nih.gov/34253579/)
+
 [25] Iris Scherwitzl, Silvana Opp, Alicia M. Hurtado, Christine Pampeno, Cynthia Loomis, **Kasthuri Kannan**, Minjun Yu, and Daniel Meruelo. Sindbis Virus with Anti-OX40 Overcomes the Immunosuppressive Tumor Microenvironment of Low-Immunogenic Tumors. <span style="color:#e80c7a"> _Molecular Therapy - Oncolytics_</span>. Jun. 2020. [[PMID: 32478167]](https://pubmed.ncbi.nlm.nih.gov/32478167/)
 
 [24] Dhanasekaran R, Baylot V, Kim M, Kuruvilla S, Bellovin D, Adeniji N, Rajan K A, Lai I, Gabay M, Tong L, Krishnan M, Park J, Hu T, Barbhuiya M A, Gentles A J, **Kannan, K**, Tran P T and Felsher D W. MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. <span style="color:#e80c7a"> _eLife_</span>. Jan. 2020. [[PMID: 31933479]](https://pubmed.ncbi.nlm.nih.gov/31933479-myc-and-twist1-cooperate-to-drive-metastasis-by-eliciting-crosstalk-between-cancer-and-innate-immunity/?from_term=kasthuri+kannan&from_size=10&from_page=2&from_pos=8)

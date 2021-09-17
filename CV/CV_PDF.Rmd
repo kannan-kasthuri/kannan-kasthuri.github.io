@@ -61,10 +61,10 @@ Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrea
 ```{r echo=FALSE, warning=FALSE}
 library(kableExtra)
 # Make a data frame for the positions
-skills <- data.frame("Proficiency" = c("Data science, Machine learning","Genomics, Image processing","Mathematical modeling, Statistics","Algorithms, Programming"), "Software" = c("Python, R, Scripts(Perl/Bash), C++, spatstat","Matlab, Samtools, GATK, Bioinformatics Tools","MySQL, Neo4j, MS Access","Unix, Linux variants, Windows (all versions)"))
+skills <- data.frame("Proficiency" = c("Data science, Machine learning","Bioinformatics, Image processing","Mathematical modeling, Statistics","Algorithms, Programming"), "Software" = c("Python, R, Scripts(Perl/Bash), C++, spatstat","Matlab, Samtools, GATK, Bioinformatics Tools","MySQL, Neo4j, MS Access","Unix, Linux variants, Windows (all versions)"))
 ```
 
-``` {r echo=FALSE}
+``` {r echo=FALSE, warning=FALSE}
 # Create a table
 kable(skills, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped")  
 ```
@@ -77,14 +77,19 @@ library(kableExtra)
 education <- data.frame("Timeline" = c("Aug. 2008","Apr. 2002","Apr. 2000","Jun. 1998"), "Degree" = c("PhD Computer Science","MS Mathematics","MSc Mathematics","BSc Mathematics"), "Institution" = c("Texas A&M University, College Station","Texas A&M University, College Station","Indian Institute of Technology, Madras","University of Madras, Chennai"))
 ```
 
-``` {r echo=FALSE}
+``` {r echo=FALSE, warning=FALSE}
 # Create a table
 kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped") %>% column_spec(1, width = "2cm")
 ```
 
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
-[25] Iris Scherwitzl, Silvana Opp, Alicia M. Hurtado, Christine Pampeno, Cynthia Loomis, **Kasthuri Kannan**, Minjun Yu, and Daniel Meruelo. Sindbis Virus with Anti-OX40 Overcomes the Immunosuppressive Tumor Microenvironment of Low-Immunogenic Tumors. \textbf{\textit{\textcolor{violet}{Molecular Therapy - Oncolytics}}}. Jun. 2020.
+
+[27] Xiangjie Sun, Jie Zhai, Baohua Sun, Edwin Roger Parra, Mei Jiang, Wencai Ma, Jing Wang, Anthony Kang, Kasthuri Kannan, Renganayaki Pandurengan, Shanyu Zhang, Luisa Maren Solis Soto, Cara Haymaker, Maria Gabriela Raso, Julia Mendoza Perez, Aysegul Sahin, Ignacio Wistuba, Clinton Yam, Jennifer Litton, and Fei Yang. Effector memory cytotoxic CD3+/CD8+/CD45RO+ T cell predicts good survival with less risk to recurrence in triple-negative breast cancer. \textbf{\textit{\textcolor{violet}{Modern Pathology}}}. (Provisionally accepted)
+
+[26] Yam C, Yen EY, Chang JT, Bassett RL Jr, Alatrash G, Garber H, Huo L, Yang F, Philips AV, Ding QQ, Lim B, Ueno NT, **Kannan K**, Sun X, Sun B, Parra Cuentas ER, Symmans WF, White JB, Ravenberg E, Seth S, Guerriero JL, Rauch GM, Damodaran S, Litton JK, Wargo JA, Hortobagyi GN, Futreal A, Wistuba II, Sun R, Moulder SL, Mittendorf EA.Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer. \textbf{\textit{\textcolor{violet}{Clin Cancer Research}}}. Jul. 2021. [PMID: 34253579] 
+
+[25] Iris Scherwitzl, Silvana Opp, Alicia M. Hurtado, Christine Pampeno, Cynthia Loomis, **Kasthuri Kannan**, Minjun Yu, and Daniel Meruelo. Sindbis Virus with Anti-OX40 Overcomes the Immunosuppressive Tumor Microenvironment of Low-Immunogenic Tumors. \textbf{\textit{\textcolor{violet}{Molecular Therapy - Oncolytics}}}. Jun. 2020. [PMID: 32478167]
 
 [24] Dhanasekaran R, Baylot V, Kim M, Kuruvilla S, Bellovin D, Adeniji N, Rajan K A, Lai I, Gabay M, Tong L, Krishnan M, Park J, Hu T, Barbhuiya M A, Gentles A J, **Kannan, K**, Tran P T and Felsher D W. MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textbf{\textit{\textcolor{violet}{eLife}}}. Jan. 2020. [PMID: 31933479]
 
@@ -168,6 +173,8 @@ Courant Institute of Mathematical Sciences, Manhattan, NY. Sept. 24, 2019
 
 \end{flushleft}
 
+\hrule
+
 \textbf{\textcolor{purple}{Employment History}}
 
 \begin{flushleft}
@@ -178,7 +185,7 @@ University of Texas MD Anderson Cancer Center, Houston, TX \linebreak
 \end{flushleft}
 
 a) Systems biology of gliomas - GLioma AnalySiS (GLASS) consortium studies. Building knowledge graph database framework integrating multiomics data for hypothesis generation using Neo4j.
-b) Leading a team of four in Computational Pathology Program.
+b) Directing Computational Pathology Program.
 c) Spatial point process modeling of cancer tissue images obtained using multiplex immunofluorescence technologies.
 
 \begin{flushleft}
@@ -259,6 +266,6 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Nov.19, 2020
+Last Updated: Sept. 17, 2021
 
 
