@@ -32,22 +32,25 @@ Systems Biology, Computational Pathology, Genomics/Epigenomics
 
 \begin{flushleft}
 
-1. Dean Felsher, Professor, Stanford University. \linebreak
+1. Clinton Yam, Assistant Professor, UT MD Anderson Cancer Center. \linebreak
+\hangindent=0.4cm Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer.\textit{Clin Cancer Research}. Jul. 2021.
+
+2. Dean Felsher, Professor, Stanford University. \linebreak
 \hangindent=0.4cm MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textit{eLife}. Jan. 2020.
 
-2. Jason Huse, MD, PhD, Associate Professor \& Director, MD Anderson Cancer Center. \linebreak
+3. Jason Huse, MD, PhD, Associate Professor \& Director, MD Anderson Cancer Center. \linebreak
 \hangindent=0.4cm Atrx inactivation drives disease-defining phenotypes in glioma cells of origin through global epigenomic remodeling. \textit{Nature Communications}. Mar. 2018.
 
-3. Matthias Karajannis, MD, MS, Chief, Pediatric Neuro-Oncology, MSKCC. \linebreak
+4. Matthias Karajannis, MD, MS, Chief, Pediatric Neuro-Oncology, MSKCC. \linebreak
 Recurrent homozygous deletion of DROSHA and microduplication of PDE4DIP containing the ancestral DUF1220 domain in pineoblastoma. \textit{Nature Communications}. July 2018.
 
-4. Matija Snuderl, MD, Director, Molecular Pathology, NYU. \linebreak
+5. Matija Snuderl, MD, Director, Molecular Pathology, NYU. \linebreak
 DNA methylation-based classification of human central nervous system tumors. \textit{Nature}. Mar. 2018.
 
-5. Orrin Devinsky, MD, Director, Comprehensive Epilepsy Center, NYU. \linebreak
+6. Orrin Devinsky, MD, Director, Comprehensive Epilepsy Center, NYU. \linebreak
 Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textit{Nature Genomic Medicine}. Mar. 2018.
 
-6. Adriana Heguy, PhD, Assistant Dean, Division of Advanced Research Technologies, NYU. \linebreak
+7. Adriana Heguy, PhD, Assistant Dean, Division of Advanced Research Technologies, NYU. \linebreak
 Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? \textit{Letters in Biomathematics}. Sept. 2016. 
 
 \end{flushleft}
@@ -82,12 +85,14 @@ education <- data.frame("Timeline" = c("Aug. 2008","Apr. 2002","Apr. 2000","Jun.
 kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped") %>% column_spec(1, width = "2cm")
 ```
 
+\pagebreak
+
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
 
-[27] Xiangjie Sun, Jie Zhai, Baohua Sun, Edwin Roger Parra, Mei Jiang, Wencai Ma, Jing Wang, Anthony Kang, **Kasthuri Kannan**, Renganayaki Pandurengan, Shanyu Zhang, Luisa Maren Solis Soto, Cara Haymaker, Maria Gabriela Raso, Julia Mendoza Perez, Aysegul Sahin, Ignacio Wistuba, Clinton Yam, Jennifer Litton, and Fei Yang. Effector memory cytotoxic CD3+/CD8+/CD45RO+ T cell predicts good survival with less risk to recurrence in triple-negative breast cancer. \textbf{\textit{\textcolor{violet}{Modern Pathology}}}. (Provisionally accepted)
+[27] Xiangjie Sun, Jie Zhai, Baohua Sun, Edwin Roger Parra, Mei Jiang, Wencai Ma, Jing Wang, Anthony Kang, **Kasthuri Kannan**, Renganayaki Pandurengan, Shanyu Zhang, Luisa Maren Solis Soto, Cara Haymaker, Maria Gabriela Raso, Julia Mendoza Perez, Aysegul Sahin, Ignacio Wistuba, Clinton Yam, Jennifer Litton, and Fei Yang. Effector memory cytotoxic CD3+/CD8+/CD45RO+ T cell predicts good survival with less risk to recurrence in triple-negative breast cancer. \textbf{\textit{\textcolor{violet}{Modern Pathology}}}. Nov. 2021. [PMID: 34839351]
 
-[26] Yam C, Yen EY, Chang JT, Bassett RL Jr, Alatrash G, Garber H, Huo L, Yang F, Philips AV, Ding QQ, Lim B, Ueno NT, **Kannan K**, Sun X, Sun B, Parra Cuentas ER, Symmans WF, White JB, Ravenberg E, Seth S, Guerriero JL, Rauch GM, Damodaran S, Litton JK, Wargo JA, Hortobagyi GN, Futreal A, Wistuba II, Sun R, Moulder SL, Mittendorf EA.Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer. \textbf{\textit{\textcolor{violet}{Clin Cancer Research}}}. Jul. 2021. [PMID: 34253579] 
+[26] Yam C, Yen EY, Chang JT, Bassett RL Jr, Alatrash G, Garber H, Huo L, Yang F, Philips AV, Ding QQ, Lim B, Ueno NT, **Kannan K**, Sun X, Sun B, Parra Cuentas ER, Symmans WF, White JB, Ravenberg E, Seth S, Guerriero JL, Rauch GM, Damodaran S, Litton JK, Wargo JA, Hortobagyi GN, Futreal A, Wistuba II, Sun R, Moulder SL, Mittendorf EA. Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer. \textbf{\textit{\textcolor{violet}{Clin Cancer Research}}}. Jul. 2021. [PMID: 34253579] 
 
 [25] Iris Scherwitzl, Silvana Opp, Alicia M. Hurtado, Christine Pampeno, Cynthia Loomis, **Kasthuri Kannan**, Minjun Yu, and Daniel Meruelo. Sindbis Virus with Anti-OX40 Overcomes the Immunosuppressive Tumor Microenvironment of Low-Immunogenic Tumors. \textbf{\textit{\textcolor{violet}{Molecular Therapy - Oncolytics}}}. Jun. 2020. [PMID: 32478167]
 
@@ -95,7 +100,7 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 [23] Hao Y, Ruiz R, Yang L, Neto AG, Amin MR, Kelly D, Achlatis S, Roof S, Bing R, **Kasthuri Kannan**, Brown SM, Pei Z, & Branski RC. Mitochondrial somatic mutations and lack of viral genomic variation in recurrent respiratory papillomatosis. \textbf{\textit{\textcolor{violet}{Scientific Reports}}}. Oct. 2019. [PMID: 31719597]
 
-[22] Lavanya Kannan, Tarjani Agarwal, Matija Snuderl, David Zagzag, Erik Sulman, Jason Huse,  and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Determines Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. Apr. 2019. bioRxiv 608414; doi: https://doi.org/10.1101/608414
+[22] Lavanya Kannan, Tarjani Agarwal, Matija Snuderl, David Zagzag, Erik Sulman, Jason Huse,  and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Determines Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. Apr. 2019. bioRxiv 608414; doi: https://doi.org/10.1101/608414 \textbf{\textit{\textcolor{violet}{Submitted to PLoS Computational Biology}}}
 
 [21] Martin Vaeth, Yin-Hu Wang, Miriam Eckstein, Jun Yang, Gregg Silverman, Rodrigo Lacruz,  \textbf{\textcolor{blue} {Kasthuri Kannan}}, and Stefan Feske. Tissue resident and follicular Treg cell differentiation is regulated by CRAC channels. \textbf{\textit{\textcolor{violet}{Nature Communications}}}. Mar. 2019. [PMID: 30862784]
 
@@ -141,7 +146,7 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \vspace{2mm}
 
-\hrule
+\pagebreak
 
 \textbf{\textcolor{purple}{Invited Talks/Workshops/Interviews}}
 
@@ -170,6 +175,10 @@ GeneWiz, Short Hills, NJ. Aug. 7, 2019
 University of Texas Health Science Center, San Antonio. Aug. 30, 2019
 
 Courant Institute of Mathematical Sciences, Manhattan, NY. Sept. 24, 2019
+
+Texas A\&M University, Department of Mathematics, Oct. 25, 2021 
+
+Joint Immuno-Oncology (IO) Session, NCI. Nov. 05. 2021
 
 \end{flushleft}
 
@@ -266,6 +275,6 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Sept. 17, 2021
+Last Updated: Jan. 01, 2022
 
 
