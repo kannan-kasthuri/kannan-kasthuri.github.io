@@ -14,15 +14,17 @@ Associate Professor and Director \linebreak
 https://kannan-kasthuri.github.io/ \linebreak
 \flushleft{Departments of Translational Molecular Pathology \& Neurosurgery}
 \hfill{UT MD Anderson Cancer Center} 
+\vspace{-4mm}
+\flushleft{Visiting Associate Professor (honorary appointment)}
+\hfill{National University of Singapore, Singapore}
 \end{center}
-
 \vspace{2mm}
 
 \hrule
 
 \textbf{\textcolor{purple}{Professional Interests}}
 
-Systems Biology, Computational Pathology, Genomics/Epigenomics
+Data Science, Systems Biology, Computational Pathology, Bioinformatics
 
 \vspace{2mm}
 
@@ -192,7 +194,7 @@ Joint Immuno-Oncology (IO) Session, NCI. Nov. 05. 2021
 \textbf{Director, Computational Pathology Program} \linebreak
 University of Texas MD Anderson Cancer Center, Houston, TX \linebreak
 \end{flushleft}
-
+\vspace{-4mm}
 a) Systems biology of gliomas - GLioma AnalySiS (GLASS) consortium studies. Building knowledge graph database framework integrating multiomics data for hypothesis generation using Neo4j.
 b) Directing Computational Pathology Program.
 c) Spatial point process modeling of cancer tissue images obtained using multiplex immunofluorescence technologies.
@@ -275,6 +277,6 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Jan. 01, 2022
+Last Updated: June. 13, 2022
 
 
