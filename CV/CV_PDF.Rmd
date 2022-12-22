@@ -91,19 +91,20 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
-[28] Varn FS, Johnson KC, Martinek J, Huse JT, Nasrallah MP, Wesseling P, Cooper LAD, Malta TM, Wade TE, Sabedot TS, Brat D, Gould PV, Wöehrer A, Aldape K, Ismail A, Sivajothi SK, Barthel FP, Kim H, Kocakavuk E, Ahmed N, White K, Datta I, Moon HE, Pollock S, Goldfarb C, Lee GH, Garofano L, Anderson KJ, Nehar-Belaid D, Barnholtz-Sloan JS, Bakas S, Byrne AT, D'Angelo F, Gan HK, Khasraw M, Migliozzi S, Ormond DR, Paek SH, Van Meir EG, Walenkamp AME, Watts C, Weiss T, Weller M, Palucka K, Stead LF, Poisson LM, Noushmehr H, Iavarone A, Verhaak RGW; **GLASS Consortium**. Glioma progression is shaped by genetic evolution and microenvironment interactions. \textbf{\textit{\textcolor{violet}{Cell}}}. Jun. 2022. [PMID: 35649412]
+[28] Afrooz Jahedi, Gayatri Kumar, Lavanya Kannan, Tarjani Agrawal, Jason Huse, Krishna Bhat, 
+and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. \textbf{\textit{\textcolor{violet}{PLoS One (accepted)}}}
+ 
+[27] Varn FS, Johnson KC, Martinek J, Huse JT, Nasrallah MP, Wesseling P, Cooper LAD, Malta TM, Wade TE, Sabedot TS, Brat D, Gould PV, Wöehrer A, Aldape K, Ismail A, Sivajothi SK, Barthel FP, Kim H, Kocakavuk E, Ahmed N, White K, Datta I, Moon HE, Pollock S, Goldfarb C, Lee GH, Garofano L, Anderson KJ, Nehar-Belaid D, Barnholtz-Sloan JS, Bakas S, Byrne AT, D'Angelo F, Gan HK, Khasraw M, Migliozzi S, Ormond DR, Paek SH, Van Meir EG, Walenkamp AME, Watts C, Weiss T, Weller M, Palucka K, Stead LF, Poisson LM, Noushmehr H, Iavarone A, Verhaak RGW; **GLASS Consortium**. Glioma progression is shaped by genetic evolution and microenvironment interactions. \textbf{\textit{\textcolor{violet}{Cell}}}. Jun. 2022. [PMID: 35649412]
 
-[27] Xiangjie Sun, Jie Zhai, Baohua Sun, Edwin Roger Parra, Mei Jiang, Wencai Ma, Jing Wang, Anthony Kang, **Kasthuri Kannan**, Renganayaki Pandurengan, Shanyu Zhang, Luisa Maren Solis Soto, Cara Haymaker, Maria Gabriela Raso, Julia Mendoza Perez, Aysegul Sahin, Ignacio Wistuba, Clinton Yam, Jennifer Litton, and Fei Yang. Effector memory cytotoxic CD3+/CD8+/CD45RO+ T cell predicts good survival with less risk to recurrence in triple-negative breast cancer. \textbf{\textit{\textcolor{violet}{Modern Pathology}}}. May. 2022. [PMID: 34839351]
+[26] Xiangjie Sun, Jie Zhai, Baohua Sun, Edwin Roger Parra, Mei Jiang, Wencai Ma, Jing Wang, Anthony Kang, **Kasthuri Kannan**, Renganayaki Pandurengan, Shanyu Zhang, Luisa Maren Solis Soto, Cara Haymaker, Maria Gabriela Raso, Julia Mendoza Perez, Aysegul Sahin, Ignacio Wistuba, Clinton Yam, Jennifer Litton, and Fei Yang. Effector memory cytotoxic CD3+/CD8+/CD45RO+ T cell predicts good survival with less risk to recurrence in triple-negative breast cancer. \textbf{\textit{\textcolor{violet}{Modern Pathology}}}. May. 2022. [PMID: 34839351]
 
-[26] Yam C, Yen EY, Chang JT, Bassett RL Jr, Alatrash G, Garber H, Huo L, Yang F, Philips AV, Ding QQ, Lim B, Ueno NT, **Kannan K**, Sun X, Sun B, Parra Cuentas ER, Symmans WF, White JB, Ravenberg E, Seth S, Guerriero JL, Rauch GM, Damodaran S, Litton JK, Wargo JA, Hortobagyi GN, Futreal A, Wistuba II, Sun R, Moulder SL, Mittendorf EA. Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer. \textbf{\textit{\textcolor{violet}{Clin Cancer Research}}}. Jul. 2021. [PMID: 34253579] 
+[25] Yam C, Yen EY, Chang JT, Bassett RL Jr, Alatrash G, Garber H, Huo L, Yang F, Philips AV, Ding QQ, Lim B, Ueno NT, **Kannan K**, Sun X, Sun B, Parra Cuentas ER, Symmans WF, White JB, Ravenberg E, Seth S, Guerriero JL, Rauch GM, Damodaran S, Litton JK, Wargo JA, Hortobagyi GN, Futreal A, Wistuba II, Sun R, Moulder SL, Mittendorf EA. Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer. \textbf{\textit{\textcolor{violet}{Clin Cancer Research}}}. Jul. 2021. [PMID: 34253579] 
 
-[25] Iris Scherwitzl, Silvana Opp, Alicia M. Hurtado, Christine Pampeno, Cynthia Loomis, **Kasthuri Kannan**, Minjun Yu, and Daniel Meruelo. Sindbis Virus with Anti-OX40 Overcomes the Immunosuppressive Tumor Microenvironment of Low-Immunogenic Tumors. \textbf{\textit{\textcolor{violet}{Molecular Therapy - Oncolytics}}}. Jun. 2020. [PMID: 32478167]
+[24] Iris Scherwitzl, Silvana Opp, Alicia M. Hurtado, Christine Pampeno, Cynthia Loomis, **Kasthuri Kannan**, Minjun Yu, and Daniel Meruelo. Sindbis Virus with Anti-OX40 Overcomes the Immunosuppressive Tumor Microenvironment of Low-Immunogenic Tumors. \textbf{\textit{\textcolor{violet}{Molecular Therapy - Oncolytics}}}. Jun. 2020. [PMID: 32478167]
 
-[24] Dhanasekaran R, Baylot V, Kim M, Kuruvilla S, Bellovin D, Adeniji N, Rajan K A, Lai I, Gabay M, Tong L, Krishnan M, Park J, Hu T, Barbhuiya M A, Gentles A J, **Kannan, K**, Tran P T and Felsher D W. MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textbf{\textit{\textcolor{violet}{eLife}}}. Jan. 2020. [PMID: 31933479]
+[23] Dhanasekaran R, Baylot V, Kim M, Kuruvilla S, Bellovin D, Adeniji N, Rajan K A, Lai I, Gabay M, Tong L, Krishnan M, Park J, Hu T, Barbhuiya M A, Gentles A J, **Kannan, K**, Tran P T and Felsher D W. MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textbf{\textit{\textcolor{violet}{eLife}}}. Jan. 2020. [PMID: 31933479]
 
-[23] Hao Y, Ruiz R, Yang L, Neto AG, Amin MR, Kelly D, Achlatis S, Roof S, Bing R, **Kasthuri Kannan**, Brown SM, Pei Z, & Branski RC. Mitochondrial somatic mutations and lack of viral genomic variation in recurrent respiratory papillomatosis. \textbf{\textit{\textcolor{violet}{Scientific Reports}}}. Oct. 2019. [PMID: 31719597]
-
-[22] Lavanya Kannan, Tarjani Agarwal, Matija Snuderl, David Zagzag, Erik Sulman, Jason Huse,  and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Determines Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. Apr. 2019. bioRxiv 608414; doi: https://doi.org/10.1101/608414 \textbf{\textit{\textcolor{violet}{Submitted to PLoS Computational Biology}}}
+[22] Hao Y, Ruiz R, Yang L, Neto AG, Amin MR, Kelly D, Achlatis S, Roof S, Bing R, **Kasthuri Kannan**, Brown SM, Pei Z, & Branski RC. Mitochondrial somatic mutations and lack of viral genomic variation in recurrent respiratory papillomatosis. \textbf{\textit{\textcolor{violet}{Scientific Reports}}}. Oct. 2019. [PMID: 31719597]
 
 [21] Martin Vaeth, Yin-Hu Wang, Miriam Eckstein, Jun Yang, Gregg Silverman, Rodrigo Lacruz,  \textbf{\textcolor{blue} {Kasthuri Kannan}}, and Stefan Feske. Tissue resident and follicular Treg cell differentiation is regulated by CRAC channels. \textbf{\textit{\textcolor{violet}{Nature Communications}}}. Mar. 2019. [PMID: 30862784]
 
@@ -189,6 +190,12 @@ GraphConnect Conference (Neo4j), Jun. 7, 2022
 
 Translational Molecular Pathology 2022 Retreat, Jun. 17, 2022
 
+National University of Singapore, Cancer Science Institute (In-person visit and talk), Jul. 19, 2022
+
+Omics Research Symposium, Pine Biotech, Aug. 30, 2022
+
+Mayo Clinic, Science of Medicine Grand Rounds, TBD
+
 \end{flushleft}
 
 \hrule
@@ -202,9 +209,10 @@ Translational Molecular Pathology 2022 Retreat, Jun. 17, 2022
 University of Texas MD Anderson Cancer Center, Houston, TX \linebreak
 \end{flushleft}
 \vspace{-4mm}
-a) Systems biology of gliomas - GLioma AnalySiS (GLASS) consortium studies. Building knowledge graph database framework integrating multiomics data for hypothesis generation using Neo4j.
-b) Directing Computational Pathology Program.
-c) Spatial point process modeling of cancer tissue images obtained using multiplex immunofluorescence technologies.
+a) Systems biology architecture for glioma using GLioma AnalySiS (GLASS) consortium data. Building an integrative platform using graph database framework for hypothesis generation using Neo4j.
+b) Directing the computational pathology program. We perform spatial point process modeling of cancer tissue images obtained using multiplex immunofluorescence and CODEX technologies.
+c) NGS data analysis and spatial transcriptomics, especially GeoMx Digital Spatial Profiler data analysis
+d) Mentoring post-docs and graduate students
 
 \begin{flushleft}
 
@@ -216,7 +224,7 @@ New York University Langone Health, New York. NY
 a) Directed insights through data science applied to Next Generation Sequencing data (see publications).
 b) Software and pipeline development.
 c) Statistical and mathematical modeling.
-d) Director - Data science and Machine learning courses.
+d) Directed and taught data science and machine learning courses.
 
 \begin{flushleft}
 
@@ -284,6 +292,6 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: June. 13, 2022
+Last Updated: Dec. 21, 2022
 
 
