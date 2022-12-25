@@ -89,10 +89,16 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \pagebreak
 
+\textbf{\textcolor{purple}{Manuscripts submitted \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
+
+[30] Michal Marek Hoppe; Patrick Jaynes et al. {with Anand Jeyasekharan, National University of Singapore} Patterns of oncogene co-expression at single cell resolution in cancer influence survival. \textbf{\textit{\textcolor{violet}{Cancer Discovery.}}}
+
+[29] Prahlad Bhat, Michael Hwang, Afrooz Jahedi, Kanishka Sircar, and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Point Process Model Predicts Survival in Clear Cell Renal Cell Carcinoma. \textbf{\textit{\textcolor{violet}{medRXiv}}} (doi: https://doi.org/10.1101/2022.02.16.22271019).
+
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
 [28] Afrooz Jahedi, Gayatri Kumar, Lavanya Kannan, Tarjani Agrawal, Jason Huse, Krishna Bhat, 
-and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. \textbf{\textit{\textcolor{violet}{PLoS One (accepted)}}}
+and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. \textbf{\textit{\textcolor{violet}{PLoS One (accepted)}}}.
  
 [27] Varn FS, Johnson KC, Martinek J, Huse JT, Nasrallah MP, Wesseling P, Cooper LAD, Malta TM, Wade TE, Sabedot TS, Brat D, Gould PV, Wöehrer A, Aldape K, Ismail A, Sivajothi SK, Barthel FP, Kim H, Kocakavuk E, Ahmed N, White K, Datta I, Moon HE, Pollock S, Goldfarb C, Lee GH, Garofano L, Anderson KJ, Nehar-Belaid D, Barnholtz-Sloan JS, Bakas S, Byrne AT, D'Angelo F, Gan HK, Khasraw M, Migliozzi S, Ormond DR, Paek SH, Van Meir EG, Walenkamp AME, Watts C, Weiss T, Weller M, Palucka K, Stead LF, Poisson LM, Noushmehr H, Iavarone A, Verhaak RGW; **GLASS Consortium**. Glioma progression is shaped by genetic evolution and microenvironment interactions. \textbf{\textit{\textcolor{violet}{Cell}}}. Jun. 2022. [PMID: 35649412]
 
@@ -121,7 +127,6 @@ and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Sur
 [15] Fanok, Melania H; Sun, Amy; Fogli, Laura K; Narendran, Vijay; Eckstein, Miriam; **Kannan, Kasthuri**; Dolgalev, Igor; Lazaris, Charalampos; Heguy, Adriana; Laird, Mary E; Sundrud, Mark S; Liu, Cynthia; Kutok, Jeff; Lacruz, Rodrigo S; Latkowski, Jo-Ann; Aifantis, Iannis; Odum, Niels; Hymes, Kenneth B; Goel, Swati; Koralov, Sergei B. Role of dysregulated cytokine signaling and bacterial triggers in the pathogenesis of Cutaneous T Cell Lymphoma. \textbf{\textit{\textcolor{violet}{Journal of Investigative Dermatology}}}. Nov. 2017. [PMID: 29128259]
 
 [14]	\textbf{\textcolor{blue} {Kasthuri Kannan}} and Adriana Heguy. Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? \textbf{\textit{\textcolor{violet}{Letters In Biomathematics}}}. Sept. 2016. 
-
 [13]	Snyder A, Makarov V, Merghoub T, Yuan J, Zaretsky JM, Desrichard A, Walsh LA, Postow MA, Wong P, Ho TS, Hollmann TJ, Bruggeman C, **Kasthuri Kannan**, Li Y, Elipenahli C, Liu C, Harbison CT, Wang L, Ribas A, Wolchok JD, Chan TA. Genetic basis for clinical response to CTLA-4 blockade in melanoma. \textbf{\textit{\textcolor{violet}{N Engl. J Med}}}. Dec. 2014. [PMID: 25409260]
 
 [12]	Marsha Reyngold, Sevin Turcan, Dilip Giri, **Kasthuri Kannan**, Logan A. Walsh et al. Remodeling of the Methylation Landscape in Breast Cancer Metastasis. \textbf{\textit{\textcolor{violet}{PLoS One}}}. Aug. 2014. [PMID: 25083786]
@@ -148,7 +153,7 @@ and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Sur
 
 [01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, pp. 107-114, May 2005.
 
-\vspace{2mm}
+\vspace{4mm}
 
 \hrule
 
@@ -198,17 +203,15 @@ Mayo Clinic, Science of Medicine Grand Rounds, TBD
 
 \end{flushleft}
 
+\vspace{2mm}
+
 \hrule
-
+\pagebreak
 \textbf{\textcolor{purple}{Employment History}}
-
 \begin{flushleft}
-
 \textbf{Associate Professor (Translational Molecular Pathology, Neurosurgery)} \hfill \textbf{Feb 2020} - \textbf{present} \linebreak
-\textbf{Director, Computational Pathology Program} \linebreak
-University of Texas MD Anderson Cancer Center, Houston, TX \linebreak
+University of Texas MD Anderson Cancer Center, Houston, TX
 \end{flushleft}
-\vspace{-4mm}
 a) Systems biology architecture for glioma using GLioma AnalySiS (GLASS) consortium data. Building an integrative platform using graph database framework for hypothesis generation using Neo4j.
 b) Directing the computational pathology program. We perform spatial point process modeling of cancer tissue images obtained using multiplex immunofluorescence and CODEX technologies.
 c) NGS data analysis and spatial transcriptomics, especially GeoMx Digital Spatial Profiler data analysis
