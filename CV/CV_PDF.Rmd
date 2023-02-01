@@ -91,11 +91,13 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \textbf{\textcolor{purple}{Manuscripts submitted \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
-[30] Michal Marek Hoppe; Patrick Jaynes et al. {with Anand Jeyasekharan, National University of Singapore} Patterns of oncogene co-expression at single cell resolution in cancer influence survival. \textbf{\textit{\textcolor{violet}{Cancer Discovery.}}}
+[31] Edwin Parra, Jiexin Jiang et al. {with Cara Haymaker} Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. \textbf{\textit{\textcolor{violet}{Clinical Cancer Research}}}.
 
-[29] Prahlad Bhat, Michael Hwang, Afrooz Jahedi, Kanishka Sircar, and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Point Process Model Predicts Survival in Clear Cell Renal Cell Carcinoma. \textbf{\textit{\textcolor{violet}{medRXiv}}} (doi: https://doi.org/10.1101/2022.02.16.22271019).
+[30] Prahlad Bhat, Michael Hwang, Afrooz Jahedi, Kanishka Sircar, and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Point Process Model Predicts Survival in Clear Cell Renal Cell Carcinoma. \textbf{\textit{\textcolor{violet}{medRXiv}}} (doi: https://doi.org/10.1101/2022.02.16.22271019).
 
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
+
+[29] Michal Marek Hoppe; Patrick Jaynes et al. {with Anand Jeyasekharan, National University of Singapore} Patterns of oncogene co-expression at single cell resolution in cancer influence survival. \textbf{\textit{\textcolor{violet}{Cancer Discovery (accepted)}}}.
 
 [28] Afrooz Jahedi, Gayatri Kumar, Lavanya Kannan, Tarjani Agrawal, Jason Huse, Krishna Bhat, 
 and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. \textbf{\textit{\textcolor{violet}{PLoS One (accepted)}}}.
