@@ -34,8 +34,8 @@ Data Science, Systems Biology, Computational Pathology, Bioinformatics
 
 \begin{flushleft}
 
-1. Anand Jeyasekharan, Assistant Professor, Cancer Science Institute, National University of Singapore. \linebreak
-\hangindent=0.4cm Patterns of oncogene co-expression at single cell resolution in cancer influence survival.\textit{Cancer Discovery}. Feb. 2023.
+1. Anand Jeyasekharan, Assistant Professor, National University of Singapore. \linebreak
+\hangindent=0.4cm Patterns of oncogene co-expression at single cell resolution in cancer influence survival. \textit{Cancer Discovery, (accepted)}.
 
 2. Dean Felsher, Professor, Stanford University. \linebreak
 \hangindent=0.4cm MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textit{eLife}. Jan. 2020.
@@ -60,6 +60,26 @@ Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrea
 \vspace{2mm}
 
 \hrule
+
+\vspace{2mm}
+
+\textbf{\textcolor{purple}{Grants (Co-investigator) Awarded/Pending}}
+
+\begin{flushleft}
+
+1. Clinton Yam, The microbiota-immune axis and response to neoadjuvant chemo(immuno)therapy in triple-negative breast cancer. Conquer Cancer Foundation. \# AWD00005359
+
+2. Pravesh Gupta, Exploiting microglial neuroimmune axis for monocyte driven glioblastoma immunotherapy. NIH Pathway to Independence.
+
+3. Krishna Bhat, Immune Correlates of AXL Inhibitor (Bemcentinib) Treatment for Brain Tumor Therapy. DoD Peer Reviewed, Translational Team Science Award.
+
+4. Krishna Bhat, Elucidating the Antigen-Presenting Immunomodulatory Axis in Gliomas, NIH R01.
+
+5. Krishna Bhat, Evaluation of immunomodulatory effects of an AXL Inhibitor (Bemcentinib) in glioblastomas. NIH Research Project Grant.
+
+6. Ignacio Wistuba, MD Anderson Cancer Immune Monitoring and Analysis Center MDA-CIMAC, NIH Cancer Immune Monitoring and Analysis Centers (CIMACs) and Cancer Immunologic Data Center (CIDC).
+
+\end{flushleft}
 
 \textbf{\textcolor{purple}{Skills}}
 
@@ -87,9 +107,7 @@ education <- data.frame("Timeline" = c("Aug. 2008","Apr. 2002","Apr. 2000","Jun.
 kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped") %>% column_spec(1, width = "2cm")
 ```
 
-\pagebreak
-
-\textbf{\textcolor{purple}{Manuscripts submitted \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
+\textbf{\textcolor{purple}{Manuscripts in-review \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
 [31] Edwin Parra, Jiexin Jiang et al. {with Cara Haymaker} Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. \textbf{\textit{\textcolor{violet}{Clinical Cancer Research}}}.
 
@@ -209,7 +227,7 @@ Mayo Clinic, Science of Medicine Grand Rounds, Mar. 02, 2023, with honorarium
 \vspace{2mm}
 
 \hrule
-\pagebreak
+
 \textbf{\textcolor{purple}{Employment History}}
 \begin{flushleft}
 \textbf{Associate Professor (Translational Molecular Pathology, Neurosurgery)} \hfill \textbf{Feb 2020} - \textbf{present} \linebreak
@@ -298,7 +316,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: March 05, 2022
+Last Updated: March 08, 2022
 
 
 
