@@ -52,9 +52,6 @@ DNA methylation-based classification of human central nervous system tumors. \te
 6. Orrin Devinsky, MD, Director, Comprehensive Epilepsy Center, NYU. \linebreak
 Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue from patients with Sudden Unexpected Death in Epilepsy. \textit{Nature Genomic Medicine}. Mar. 2018.
 
-7. Adriana Heguy, PhD, Assistant Dean, Division of Advanced Research Technologies, NYU. \linebreak
-Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrease? \textit{Letters in Biomathematics}. Sept. 2016. 
-
 \end{flushleft}
 
 \vspace{2mm}
@@ -69,15 +66,17 @@ Why do mutant allele frequencies in oncogenes peak around .40 and rapidly decrea
 
 1. Clinton Yam, The microbiota-immune axis and response to neoadjuvant chemo(immuno)therapy in triple-negative breast cancer. Conquer Cancer Foundation. \# AWD00005359
 
-2. Pravesh Gupta, Exploiting microglial neuroimmune axis for monocyte driven glioblastoma immunotherapy. NIH Pathway to Independence.
+2. Swaminathan Iyer, Characterize and modulate the immune microenvironment in T-cell neoplasms. Cancer Moonshot, UT MD Anderson Cancer Center.
 
-3. Krishna Bhat, Immune Correlates of AXL Inhibitor (Bemcentinib) Treatment for Brain Tumor Therapy. DoD Peer Reviewed, Translational Team Science Award.
+3. Pravesh Gupta, Exploiting microglial neuroimmune axis for monocyte driven glioblastoma immunotherapy. NIH Pathway to Independence.
 
-4. Krishna Bhat, Elucidating the Antigen-Presenting Immunomodulatory Axis in Gliomas, NIH R01.
+4. Krishna Bhat, Immune Correlates of AXL Inhibitor (Bemcentinib) Treatment for Brain Tumor Therapy. DoD Peer Reviewed, Translational Team Science Award.
 
-5. Krishna Bhat, Evaluation of immunomodulatory effects of an AXL Inhibitor (Bemcentinib) in glioblastomas. NIH Research Project Grant.
+5. Krishna Bhat, Elucidating the Antigen-Presenting Immunomodulatory Axis in Gliomas, NIH R01.
 
-6. Ignacio Wistuba, MD Anderson Cancer Immune Monitoring and Analysis Center MDA-CIMAC, NIH Cancer Immune Monitoring and Analysis Centers (CIMACs) and Cancer Immunologic Data Center (CIDC).
+6. Krishna Bhat, Evaluation of immunomodulatory effects of an AXL Inhibitor (Bemcentinib) in glioblastomas. NIH Research Project Grant.
+
+7. Ignacio Wistuba, MD Anderson Cancer Immune Monitoring and Analysis Center MDA-CIMAC, NIH Cancer Immune Monitoring and Analysis Centers (CIMACs) and Cancer Immunologic Data Center (CIDC).
 
 \end{flushleft}
 
@@ -106,6 +105,8 @@ education <- data.frame("Timeline" = c("Aug. 2008","Apr. 2002","Apr. 2000","Jun.
 # Create a table
 kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = T) %>% kable_styling(latex_options = "striped") %>% column_spec(1, width = "2cm")
 ```
+
+\vspace {2mm}
 
 \textbf{\textcolor{purple}{Manuscripts in-review \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
@@ -316,7 +317,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: March 08, 2022
+Last Updated: April 05, 2023
 
 
 
