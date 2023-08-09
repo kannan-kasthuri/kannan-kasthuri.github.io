@@ -114,6 +114,8 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
 
+[31] Tathiane M Malta, et al. (with GLASS Consortium), The epigenetic evolution of gliomas is determined by their IDH1 mutation status and correlates to treatment regimens. \textbf{\textit{\textcolor{violet}{Cancer Research (accepted)}}}.
+
 [30] Edwin Parra, Jiexin Jiang et al. {with Cara Haymaker} Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. \textbf{\textit{\textcolor{violet}{Clinical Cancer Research (accepted)}}}.
 
 [29] Michal Marek Hoppe; Patrick Jaynes et al. {with Anand Jeyasekharan, National University of Singapore} Patterns of oncogene co-expression at single cell resolution in cancer influence survival. \textbf{\textit{\textcolor{violet}{Cancer Discovery}}}. May 2023. [PMID: 37071673]
@@ -125,7 +127,7 @@ and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Sur
 
 [26] Xiangjie Sun, Jie Zhai, Baohua Sun, Edwin Roger Parra, Mei Jiang, Wencai Ma, Jing Wang, Anthony Kang, **Kasthuri Kannan**, Renganayaki Pandurengan, Shanyu Zhang, Luisa Maren Solis Soto, Cara Haymaker, Maria Gabriela Raso, Julia Mendoza Perez, Aysegul Sahin, Ignacio Wistuba, Clinton Yam, Jennifer Litton, and Fei Yang. Effector memory cytotoxic CD3+/CD8+/CD45RO+ T cell predicts good survival with less risk to recurrence in triple-negative breast cancer. \textbf{\textit{\textcolor{violet}{Modern Pathology}}}. May. 2022. [PMID: 34839351]
 
-[25] Yam C, Yen EY, Chang JT, Bassett RL Jr, Alatrash G, Garber H, Huo L, Yang F, Philips AV, Ding QQ, Lim B, Ueno NT, **Kannan K**, Sun X, Sun B, Parra Cuentas ER, Symmans WF, White JB, Ravenberg E, Seth S, Guerriero JL, Rauch GM, Damodaran S, Litton JK, Wargo JA, Hortobagyi GN, Futreal A, Wistuba II, Sun R, Moulder SL, Mittendorf EA. Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer. \textbf{\textit{\textcolor{violet}{Clin Cancer Research}}}. Jul. 2021. [PMID: 34253579] 
+[25] Yam C, Yen EY, Chang JT, Bassett RL Jr, Alatrash G, Garber H, Huo L, Yang F, Philips AV, Ding QQ, Lim B, Ueno NT, **Kannan K**, Sun X, Sun B, Parra Cuentas ER, Symmans WF, White JB, Ravenberg E, Seth S, Guerriero JL, Rauch GM, Damodaran S, Litton JK, Wargo JA, Hortobagyi GN, Futreal A, Wistuba II, Sun R, Moulder SL, Mittendorf EA. Immune Phenotype and Response to Neoadjuvant Therapy in Triple-Negative Breast Cancer. \textbf{\textit{\textcolor{violet}{Clinical Cancer Research}}}. Jul. 2021. [PMID: 34253579] 
 
 [24] Iris Scherwitzl, Silvana Opp, Alicia M. Hurtado, Christine Pampeno, Cynthia Loomis, **Kasthuri Kannan**, Minjun Yu, and Daniel Meruelo. Sindbis Virus with Anti-OX40 Overcomes the Immunosuppressive Tumor Microenvironment of Low-Immunogenic Tumors. \textbf{\textit{\textcolor{violet}{Molecular Therapy - Oncolytics}}}. Jun. 2020. [PMID: 32478167]
 
@@ -153,7 +155,7 @@ and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Sur
 
 [12]	Marsha Reyngold, Sevin Turcan, Dilip Giri, **Kasthuri Kannan**, Logan A. Walsh et al. Remodeling of the Methylation Landscape in Breast Cancer Metastasis. \textbf{\textit{\textcolor{violet}{PLoS One}}}. Aug. 2014. [PMID: 25083786]
 
-[11]	Gerber NK,  Goenka A,  Turcan S,  Reyngold M,  Makarov V,  **Kasthuri Kannan**,  Beal K,  Omuro A,  Yamada Y,  Gutin P,  Brennan CW,  Huse JT, Chan TA. Transcriptional diversity of long-term glioblastoma survivors. \textbf{\textit{\textcolor{violet}{Neuro Oncol}}}. Sept. 2014. [PMID: 24662514]
+[11]	Gerber NK,  Goenka A,  Turcan S,  Reyngold M,  Makarov V,  **Kasthuri Kannan**,  Beal K,  Omuro A,  Yamada Y,  Gutin P,  Brennan CW,  Huse JT, Chan TA. Transcriptional diversity of long-term glioblastoma survivors. \textbf{\textit{\textcolor{violet}{Neuro Oncology}}}. Sept. 2014. [PMID: 24662514]
 
 [10]	\textbf{\textcolor{blue} {Allen S. Ho, Kasthuri Kannan}}, David Roy, Luc G.T. Morris, Nora Katabi, Stephanie Eng, et al. The Mutational Landscape of Adenoid Cystic Carcinoma. \textbf{\textit{\textcolor{violet}{Nature Genetics}}}. July 2013. [PMID: 23685749]
 
@@ -217,7 +219,7 @@ GraphConnect Conference (Neo4j), Jun. 7, 2022
 
 Translational Molecular Pathology 2022 Retreat, Jun. 17, 2022
 
-National University of Singapore, Cancer Science Institute (In-person visit and talk), Jul. 19, 2022
+National University of Singapore, Cancer Science Institute (in-person visit and talk), Jul. 19, 2022
 
 Omics Research Symposium, Pine Biotech, Aug. 30, 2022
 
@@ -317,7 +319,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: June 08, 2023
+Last Updated: Aug 09, 2023
 
 
 
