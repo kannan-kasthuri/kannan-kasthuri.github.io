@@ -18,338 +18,370 @@ figure figcaption {
 
 ---
 
-## Markov and Hidden Markov Models  
+## Hands-on introduction to AI based image classification 
 
 ---
 
-#### Recorded Stream
+#### Introduction
 
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/G3hYlwO-M_8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+This hands on tutorial will introduce AI-based (python keras deep learning framework) for classifying skin cancers. We will do this in two stages, (1) reading the data set into python, and, (2) training and classifying skin lesions using the deep learning framework. The dataset used in this tutorial is HAM10000. 
 
 ---
 
-#### A multinomial model of DNA sequence evolution
+#### What is HAM10000?
 
 ---
 
-1. The simplest model of DNA sequence evolution. 
-2. Assumes that the sequence has been produced by a random process that randomly chose any of the four nucleotides at each position in the sequence.
-3. The probability of choosing any one of the four nucleotides depends on a predetermined probability distribution. That is, the four nucleotides are chosen with probabilities pA, pC, pG, and pT respectively. This is known as the _multinomial sequence model_.
+HAM10000 is a publically available dataset commonly used in the field of dermatology and skin image analysis. It stands for "Human Against Machine with 10,000 training images," and it's a collection of high-quality images of skin lesions. This dataset is often used for developing and evaluating deep learning models for skin cancer detection and classification. There are seven distinct diagnostic categories in HAM10000:
+
+1. Melanocytic nevi (nv)
+2. Melanoma (mel)
+3. Benign keratosis-like lesions (bkl)
+4. Basal cell carcinoma (bcc) 
+5. Actinic keratoses (akiec)
+6. Vascular lesions (vas)
+7. Dermatofibroma (df)
+
+They look like these. 
+
+<center>
+
+![Seven diagnostic categories in HAM10000 dataset](HAM10000.png){#id .class width=50% height=50%}
+
+</center>
+
+More than 50% of lesions are confirmed through histopathology (histo) and the ground truth for the rest of the cases is either follow up examination (follow_up), expert consensus (consensus) or confirmation by in-vivo confocal microscopy (confocal). It also contains a metadata (csv) file with demographic information of each lesion.
+
+More description on the HAM10000 data set can be found [here](https://arxiv.org/ftp/arxiv/papers/1803/1803.10417.pdf). 
+
+The goal of this tutorial is to classify the images into one of the seven classes using the deep learning framework. We will first download the dataset. The download link is given below.
+
+[HAM10000 Download Link](https://www.kaggle.com/datasets/kmader/skin-cancer-mnist-ham10000)
 
 ---
 
-#### Generating a DNA sequence using multinomial model
+#### Reading the HAM10000 dataset into python 
 
 ---
 
-We will generate a DNA sequence with A, C, T and G appearing with probabilities pA=0.2, pC=0.3, pT=0.2 and pG=0.3
+In order to work with limited memory, we will organize the entire set of images into sub-folders for each category. To do this we first copy two sets of images into a directory called ```/all_images```.
 
-```{r eval=TRUE, message=FALSE}
- # Define the alphabet of nucleotides
- nucleotides <- c("A", "C", "G", "T")
- # Set the values of the probabilities
- probabilities1 <- c(0.2, 0.3, 0.3, 0.2)
- # Set the length of the sequence
- seqlength <- 30
- # Generate a sequence
- sample(nucleotides, seqlength, rep=TRUE, prob=probabilities1)
+```
+# Reorganize data into subfolders based on their labels
+
+# Sort images to subfolders first 
+import pandas as pd
+import os
+import shutil
+
+# Dump all images into a folder and specify the path:
+data_dir = os.getcwd() + "/data/all_images/"
+
+# Path to destination directory where we want subfolders
+dest_dir = os.getcwd() + "/data/reorganized/"
+
 ```
 
-The multinomial model is a good model in several cases but also has limitations.
+We now read the metadata csv file and corresponding labels.
 
-1. It assumes the frequency of the nucleotides is the same for all streches of DNA, i.e., pA, pC, PT and pG is the same throughout.
-2. The probability of appearence of a nuclotide is independent of what nucleotide appears before. This is mostly true but there are several regions of the genome, such as CpG islands, where the nucleotides appear in a dependent manner.
+```
+# Read the csv file containing image names and corresponding labels
+skin_df2 = pd.read_csv('data/HAM10000/HAM10000_metadata.csv')
+print(skin_df['dx'].value_counts())
 
-A Markov sequence model is a better representation.
+label=skin_df2['dx'].unique().tolist()  #Extract labels into a list
+label_images = []
+
+```
+
+We now copy the images into new folders.
+
+```
+# Copy images to new folders
+for i in label:
+    os.mkdir(dest_dir + str(i) + "/")
+    sample = skin_df2[skin_df2['dx'] == i]['image_id']
+    label_images.extend(sample)
+    for id in label_images:
+        shutil.copyfile((data_dir + "/"+ id +".jpg"), (dest_dir + i + "/"+id+".jpg"))
+    label_images=[]    
+
+```
+
+Now we are ready to import images in sub-folders for training a neural network model. We use Keras library ```ImageDataGenerator``` module for data augmentation and pre-processing of images.
+
+```
+# Import relevant modules
+from keras.preprocessing.image import ImageDataGenerator
+import os
+from matplotlib import pyplot as plt
+
+```
+
+We then define the data generator and the training directory with categorical class mode, ```batch_size``` as 16 and resizing the image to a 32x32 pixel size (```target_size```).
+
+```
+# Define datagen. Here we can define any transformations we want to apply to images
+datagen = ImageDataGenerator()
+
+# Define training directory that contains subfolders
+
+train_dir = os.getcwd() + "/data/reorganized/"
+
+# We use flow_from_directory
+train_data_keras = datagen.flow_from_directory(directory=train_dir,
+                                         class_mode='categorical',
+                                         batch_size=16,        # 16 images at a time
+                                         target_size=(32,32))  # Resize images
+
+```
+
+We are now ready to train via ```model.fit_generator```.
 
 ---
 
-#### The transition matrix for a Markov model
+#### Classifying HAM10000 images using Keras
 
 ---
 
-We can construct transition matrix for such Markov sequence model.
+We will now train a deep convolution model and test with a training:testing set ratio of 75:25.
 
-```{r eval=TRUE, message=FALSE}
- # Define the alphabet of nucleotides
- nucleotides <- c("A", "C", "G", "T") 
- # Set the values of the probabilities, where the previous nucleotide was "A"
- afterAprobs <- c(0.2, 0.3, 0.3, 0.2)        
- # Set the values of the probabilities, where the previous nucleotide was "C"
- afterCprobs <- c(0.1, 0.41, 0.39, 0.1)      
- # Set the values of the probabilities, where the previous nucleotide was "G"
- afterGprobs <- c(0.25, 0.25, 0.25, 0.25)     
- # Set the values of the probabilities, where the previous nucleotide was "T"
- afterTprobs <- c(0.5, 0.17, 0.17, 0.17)      
- # Create a 4 x 4 matrix
- mytransitionmatrix <- matrix(c(afterAprobs, afterCprobs, afterGprobs, afterTprobs), 4, 4, byrow = TRUE) 
- rownames(mytransitionmatrix) <- nucleotides
- colnames(mytransitionmatrix) <- nucleotides
- # Print out the transition matrix
- mytransitionmatrix                           
+Import relevant modules
+
+```
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import os
+from glob import glob
+import seaborn as sns
+from PIL import Image
+
 ```
 
-Rows 1, 2, 3 and 4 of the transition matrix give the probabilities pA, pC, pG, and pT for the cases where the previous nucleotide was “A”, “C”, “G”, or “T”, respectively. That is, the element in a particular row and column of the transition matrix (eg. the row for “A”, column for “C”) holds the probability (pAC) of choosing a particular nucleotide (“C”) at the current position in the sequence, given that was a particular nucleotide (“A”) at the previous position in the sequence.
+Define a seed to ensure predictability and import ```keras``` and its modules for sequential convolution network.
 
----
+```
+np.random.seed(42)
+from sklearn.metrics import confusion_matrix
 
-#### Generating a DNA sequence using a Markov model
+import keras
+from keras.utils.np_utils import to_categorical # used for converting labels to one-hot-encoding
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPool2D, BatchNormalization
+from sklearn.model_selection import train_test_split
+from scipy import stats
+from sklearn.preprocessing import LabelEncoder
 
----
-
-
-Just like we generated a DNA sequence using a particular multinomial model, we can generate a DNA sequence using a particular Markov model. When we are generating a DNA sequence using a Markov model, the nucleotide chosen at each position at the sequence depends on the nucleotide chosen at the previous position. As there is no previous nucleotide at the first position in the new sequence, we need to define the probabilities of choosing “A”, “C”, “G” or “T” for the first position. 
-
-
-```{r eval=TRUE, message=FALSE}
-  # Function to generate the sequences using the Markov model
-  generatemarkovseq <- function(transitionmatrix, initialprobs, seqlength) {
-    # Define the alphabet of nucleotides
-    nucleotides <- c("A", "C", "G", "T")
-    # Create a vector for storing the new sequence
-    mysequence <- character()
-    # Choose the nucleotide for the first position in the sequence:
-    firstnucleotide <- sample(nucleotides, 1, rep=TRUE, prob=initialprobs)
-    # Store the nucleotide for the first position of the sequence
-    mysequence[1] <- firstnucleotide
-    for (i in 2:seqlength) {
-      # Get the previous nucleotide in the new sequence
-      prevnucleotide <- mysequence[i-1]
-      # Get the probabilities of the current nucleotide, given previous nucleotide "prevnucleotide":
-      probabilities <- transitionmatrix[prevnucleotide,]
-      # Choose the nucleotide at the current position of the sequence:
-      nucleotide <- sample(nucleotides, 1, rep=TRUE, prob=probabilities)
-      # Store the nucleotide for the current position of the sequence
-      mysequence[i] <- nucleotide
-    }
-    return(mysequence)
-  }
 ```
 
-We assume the initial probablities are equally likely for the four nucleotides:
+We now read the dataframe and convert the categories into integer lables using ```LabelEncoder```.
 
-```{r eval=TRUE, message=FALSE}
-  # Define initial probablities
-  myinitialprobs <- c(0.25, 0.25, 0.25, 0.25)
-  # Generate the sequence
-  generatemarkovseq(mytransitionmatrix, myinitialprobs, 30)
+```
+skin_df = pd.read_csv('data/HAM10000/HAM10000_metadata.csv')
+
+# label encoding to numeric values from text
+le = LabelEncoder()
+le.fit(skin_df['dx'])
+LabelEncoder()
+print(list(le.classes_))
+ 
+skin_df['label'] = le.transform(skin_df["dx"]) 
+print(skin_df.sample(10))
+
+```
+We now do basic statistics and observe that the distribution of categories is highly skewed. For example, the "nv" category has 6705 images whereas the "df" category has just 115. Therefore, we need to balance the number of images, to say, 500 images in each category. We can do this by subsampling certain categories (which has more than 500 images) and repeated sampling in categories that has fewer than 500 images. We can also do this by adding weights when training but we will stick to sampling here.
+
+```
+# Distribution of data into various classes 
+from sklearn.utils import resample
+print(skin_df['label'].value_counts())
+
+# Balance data.
+# Many ways to balance data... you can also try assigning weights during model.fit
+# Separate each classes, resample, and combine back into single dataframe
+
+df_0 = skin_df[skin_df['label'] == 0]
+df_1 = skin_df[skin_df['label'] == 1]
+df_2 = skin_df[skin_df['label'] == 2]
+df_3 = skin_df[skin_df['label'] == 3]
+df_4 = skin_df[skin_df['label'] == 4]
+df_5 = skin_df[skin_df['label'] == 5]
+df_6 = skin_df[skin_df['label'] == 6]
+
+n_samples=500 
+df_0_balanced = resample(df_0, replace=True, n_samples=n_samples, random_state=42) 
+df_1_balanced = resample(df_1, replace=True, n_samples=n_samples, random_state=42) 
+df_2_balanced = resample(df_2, replace=True, n_samples=n_samples, random_state=42)
+df_3_balanced = resample(df_3, replace=True, n_samples=n_samples, random_state=42)
+df_4_balanced = resample(df_4, replace=True, n_samples=n_samples, random_state=42)
+df_5_balanced = resample(df_5, replace=True, n_samples=n_samples, random_state=42)
+df_6_balanced = resample(df_6, replace=True, n_samples=n_samples, random_state=42)
+
+# Combined back to a single dataframe
+skin_df_balanced = pd.concat([df_0_balanced, df_1_balanced, 
+                              df_2_balanced, df_3_balanced, 
+                              df_4_balanced, df_5_balanced, df_6_balanced])
+
+# Check the distribution. All classes should be balanced now.
+print(skin_df_balanced['label'].value_counts())
+
+```
+We will now import the balanced dataset, with the images resized.
+
+```
+# Now time to read images based on image ID from the CSV file
+# This is the safest way to read images as it ensures the right image is read for the right ID
+image_path = {os.path.splitext(os.path.basename(x))[0]: x
+                     for x in glob(os.path.join('data/HAM10000/', '*', '*.jpg'))}
+
+# Define the path and add as a new column
+skin_df_balanced['path'] = skin_df['image_id'].map(image_path.get)
+
+# Use the path to read images.
+skin_df_balanced['image'] = skin_df_balanced['path'].map(lambda x: np.asarray(Image.open(x).resize((SIZE,SIZE))))
+
+```
+As a next step, we need to convert the dataframe column of images into numpy array and split the data into training and testing set.
+
+```
+# Convert dataframe column of images into numpy array
+X = np.asarray(skin_df_balanced['image'].tolist())
+X = X/255.  # Scale values to 0-1. You can also used standard scaler or other scaling methods.
+
+Y=skin_df_balanced['label']  # Assign label values to Y
+Y_cat = to_categorical(Y, num_classes=7) # Convert to categorical as this is a multiclass classification problem
+
+# Split to training and testing
+x_train, x_test, y_train, y_test = train_test_split(X, Y_cat, test_size=0.25, random_state=42)
+
+```
+We now define a sequential convolution mode with ```relu``` activation, ```maxpool``` and ```dropout``` layers. Finally we flatten the 2D array and add two dense layers with ```softmax``` activation that will help predict as probabilities. Finally, we compile the model with ```crossentropy``` with ```Adam``` optimizer.
+
+```
+# Define the model.
+num_classes = 7
+
+model = Sequential()
+model.add(Conv2D(256, (3, 3), activation="relu", input_shape=(SIZE, SIZE, 3)))
+model.add(MaxPool2D(pool_size=(2, 2)))  
+model.add(Dropout(0.3))
+
+model.add(Conv2D(128, (3, 3),activation='relu'))
+model.add(MaxPool2D(pool_size=(2, 2)))  
+model.add(Dropout(0.3))
+
+model.add(Conv2D(64, (3, 3),activation='relu'))
+model.add(MaxPool2D(pool_size=(2, 2)))  
+model.add(Dropout(0.3))
+
+# Flatten the 2D array
+model.add(Flatten())
+
+# Add two dense layers
+model.add(Dense(32))
+model.add(Dense(7, activation='softmax'))
+
+# Sumarize and compile the model with cross entropy and Adam optimizer
+model.summary()
+model.compile(loss='categorical_crossentropy', optimizer='Adam', metrics=['acc'])
+
+```
+We can now train the model.
+
+```
+# Training the model
+
+batch_size = 16 
+epochs = 50
+
+history = model.fit(
+    x_train, y_train,
+    epochs=epochs,
+    batch_size = batch_size,
+    validation_data=(x_test, y_test),
+    verbose=2)
+
+score = model.evaluate(x_test, y_test)
+print('Test accuracy:', score[1])
+
+```
+The accuracy for the training set is around 60% - not bad. We can now plot training and validation accuracy at each epoch.
+
+```
+# Plot the training and validation accuracy and loss at each epoch
+loss = history.history['loss']
+val_loss = history.history['val_loss']
+epochs = range(1, len(loss) + 1)
+plt.plot(epochs, loss, 'y', label='Training loss')
+plt.plot(epochs, val_loss, 'r', label='Validation loss')
+plt.title('Training and validation loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+
+
+acc = history.history['acc']
+val_acc = history.history['val_acc']
+plt.plot(epochs, acc, 'y', label='Training acc')
+plt.plot(epochs, val_acc, 'r', label='Validation acc')
+plt.title('Training and validation accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.show()
+
+```
+<center>
+
+![Training and validation loss at each epoch](Accuracy.png){#id .class width=50% height=50%}
+</center>
+
+We now predict on the test data and plot confusion matrices and misclassification bar plots
+
+```
+# Prediction on test data
+y_pred = model.predict(x_test)
+# Convert predictions classes to one hot vectors 
+y_pred_classes = np.argmax(y_pred, axis = 1) 
+# Convert test data to one hot vectors
+y_true = np.argmax(y_test, axis = 1) 
+
+#Print confusion matrix
+cm = confusion_matrix(y_true, y_pred_classes)
+
+fig, ax = plt.subplots(figsize=(6,6))
+sns.set(font_scale=1.6)
+sns.heatmap(cm, annot=True, linewidths=.5, ax=ax)
+
+
+#PLot fractional incorrect misclassifications
+incorr_fraction = 1 - np.diag(cm) / np.sum(cm, axis=1)
+plt.bar(np.arange(7), incorr_fraction)
+plt.xlabel('True Label')
+plt.ylabel('Fraction of incorrect predictions')
+
 ```
 
-As we can see, there are many “A”s after “T”s in the sequence. This is because pTA has a high value (0.5) in the Markov transition matrix _mytransitionmatrix_. Similarly, there are few “A”s or “T”s after “C”s, which is because pCA and pCT have low values (0.1) in this transition matrix.
+Here is the bar plot for misclassifications.
 
----
+<center>
+![Misclassification on the testing set](Test_Prediction.png){#id .class width=50% height=50%}
+</center>
 
-#### A Hidden Markov Model of DNA sequence evolution
-
----
-
-In a Markov model, the nucleotide at a particular position in a sequence depends on the nucleotide found at the previous position. In contrast, in a Hidden Markov model (HMM), the nucleotide found at a particular position in a sequence depends on the state at the previous nucleotide position in the sequence. The state at a sequence position is a property of that position of the sequence, for example, a particular HMM may model the positions along a sequence as belonging to either one of two states, _GC-rich_ or _AT-rich_. A more complex HMM may model the positions along a sequence as belonging to many different possible states, such as “promoter”, “exon”, “intron”, and “intergenic DNA”.
-
-We will use _GC-rich_ and _AT-rich_ as hidden states and create a transition and emission matrices. First, we make the transition matrix that shows the probabilities when the states change.
-
-```{r eval=TRUE, message=FALSE}
-  # Define the names of the hidden states
-  states <- c("AT-rich", "GC-rich")
-  # Set the probabilities of switching states, where the previous state was "AT-rich"
-  ATrichprobs <- c(0.7, 0.3)
-  # Set the probabilities of switching states, where the previous state was "GC-rich"
-  GCrichprobs <- c(0.1, 0.9)
-  # Create a 2 x 2 matrix
-  thetransitionmatrix <- matrix(c(ATrichprobs, GCrichprobs), 2, 2, byrow = TRUE)
-  rownames(thetransitionmatrix) <- states
-  colnames(thetransitionmatrix) <- states
-  # Print out the transition matrix
-  thetransitionmatrix
-```
-
-The second important matrix is the _HMM emission matrix_, which holds the probabilities of choosing the four nucleotides “A”, “C”, “G”, and “T”, in each of the states. 
-
-In a HMM with an AT-rich state and a GC-rich state, the emission matrix will hold the probabilities of choosing each of the four nucleotides “A”, “C”, “G” and “T” in the AT-rich state (for example, pA=0.39, pC=0.1, pG=0.1, and pT=0.41 for the AT-rich state), and the probabilities of choosing “A”, “C”, “G”, and “T” in the GC-rich state (for example, pA=0.1, pC=0.41, pG=0.39, and pT=0.1 for the GC-rich state).
-
-```{r eval=TRUE, message=FALSE}
-  # Define the alphabet of nucleotides
-  nucleotides <- c("A", "C", "G", "T")
-  # Set the values of the probabilities, for the AT-rich state
-  ATrichstateprobs <- c(0.39, 0.1, 0.1, 0.41)
-  # Set the values of the probabilities, for the GC-rich state
-  GCrichstateprobs <- c(0.1, 0.41, 0.39, 0.1)
-  # Create a 2 x 4 matrix
-  theemissionmatrix <- matrix(c(ATrichstateprobs, GCrichstateprobs), 2, 4, byrow = TRUE)
-  rownames(theemissionmatrix) <- states
-  colnames(theemissionmatrix) <- nucleotides
-  # Print out the emission matrix
-  theemissionmatrix
-```
-
-Once the transition and emission matrices are given we can generate a DNA sequence using HMM.
-
-```{r eval=TRUE, message=FALSE}
-
-# Function to generate a DNA sequence, given a HMM and the length of the sequence to be generated.
-  generatehmmseq <- function(transitionmatrix, emissionmatrix, initialprobs, seqlength)
-  {
-     nucleotides     <- c("A", "C", "G", "T")   # Define the alphabet of nucleotides
-     states          <- c("AT-rich", "GC-rich") # Define the names of the states
-     mysequence      <- character()             # Create a vector for storing the new sequence
-     mystates        <- character()             # Create a vector for storing the state that each position in the new sequence
-                                                # was generated by
-     # Choose the state for the first position in the sequence:
-     firststate      <- sample(states, 1, rep=TRUE, prob=initialprobs)
-     # Get the probabilities of the current nucleotide, given that we are in the state "firststate":
-     probabilities   <- emissionmatrix[firststate,]
-     # Choose the nucleotide for the first position in the sequence:
-     firstnucleotide <- sample(nucleotides, 1, rep=TRUE, prob=probabilities)
-     mysequence[1]   <- firstnucleotide         # Store the nucleotide for the first position of the sequence
-     mystates[1]     <- firststate              # Store the state that the first position in the sequence was generated by
-
-     for (i in 2:seqlength)
-     {
-        prevstate    <- mystates[i-1]           # Get the state that the previous nucleotide in the sequence was generated by
-        # Get the probabilities of the current state, given that the previous nucleotide was generated by state "prevstate"
-        stateprobs   <- transitionmatrix[prevstate,]
-        # Choose the state for the ith position in the sequence:
-        state        <- sample(states, 1, rep=TRUE, prob=stateprobs)
-        # Get the probabilities of the current nucleotide, given that we are in the state "state":
-        probabilities <- emissionmatrix[state,]
-        # Choose the nucleotide for the ith position in the sequence:
-        nucleotide   <- sample(nucleotides, 1, rep=TRUE, prob=probabilities)
-        mysequence[i] <- nucleotide             # Store the nucleotide for the current position of the sequence
-        mystates[i]  <- state                   # Store the state that the current position in the sequence was generated by
-     }
-
-     for (i in 1:length(mysequence))
-     {
-        nucleotide   <- mysequence[i]
-        state        <- mystates[i]
-        print(paste("Position", i, ", State", state, ", Nucleotide = ", nucleotide))
-     }
-  }
-```
-
-When we are generating a DNA sequence using a HMM, the nucleotide is chosen at each position depending on the state at the previous position in the sequence. As there is no previous nucleotide at the first position in the sequence, the function `generatehmmseq()` also requires the probabilities of the choosing each of the states at the first position.
-
-```{r eval=TRUE, message=FALSE}
-  # Define the initial probabilities
-  theinitialprobs <- c(0.5, 0.5)
-  # Generate a HMM DNA sequence
-  generatehmmseq(thetransitionmatrix, theemissionmatrix, theinitialprobs, 30)
-```
-
-As we can see, the nucleotides generated by the GC-rich state are mostly but not all “G”s and “C”s (because of the high values of pG and pC for the GC-rich state in the HMM emission matrix), while the nucleotides generated by the AT-rich state are mostly but not all “A”s and “T”s (because of the high values of pT and pA for the AT-rics state in the HMM emission matrix).
-
-Furthermore, there tends to be runs of nucleotides that are either all in the GC-rich state or all in the AT-rich state, as the transition matrix specifies that the probabilities of switching from the AT-rich to GC-rich state (probability 0.3), or GC-rich to AT-rich state (probability 0.1) are relatively low.
-
----
-
-#### Inferring the hidden states of HMM - Viterbi Algorithm
-
----
-
-If we have a HMM with two states, “GC-rich” and “AT-rich”, and we know the transmission and emission matrices of the HMM, can we take some new DNA sequence, and figure out which state (GC-rich or AT-rich) is the most likely to have generated each nucleotide position in that DNA sequence? 
-
-This is done using Viterbi's algorithm
-
-```{r eval=TRUE, message=FALSE}
-
-viterbi <- function(sequence, transitionmatrix, emissionmatrix)
-  # This carries out the Viterbi algorithm.
-  # Adapted from "Applied Statistics for Bioinformatics using R" by Wim P. Krijnen, page 209
-  # ( cran.r-project.org/doc/contrib/Krijnen-IntroBioInfStatistics.pdf )
-  {
-     # Get the names of the states in the HMM:
-     states <- rownames(theemissionmatrix)
-
-     # Make the Viterbi matrix v:
-     v <- makeViterbimat(sequence, transitionmatrix, emissionmatrix)
-
-     # Go through each of the rows of the matrix v (where each row represents
-     # a position in the DNA sequence), and find out which column has the
-     # maximum value for that row (where each column represents one state of
-     # the HMM):
-     mostprobablestatepath <- apply(v, 1, function(x) which.max(x))
-
-     # Print out the most probable state path:
-     prevnucleotide <- sequence[1]
-     prevmostprobablestate <- mostprobablestatepath[1]
-     prevmostprobablestatename <- states[prevmostprobablestate]
-     startpos <- 1
-     for (i in 2:length(sequence))
-     {
-        nucleotide <- sequence[i]
-        mostprobablestate <- mostprobablestatepath[i]
-        mostprobablestatename <- states[mostprobablestate]
-        if (mostprobablestatename != prevmostprobablestatename)
-        {
-           print(paste("Positions",startpos,"-",(i-1), "Most probable state = ", prevmostprobablestatename))
-           startpos <- i
-        }
-        prevnucleotide <- nucleotide
-        prevmostprobablestatename <- mostprobablestatename
-     }
-     print(paste("Positions",startpos,"-",i, "Most probable state = ", prevmostprobablestatename))
-}
-
-makeViterbimat <- function(sequence, transitionmatrix, emissionmatrix)
-  # This makes the matrix v using the Viterbi algorithm.
-  # Adapted from "Applied Statistics for Bioinformatics using R" by Wim P. Krijnen, page 209
-  # ( cran.r-project.org/doc/contrib/Krijnen-IntroBioInfStatistics.pdf )
-  {
-     # Change the sequence to uppercase
-     sequence <- toupper(sequence)
-     # Find out how many states are in the HMM
-     numstates <- dim(transitionmatrix)[1]
-     # Make a matrix with as many rows as positions in the sequence, and as many
-     # columns as states in the HMM
-     v <- matrix(NA, nrow = length(sequence), ncol = dim(transitionmatrix)[1])
-     # Set the values in the first row of matrix v (representing the first position of the sequence) to 0
-     v[1, ] <- 0
-     # Set the value in the first row of matrix v, first column to 1
-     v[1,1] <- 1
-     # Fill in the matrix v:
-     for (i in 2:length(sequence)) # For each position in the DNA sequence:
-     {
-        for (l in 1:numstates) # For each of the states of in the HMM:
-        {
-           # Find the probabilility, if we are in state l, 
-           # of choosing the nucleotide at position in the sequence
-           statelprobnucleotidei <- emissionmatrix[l,sequence[i]]
-
-           # v[(i-1),] gives the values of v for the (i-1)th row of v, 
-           # ie. the (i-1)th position in the sequence.
-           # In v[(i-1),] there are values of v at the (i-1)th row of the sequence for each possible state k.
-           # v[(i-1),k] gives the value of v at the (i-1)th row of the sequence for a particular state k.
-
-           # transitionmatrix[l,] gives the values in the lth row of the transition matrix, 
-           # xx should not be transitionmatrix[,l]?
-           # probabilities of changing from a previous state k to a current state l.
-
-           # max(v[(i-1),] * transitionmatrix[l,]) is the maximum probability for the nucleotide observed
-           # at the previous position in the sequence in state k, followed by a transition from previous
-           # state k to current state l at the current nucleotide position.
-
-           # Set the value in matrix v for row i (nucleotide position i), column l (state l) to be:
-           v[i,l] <-  statelprobnucleotidei * max(v[(i-1),] * transitionmatrix[,l])
-        }
-    }
-    return(v)
-}
-```
-
-Given a HMM, and a particular DNA sequence, we can use the above Viterbi function to find the state of that HMM that was most likely to have generated the nucleotide at each position in the DNA sequence. For example,
-
-```{r eval=TRUE, message=FALSE}
-  # Define a sequence
-  myseq <- c("A", "A", "G", "C", "G", "T", "G", "G", "G", "G", "C", "C", "C", "C", "G", "G", "C", "G", "A", "C", "A", "T", "G", "G", "G", "G", "T", "G", "T", "C")
-  # We call the Viterbi's algorithm we just defined to identify the states
-  viterbi(myseq, thetransitionmatrix, theemissionmatrix)
-```
+As we see the label 4 performs really bad whereas label 6 does the best. It is likely that the worst performing classes could be the repeated sampling ones whereas the best performing classes are the ones we sub-sampled. This needs to be verified though.
 
 ---
 
 #### Selected materials and references
 
-[Hidden Markov Models](http://a-little-book-of-r-for-bioinformatics.readthedocs.io/en/latest/src/chapter10.html)
+[Link to codes - Reading the preparing the HAM10000 data](https://github.com/bnsreenu/python_for_microscopists/blob/master/202_2_ways_to_load_HAM10000_data.py)
+
+[Link to codes - training and classifying HAM10000](https://github.com/bnsreenu/python_for_microscopists/blob/master/203b_skin_cancer_lesion_classification_V4.0.py)
+
+[DigitalSreeni](https://www.youtube.com/@DigitalSreeni)
 
 ---
