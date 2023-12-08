@@ -64,19 +64,19 @@ Cardiac Arrhythmia and Neuroexcitability Gene Mutations in resected brain tissue
 
 \begin{flushleft}
 
-1. Jason Huse, Bissan Al-Lazikani, Molecular drivers of recurrence in malignant glioma, Cancer Moonshot, UT MD Anderson Cancer Center
+1. Kasthuri Kannan, Jason Huse, Bissan Al-Lazikani, Molecular drivers of recurrence in malignant glioma, Cancer Moonshot, UT MD Anderson Cancer Center. \$528K (awarded).
 
-2. Swaminathan Iyer, Characterize and modulate the immune microenvironment in T-cell neoplasms. Cancer Moonshot, UT MD Anderson Cancer Center.
+2. w/ Swaminathan Iyer, Characterize and modulate the immune microenvironment in T-cell neoplasms. Cancer Moonshot, UT MD Anderson Cancer Center (awarded).
 
-3. Pravesh Gupta, Exploiting microglial neuroimmune axis for monocyte driven glioblastoma immunotherapy. NIH Pathway to Independence.
+3. w/ Ignacio Wistuba, MD Anderson Cancer Immune Monitoring and Analysis Center MDA-CIMAC, NIH Cancer Immune Monitoring and Analysis Centers (CIMACs) and Cancer Immunologic Data Center (CIDC) (awarded).
 
-4. Krishna Bhat, Immune Correlates of AXL Inhibitor (Bemcentinib) Treatment for Brain Tumor Therapy. DoD Peer Reviewed, Translational Team Science Award.
+4. w/ Pravesh Gupta, Exploiting microglial neuroimmune axis for monocyte driven glioblastoma immunotherapy. NIH Pathway to Independence (in review).
 
-5. Krishna Bhat, Elucidating the Antigen-Presenting Immunomodulatory Axis in Gliomas, NIH R01.
+5. w/ Krishna Bhat, Immune Correlates of AXL Inhibitor (Bemcentinib) Treatment for Brain Tumor Therapy. DoD Peer Reviewed, Translational Team Science Award (in review).
 
-6. Krishna Bhat, Evaluation of immunomodulatory effects of an AXL Inhibitor (Bemcentinib) in glioblastomas. NIH Research Project Grant.
+6. w/ Krishna Bhat, Elucidating the Antigen-Presenting Immunomodulatory Axis in Gliomas, NIH R01 (in review).
 
-7. Ignacio Wistuba, MD Anderson Cancer Immune Monitoring and Analysis Center MDA-CIMAC, NIH Cancer Immune Monitoring and Analysis Centers (CIMACs) and Cancer Immunologic Data Center (CIDC).
+7. w/ Krishna Bhat, Evaluation of immunomodulatory effects of an AXL Inhibitor (Bemcentinib) in glioblastomas. NIH Research Project Grant (in review).
 
 \end{flushleft}
 
@@ -108,11 +108,13 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \vspace {2mm}
 
-\textbf{\textcolor{purple}{Manuscripts in-review \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
+\textbf{\textcolor{purple}{Manuscripts in-review \textcolor{blue}{(blue - equal contribution/senior/corresponding/first author)}}}
 
-[31] Prahlad Bhat, Michael Hwang, Afrooz Jahedi, Kanishka Sircar, and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Point Process Model Predicts Survival in Clear Cell Renal Cell Carcinoma. \textbf{\textit{\textcolor{violet}{medRXiv}}} (doi: https://doi.org/10.1101/2022.02.16.22271019).
+[33] Prahlad Bhat, Michael Hwang, Afrooz Jahedi, Kanishka Sircar, and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Point Process Model Predicts Survival in Clear Cell Renal Cell Carcinoma. \textbf{\textit{\textcolor{violet}{medRXiv}}} (doi: https://doi.org/10.1101/2022.02.16.22271019).
 
-\textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/last/first author)}}}
+\textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/corresponding/first author)}}}
+
+[32] Gayatri Kumar, Renganayaki Krishna Pandurengan, Edwin Roger Parra, \textbf{\textcolor{blue} {Kasthuri Kannan}} and Cara Haymaker, Spatial modelling of the tumor microenvironment from multiplex immunofluorescence images: methods and applications. \textbf{\textit{\textcolor{violet}{Frontiers in Immunology (accepted)}}}.
 
 [31] Tathiane M Malta, et al. (with GLASS Consortium), The epigenetic evolution of gliomas is determined by their IDH1 mutation status and correlates to treatment regimens. \textbf{\textit{\textcolor{violet}{Cancer Research (accepted)}}}.
 
@@ -319,7 +321,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Aug 09, 2023
+Last Updated: Dec 08, 2023
 
 
 

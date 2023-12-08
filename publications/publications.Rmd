@@ -17,7 +17,7 @@ figure figcaption {
 ---
 
 ### Publications and Preprints 
-Last Updated: Monday, March 13, 2023
+Last Updated: Friday, December 08, 2023
 
 ---
 
@@ -33,9 +33,8 @@ Also, **blue** font means equal/senior/last/first author contribution
 
 ---
 
-[31] Prahlad Bhat, Michael Hwang, Afrooz Jahedi, Kanishka Sircar, and <span style="color:blue"><b>Kasthuri Kannan</b></span>. Spatial Point Process Model Predicts Survival in Clear Cell Renal Cell Carcinoma. <span style="color:#e80c7a">_MedRXiv_</span>. (https://doi.org/10.1101/2022.02.16.22271019)
+[33] Prahlad Bhat, Michael Hwang, Afrooz Jahedi, Kanishka Sircar, and <span style="color:blue"><b>Kasthuri Kannan</b></span>. Spatial Point Process Model Predicts Survival in Clear Cell Renal Cell Carcinoma. <span style="color:#e80c7a">_MedRXiv_</span>. (https://doi.org/10.1101/2022.02.16.22271019)
 
-[30] Edwin Roger Parra, Jiexin Zhang, Dzifa Yawa Duose, Edgar Gonzalez-Kozlova, Mary W. Redman, Hong Chen, Ganiraju C Manyam, Jianhua Zhang, Xingzhi Song, Rossana Lazcano, Mario Piubelli, Caddie Laberiano Fernandez, Frank Rojas, Baili Zhang, Len Taing, Aashna Jhaveri, Jacob Geisberg, Jen Altreuter, Franziska Michor, James Provencher, Joyce Yu, Ethan Cerami, Radim Moravec, **Kasthuri Kannan**, Rajyalakshmi Luthra, Gheath Al-Atrash, Hsin-Hui Huang, Hui Xie, Manishkumar Pate, Kai Nie, Jocelyn Harris, Kimberly Argueta, James Lindsay, Roshni Biswas, Stephen Van Nostrand, Seunghee Kim-Schulze, Jhanelle E. Gray, Roy Herbst, Ignacio I. Wistuba, Scott Gettinger, Karen Kelly, Lyudmila Bazhenova, Sacha Gnjatic, J. Jack Lee, Jianjun Zhang, Cara Haymaker. Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. <span style="color:#e80c7a">_Clinical Cancer Research_</span>.
 
 ---
 
@@ -43,7 +42,13 @@ Also, **blue** font means equal/senior/last/first author contribution
 
 ---
 
-[29] Michal Marek Hoppe, Patrick Jaynes, Fan Shuangyi, Yanfen Peng, Phuong Mai Hoang, Liu Xin, Sanjay De Mel, Limei Poon, Esther Chan, Joanne Lee, Choon Kiat Ong, Tiffany Tang, Soon Thye Lim, Chandramouli Nagarajan, Nicholas Francis Grigoropoulos, Soo-Yong Tan, Susan Swee-Shan Hue, Sheng-Tsung Chang, Shih-Sung Chuang, Shaoying Li, Joseph D. Khoury, Hyungwon Choi, Carl Harris III, Alessia Bottos, Laura J. Gay, Hendrik F. P. Runge, Ilias Moutsopoulos, Irina Mohorianu, Daniel J. Hodson, Pedro Farinha, Anja Mottok, David W. Scott, Gayatri Kumar, **Kasthuri Kannan**, Wee-Joo Chng, Yen Lin Chee, Siok-Bian Ng, Claudio Tripodo, Anand D. Jeyasekharan. Patterns of oncogene co-expression at single cell resolution in cancer influence survival. <span style="color:#e80c7a">_Cancer Discovery (accepted)_</span>.
+[32] Gayatri Kumar, Renganayaki Krishna Pandurengan, Edwin Roger Parra, <span style="color:blue"><b>Kasthuri Kannan</b></span> and Cara Haymaker, Spatial modelling of the tumor microenvironment from multiplex immunofluorescence images: methods and applications. <span style="color:#e80c7a">_Frontiers in Immunology_</span> (accepted, yet to appear online).
+
+[31] Tathiane M Malta, et al. (_as a part of the GLASS Consortium_), The epigenetic evolution of gliomas is determined by their IDH1 mutation status and correlates to treatment regimens. <span style="color:#e80c7a">_Cancer Research_</span> (accepted, yet to appear online).
+
+[30] Edwin Roger Parra, Jiexin Zhang, Dzifa Yawa Duose, Edgar Gonzalez-Kozlova, Mary W. Redman, Hong Chen, Ganiraju C Manyam, Jianhua Zhang, Xingzhi Song, Rossana Lazcano, Mario Piubelli, Caddie Laberiano Fernandez, Frank Rojas, Baili Zhang, Len Taing, Aashna Jhaveri, Jacob Geisberg, Jen Altreuter, Franziska Michor, James Provencher, Joyce Yu, Ethan Cerami, Radim Moravec, **Kasthuri Kannan**, Rajyalakshmi Luthra, Gheath Al-Atrash, Hsin-Hui Huang, Hui Xie, Manishkumar Pate, Kai Nie, Jocelyn Harris, Kimberly Argueta, James Lindsay, Roshni Biswas, Stephen Van Nostrand, Seunghee Kim-Schulze, Jhanelle E. Gray, Roy Herbst, Ignacio I. Wistuba, Scott Gettinger, Karen Kelly, Lyudmila Bazhenova, Sacha Gnjatic, J. Jack Lee, Jianjun Zhang, Cara Haymaker. Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. <span style="color:#e80c7a">_Clinical Cancer Research_</span> (accepted, yet to appear online).
+
+[29] Michal Marek Hoppe, Patrick Jaynes, Fan Shuangyi, Yanfen Peng, Phuong Mai Hoang, Liu Xin, Sanjay De Mel, Limei Poon, Esther Chan, Joanne Lee, Choon Kiat Ong, Tiffany Tang, Soon Thye Lim, Chandramouli Nagarajan, Nicholas Francis Grigoropoulos, Soo-Yong Tan, Susan Swee-Shan Hue, Sheng-Tsung Chang, Shih-Sung Chuang, Shaoying Li, Joseph D. Khoury, Hyungwon Choi, Carl Harris III, Alessia Bottos, Laura J. Gay, Hendrik F. P. Runge, Ilias Moutsopoulos, Irina Mohorianu, Daniel J. Hodson, Pedro Farinha, Anja Mottok, David W. Scott, Gayatri Kumar, **Kasthuri Kannan**, Wee-Joo Chng, Yen Lin Chee, Siok-Bian Ng, Claudio Tripodo, Anand D. Jeyasekharan. Patterns of oncogene co-expression at single cell resolution in cancer influence survival. <span style="color:#e80c7a">_Cancer Discovery_</span>. May 2023. [[PMID: 37071673]](https://pubmed.ncbi.nlm.nih.gov/37071673/)
 
 [28]  Jahedi A, Kumar G, Kannan L, Agarwal T, Huse J, Bhat K, <span style="color:blue"><b>Kannan K</b></span>. Gibbs Process Distinguishes Survival and Reveals Contact-Inhibition Genes in Glioblastoma Multiforme. <span style="color:#e80c7a"> _PLoS One_</span>. Feb. 2023. [[PMID: 36795646]](https://pubmed.ncbi.nlm.nih.gov/36795646/)
 
