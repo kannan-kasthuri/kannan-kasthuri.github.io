@@ -321,7 +321,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Apr 30, 2024
+Last Updated: Sep 08, 2024
 
 
 
