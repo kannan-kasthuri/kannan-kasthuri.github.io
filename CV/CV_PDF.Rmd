@@ -10,13 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \begin{center}
 \textbf{Kasthuri Kannan} \linebreak
-Associate Professor and Director \linebreak
+Associate Professor \linebreak
 https://kannan-kasthuri.github.io/ \linebreak
 \flushleft{Departments of Translational Molecular Pathology \& Neurosurgery}
 \hfill{UT MD Anderson Cancer Center} 
 \vspace{-4mm}
-\flushleft{Visiting Associate Professor (honorary appointment)}
-\hfill{National University of Singapore, Singapore}
+\flushleft{Research Collaborator}
+\hfill{Mayo Clinic, Arizona}
 \end{center}
 \vspace{2mm}
 
@@ -108,11 +108,15 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \vspace {2mm}
 
-\textbf{\textcolor{purple}{Manuscripts in-review \textcolor{blue}{(blue - equal contribution/senior/corresponding/first author)}}}
+\textbf{\textcolor{purple}{Manuscripts \textcolor{blue}{(blue - equal contribution/senior/co-senior/corresponding/first author)}}}
 
-[33] Prahlad Bhat, Michael Hwang, Afrooz Jahedi, Kanishka Sircar, and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Point Process Model Predicts Survival in Clear Cell Renal Cell Carcinoma. \textbf{\textit{\textcolor{violet}{medRXiv}}} (doi: https://doi.org/10.1101/2022.02.16.22271019).
+[35] Shruti Sridhar {with Anand Jayasekharan} Machine Learning Classification of Spatial Patterns of Malignant Cells Reveals Implications in Prognosis and Tumor Microenvironment Composition in Lymphoma. \textbf{\textit{\textcolor{violet}{to be submitted}}}
 
-\textbf{\textcolor{purple}{Publications/Preprints \textcolor{blue}{(blue - equal contribution/senior/corresponding/first author)}}}
+[34] Prahlad Bhat {with Kanishka Sircar} Spatial Distribution of Tumor Cells in Clear Cell Renal Cell Carcinoma is Associated with Metastasis and a Matrisome Gene Expression Signature. \textbf{\textit{\textcolor{violet}{submitted}}}
+
+[33] Simon Castillo {with Krishna Bhat} Longitudinal Analysis of Immune Niche Topologies in Primary and Recurrent Glioblastomas. \textbf{\textit{\textcolor{violet}{submitted}}}
+
+\textbf{\textcolor{purple}{Publications/Preprints}}
 
 [32] Edwin Parra, Jiexin Jiang et al. {with Cara Haymaker} Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. \textbf{\textit{\textcolor{violet}{Clinical Cancer Research}}}. Apr 2024. [PMID: 38277235]
 
@@ -227,6 +231,8 @@ Omics Research Symposium, Pine Biotech, Aug. 30, 2022
 
 Mayo Clinic, Science of Medicine Grand Rounds, Mar. 02, 2023, with honorarium
 
+MD Anderson Cancer Center, Spatial Biology: Multiplex Multi-omics Seminar, Sept. 27, 2024
+
 \end{flushleft}
 
 \vspace{2mm}
@@ -298,7 +304,7 @@ g) Responsible for high quality image acquisition and microscope maintenance in 
 
 \begin{flushleft}
 
-\textbf{Research Intern} \hfill \textbf{Jan 2007 – Dec 2007} \linebreak
+\textbf{Internship} \hfill \textbf{Jan 2007 – Dec 2007} \linebreak
 Knowledge Based Systems, Inc., College Station, TX		                                 
 
 \end{flushleft}
