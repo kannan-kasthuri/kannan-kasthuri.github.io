@@ -31,10 +31,10 @@
 						</div>
 						<nav>
 							<ul>
-								<li><a href="#intro">Intro</a></li>
-								<li><a href="#work">Data Science</a></li>
+							  <li><a href="#leadership">Team</a></li>
+							  <li><a href="#work">Projects</a></li>
+								<li><a href="#intro">About Me</a></li>
 								<li><a href="#about">Teaching</a></li>
-								<li><a href="leadership/leadership.html">Leadership</a></li>
 								<li><a href="CV/FlowCV.pdf">Resume</a></li>
 							</ul>
 						</nav>
@@ -42,6 +42,107 @@
 
 				<!-- Main -->
 					<div id="main">
+					  
+					  							<article id="leadership">
+								<center><h2 class="major">The Team</h2></center>
+								
+								<p style="text-align:justify"> Our team consists of exceptional data scientists and faculty collaborators across multiple institutions who are keen to further our understanding on cancers and are in a mission to end this deadly disease. Here is a short summary of who they are in alphabetical order, and the expertise they hold. <br><br>
+MDA - UT MD Anderson Cancer Center, UT - University of Texas at Austin, Mayo - Mayo Clinic, NUS - National University of Singapore</p>
+								    
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Data Scientist</th>
+												<th>Position</th>
+												<th>Expertise</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Ali Pirani</td>
+												<td>Data Scientist, MDA</td>
+												<td>Spatial modeling, Graph Engineering</td>
+											</tr>
+											<tr>
+												<td>Gayatri Kumar</td>
+												<td>Post-doc, Mayo</td>
+												<td>Spatial modelling </td>
+											</tr>
+											<tr>
+												<td>Prahlad Bhat</td>
+												<td>Undergraduate, UT </td>
+												<td>Spatial modeling </td>
+											</tr>
+											<tr>
+												<td>Matt Flick</td>
+												<td>MD PhD Student, Mayo </td>
+												<td>Graph Engineering</td>
+											</tr>
+											<tr>
+												<td>Shruti Sridhar</td>
+												<td>PhD Candidate, NUS </td>
+												<td>Spatial Modeling </td>
+											</tr>
+											<tr>
+												<td>Yang Liu</td>
+												<td>PhD Candidate, MDA </td>
+												<td>Graph Engineering</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Faculty Collaborator</th>
+												<th>Position</th>
+												<th>Expertise</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Dr. Anand Jeyasekharan, MD</td>
+												<td>Assistant Prof, NUS</td>
+												<td>Hematology</td>
+											</tr>
+											<tr>
+												<td>Dr. Jason Huse, MD PhD</td>
+												<td>Professor, MDA</td>
+												<td>Neuropathology </td>
+											</tr>
+											<tr>
+												<td>Dr. Kanishka Sircar, MD</td>
+												<td>Professor, MDA </td>
+												<td>Anatomical Pathology </td>
+											</tr>
+											<tr>
+												<td>Dr. Krishna Bhat, PhD</td>
+												<td>Associate Prof, Mayo </td>
+												<td>Cancer Biology</td>
+											</tr>
+											<tr>
+												<td>Dr. Leland Hu, MD</td>
+												<td>Associate Prof, Mayo </td>
+												<td>Radiology </td>
+											</tr>
+											<tr>
+												<td>Dr. Nhan Tran, PhD</td>
+												<td>Professor, Mayo </td>
+												<td>Cancer Biology</td>
+											</tr>
+											<tr>
+												<td>Dr. Yinyin Yuan, PhD</td>
+												<td>Professor, MDA </td>
+												<td>Machine Learning/AI</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								
+							</article>
 
 						<!-- Intro -->
 							<article id="intro">
@@ -100,7 +201,7 @@
 									</table>
 								</div>
 								
-							 <p> Click below to view my CV <br>
+							 <p> Click below to view/download my CV. <br>
 							 
 							 <a href="CV/CV_PDF.pdf"> Curriculum Vitae </a> </p>
 								
@@ -111,19 +212,24 @@
 								<center><h2 class="major">Active Projects</h2></center>
 								
 								<!-- <span class="image main"><img src="images/pic02.jpg" alt="" /></span> -->
-								
-								<p style="text-align:justify">I have obtained <a href="publications/publications.html">several directed insights</a> in biology through data science applied to genomics data.
+								   
+								   <p style="text-align:justify"> Our <a href="#leadership">team</a> is working on data science projects that are focussed on two exciting and emerging areas (1)
+								   Spatial Pathology (2) Systems Biology and AI. Here are the brief descriptions of some of the projects we do. <br> <br>
+								    <b> Geospatial modeling of tissues: </b> Spatial point processes are powerful statistical frameworks for studying point patterns. By representing cells as points and annotating the measurements taken on those cells, such as gene expression at single cell level, it is appropriate to study their interactions using point processes. We extensively use spatstat, an R package, to model interactions and derive directed insights in cancers. <br><br>
+							<b> Biomarker discovery using graph database: </b>	Graph databases can help identify biomarkers by efficiently representing complex biological networks. By enabling powerful queries and community detection algorithms, graph databases make exploring the relationships between multiple genes easier, thus facilitating the discovery of potential biomarkers critical for diagnostics or therapeutic targets. We use Neo4j, a property graph database, and algorithms from the Graph Data Science Library (GDS) to derive insights and propose actionable biological targets. The concept paper for this effort can be viewed <a href="research/Recommendation_Engine_Concept_Paper.pdf">here</a>. <br><br>
+							<b> Biomarker validation using Graph Convolution Networks (GCNs): </b> Insilico validation of biomarkers is critical for providing actionable biological targets for experiments and prognosis. We apply graph convolutional networks to validate critical biomarkers discovered through the graph database. GCNs enhance biomarker discovery by leveraging the structure of biological networks, such as gene-gene interactions, and learning meaningful node/edge representations. By aggregating information from a node's neighbors, GCNs capture local and global patterns, allowing the model to predict relationships between genes and diseases more effectively. </p>
+								   
+								   <center><h2 class="major">Past Projects</h2></center>
+								   
+								   	<p style="text-align:justify">I have obtained <a href="publications/publications.html">several directed insights</a> in biology through data science applied to genomics data.
 								   A majority of my contributions in science are in omics and numerical algorithms applied to physics problems aka
 								   computational physics. </p>
-								   
-								   <p style="text-align:justify"> However, my research has now converged on two exciting and emerging areas (1)
-								   Spatial Pathology (2) Systems Biology. In the area of spatial pathology, I am building a program that applies point process algorithms to multiplexed and H&E images. On the systems biology front, I am developing
-								   an integrated clinical, imaging and multiomics database for brain tumors. The concept paper for this effort can be viewed <a href="research/Recommendation_Engine_Concept_Paper.pdf">here</a>.</p>
 								   
 								   <p style="text-align:justify"> <a href="research/omics.html">Contributions in omics</a> highlights my key work during the years 2009-2020, primarily at
 								   New York University where I was a faculty and at Memorial Sloan-Kettering Cancer Center where I was a post-doc.
 								   <a href="research/numerical.html">Contributions in computational physics</a> marks my work as a graduate student at Texas A&M University between the years
 								   2005-2008.</p>
+								   
 							</article>
 
 						<!-- About -->
