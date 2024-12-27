@@ -35,7 +35,7 @@ Data Science, Systems Biology, Computational Pathology, Bioinformatics
 \begin{flushleft}
 
 1. Anand Jeyasekharan, Assistant Professor, National University of Singapore. \linebreak
-\hangindent=0.4cm Patterns of oncogene co-expression at single cell resolution in cancer influence survival. \textit{Cancer Discovery, (accepted)}.
+\hangindent=0.4cm Patterns of oncogene co-expression at single cell resolution in cancer influence survival. \textit{Cancer Discovery}. May. 2023.
 
 2. Dean Felsher, Professor, Stanford University. \linebreak
 \hangindent=0.4cm MYC and Twist1 cooperate to drive metastasis by eliciting crosstalk between cancer and innate immunity. \textit{eLife}. Jan. 2020.
@@ -231,7 +231,11 @@ Omics Research Symposium, Pine Biotech, Aug. 30, 2022
 
 Mayo Clinic, Science of Medicine Grand Rounds, Mar. 02, 2023, with honorarium
 
-MD Anderson Cancer Center, Spatial Biology: Multiplex Multi-omics Seminar, Sept. 27, 2024
+MD Anderson Cancer Center, Spatial Biology: Multiplex Multiomics Seminar, Sept. 27, 2024
+
+University of Glasgow, Wolfson Wohl Cancer Research Center, Glasgow. Oct. 18, 2024
+
+US Army War College, Carlisle Barracks, Pennsylvania. Dec. 11, 2024
 
 \end{flushleft}
 
@@ -251,7 +255,7 @@ d) Mentoring post-docs and graduate students
 
 \begin{flushleft}
 
-\textbf{Assistant Professor (Pathology)} \hfill \textbf{Dec 2013} - \textbf{Aug 2019} \linebreak
+\textbf{Assistant Professor (Pathology)} \hfill \textbf{Oct 2013} - \textbf{Aug 2019} \linebreak
 New York University Langone Health, New York. NY
 
 \end{flushleft}
@@ -263,7 +267,7 @@ d) Directed and taught data science and machine learning courses.
 
 \begin{flushleft}
 
-\textbf{Research Associate/Fellow}	\hfill \textbf{Apr 2011 – Nov 2013} \linebreak
+\textbf{Research Associate/Fellow}	\hfill \textbf{Apr 2011 – Sep 2013} \linebreak
 Memorial Sloan-Kettering Cancer Center, New York, NY	
 
 \end{flushleft}
@@ -327,7 +331,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Sep 08, 2024
+Last Updated: Dec 27, 2024
 
 
 
