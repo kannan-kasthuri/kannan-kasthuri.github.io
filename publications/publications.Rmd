@@ -35,16 +35,16 @@ Check out PubMed archive [here](https://pubmed.ncbi.nlm.nih.gov/?term=kasthuri+k
 
 [35] Shruti Sridhar {with Anand Jayasekharan} Machine Learning Classification of Spatial Patterns of Malignant Cells Reveals Implications in Prognosis and Tumor Microenvironment Composition in Lymphoma. <span style="color:#e80c7a">To be submitted</span>
 
-[34] Prahlad Bhat {with Kanishka Sircar} Spatial Distribution of Tumor Cells in Clear Cell Renal Cell Carcinoma is Associated with Metastasis and a Matrisome Gene Expression Signature. <span style="color:#e80c7a">Submitted</span>
-
-[33] Simon Castillo {with Krishna Bhat} Longitudinal Analysis of Immune Niche Topologies in Primary and Recurrent Glioblastomas. <span style="color:#e80c7a">Submitted</span>
-
+[34] Simon Castillo {with Krishna Bhat} Longitudinal Analysis of Immune Niche Topologies in Primary and Recurrent Glioblastomas. <span style="color:#e80c7a">Submitted</span>
 
 ---
 
 ##### Published/Accepted
 
 ---
+
+[33] Bhat P, Tamboli P, Sircar K, <span style="color:blue"><b>Kannan K</b></span>. Spatial Distribution of Tumor Cells in Clear Cell Renal Cell Carcinoma Is Associated with Metastasis and a Matrisome Gene Expression Signature. 
+<span style="color:#e80c7a">_Cancers_</span>. Jan. 2025. [[PMID:39858031]](https://pmc.ncbi.nlm.nih.gov/articles/PMC11763402/)
 
 [32] Edwin Roger Parra, Jiexin Zhang, Dzifa Yawa Duose, Edgar Gonzalez-Kozlova, Mary W. Redman, Hong Chen, Ganiraju C Manyam, Jianhua Zhang, Xingzhi Song, Rossana Lazcano, Mario Piubelli, Caddie Laberiano Fernandez, Frank Rojas, Baili Zhang, Len Taing, Aashna Jhaveri, Jacob Geisberg, Jen Altreuter, Franziska Michor, James Provencher, Joyce Yu, Ethan Cerami, Radim Moravec, **Kasthuri Kannan**, Rajyalakshmi Luthra, Gheath Al-Atrash, Hsin-Hui Huang, Hui Xie, Manishkumar Pate, Kai Nie, Jocelyn Harris, Kimberly Argueta, James Lindsay, Roshni Biswas, Stephen Van Nostrand, Seunghee Kim-Schulze, Jhanelle E. Gray, Roy Herbst, Ignacio I. Wistuba, Scott Gettinger, Karen Kelly, Lyudmila Bazhenova, Sacha Gnjatic, J. Jack Lee, Jianjun Zhang, Cara Haymaker. Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. <span style="color:#e80c7a">_Clinical Cancer Research_</span>. Apr. 2024. [[PMID: 38277235]](https://pubmed.ncbi.nlm.nih.gov/38277235/)
 
