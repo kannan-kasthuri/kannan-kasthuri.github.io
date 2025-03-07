@@ -112,11 +112,11 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 [35] Shruti Sridhar {with Anand Jayasekharan} Machine Learning Classification of Spatial Patterns of Malignant Cells Reveals Implications in Prognosis and Tumor Microenvironment Composition in Lymphoma. \textbf{\textit{\textcolor{violet}{to be submitted}}}
 
-[34] Prahlad Bhat {with Kanishka Sircar} Spatial Distribution of Tumor Cells in Clear Cell Renal Cell Carcinoma is Associated with Metastasis and a Matrisome Gene Expression Signature. \textbf{\textit{\textcolor{violet}{submitted}}}
-
-[33] Simon Castillo {with Krishna Bhat} Longitudinal Analysis of Immune Niche Topologies in Primary and Recurrent Glioblastomas. \textbf{\textit{\textcolor{violet}{submitted}}}
+[34] Simon Castillo {with Krishna Bhat} Longitudinal Analysis of Immune Niche Topologies in Primary and Recurrent Glioblastomas. \textbf{\textit{\textcolor{violet}{submitted}}}
 
 \textbf{\textcolor{purple}{Publications/Preprints}}
+
+[33] Bhat P, Tamboli P, Sircar K, \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Distribution of Tumor Cells in Clear Cell Renal Cell Carcinoma Is Associated with Metastasis and a Matrisome Gene Expression Signature. \textbf{\textit{\textcolor{violet}{Cancers}}}. Jan 2025. [PMID: 39858031] 
 
 [32] Edwin Parra, Jiexin Jiang et al. {with Cara Haymaker} Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. \textbf{\textit{\textcolor{violet}{Clinical Cancer Research}}}. Apr 2024. [PMID: 38277235]
 
@@ -331,7 +331,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Dec 27, 2024
+Last Updated: Mar 7, 2025
 
 
 
