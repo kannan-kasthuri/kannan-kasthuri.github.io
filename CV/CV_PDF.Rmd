@@ -10,10 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \begin{center}
 \textbf{Kasthuri Kannan} \linebreak
-Associate Professor \linebreak
+Professor of Data Science\linebreak
 https://kannan-kasthuri.github.io/ \linebreak
-\flushleft{Departments of Translational Molecular Pathology \& Neurosurgery}
-\hfill{UT MD Anderson Cancer Center} 
+\flushleft{Center for Strategic Leadership}
+\hfill{The US Army War College, Carlisle Barracks, PA} 
 \vspace{-4mm}
 \flushleft{Research Collaborator}
 \hfill{Mayo Clinic, Arizona}
@@ -116,6 +116,8 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \textbf{\textcolor{purple}{Publications/Preprints}}
 
+[34] Yang Liu, Jason Huse and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Expression graph network framework for biomarker discovery. \textbf{\textit{\textcolor{violet}{Briefings in Bioinformatcics}}}. (to appear - accepted for publication)
+
 [33] Bhat P, Tamboli P, Sircar K, \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Distribution of Tumor Cells in Clear Cell Renal Cell Carcinoma Is Associated with Metastasis and a Matrisome Gene Expression Signature. \textbf{\textit{\textcolor{violet}{Cancers}}}. Jan 2025. [PMID: 39858031] 
 
 [32] Edwin Parra, Jiexin Jiang et al. {with Cara Haymaker} Multi-omics profiling of lung squamous cell carcinoma reveals immune signatures associated with checkpoint blockade response and resistance. \textbf{\textit{\textcolor{violet}{Clinical Cancer Research}}}. Apr 2024. [PMID: 38277235]
@@ -183,7 +185,7 @@ and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Sur
 
 [01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, pp. 107-114, May 2005.
 
-\vspace{4mm}
+\vspace{8mm}\
 
 \hrule
 
@@ -237,6 +239,8 @@ University of Glasgow, Wolfson Wohl Cancer Research Center, Glasgow. Oct. 18, 20
 
 US Army War College, Carlisle Barracks, Pennsylvania. Dec. 11, 2024
 
+University of Texas Medical Branch, Galveston, Oct. 07, 2025
+
 \end{flushleft}
 
 \vspace{2mm}
@@ -244,14 +248,19 @@ US Army War College, Carlisle Barracks, Pennsylvania. Dec. 11, 2024
 \hrule
 
 \textbf{\textcolor{purple}{Employment History}}
+
 \begin{flushleft}
-\textbf{Associate Professor (Translational Molecular Pathology, Neurosurgery)} \hfill \textbf{Feb 2020} - \textbf{present} \linebreak
+\textbf{Professor of Data Science (Center for Strategic Leadership)} \hfill \textbf{July 2028} - \textbf{Present} \linebreak
+The US Army War College, Carlisle Barracks, PA.
+\end{flushleft}
+Responsibilities include assisting faculty in integrating data science into curricula, developing faculty skills through targeted training, and enhancing student data literacy to support senior-level decision-making, while serving as an expert in data analytics, AI, and business intelligence
+
+\begin{flushleft}
+\textbf{Associate Professor (Translational Molecular Pathology, Neurosurgery)} \hfill \textbf{Feb 2020} - \textbf{July 2028} \linebreak
 University of Texas MD Anderson Cancer Center, Houston, TX
 \end{flushleft}
-a) Systems biology architecture for glioma using GLioma AnalySiS (GLASS) consortium data. Building an integrative platform using graph database framework for hypothesis generation using Neo4j.
-b) Directing the computational pathology program. We perform spatial point process modeling of cancer tissue images obtained using multiplex immunofluorescence and CODEX technologies.
-c) NGS data analysis and spatial transcriptomics, especially GeoMx Digital Spatial Profiler data analysis
-d) Mentoring post-docs and graduate students
+a) Systems biology architecture for glioma using GLioma AnalySiS (GLASS) consortium data. Constructed an integrative platform using graph database framework for hypothesis generation using Neo4j.
+b) Directed the computational pathology program. Spatial point process modeling of cancer tissue images obtained using multiplex immunofluorescence and CODEX technologies.
 
 \begin{flushleft}
 
@@ -261,8 +270,7 @@ New York University Langone Health, New York. NY
 \end{flushleft}
 
 a) Directed insights through data science applied to Next Generation Sequencing data (see publications).
-b) Software and pipeline development.
-c) Statistical and mathematical modeling.
+b) Software and pipeline development. Statistical and mathematical modeling.
 d) Directed and taught data science and machine learning courses.
 
 \begin{flushleft}
@@ -331,7 +339,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Mar 7, 2025
+Last Updated: Oct 07, 2025
 
 
 
