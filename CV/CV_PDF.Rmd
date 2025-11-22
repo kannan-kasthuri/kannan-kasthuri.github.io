@@ -108,15 +108,13 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \vspace {2mm}
 
-\textbf{\textcolor{purple}{Manuscripts \textcolor{blue}{(blue - equal contribution/senior/co-senior/corresponding/first author)}}}
+\textbf{\textcolor{purple}{Publications}}
 
-[35] Shruti Sridhar {with Anand Jayasekharan} Machine Learning Classification of Spatial Patterns of Malignant Cells Reveals Implications in Prognosis and Tumor Microenvironment Composition in Lymphoma. \textbf{\textit{\textcolor{violet}{to be submitted}}}
+[36] Yang Liu, Jason Huse and \textbf{\textcolor{blue} {Kasthuri Kannan}}. A network-based discovery of prognostic markers in recurrent IDH wild-type gliomas. \textbf{\textit{\textcolor{violet}{Frontiers in Genetics}}}. Nov 2025.
 
-[34] Simon Castillo {with Krishna Bhat} Longitudinal Analysis of Immune Niche Topologies in Primary and Recurrent Glioblastomas. \textbf{\textit{\textcolor{violet}{submitted}}}
+[35] Ruiz-Cordero R, Wang Q, Kumar G, Akgul M, Creighton CJ, Rao P, Tamboli P, Zheng L, Zhao J, Murugan P, Shen S, Brimo F, Ezhilarasan R, Sulman E, Wani K, Lazar AJ, Kim T, Chen K, Bhat KPL, **Kannan K**, Wang J, Karam JA, Sircar K. Genomic and Epigenomic Signatures Can Distinguish Aggressive Chromophobe Renal Cell Carcinoma from Indolent Renal Oncocytic Tumors in Clinical-grade Samples. \textbf{\textit{\textcolor{violet}{Eur Urol Oncol}}}. Nov 2025. [PMID: 41193273] 
 
-\textbf{\textcolor{purple}{Publications/Preprints}}
-
-[34] Yang Liu, Jason Huse and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Expression graph network framework for biomarker discovery. \textbf{\textit{\textcolor{violet}{Briefings in Bioinformatcics}}}. (to appear - accepted for publication)
+[34] Yang Liu, Jason Huse and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Expression graph network framework for biomarker discovery. \textbf{\textit{\textcolor{violet}{Briefings in Bioinformatcics}}}. Aug 2025. [PMID: 41139924]
 
 [33] Bhat P, Tamboli P, Sircar K, \textbf{\textcolor{blue} {Kasthuri Kannan}}. Spatial Distribution of Tumor Cells in Clear Cell Renal Cell Carcinoma Is Associated with Metastasis and a Matrisome Gene Expression Signature. \textbf{\textit{\textcolor{violet}{Cancers}}}. Jan 2025. [PMID: 39858031] 
 
@@ -185,7 +183,7 @@ and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Sur
 
 [01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, pp. 107-114, May 2005.
 
-\vspace{8mm}\
+\vspace {2mm}
 
 \hrule
 
@@ -339,7 +337,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Oct 07, 2025
+Last Updated: Nov 11, 2025
 
 
 
