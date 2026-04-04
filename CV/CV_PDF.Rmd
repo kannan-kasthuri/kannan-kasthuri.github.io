@@ -14,7 +14,7 @@ Professor of Data Science\linebreak
 https://kannan-kasthuri.github.io/ \linebreak
 \flushleft{Center for Strategic Leadership}
 \hfill{The US Army War College, Carlisle Barracks, PA} 
-\vspace{-4mm}
+\vspace{0.5mm}
 \flushleft{Research Collaborator}
 \hfill{Mayo Clinic, Arizona}
 \end{center}
@@ -24,7 +24,7 @@ https://kannan-kasthuri.github.io/ \linebreak
 
 \textbf{\textcolor{purple}{Professional Interests}}
 
-Data Science, Systems Biology, Computational Pathology, Bioinformatics
+Data Science, AI, Systems Biology, Computational Pathology, Bioinformatics
 
 \vspace{2mm}
 
@@ -183,9 +183,10 @@ and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Sur
 
 [01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, pp. 107-114, May 2005.
 
-\vspace {2mm}
+\vspace*{4mm}
 
 \hrule
+\pagebreak
 
 \textbf{\textcolor{purple}{Invited Talks/Workshops/Interviews}}
 
@@ -239,6 +240,8 @@ US Army War College, Carlisle Barracks, Pennsylvania. Dec. 11, 2024
 
 University of Texas Medical Branch, Galveston, Oct. 07, 2025
 
+Army Test and Evaluation Command, Aberdeen Proving Grounds, Mar. 23, 2026
+
 \end{flushleft}
 
 \vspace{2mm}
@@ -251,7 +254,7 @@ University of Texas Medical Branch, Galveston, Oct. 07, 2025
 \textbf{Professor of Data Science (Center for Strategic Leadership)} \hfill \textbf{July 2028} - \textbf{Present} \linebreak
 The US Army War College, Carlisle Barracks, PA.
 \end{flushleft}
-Responsibilities include assisting faculty in integrating data science into curricula, developing faculty skills through targeted training, and enhancing student data literacy to support senior-level decision-making, while serving as an expert in data analytics, AI, and business intelligence
+Responsibilities include AI-focussed research, assisting faculty in integrating data science into curricula, developing faculty skills through targeted training, and enhancing student data literacy to support senior-level decision-making, while serving as an expert in data analytics, AI, and business intelligence.
 
 \begin{flushleft}
 \textbf{Associate Professor (Translational Molecular Pathology, Neurosurgery)} \hfill \textbf{Feb 2020} - \textbf{July 2028} \linebreak
@@ -337,7 +340,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Nov 11, 2025
+Last Updated: Apr 04, 2026
 
 
 
