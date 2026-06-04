@@ -110,6 +110,8 @@ kable(education, format = "latex", booktabs = T) %>% kable_styling(full_width = 
 
 \textbf{\textcolor{purple}{Publications}}
 
+[37] Singh A, Maynard ME, Huang L, Kang AM, Prasad S, **Kasthuri K**, Sedlock A, Maric D, Dash PK, Redell JB, Roysam B. Computational delineation and cellular profiling of murine cortical cell layers using multiplex immunofluorescence imaging. \textbf{\textit{\textcolor{violet}{J Neurosci Methods}}}. July 2026. [PMID: 41871770]
+
 [36] Yang Liu, Jason Huse and \textbf{\textcolor{blue} {Kasthuri Kannan}}. A network-based discovery of prognostic markers in recurrent IDH wild-type gliomas. \textbf{\textit{\textcolor{violet}{Frontiers in Genetics}}}. Nov 2025.
 
 [35] Ruiz-Cordero R, Wang Q, Kumar G, Akgul M, Creighton CJ, Rao P, Tamboli P, Zheng L, Zhao J, Murugan P, Shen S, Brimo F, Ezhilarasan R, Sulman E, Wani K, Lazar AJ, Kim T, Chen K, Bhat KPL, **Kannan K**, Wang J, Karam JA, Sircar K. Genomic and Epigenomic Signatures Can Distinguish Aggressive Chromophobe Renal Cell Carcinoma from Indolent Renal Oncocytic Tumors in Clinical-grade Samples. \textbf{\textit{\textcolor{violet}{Eur Urol Oncol}}}. Nov 2025. [PMID: 41193273] 
@@ -340,7 +342,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: Apr 04, 2026
+Last Updated: June 04, 2026
 
 
 
