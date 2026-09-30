@@ -181,14 +181,13 @@ and \textbf{\textcolor{blue} {Kasthuri Kannan}}. Gibbs Process Distinguishes Sur
 
 [03] \textbf{\textcolor{blue} {Kasthuri Kannan}} and Vivek Sarin, A Treecode for Potentials of the Form $r^{-\lambda}$, \textbf{\textit{\textcolor{violet}{International Journal of Computer Mathematics}}}. 84, 1249-1260, Jan. 2007.
 
-[02] 	\textbf{\textcolor{blue} {Kasthuri Kannan}} and Vivek Sarin, A Treecode for Accurate Force Calculations. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3991, pp. 92-99, May 2006.
+[02] 	\textbf{\textcolor{blue} {Kasthuri Kannan}} and Vivek Sarin, A Treecode for Accurate Force Calculations. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3991, May 2006.
 
-[01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, pp. 107-114, May 2005.
+[01]	\textbf{\textcolor{blue} {Kasthuri Kannan}}, Hemant Mahawar and Vivek Sarin, A Multipole Based Treecode using Spherical Harmonics for the Potentials of the Form $r^{-\lambda}$. \textbf{\textit{\textcolor{violet}{Lecture Notes in Computer Science}}}. 3514, May 2005.
 
-\vspace*{4mm}
+\vspace*{2mm}
 
 \hrule
-\pagebreak
 
 \textbf{\textcolor{purple}{Invited Talks/Workshops/Interviews}}
 
@@ -253,13 +252,13 @@ Army Test and Evaluation Command, Aberdeen Proving Grounds, Mar. 23, 2026
 \textbf{\textcolor{purple}{Employment History}}
 
 \begin{flushleft}
-\textbf{Professor of Data Science (Center for Strategic Leadership)} \hfill \textbf{July 2028} - \textbf{Present} \linebreak
+\textbf{Professor of Data Science (Center for Strategic Leadership)} \hfill \textbf{July 2025} - \textbf{Present} \linebreak
 The US Army War College, Carlisle Barracks, PA.
 \end{flushleft}
 Responsibilities include AI-focussed research, assisting faculty in integrating data science into curricula, developing faculty skills through targeted training, and enhancing student data literacy to support senior-level decision-making, while serving as an expert in data analytics, AI, and business intelligence.
 
 \begin{flushleft}
-\textbf{Associate Professor (Translational Molecular Pathology, Neurosurgery)} \hfill \textbf{Feb 2020} - \textbf{July 2028} \linebreak
+\textbf{Associate Professor (Translational Molecular Pathology, Neurosurgery)} \hfill \textbf{Feb 2020} - \textbf{July 2025} \linebreak
 University of Texas MD Anderson Cancer Center, Houston, TX
 \end{flushleft}
 a) Systems biology architecture for glioma using GLioma AnalySiS (GLASS) consortium data. Constructed an integrative platform using graph database framework for hypothesis generation using Neo4j.
@@ -342,7 +341,7 @@ c) Machine Learning: https://kannan-kasthuri.github.io/machine_learning.html
 
 \hrule
 
-Last Updated: June 04, 2026
+Last Updated: Sept 30, 2026
 
 
 
